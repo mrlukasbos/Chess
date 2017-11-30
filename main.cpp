@@ -4,12 +4,12 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(800,800),"Chess");
 
-    sf::Font font;
-    font.loadFromFile("OpenSans-Bold.ttf");
-    sf::Text text("Chess", font, 11);
-    text.setCharacterSize(32);
-    text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
-                     window.getSize().y/2 - text.getGlobalBounds().height/2);
+//    sf::Font font;
+//    font.loadFromFile("OpenSans-Bold.ttf");
+//    sf::Text text("Chess", font, 11);
+//    text.setCharacterSize(32);
+//    text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
+//                     window.getSize().y/2 - text.getGlobalBounds().height/2);
 
     Board board;
 
@@ -20,8 +20,9 @@ int main() {
             if(event.type == sf::Event::Closed){
                 window.close();
             }
+
             window.clear(sf::Color::Black);
-            window.draw(text);
+//            window.draw(text);
 
             board.drawBoard(window);
 
