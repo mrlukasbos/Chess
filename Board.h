@@ -6,6 +6,7 @@
 #define CHESS_BOARD_H
 
 #include "GridElement.h"
+#include "chesspieces/Rook.h"
 #include <SFML/Graphics.hpp>
 
 class Board {
@@ -13,6 +14,9 @@ public:
     Board();
     GridElement elements[8][8];
     void drawBoard(sf::RenderWindow &window);
+    Rook whiteRook;
+    void startGame();
+
 };
 
 

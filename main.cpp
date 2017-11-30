@@ -4,14 +4,8 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(800,800),"Chess");
 
-//    sf::Font font;
-//    font.loadFromFile("OpenSans-Bold.ttf");
-//    sf::Text text("Chess", font, 11);
-//    text.setCharacterSize(32);
-//    text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
-//                     window.getSize().y/2 - text.getGlobalBounds().height/2);
-
     Board board;
+    board.startGame();
 
     //start interface
     while(window.isOpen()){
@@ -22,12 +16,11 @@ int main() {
             }
 
             window.clear(sf::Color::Black);
-//            window.draw(text);
 
             board.drawBoard(window);
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                printf("mouse clicked at location: %d, %d", sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+                printf("mouse clicked at location: %d, %d \n", sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
             }
 
             window.display();

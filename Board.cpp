@@ -4,7 +4,6 @@
 
 #include "Board.h"
 
-
 Board::Board() {
     const short BLOCK_SIZE = 100;
     for (short i  = 0; i < 8; i++) {
@@ -22,4 +21,9 @@ void Board::drawBoard(sf::RenderWindow &window) {
            elements[i][j].drawGridElement(window);
         }
     }
+}
+
+// set all pieces to the initial position
+void Board::startGame() {
+
 }
