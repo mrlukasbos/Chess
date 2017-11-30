@@ -11,14 +11,13 @@ class GridElement {
 
 public:
     GridElement();
-    GridElement(int x, int y, int size);
+    GridElement(int x, int y, int size, sf::Color color);
     sf::RectangleShape rectangle;
-
 private:
     int posX;
     int posY;
     int size;
-
+    sf::Color color;
 };
 
 

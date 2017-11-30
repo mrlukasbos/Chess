@@ -3,23 +3,20 @@
 //
 
 #include "GridElement.h"
-#include <iostream>
-#include <stdio.h>
 
 GridElement::GridElement() {
 
 }
 
 
-GridElement::GridElement(int x, int y, int size) {
+GridElement::GridElement(int x, int y, int size, sf::Color color) {
     this->posX = x;
     this->posY = y;
     this->size = size;
+    this->color = color;
 
     rectangle.setPosition(posX, posY);
     rectangle.setSize(sf::Vector2f(size, size));
-
-printf("posX: %d \t %d \t %d \n", posX, posY, size);
-    rectangle.setFillColor(sf::Color::White);
+    rectangle.setFillColor(color);
 }
 
