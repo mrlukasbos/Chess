@@ -17,3 +17,8 @@ GridElement::GridElement(int x, int y, int size, sf::Color color) {
     rectangle.setFillColor(color);
 }
 
+void GridElement::drawGridElement(sf::RenderWindow &window) {
+    window.draw(rectangle);
+    chessPiece.drawChessPiece(window);
+}
+

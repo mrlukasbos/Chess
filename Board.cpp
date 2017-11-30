@@ -19,7 +19,7 @@ void Board::drawBoard(sf::RenderWindow &window) {
     //draw the gridElements
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            window.draw(elements[i][j].rectangle);
+           elements[i][j].drawGridElement(window);
         }
     }
 }

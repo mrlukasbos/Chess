@@ -6,6 +6,7 @@
 #define CHESS_GRIDELEMENT_H
 
 #include <SFML/Graphics.hpp>
+#include "ChessPiece.h"
 
 class GridElement {
 
@@ -13,6 +14,8 @@ public:
     GridElement();
     GridElement(int x, int y, int size, sf::Color color);
     sf::RectangleShape rectangle;
+    ChessPiece chessPiece;
+    void drawGridElement(sf::RenderWindow &window);
 private:
     int posX;
     int posY;
