@@ -10,6 +10,7 @@
 class GridElement {
 
 public:
+    GridElement();
     GridElement(int x, int y, int size);
     sf::RectangleShape rectangle;
 
@@ -17,6 +18,7 @@ private:
     int posX;
     int posY;
     int size;
+
 };
 
 

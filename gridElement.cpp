@@ -4,6 +4,12 @@
 
 #include "GridElement.h"
 #include <iostream>
+#include <stdio.h>
+
+GridElement::GridElement() {
+
+}
+
 
 GridElement::GridElement(int x, int y, int size) {
     this->posX = x;
@@ -12,7 +18,8 @@ GridElement::GridElement(int x, int y, int size) {
 
     rectangle.setPosition(posX, posY);
     rectangle.setSize(sf::Vector2f(size, size));
-    std::cout << size;
 
+printf("posX: %d \t %d \t %d \n", posX, posY, size);
     rectangle.setFillColor(sf::Color::White);
 }
+

@@ -15,8 +15,13 @@ int main() {
     text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
                      window.getSize().y/2 - text.getGlobalBounds().height/2);
 
-    GridElement element(10, 10, 100);
+    GridElement elements[8][8];
 
+    for (int i  = 0; i < 7; i++) {
+        for (int j = 0; j < 7; j++) {
+            elements[i][j] = GridElement(i * 10, j*10, 10);
+        }
+    }
     while(window.isOpen()){
         sf::Event event;
         while(window.pollEvent(event)) {
@@ -25,7 +30,13 @@ int main() {
             }
             window.clear(sf::Color::Black);
             window.draw(text);
-            window.draw(element.rectangle);
+
+            for (int i  = 0; i < 7; i++) {
+                for (int j = 0; j < 7; j++) {
+                    window.draw(elements[i][j].rectangle);
+                }
+            }
+
             window.display();
         }
     }
