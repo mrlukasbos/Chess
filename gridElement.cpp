@@ -4,10 +4,7 @@
 
 #include "GridElement.h"
 
-GridElement::GridElement() {
-
-}
-
+GridElement::GridElement() { }
 
 GridElement::GridElement(int x, int y, int size, sf::Color color) {
     this->posX = x;
