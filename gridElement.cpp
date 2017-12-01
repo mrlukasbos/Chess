@@ -7,8 +7,8 @@
 
 GridElement::GridElement() { }
 
-GridElement::GridElement(int x, int y, int size, sf::Color color)
-        : posX(x), posY(y), size(size), color(color) {
+GridElement::GridElement(int x, int y, int size, sf::Color color, std::string name)
+        : posX(x), posY(y), size(size), color(color), name(name) {
 }
 
 void GridElement::drawGridElement(sf::RenderWindow &window) {

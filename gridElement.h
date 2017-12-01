@@ -12,7 +12,7 @@ class GridElement {
 
 public:
     GridElement();
-    GridElement(int x, int y, int size, sf::Color color);
+    GridElement(int x, int y, int size, sf::Color color, std::string name);
     sf::RectangleShape rectangle;
     ChessPiece chessPiece;
     void drawGridElement(sf::RenderWindow &window);
@@ -23,7 +23,7 @@ public:
     sf::Color color;
 
 private:
-
+    std::string name;
     int size;
 };
 

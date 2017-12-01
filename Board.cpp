@@ -5,12 +5,17 @@
 #include "Board.h"
 #include "constants.h"
 
+using namespace sf;
+
 Board::Board(sf::RenderWindow& window) : window(window) {
 
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            sf::Color color = (j+i)%2 == 1 ? sf::Color::Black : sf::Color::White;
-            elements[i][j] = GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color);
+            Color color = (j+i)%2 == 1 ? Color::Black : Color::White;
+
+            char letters[8] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+            std::string name = letters[i] + std::to_string(j+1);
+            elements[i][j] = GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, name);
         }
     }
 }
@@ -38,8 +43,7 @@ void Board::selectGridElement(int x, int y) {
             if (x > element->posX && x < element->posX+BLOCK_SIZE
                     && y > element->posY && y < element->posY+BLOCK_SIZE) {
                 element->setSelected(true);
-                char letters[8] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-                printf("Clicked %c%d \n", letters[i], j+1);
+
             }
         }
     }
