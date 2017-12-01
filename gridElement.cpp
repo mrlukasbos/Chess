@@ -3,6 +3,7 @@
 //
 
 #include "GridElement.h"
+#include "constants.h"
 
 GridElement::GridElement() { }
 
@@ -11,14 +12,18 @@ GridElement::GridElement(int x, int y, int size, sf::Color color)
 }
 
 void GridElement::drawGridElement(sf::RenderWindow &window) {
-    rectangle.setPosition(posX, posY);
-    rectangle.setSize(sf::Vector2f(size, size));
+
+    rectangle.setPosition(posX + SELECTION_LINE_THICKNESS, posY + SELECTION_LINE_THICKNESS);
+    rectangle.setSize(sf::Vector2f(size - 2*SELECTION_LINE_THICKNESS, size - 2*SELECTION_LINE_THICKNESS));
+    rectangle.setOutlineThickness(SELECTION_LINE_THICKNESS);
 
     if (isSelected) {
-        rectangle.setFillColor(sf::Color::Magenta);
+        rectangle.setOutlineColor(sf::Color::Magenta);
     } else {
-        rectangle.setFillColor(color);
+        rectangle.setOutlineColor(color);
     }
+
+    rectangle.setFillColor(color);
     window.draw(rectangle);
     chessPiece.drawChessPiece(window);
 }
