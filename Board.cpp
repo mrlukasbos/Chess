@@ -14,7 +14,7 @@ Board::Board(sf::RenderWindow& window) : window(window) {
             Color color = (j+i)%2 == 1 ? Color::Black : Color::White;
 
             char letters[8] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-            std::string name = letters[i] + std::to_string(j+1);
+            std::string name = letters[i] + std::to_string(8 - j);
             elements[i][j] = GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, name);
         }
     }
@@ -44,7 +44,10 @@ void Board::selectGridElement(int x, int y) {
                     && y > element->posY && y < element->posY+BLOCK_SIZE) {
                 element->setSelected(true);
 
+                selectedGridElement = element;
+
             }
         }
     }
 }
+

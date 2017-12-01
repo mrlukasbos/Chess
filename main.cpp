@@ -29,14 +29,20 @@ int main() {
             }
 
 
-            sf::Font font;
-            font.loadFromFile("OpenSans-Bold.ttf");
-            sf::Text text("Chess", font, 26);
-            text.setFillColor(sf::Color::Black);
-            text.setCharacterSize(32);
-            text.setPosition(BOARD_SIZE + 40, 40);
 
-            window.draw(text);
+            GridElement * element = board.selectedGridElement;
+
+            if (element) {
+
+                sf::Font font;
+                font.loadFromFile("OpenSans-Bold.ttf");
+                sf::Text text(element->name, font, 26);
+                text.setFillColor(sf::Color::Black);
+                text.setCharacterSize(32);
+                text.setPosition(BOARD_SIZE + 40, 40);
+
+                window.draw(text);
+            }
 
 
             window.display();

@@ -17,6 +17,7 @@ public:
     Rook whiteRook;
     void startGame();
     void selectGridElement(int x, int y);
+    GridElement * selectedGridElement;
 private:
     sf::RenderWindow& window;
 

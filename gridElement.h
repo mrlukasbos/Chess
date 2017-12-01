@@ -21,8 +21,6 @@ public:
     bool isSelected = false;
     void setSelected(bool selected);
     sf::Color color;
-
-private:
     std::string name;
     int size;
 };
