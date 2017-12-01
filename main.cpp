@@ -32,10 +32,10 @@ int main() {
 
             GridElement * element = board.selectedGridElement;
 
-            if (element) {
+            sf::Font font;
+            font.loadFromFile("OpenSans-Bold.ttf");
 
-                sf::Font font;
-                font.loadFromFile("OpenSans-Bold.ttf");
+            if (element) {
                 sf::Text text(element->name, font, 26);
                 text.setFillColor(sf::Color::Black);
                 text.setCharacterSize(32);

@@ -11,7 +11,7 @@ Board::Board(sf::RenderWindow& window) : window(window) {
 
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            Color color = (j+i)%2 == 1 ? Color::Black : Color::White;
+            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
 
             char letters[8] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
             std::string name = letters[i] + std::to_string(8 - j);
