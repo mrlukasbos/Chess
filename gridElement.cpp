@@ -11,20 +11,19 @@ GridElement::GridElement(int x, int y, int size, sf::Color color)
 }
 
 void GridElement::drawGridElement(sf::RenderWindow &window) {
-
     rectangle.setPosition(posX, posY);
     rectangle.setSize(sf::Vector2f(size, size));
 
     if (isSelected) {
-        color = sf::Color::Magenta;
+        rectangle.setFillColor(sf::Color::Magenta);
+    } else {
+        rectangle.setFillColor(color);
     }
-    rectangle.setFillColor(color);
-
     window.draw(rectangle);
     chessPiece.drawChessPiece(window);
 }
 
-void GridElement::setSelected() {
-    this->isSelected = true;
+void GridElement::setSelected(bool selected) {
+    this->isSelected = selected;
 }
 

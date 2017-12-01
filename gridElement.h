@@ -19,7 +19,7 @@ public:
     int posX;
     int posY;
     bool isSelected = false;
-    void setSelected();
+    void setSelected(bool selected);
     sf::Color color;
 
 private:

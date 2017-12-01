@@ -33,10 +33,11 @@ void Board::selectGridElement(int x, int y) {
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             GridElement * element = &elements[i][j];
+            element->setSelected(false); // there should be no other elements be selected.
+
             if (x > element->posX && x < element->posX+BLOCK_SIZE
                     && y > element->posY && y < element->posY+BLOCK_SIZE) {
-
-                element->setSelected();
+                element->setSelected(true);
                 char letters[8] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
                 printf("Clicked %c%d \n", letters[i], j+1);
             }
