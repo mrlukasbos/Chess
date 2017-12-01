@@ -11,11 +11,15 @@
 
 class Board {
 public:
-    Board();
+    Board(sf::RenderWindow& window);
     GridElement elements[8][8];
-    void drawBoard(sf::RenderWindow &window);
+    void drawBoard();
     Rook whiteRook;
     void startGame();
+    void selectGridElement(int x, int y);
+    GridElement selectedElement;
+private:
+    sf::RenderWindow& window;
 
 };
 

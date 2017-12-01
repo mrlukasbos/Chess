@@ -6,19 +6,25 @@
 
 GridElement::GridElement() { }
 
-GridElement::GridElement(int x, int y, int size, sf::Color color) {
-    this->posX = x;
-    this->posY = y;
-    this->size = size;
-    this->color = color;
-
-    rectangle.setPosition(posX, posY);
-    rectangle.setSize(sf::Vector2f(size, size));
-    rectangle.setFillColor(color);
+GridElement::GridElement(int x, int y, int size, sf::Color color)
+        : posX(x), posY(y), size(size), color(color) {
 }
 
 void GridElement::drawGridElement(sf::RenderWindow &window) {
+
+    rectangle.setPosition(posX, posY);
+    rectangle.setSize(sf::Vector2f(size, size));
+
+    if (isSelected) {
+        color = sf::Color::Magenta;
+    }
+    rectangle.setFillColor(color);
+
     window.draw(rectangle);
     chessPiece.drawChessPiece(window);
+}
+
+void GridElement::setSelected() {
+    this->isSelected = true;
 }
 

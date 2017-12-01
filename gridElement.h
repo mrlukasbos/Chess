@@ -16,11 +16,15 @@ public:
     sf::RectangleShape rectangle;
     ChessPiece chessPiece;
     void drawGridElement(sf::RenderWindow &window);
-private:
     int posX;
     int posY;
-    int size;
+    bool isSelected = false;
+    void setSelected();
     sf::Color color;
+
+private:
+
+    int size;
 };
 
 

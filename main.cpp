@@ -4,7 +4,7 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(800,800),"Chess");
 
-    Board board;
+    Board board(window);
     board.startGame();
 
     //start interface
@@ -17,10 +17,10 @@ int main() {
 
             window.clear(sf::Color::Black);
 
-            board.drawBoard(window);
+            board.drawBoard();
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                printf("mouse clicked at location: %d, %d \n", sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+                board.selectGridElement( sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
             }
 
             window.display();
