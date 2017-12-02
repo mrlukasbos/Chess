@@ -16,7 +16,7 @@ class ChessPiece {
 public:
     ChessPiece();
 
-    ChessPiece(PieceColor color);
+    ChessPiece(PieceColor color, GridElement *location);
     void drawChessPiece(sf::RenderWindow &window);
 
     PieceColor color;

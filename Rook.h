@@ -12,7 +12,7 @@ using namespace sf;
 
 class Rook : public ChessPiece {
 public:
-    Rook(PieceColor color);
+    Rook(PieceColor color, GridElement *location);
 
     std::string pieceName; // also used to generate imageUrl
 };

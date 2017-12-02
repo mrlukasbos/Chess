@@ -4,7 +4,7 @@
 
 #include "ChessPiece.h"
 
-ChessPiece::ChessPiece(PieceColor color) : color(color) {
+ChessPiece::ChessPiece(PieceColor color, GridElement *location) : color(color), location(location) {
     if (color == BLACK) {
         imageUrlPrefix = "Black";
     } else {
@@ -17,7 +17,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     //It's an example, you have to keep the sf::Texture and sf::Sprite as members of your class
     texture.loadFromImage(img);
     sprite.setTexture(texture, true);
-    sprite.setPosition(sf::Vector2f(10, 10)); // absolute position
+    sprite.setPosition(sf::Vector2f(location->posX + 10, location->posY + 10)); // absolute position
     window.draw(sprite);
 
 }

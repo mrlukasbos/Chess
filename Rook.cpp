@@ -5,7 +5,7 @@
 #include "Rook.h"
 
 
-Rook::Rook(PieceColor color) : ChessPiece(color) {
+Rook::Rook(PieceColor color, GridElement *location) : ChessPiece(color, location) {
 
     pieceName = "Rook";
     img.loadFromFile("images/" + imageUrlPrefix + pieceName + ".png");
