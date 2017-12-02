@@ -3,7 +3,6 @@
 #include "constants.h"
 
 int main() {
-
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 

@@ -31,6 +31,8 @@ void Board::drawBoard() {
 
 // set all pieces to the initial position
 void Board::startGame() {
+    elements[0][0].setChessPiece(new Rook(WHITE));
+    elements[7][0].setChessPiece(new Rook(WHITE));
 
 }
 

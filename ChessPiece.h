@@ -6,15 +6,27 @@
 #define CHESS_CHESSPIECE_H
 
 #include <SFML/Graphics.hpp>
+#include "color.h"
+#include "gridElement.h"
 
+using namespace sf;
+
+class GridElement;
 class ChessPiece {
-private:
-    char letter = 'X';
-    sf::Color color; //black or white
-    sf::CircleShape circle;
 public:
     ChessPiece();
+
+    ChessPiece(PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
+
+    PieceColor color;
+    GridElement *location;
+    std::string imageUrlPrefix;
+
+    // image utils
+    sf::Image img;
+    sf::Texture texture;
+    sf::Sprite sprite;
 };
 
 

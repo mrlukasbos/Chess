@@ -8,13 +8,15 @@
 #include <SFML/Graphics.hpp>
 #include "ChessPiece.h"
 
+#include "color.h"
+
+class ChessPiece;
 class GridElement {
 
 public:
     GridElement();
     GridElement(int x, int y, int size, sf::Color color, std::string name);
     sf::RectangleShape rectangle;
-    ChessPiece chessPiece;
     void drawGridElement(sf::RenderWindow &window);
     int posX;
     int posY;
@@ -23,6 +25,10 @@ public:
     sf::Color color;
     std::string name;
     int size;
+
+    ChessPiece *chessPiece = NULL;
+
+    void setChessPiece(ChessPiece *piece);
 };
 
 
