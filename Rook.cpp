@@ -6,8 +6,6 @@
 
 
 Rook::Rook(PieceColor color, GridElement *location) : ChessPiece(color, location) {
-
-    pieceName = "Rook";
     img.loadFromFile("images/" + imageUrlPrefix + pieceName + ".png");
 
 }

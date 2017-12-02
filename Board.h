@@ -17,7 +17,11 @@ public:
 
     // Rook whiteRook;
     void startGame();
-    void selectGridElement(int x, int y);
+
+    void selectGridElementFromMousePos(int x, int y);
+
+    void selectGridElementFromCoordinates(sf::Vector2i coordinates);
+
     GridElement * selectedGridElement;
 private:
     sf::RenderWindow& window;

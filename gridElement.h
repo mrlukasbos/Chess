@@ -15,7 +15,8 @@ class GridElement {
 
 public:
     GridElement();
-    GridElement(int x, int y, int size, sf::Color color, std::string name);
+
+    GridElement(int x, int y, int size, sf::Color color, sf::Vector2i coordinates);
     sf::RectangleShape rectangle;
     void drawGridElement(sf::RenderWindow &window);
     int posX;
@@ -23,6 +24,7 @@ public:
     bool isSelected = false;
     void setSelected(bool selected);
     sf::Color color;
+    sf::Vector2i coordinates;
     std::string name;
     int size;
 

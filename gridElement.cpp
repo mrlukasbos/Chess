@@ -7,8 +7,11 @@
 
 GridElement::GridElement() {}
 
-GridElement::GridElement(int x, int y, int size, sf::Color color, std::string name)
-        : posX(x), posY(y), size(size), color(color), name(name) {
+GridElement::GridElement(int x, int y, int size, sf::Color color, sf::Vector2i coordinates)
+        : posX(x), posY(y), size(size), color(color), coordinates(coordinates) {
+
+    char letters[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    name = letters[coordinates.x] + std::to_string(8 - coordinates.y);
 }
 
 void GridElement::drawGridElement(sf::RenderWindow &window) {

@@ -24,18 +24,33 @@ int main() {
             board.drawBoard();
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                board.selectGridElement( sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+                board.selectGridElementFromMousePos(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
             }
 
 
+            GridElement *selectedElement = board.selectedGridElement;
+            if (selectedElement) {
 
-            GridElement * element = board.selectedGridElement;
+                sf::Vector2i newCoordinates = selectedElement->coordinates;
 
-            sf::Font font;
-            font.loadFromFile("OpenSans-Bold.ttf");
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                    newCoordinates.x = (newCoordinates.x + 7) % 8;
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                    newCoordinates.x = (newCoordinates.x + 1) % 8;
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    newCoordinates.y = (newCoordinates.y + 7) % 8;
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    newCoordinates.y = (newCoordinates.y + 1) % 8;
+                }
 
-            if (element) {
-                sf::Text text(element->name, font, 26);
+                board.selectGridElementFromCoordinates(newCoordinates);
+
+
+                sf::Font font;
+                font.loadFromFile("OpenSans-Bold.ttf");
+
+
+                sf::Text text(selectedElement->name, font, 26);
                 text.setFillColor(sf::Color::Black);
                 text.setCharacterSize(32);
                 text.setPosition(BOARD_SIZE + 40, 40);

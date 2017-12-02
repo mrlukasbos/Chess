@@ -14,7 +14,7 @@ class Rook : public ChessPiece {
 public:
     Rook(PieceColor color, GridElement *location);
 
-    std::string pieceName; // also used to generate imageUrl
+    std::string pieceName = "Rook"; // also used to generate imageUrl
 };
 
 
