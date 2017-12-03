@@ -80,17 +80,53 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             }
             availableMoves.push_back(board->elements[i][y]);
         }
+    } else if (type == ROOK) {
+        short y = location->coordinates.y;
+        short x = location->coordinates.x;
 
+        for (short i = y + 1; i < 8; i++) {
+            GridElement *element = board->elements[x][i];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[x][i]);
+                break;
+            }
+            availableMoves.push_back(board->elements[x][i]);
+        }
 
-//        for (int i = 0; i < 8; i++) {
-//            if (location->coordinates.y != i) {
-//                availableMoves.push_back(board->elements[location->coordinates.x][i]);
-//            }
-//            if (location->coordinates.x != i) {
-//                availableMoves.push_back(board->elements[i][location->coordinates.y]);
-//            }
-//        }
+        for (short i = y - 1; i >= 0; i--) {
+            GridElement *element = board->elements[x][i];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[x][i]);
+                break;
+            }
+            availableMoves.push_back(board->elements[x][i]);
+        }
 
+        for (short i = x + 1; i < 8; i++) {
+            GridElement *element = board->elements[i][y];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[i][y]);
+                break;
+            }
+            availableMoves.push_back(board->elements[i][y]);
+        }
+
+        for (short i = x - 1; i >= 0; i--) {
+            GridElement *element = board->elements[i][y];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[i][y]);
+                break;
+            }
+            availableMoves.push_back(board->elements[i][y]);
+        }
     }
     return availableMoves;
 }
