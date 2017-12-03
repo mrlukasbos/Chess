@@ -2,14 +2,22 @@
 // Created by Lukas Bos on 30/11/2017.
 //
 
+#include <iostream>
 #include "ChessPiece.h"
 
-ChessPiece::ChessPiece(PieceColor color, GridElement *location) : color(color), location(location) {
+ChessPiece::ChessPiece(PieceType type, PieceColor color, GridElement *location) : type(type), color(color),
+                                                                                  location(location) {
+
+    std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
+
+
     if (color == BLACK) {
         imageUrlPrefix = "Black";
     } else {
         imageUrlPrefix = "White";
     }
+
+    img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
 }
 
 void ChessPiece::drawChessPiece(sf::RenderWindow &window) {

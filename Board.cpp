@@ -29,10 +29,40 @@ void Board::drawBoard() {
 
 // set all pieces to the initial position
 void Board::startGame() {
-    elements[0][0].setChessPiece(new ChessPiece(WHITE, &elements[0][0]));
-    elements[7][0].setChessPiece(new ChessPiece(WHITE, &elements[7][0]));
-    elements[0][7].setChessPiece(new ChessPiece(BLACK, &elements[0][7]));
-    elements[7][7].setChessPiece(new ChessPiece(BLACK, &elements[7][7]));
+
+    // add all white pieces
+    elements[0][0].setChessPiece(new ChessPiece(ROOK, WHITE, &elements[0][0]));
+    elements[1][0].setChessPiece(new ChessPiece(KNIGHT, WHITE, &elements[1][0]));
+    elements[2][0].setChessPiece(new ChessPiece(BISHOP, WHITE, &elements[2][0]));
+    elements[3][0].setChessPiece(new ChessPiece(KING, WHITE, &elements[3][0]));
+    elements[4][0].setChessPiece(new ChessPiece(QUEEN, WHITE, &elements[4][0]));
+    elements[5][0].setChessPiece(new ChessPiece(BISHOP, WHITE, &elements[5][0]));
+    elements[6][0].setChessPiece(new ChessPiece(KNIGHT, WHITE, &elements[6][0]));
+    elements[7][0].setChessPiece(new ChessPiece(ROOK, WHITE, &elements[7][0]));
+
+    // add white pawns
+    for (int i = 0; i < 8; i++) {
+        elements[i][1].setChessPiece(new ChessPiece(PAWN, WHITE, &elements[i][1]));
+    }
+
+
+    // Add black pawns
+    for (int i = 0; i < 8; i++) {
+        elements[i][6].setChessPiece(new ChessPiece(PAWN, BLACK, &elements[i][6]));
+    }
+
+    // Add black pieces
+    elements[0][7].setChessPiece(new ChessPiece(ROOK, BLACK, &elements[0][7]));
+    elements[1][7].setChessPiece(new ChessPiece(KNIGHT, BLACK, &elements[1][7]));
+    elements[2][7].setChessPiece(new ChessPiece(BISHOP, BLACK, &elements[2][7]));
+    elements[3][7].setChessPiece(new ChessPiece(KING, BLACK, &elements[3][7]));
+    elements[4][7].setChessPiece(new ChessPiece(QUEEN, BLACK, &elements[4][7]));
+    elements[5][7].setChessPiece(new ChessPiece(BISHOP, BLACK, &elements[5][7]));
+    elements[6][7].setChessPiece(new ChessPiece(KNIGHT, BLACK, &elements[6][7]));
+    elements[7][7].setChessPiece(new ChessPiece(ROOK, BLACK, &elements[7][7]));
+
+
+
 }
 
 void Board::selectGridElementFromMousePos(int x, int y) {

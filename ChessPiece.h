@@ -16,10 +16,12 @@ class ChessPiece {
 public:
     ChessPiece();
 
-    ChessPiece(PieceColor color, GridElement *location);
+    ChessPiece(PieceType type, PieceColor color, GridElement *location);
     void drawChessPiece(sf::RenderWindow &window);
 
     PieceColor color;
+    PieceType type;
+
     GridElement *location;
     std::string imageUrlPrefix;
 
