@@ -24,6 +24,8 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
 
 std::vector<GridElement *> ChessPiece::getAvailableMoves() {
     std::vector<GridElement *> availableMoves;
+    short y = location->coordinates.y;
+    short x = location->coordinates.x;
 
     if (type == PAWN) {
         bool isBottomColor = board->bottomColor == color;
@@ -34,9 +36,6 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
                     board->elements[location->coordinates.x][location->coordinates.y + (2 * direction)]);
         }
     } else if (type == ROOK) {
-        short y = location->coordinates.y;
-        short x = location->coordinates.x;
-
         for (short i = y + 1; i < 8; i++) {
             GridElement *element = board->elements[x][i];
             if (element->chessPiece && element->chessPiece->color == color) {
@@ -80,52 +79,24 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             }
             availableMoves.push_back(board->elements[i][y]);
         }
-    } else if (type == ROOK) {
-        short y = location->coordinates.y;
-        short x = location->coordinates.x;
+    } else if (type == KNIGHT) {
+        short knight_places_x[] = {-2, -2, -1, -1, 1, 1, 2, 2};
+        short knight_places_y[] = {1, -1, 2, -2, 2, -2, 1, -1};
 
-        for (short i = y + 1; i < 8; i++) {
-            GridElement *element = board->elements[x][i];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[x][i]);
-                break;
-            }
-            availableMoves.push_back(board->elements[x][i]);
-        }
+        for (short i = 0; i < 9; i++) {
+            short xLocation = x + knight_places_x[i];
+            short yLocation = y + knight_places_y[i];
 
-        for (short i = y - 1; i >= 0; i--) {
-            GridElement *element = board->elements[x][i];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[x][i]);
-                break;
-            }
-            availableMoves.push_back(board->elements[x][i]);
-        }
+            bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+            if (elementExists) {
+                GridElement *element = board->elements[xLocation][yLocation];
+                bool elementIsOccupied = element->chessPiece && element->chessPiece->color == color;
 
-        for (short i = x + 1; i < 8; i++) {
-            GridElement *element = board->elements[i][y];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[i][y]);
-                break;
+                if (!elementIsOccupied) {
+                    availableMoves.push_back(element);
+                }
             }
-            availableMoves.push_back(board->elements[i][y]);
-        }
 
-        for (short i = x - 1; i >= 0; i--) {
-            GridElement *element = board->elements[i][y];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[i][y]);
-                break;
-            }
-            availableMoves.push_back(board->elements[i][y]);
         }
     }
     return availableMoves;
