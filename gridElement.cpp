@@ -20,7 +20,9 @@ void GridElement::drawGridElement(sf::RenderWindow &window) {
     rectangle.setOutlineThickness(SELECTION_LINE_THICKNESS);
 
     if (isSelected) {
-        rectangle.setOutlineColor(sf::Color::Magenta);
+        rectangle.setOutlineColor(sf::Color::Blue);
+    } else if (isFocused && chessPiece) {
+        rectangle.setOutlineColor(sf::Color::Red);
     } else if (isFocused) {
         rectangle.setOutlineColor(sf::Color::Green);
     } else {
