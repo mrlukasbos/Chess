@@ -21,6 +21,8 @@ void GridElement::drawGridElement(sf::RenderWindow &window) {
 
     if (isSelected) {
         rectangle.setOutlineColor(sf::Color::Magenta);
+    } else if (isFocused) {
+        rectangle.setOutlineColor(sf::Color::Green);
     } else {
         rectangle.setOutlineColor(color);
     }
@@ -35,6 +37,10 @@ void GridElement::drawGridElement(sf::RenderWindow &window) {
 
 void GridElement::setSelected(bool selected) {
     this->isSelected = selected;
+}
+
+void GridElement::setFocused(bool focused) {
+    this->isFocused = focused;
 }
 
 void GridElement::setChessPiece(ChessPiece *piece) {

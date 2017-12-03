@@ -77,11 +77,31 @@ void Board::selectGridElementFromMousePos(int x, int y) {
             }
         }
     }
+
+    focusGridElements();
 }
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {
     selectedGridElement->setSelected(false); // set selected property of previous element to false
     selectedGridElement = elements[(coordinates.x)][coordinates.y];
     selectedGridElement->setSelected(true); // set new element to selected
+
+    focusGridElements();
 }
 
+void Board::focusGridElements() {
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
+            elements[i][j]->setFocused(false); // there should be no other elements be selected.
+        }
+    }
+
+    // here check for the elements where the selected element may move to
+    if (selectedGridElement && selectedGridElement->chessPiece) {
+        std::vector<GridElement *> availableMoves = selectedGridElement->chessPiece->getAvailableMoves();
+
+        for (int i = 0; i < availableMoves.size(); i++) {
+            availableMoves.at(i)->setFocused(true);
+        }
+    }
+}

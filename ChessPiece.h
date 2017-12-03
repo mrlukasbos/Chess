@@ -34,6 +34,8 @@ public:
     sf::Image img;
     sf::Texture texture;
     sf::Sprite sprite;
+
+    std::vector<GridElement *> getAvailableMoves();
 };
 
 

@@ -21,7 +21,11 @@ public:
     int posX;
     int posY;
     bool isSelected = false;
+    bool isFocused = false;
     void setSelected(bool selected);
+
+    void setFocused(bool focused);
+
     sf::Color color;
     sf::Vector2i coordinates;
     std::string name;

@@ -29,6 +29,8 @@ public:
 private:
     sf::RenderWindow& window;
 
+    void focusGridElements();
+
 };
 
 
