@@ -6,7 +6,6 @@
 #define CHESS_BOARD_H
 
 #include "GridElement.h"
-#include "Rook.h"
 #include <SFML/Graphics.hpp>
 
 class Board {
@@ -15,7 +14,6 @@ public:
     GridElement elements[8][8];
     void drawBoard();
 
-    // Rook whiteRook;
     void startGame();
 
     void selectGridElementFromMousePos(int x, int y);

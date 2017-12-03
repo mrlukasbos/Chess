@@ -7,8 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "ChessPiece.h"
-
-#include "color.h"
+#include "constants.h"
 
 class ChessPiece;
 class GridElement {

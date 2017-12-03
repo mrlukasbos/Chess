@@ -3,7 +3,6 @@
 //
 
 #include "Board.h"
-#include "constants.h"
 
 using namespace sf;
 
@@ -30,10 +29,10 @@ void Board::drawBoard() {
 
 // set all pieces to the initial position
 void Board::startGame() {
-    elements[0][0].setChessPiece(new Rook(WHITE, &elements[0][0]));
-    elements[7][0].setChessPiece(new Rook(WHITE, &elements[7][0]));
-    elements[0][7].setChessPiece(new Rook(BLACK, &elements[0][7]));
-    elements[7][7].setChessPiece(new Rook(BLACK, &elements[7][7]));
+    elements[0][0].setChessPiece(new ChessPiece(WHITE, &elements[0][0]));
+    elements[7][0].setChessPiece(new ChessPiece(WHITE, &elements[7][0]));
+    elements[0][7].setChessPiece(new ChessPiece(BLACK, &elements[0][7]));
+    elements[7][7].setChessPiece(new ChessPiece(BLACK, &elements[7][7]));
 }
 
 void Board::selectGridElementFromMousePos(int x, int y) {

@@ -6,7 +6,7 @@
 #define CHESS_CHESSPIECE_H
 
 #include <SFML/Graphics.hpp>
-#include "color.h"
+#include "constants.h"
 #include "gridElement.h"
 
 using namespace sf;

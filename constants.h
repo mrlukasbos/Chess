@@ -13,4 +13,9 @@
 
 #define SELECTION_LINE_THICKNESS 4
 
+// set enumerator for colors of pieces
+enum PieceColor {
+    BLACK, WHITE
+};
+
 #endif //CHESS_CONSTANTS_H
