@@ -8,7 +8,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),"Chess",sf::Style::Default, settings);
 
     Board board(window);
-    board.startGame(WHITE, BLACK);
+    board.startGame(BLACK, WHITE);
 
     //start interface
     while(window.isOpen()){

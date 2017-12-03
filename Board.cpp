@@ -39,8 +39,8 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     elements[0][0]->setChessPiece(new ChessPiece(this, elements[0][0], topColor, ROOK));
     elements[1][0]->setChessPiece(new ChessPiece(this, elements[1][0], topColor, KNIGHT));
     elements[2][0]->setChessPiece(new ChessPiece(this, elements[2][0], topColor, BISHOP));
-    elements[3][0]->setChessPiece(new ChessPiece(this, elements[3][0], topColor, KING));
-    elements[4][0]->setChessPiece(new ChessPiece(this, elements[4][0], topColor, QUEEN));
+    elements[3][0]->setChessPiece(new ChessPiece(this, elements[3][0], topColor, topColor == WHITE ? KING : QUEEN));
+    elements[4][0]->setChessPiece(new ChessPiece(this, elements[4][0], topColor, topColor == WHITE ? QUEEN : KING));
     elements[5][0]->setChessPiece(new ChessPiece(this, elements[5][0], topColor, BISHOP));
     elements[6][0]->setChessPiece(new ChessPiece(this, elements[6][0], topColor, KNIGHT));
     elements[7][0]->setChessPiece(new ChessPiece(this, elements[7][0], topColor, ROOK));
@@ -51,12 +51,14 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
         elements[i][6]->setChessPiece(new ChessPiece(this, elements[i][6], bottomColor, PAWN));
     }
 
-    // add all pieces at the top of the board
+    // add all pieces at the bottom of the board
     elements[0][7]->setChessPiece(new ChessPiece(this, elements[0][7], bottomColor, ROOK));
     elements[1][7]->setChessPiece(new ChessPiece(this, elements[1][7], bottomColor, KNIGHT));
     elements[2][7]->setChessPiece(new ChessPiece(this, elements[2][7], bottomColor, BISHOP));
-    elements[3][7]->setChessPiece(new ChessPiece(this, elements[3][7], bottomColor, KING));
-    elements[4][7]->setChessPiece(new ChessPiece(this, elements[4][7], bottomColor, QUEEN));
+    elements[3][7]->setChessPiece(
+            new ChessPiece(this, elements[3][7], bottomColor, bottomColor == BLACK ? KING : QUEEN));
+    elements[4][7]->setChessPiece(
+            new ChessPiece(this, elements[4][7], bottomColor, bottomColor == BLACK ? QUEEN : KING));
     elements[5][7]->setChessPiece(new ChessPiece(this, elements[5][7], bottomColor, BISHOP));
     elements[6][7]->setChessPiece(new ChessPiece(this, elements[6][7], bottomColor, KNIGHT));
     elements[7][7]->setChessPiece(new ChessPiece(this, elements[7][7], bottomColor, ROOK));
