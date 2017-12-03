@@ -31,19 +31,14 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
 }
 
 std::vector<GridElement *> ChessPiece::getAvailableMoves() {
-    // decide moves for pawn
-    bool isBottomColor = board->bottomColor == color;
-
-    sf::Vector2i nextCoordinates = location->coordinates;
-
-    if (isBottomColor) {
-        nextCoordinates.y -= 1;
-    } else {
-        nextCoordinates.y += 1;
-    }
-
     std::vector<GridElement *> availableMoves;
-    availableMoves.push_back(board->elements[nextCoordinates.x][nextCoordinates.y]);
+
+    bool isBottomColor = board->bottomColor == color;
+    int direction = isBottomColor ? -1 : 1;
+    availableMoves.push_back(board->elements[location->coordinates.x][location->coordinates.y + (1 * direction)]);
+    if (!hasMoved) {
+        availableMoves.push_back(board->elements[location->coordinates.x][location->coordinates.y + (2 * direction)]);
+    }
 
     return availableMoves;
 }

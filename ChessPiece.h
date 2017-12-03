@@ -36,6 +36,8 @@ public:
     sf::Sprite sprite;
 
     std::vector<GridElement *> getAvailableMoves();
+
+    bool hasMoved = false;
 };
 
 
