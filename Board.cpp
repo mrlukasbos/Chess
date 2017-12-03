@@ -8,14 +8,7 @@ using namespace sf;
 
 Board::Board(sf::RenderWindow& window) : window(window) {
 
-    for (short i  = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
-
-            sf::Vector2i coordinates = sf::Vector2i(i, j);
-            elements[i][j] = new GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
-        }
-    }
+    createBoard();
 }
 
 void Board::drawBoard() {
@@ -29,6 +22,7 @@ void Board::drawBoard() {
 
 // set all pieces to the initial position
 void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
+    createBoard();
 
     this->bottomColor = bottomColor;
     this->topColor = topColor;
@@ -118,6 +112,17 @@ void Board::focusGridElements() {
 
         for (int i = 0; i < availableMoves.size(); i++) {
             availableMoves.at(i)->setFocused(true);
+        }
+    }
+}
+
+void Board::createBoard() {
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
+            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
+
+            sf::Vector2i coordinates = sf::Vector2i(i, j);
+            elements[i][j] = new GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
         }
     }
 }

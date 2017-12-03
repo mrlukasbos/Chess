@@ -31,6 +31,8 @@ private:
 
     void focusGridElements();
 
+    void createBoard();
+
 };
 
 

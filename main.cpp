@@ -40,6 +40,8 @@ int main() {
                     newCoordinates.y = (newCoordinates.y + 7) % 8;
                 } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                     newCoordinates.y = (newCoordinates.y + 1) % 8;
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+                    board.startGame(BLACK, WHITE);
                 }
 
                 board.selectGridElementFromCoordinates(newCoordinates);
