@@ -29,11 +29,11 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
 
     if (type == PAWN) {
         bool isBottomColor = board->bottomColor == color;
-        int direction = isBottomColor ? -1 : 1;
-        availableMoves.push_back(board->elements[location->coordinates.x][location->coordinates.y + (1 * direction)]);
+        short direction = isBottomColor ? -1 : 1;
+        availableMoves.push_back(board->elements[x][y + (1 * direction)]);
         if (!hasMoved) {
             availableMoves.push_back(
-                    board->elements[location->coordinates.x][location->coordinates.y + (2 * direction)]);
+                    board->elements[x][y + (2 * direction)]);
         }
     } else if (type == ROOK) {
         for (short i = y + 1; i < 8; i++) {
@@ -41,10 +41,10 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             if (element->chessPiece && element->chessPiece->color == color) {
                 break;
             } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[x][i]);
+                availableMoves.push_back(element);
                 break;
             }
-            availableMoves.push_back(board->elements[x][i]);
+            availableMoves.push_back(element);
         }
 
         for (short i = y - 1; i >= 0; i--) {
@@ -52,10 +52,10 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             if (element->chessPiece && element->chessPiece->color == color) {
                 break;
             } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[x][i]);
+                availableMoves.push_back(element);
                 break;
             }
-            availableMoves.push_back(board->elements[x][i]);
+            availableMoves.push_back(element);
         }
 
         for (short i = x + 1; i < 8; i++) {
@@ -63,10 +63,10 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             if (element->chessPiece && element->chessPiece->color == color) {
                 break;
             } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[i][y]);
+                availableMoves.push_back(element);
                 break;
             }
-            availableMoves.push_back(board->elements[i][y]);
+            availableMoves.push_back(element);
         }
 
         for (short i = x - 1; i >= 0; i--) {
@@ -74,10 +74,10 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             if (element->chessPiece && element->chessPiece->color == color) {
                 break;
             } else if (element->chessPiece) {
-                availableMoves.push_back(board->elements[i][y]);
+                availableMoves.push_back(element);
                 break;
             }
-            availableMoves.push_back(board->elements[i][y]);
+            availableMoves.push_back(element);
         }
     } else if (type == KNIGHT) {
         short knight_places_x[] = {-2, -2, -1, -1, 1, 1, 2, 2};
