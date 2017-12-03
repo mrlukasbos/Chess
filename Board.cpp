@@ -68,11 +68,25 @@ void Board::selectGridElementFromMousePos(int x, int y) {
             GridElement *element = elements[i][j];
             element->setSelected(false); // there should be no other elements be selected.
 
+
+
             if (x > element->posX && x < element->posX+BLOCK_SIZE
                     && y > element->posY && y < element->posY+BLOCK_SIZE) {
-                element->setSelected(true);
+                // now we have the clicked element
 
-                selectedGridElement = element;
+                // when we click on a focused element
+                if (element->isFocused && !element->chessPiece) {
+                    //move the piece to there
+
+                    element->chessPiece = selectedGridElement->chessPiece;
+                    element->chessPiece->location = element;
+                    element->chessPiece->hasMoved = true;
+
+                    selectedGridElement->chessPiece = NULL;
+                } else {
+                    element->setSelected(true);
+                    selectedGridElement = element;
+                }
 
             }
         }
