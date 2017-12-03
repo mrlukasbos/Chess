@@ -34,15 +34,64 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
                     board->elements[location->coordinates.x][location->coordinates.y + (2 * direction)]);
         }
     } else if (type == ROOK) {
-        for (int i = 0; i < 8; i++) {
-            if (location->coordinates.y != i) {
-                availableMoves.push_back(board->elements[location->coordinates.x][i]);
+        short y = location->coordinates.y;
+        short x = location->coordinates.x;
+
+        for (short i = y + 1; i < 8; i++) {
+            GridElement *element = board->elements[x][i];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[x][i]);
+                break;
             }
-            if (location->coordinates.x != i) {
-                availableMoves.push_back(board->elements[i][location->coordinates.y]);
-            }
+            availableMoves.push_back(board->elements[x][i]);
         }
+
+        for (short i = y - 1; i >= 0; i--) {
+            GridElement *element = board->elements[x][i];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[x][i]);
+                break;
+            }
+            availableMoves.push_back(board->elements[x][i]);
+        }
+
+        for (short i = x + 1; i < 8; i++) {
+            GridElement *element = board->elements[i][y];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[i][y]);
+                break;
+            }
+            availableMoves.push_back(board->elements[i][y]);
+        }
+
+        for (short i = x - 1; i >= 0; i--) {
+            GridElement *element = board->elements[i][y];
+            if (element->chessPiece && element->chessPiece->color == color) {
+                break;
+            } else if (element->chessPiece) {
+                availableMoves.push_back(board->elements[i][y]);
+                break;
+            }
+            availableMoves.push_back(board->elements[i][y]);
+        }
+
+
+//        for (int i = 0; i < 8; i++) {
+//            if (location->coordinates.y != i) {
+//                availableMoves.push_back(board->elements[location->coordinates.x][i]);
+//            }
+//            if (location->coordinates.x != i) {
+//                availableMoves.push_back(board->elements[i][location->coordinates.y]);
+//            }
+//        }
 
     }
     return availableMoves;
 }
+
