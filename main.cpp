@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
-#include "constants.h"
 
 int main() {
     sf::ContextSettings settings;
@@ -9,7 +8,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),"Chess",sf::Style::Default, settings);
 
     Board board(window);
-    board.startGame();
+    board.startGame(WHITE, BLACK);
 
     //start interface
     while(window.isOpen()){

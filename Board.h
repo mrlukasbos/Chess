@@ -8,19 +8,24 @@
 #include "GridElement.h"
 #include <SFML/Graphics.hpp>
 
+class GridElement;
 class Board {
 public:
     Board(sf::RenderWindow& window);
-    GridElement elements[8][8];
+
+    GridElement *elements[8][8];
     void drawBoard();
 
-    void startGame();
+    void startGame(PieceColor bottomColor, PieceColor topColor);
 
     void selectGridElementFromMousePos(int x, int y);
 
     void selectGridElementFromCoordinates(sf::Vector2i coordinates);
 
     GridElement * selectedGridElement;
+
+    PieceColor bottomColor;
+    PieceColor topColor;
 private:
     sf::RenderWindow& window;
 

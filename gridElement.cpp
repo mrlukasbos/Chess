@@ -3,7 +3,6 @@
 //
 
 #include "GridElement.h"
-#include "constants.h"
 
 GridElement::GridElement() {}
 

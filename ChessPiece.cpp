@@ -5,12 +5,13 @@
 #include <iostream>
 #include "ChessPiece.h"
 
-ChessPiece::ChessPiece(PieceType type, PieceColor color, GridElement *location) : type(type), color(color),
-                                                                                  location(location) {
+ChessPiece::ChessPiece(Board *board, GridElement *location, PieceColor color, PieceType type) : board(board),
+                                                                                                location(location),
+                                                                                                color(color),
+                                                                                                type(type) {
 
+    // for the finding images
     std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-
-
     if (color == BLACK) {
         imageUrlPrefix = "Black";
     } else {
@@ -27,5 +28,19 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     sprite.setTexture(texture, true);
     sprite.setPosition(sf::Vector2f(location->posX + 10, location->posY + 10)); // absolute position
     window.draw(sprite);
-
 }
+
+
+
+/*
+ *
+ * Let's decide the movesets for each piece here.
+ * Let's start with pawn.
+ * pawns of bottom color move up
+ * pawns of upper color move down
+ *
+ * What we need in this method:
+ *  - Type
+ *  - Color
+ *  - What color is at the bottom
+ */

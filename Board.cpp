@@ -13,7 +13,7 @@ Board::Board(sf::RenderWindow& window) : window(window) {
             Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
 
             sf::Vector2i coordinates = sf::Vector2i(i, j);
-            elements[i][j] = GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
+            elements[i][j] = new GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
         }
     }
 }
@@ -22,53 +22,50 @@ void Board::drawBoard() {
     //draw the gridElements
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-           elements[i][j].drawGridElement(window);
+            elements[i][j]->drawGridElement(window);
         }
     }
 }
 
 // set all pieces to the initial position
-void Board::startGame() {
+void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
 
-    // add all white pieces
-    elements[0][0].setChessPiece(new ChessPiece(ROOK, WHITE, &elements[0][0]));
-    elements[1][0].setChessPiece(new ChessPiece(KNIGHT, WHITE, &elements[1][0]));
-    elements[2][0].setChessPiece(new ChessPiece(BISHOP, WHITE, &elements[2][0]));
-    elements[3][0].setChessPiece(new ChessPiece(KING, WHITE, &elements[3][0]));
-    elements[4][0].setChessPiece(new ChessPiece(QUEEN, WHITE, &elements[4][0]));
-    elements[5][0].setChessPiece(new ChessPiece(BISHOP, WHITE, &elements[5][0]));
-    elements[6][0].setChessPiece(new ChessPiece(KNIGHT, WHITE, &elements[6][0]));
-    elements[7][0].setChessPiece(new ChessPiece(ROOK, WHITE, &elements[7][0]));
+    this->bottomColor = bottomColor;
+    this->topColor = topColor;
 
-    // add white pawns
+    //@TODO make the queens switch place dependent on color
+
+    // add all pieces at the top of the board
+    elements[0][0]->setChessPiece(new ChessPiece(this, elements[0][0], topColor, ROOK));
+    elements[1][0]->setChessPiece(new ChessPiece(this, elements[1][0], topColor, KNIGHT));
+    elements[2][0]->setChessPiece(new ChessPiece(this, elements[2][0], topColor, BISHOP));
+    elements[3][0]->setChessPiece(new ChessPiece(this, elements[3][0], topColor, KING));
+    elements[4][0]->setChessPiece(new ChessPiece(this, elements[4][0], topColor, QUEEN));
+    elements[5][0]->setChessPiece(new ChessPiece(this, elements[5][0], topColor, BISHOP));
+    elements[6][0]->setChessPiece(new ChessPiece(this, elements[6][0], topColor, KNIGHT));
+    elements[7][0]->setChessPiece(new ChessPiece(this, elements[7][0], topColor, ROOK));
+
+    // add pawns
     for (int i = 0; i < 8; i++) {
-        elements[i][1].setChessPiece(new ChessPiece(PAWN, WHITE, &elements[i][1]));
+        elements[i][1]->setChessPiece(new ChessPiece(this, elements[i][1], topColor, PAWN));
+        elements[i][6]->setChessPiece(new ChessPiece(this, elements[i][6], bottomColor, PAWN));
     }
 
-
-    // Add black pawns
-    for (int i = 0; i < 8; i++) {
-        elements[i][6].setChessPiece(new ChessPiece(PAWN, BLACK, &elements[i][6]));
-    }
-
-    // Add black pieces
-    elements[0][7].setChessPiece(new ChessPiece(ROOK, BLACK, &elements[0][7]));
-    elements[1][7].setChessPiece(new ChessPiece(KNIGHT, BLACK, &elements[1][7]));
-    elements[2][7].setChessPiece(new ChessPiece(BISHOP, BLACK, &elements[2][7]));
-    elements[3][7].setChessPiece(new ChessPiece(KING, BLACK, &elements[3][7]));
-    elements[4][7].setChessPiece(new ChessPiece(QUEEN, BLACK, &elements[4][7]));
-    elements[5][7].setChessPiece(new ChessPiece(BISHOP, BLACK, &elements[5][7]));
-    elements[6][7].setChessPiece(new ChessPiece(KNIGHT, BLACK, &elements[6][7]));
-    elements[7][7].setChessPiece(new ChessPiece(ROOK, BLACK, &elements[7][7]));
-
-
-
+    // add all pieces at the top of the board
+    elements[0][7]->setChessPiece(new ChessPiece(this, elements[0][7], bottomColor, ROOK));
+    elements[1][7]->setChessPiece(new ChessPiece(this, elements[1][7], bottomColor, KNIGHT));
+    elements[2][7]->setChessPiece(new ChessPiece(this, elements[2][7], bottomColor, BISHOP));
+    elements[3][7]->setChessPiece(new ChessPiece(this, elements[3][7], bottomColor, KING));
+    elements[4][7]->setChessPiece(new ChessPiece(this, elements[4][7], bottomColor, QUEEN));
+    elements[5][7]->setChessPiece(new ChessPiece(this, elements[5][7], bottomColor, BISHOP));
+    elements[6][7]->setChessPiece(new ChessPiece(this, elements[6][7], bottomColor, KNIGHT));
+    elements[7][7]->setChessPiece(new ChessPiece(this, elements[7][7], bottomColor, ROOK));
 }
 
 void Board::selectGridElementFromMousePos(int x, int y) {
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            GridElement * element = &elements[i][j];
+            GridElement *element = elements[i][j];
             element->setSelected(false); // there should be no other elements be selected.
 
             if (x > element->posX && x < element->posX+BLOCK_SIZE
@@ -84,7 +81,7 @@ void Board::selectGridElementFromMousePos(int x, int y) {
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {
     selectedGridElement->setSelected(false); // set selected property of previous element to false
-    selectedGridElement = &elements[(coordinates.x)][coordinates.y];
+    selectedGridElement = elements[(coordinates.x)][coordinates.y];
     selectedGridElement->setSelected(true); // set new element to selected
 }
 

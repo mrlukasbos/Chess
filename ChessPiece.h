@@ -8,21 +8,26 @@
 #include <SFML/Graphics.hpp>
 #include "constants.h"
 #include "gridElement.h"
+#include "board.h"
 
 using namespace sf;
 
 class GridElement;
+
+class Board;
 class ChessPiece {
 public:
     ChessPiece();
 
-    ChessPiece(PieceType type, PieceColor color, GridElement *location);
+    ChessPiece(Board *board, GridElement *location, PieceColor color, PieceType type);
     void drawChessPiece(sf::RenderWindow &window);
 
     PieceColor color;
     PieceType type;
 
     GridElement *location;
+    Board *board;
+
     std::string imageUrlPrefix;
 
     // image utils
