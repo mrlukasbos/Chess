@@ -82,7 +82,7 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
     } else if (type == KNIGHT) {
         short knight_places_x[] = {-2, -2, -1, -1, 1, 1, 2, 2};
         short knight_places_y[] = {1, -1, 2, -2, 2, -2, 1, -1};
-
+        // knight can move to 8 places
         for (short i = 0; i < 9; i++) {
             short xLocation = x + knight_places_x[i];
             short yLocation = y + knight_places_y[i];
@@ -118,6 +118,33 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
                 }
             }
 
+        }
+    } else if (type == BISHOP) {
+
+        short bishopXDirections[] = {1, 1, -1, -1};
+        short bishopYDirections[] = {1, -1, 1, -1};
+
+        //bishop can walk in 4 directions
+        for (int i = 0; i < 4; i++) {
+
+            // bishop can maximally move 8 places
+            for (short j = 1; j < 7; j++) {
+                short xLocation = x + j * bishopXDirections[i];
+                short yLocation = y + j * bishopYDirections[i];
+
+                bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+                if (elementExists) {
+                    GridElement *element = board->elements[xLocation][yLocation];
+                    if (element->chessPiece && element->chessPiece->color == color) {
+                        break;
+                    } else if (element->chessPiece) {
+                        availableMoves.push_back(element);
+                        break;
+                    }
+                    availableMoves.push_back(element);
+                }
+
+            }
         }
     }
     return availableMoves;
