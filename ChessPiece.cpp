@@ -5,6 +5,8 @@
 #include <iostream>
 #include "ChessPiece.h"
 
+using namespace sf;
+
 ChessPiece::ChessPiece(Board *board, GridElement *location, PieceColor color, PieceType type) : board(board),
                                                                                                 location(location),
                                                                                                 color(color),
@@ -25,7 +27,48 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
 std::vector<GridElement *> ChessPiece::getAvailableMoves() {
     std::vector<GridElement *> availableMoves;
 
-    //TODO refactor this to make it more readable
+    //TODO refactor this to make it more readable -> maybe use inheritance?
+
+    // Rook
+    Vector2i horizontalAndVerticalDirections[] = {
+            Vector2i(0, 1),  // Down
+            Vector2i(1, 0),  // Right
+            Vector2i(0, -1), // Up
+            Vector2i(-1, 0)  // Left
+    };
+
+    // Bishop
+    Vector2i diagonalDirections[] = {
+            Vector2i(1, 1),   // Right-Down
+            Vector2i(1, -1),  // Right-Up
+            Vector2i(-1, -1), // Left-Up
+            Vector2i(-1, 1)   // Left-Down
+    };
+
+    // Queen and King
+    Vector2i allDirections[] = {
+            Vector2i(0, 1),   // Down
+            Vector2i(1, 0),   // Right
+            Vector2i(0, -1),  // Up
+            Vector2i(-1, 0),  // Left
+            Vector2i(1, 1),   // Right-Down
+            Vector2i(1, -1),  // Right-Up
+            Vector2i(-1, -1), // Left-Up
+            Vector2i(-1, 1)   // Left-Down
+    };
+
+    // Knight
+    Vector2i knightDirections[] = {
+            Vector2i(-2, 1),
+            Vector2i(-2, -1),
+            Vector2i(-1, 2),
+            Vector2i(-1, -2),
+            Vector2i(1, 2),
+            Vector2i(1, -2),
+            Vector2i(2, 1),
+            Vector2i(2, -1)
+    };
+
 
     short y = location->coordinates.y;
     short x = location->coordinates.x;
@@ -38,51 +81,31 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
                     board->elements[x][y + (2 * direction)]);
         }
     } else if (type == ROOK) {
-        short amountOfDirections = 4;
-        short rook_directions_x[] = {0, 1, 0, -1};
-        short rook_directions_y[] = {1, 0, -1, 0};
-        availableMoves = calculateMovesForDirections(location, rook_directions_x, rook_directions_y, board, color, 7,
-                                                     amountOfDirections);
+        availableMoves = calculateMovesForDirections(location, horizontalAndVerticalDirections, board, color, 4, 7);
     } else if (type == KNIGHT) {
-        short amountOfDirections = 8;
-        short knight_places_x[] = {-2, -2, -1, -1, 1, 1, 2, 2};
-        short knight_places_y[] = {1, -1, 2, -2, 2, -2, 1, -1};
-        availableMoves = calculateMovesForDirections(location, knight_places_x, knight_places_y, board, color, 1,
-                                                     amountOfDirections);
+        availableMoves = calculateMovesForDirections(location, knightDirections, board, color, 8, 1);
     } else if (type == KING) {
-        short amountOfDirections = 8;
-        short king_places_x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-        short king_places_y[] = {1, 0, -1, 1, -1, 1, 0, -1};
-        availableMoves = calculateMovesForDirections(location, king_places_x, king_places_y, board, color, 1,
-                                                     amountOfDirections);
+        availableMoves = calculateMovesForDirections(location, allDirections, board, color, 8, 1);
     } else if (type == BISHOP) {
-        short amountOfDirections = 4;
-        short bishop_directions_x[] = {1, 1, -1, -1};
-        short bishop_directions_y[] = {1, -1, 1, -1};
-        availableMoves = calculateMovesForDirections(location, bishop_directions_x, bishop_directions_y, board, color,
-                                                     7, amountOfDirections);
+        availableMoves = calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7);
     } else if (type == QUEEN) {
-        short amountOfDirections = 8;
-        short queen_directions_x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-        short queen_directions_y[] = {1, 0, -1, 1, -1, 1, 0, -1};
-        availableMoves = calculateMovesForDirections(location, queen_directions_x, queen_directions_y, board, color, 7,
-                                                     amountOfDirections);
+        availableMoves = calculateMovesForDirections(location, allDirections, board, color, 8, 7);
     }
 
     return availableMoves;
 }
 
 std::vector<GridElement *>
-ChessPiece::calculateMovesForDirections(GridElement *location, short XDirections[], short YDirections[], Board *board,
-                                        PieceColor color, short maxAmountOfSteps, short amountOfDirections) {
+ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
+                                        PieceColor color, short amountOfDirections, short maxAmountOfSteps) {
     std::vector<GridElement *> moves;
     short y = location->coordinates.y;
     short x = location->coordinates.x;
 
     for (int i = 0; i < amountOfDirections; i++) {
         for (short j = 1; j <= maxAmountOfSteps; j++) {
-            short xLocation = x + (j * XDirections[i]);
-            short yLocation = y + (j * YDirections[i]);
+            short xLocation = x + (j * directions[i].x);
+            short yLocation = y + (j * directions[i].y);
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
                 GridElement *element = board->elements[xLocation][yLocation];

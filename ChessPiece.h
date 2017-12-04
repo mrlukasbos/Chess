@@ -38,8 +38,8 @@ public:
     std::vector<GridElement *> getAvailableMoves();
 
     std::vector<GridElement *>
-    calculateMovesForDirections(GridElement *location, short XDirections[], short YDirections[], Board *board,
-                                PieceColor color, short maxAmountOfSteps, short amountOfDirections);
+    calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
+                                PieceColor color, short amountOfDirections, short maxAmountOfSteps);
 
 
     bool hasMoved = false;
