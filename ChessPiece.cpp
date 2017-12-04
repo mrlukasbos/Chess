@@ -146,6 +146,33 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
 
             }
         }
+    } else if (type == QUEEN) {
+
+        // queen can go in 8 directions
+        short queen_directions_x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        short queen_directions_y[] = {1, 0, -1, 1, -1, 1, 0, -1};
+
+        for (int i = 0; i < 9; i++) {
+
+            // bishop can maximally move 8 places
+            for (short j = 1; j < 8; j++) {
+                short xLocation = x + j * queen_directions_x[i];
+                short yLocation = y + j * queen_directions_y[i];
+
+                bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+                if (elementExists) {
+                    GridElement *element = board->elements[xLocation][yLocation];
+                    if (element->chessPiece && element->chessPiece->color == color) {
+                        break;
+                    } else if (element->chessPiece) {
+                        availableMoves.push_back(element);
+                        break;
+                    }
+                    availableMoves.push_back(element);
+                }
+
+            }
+        }
     }
     return availableMoves;
 }
