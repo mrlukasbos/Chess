@@ -5,11 +5,11 @@
 #ifndef CHESS_KING_H
 #define CHESS_KING_H
 
-#include "ChessPiece.h"
+#include "../ChessPiece.h"
 
 class King : public ChessPiece {
 public:
-    King(Board *board, GridElement *location, PieceColor color, PieceType type);
+    King(Board *board, GridElement *location, PieceColor color);
 
 };
 

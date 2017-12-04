@@ -6,11 +6,11 @@
 #define CHESS_KNIGHT_H
 
 
-#include "ChessPiece.h"
+#include "../ChessPiece.h"
 
 class Knight : public ChessPiece {
 public:
-    Knight(Board *board, GridElement *location, PieceColor color, PieceType type);
+    Knight(Board *board, GridElement *location, PieceColor color);
 
 };
 

@@ -6,11 +6,11 @@
 #define CHESS_ROOK_H
 
 
-#include "ChessPiece.h"
+#include "../ChessPiece.h"
 
 class Rook : public ChessPiece {
 public:
-    Rook(Board *board, GridElement *location, PieceColor color, PieceType type);
+    Rook(Board *board, GridElement *location, PieceColor color);
 
 };
 

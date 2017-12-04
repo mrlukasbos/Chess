@@ -19,7 +19,7 @@ class ChessPiece {
 public:
     ChessPiece();
 
-    ChessPiece(Board *board, GridElement *location, PieceColor color, PieceType type);
+    ChessPiece(Board *board, GridElement *location, PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
 
     PieceColor color;
@@ -40,6 +40,8 @@ public:
     std::vector<GridElement *>
     calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
                                 PieceColor color, short amountOfDirections, short maxAmountOfSteps);
+
+    void generateImage(PieceType type);
 
 
     bool hasMoved = false;

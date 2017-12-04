@@ -5,11 +5,11 @@
 #ifndef CHESS_PAWN_H
 #define CHESS_PAWN_H
 
-#include "ChessPiece.h"
+#include "../ChessPiece.h"
 
 class Pawn : public ChessPiece {
 public:
-    Pawn(Board *board, GridElement *location, PieceColor color, PieceType type);
+    Pawn(Board *board, GridElement *location, PieceColor color);
 
 };
 

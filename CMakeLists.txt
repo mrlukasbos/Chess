@@ -3,7 +3,7 @@ project(Chess)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp gridElement.cpp gridElement.h Board.cpp Board.h ChessPiece.cpp ChessPiece.h constants.h Rook.cpp Rook.h Bishop.cpp Bishop.h Knight.cpp Knight.h Pawn.cpp Pawn.h Queen.cpp Queen.h King.cpp King.h)
+set(SOURCE_FILES main.cpp gridElement.cpp gridElement.h Board.cpp Board.h ChessPiece.cpp ChessPiece.h constants.h chesspieces/Rook.cpp chesspieces/Rook.h chesspieces/Bishop.cpp chesspieces/Bishop.h chesspieces/Knight.cpp chesspieces/Knight.h chesspieces/Pawn.cpp chesspieces/Pawn.h chesspieces/Queen.cpp chesspieces/Queen.h chesspieces/King.cpp chesspieces/King.h)
 add_executable(Chess ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

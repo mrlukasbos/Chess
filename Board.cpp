@@ -3,12 +3,12 @@
 //
 
 #include "Board.h"
-#include "Rook.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Pawn.h"
-#include "Queen.h"
-#include "King.h"
+#include "chesspieces/Rook.h"
+#include "chesspieces/Bishop.h"
+#include "chesspieces/Knight.h"
+#include "chesspieces/Pawn.h"
+#include "chesspieces/Queen.h"
+#include "chesspieces/King.h"
 
 using namespace sf;
 
@@ -35,32 +35,32 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     //@TODO make the queens switch place dependent on color
 
     // add all pieces at the top of the board
-    elements[0][0]->setChessPiece(new Rook(this, elements[0][0], topColor, ROOK));
-    elements[1][0]->setChessPiece(new Knight(this, elements[1][0], topColor, KNIGHT));
-    elements[2][0]->setChessPiece(new Bishop(this, elements[2][0], topColor, BISHOP));
-    elements[3][0]->setChessPiece(new Queen(this, elements[3][0], topColor, topColor == WHITE ? KING : QUEEN));
-    elements[4][0]->setChessPiece(new King(this, elements[4][0], topColor, topColor == WHITE ? QUEEN : KING));
-    elements[5][0]->setChessPiece(new Bishop(this, elements[5][0], topColor, BISHOP));
-    elements[6][0]->setChessPiece(new Knight(this, elements[6][0], topColor, KNIGHT));
-    elements[7][0]->setChessPiece(new Rook(this, elements[7][0], topColor, ROOK));
+    elements[0][0]->setChessPiece(new Rook(this, elements[0][0], topColor));
+    elements[1][0]->setChessPiece(new Knight(this, elements[1][0], topColor));
+    elements[2][0]->setChessPiece(new Bishop(this, elements[2][0], topColor));
+    elements[3][0]->setChessPiece(new Queen(this, elements[3][0], topColor));
+    elements[4][0]->setChessPiece(new King(this, elements[4][0], topColor));
+    elements[5][0]->setChessPiece(new Bishop(this, elements[5][0], topColor));
+    elements[6][0]->setChessPiece(new Knight(this, elements[6][0], topColor));
+    elements[7][0]->setChessPiece(new Rook(this, elements[7][0], topColor));
 
     // add pawns
     for (int i = 0; i < 8; i++) {
-        elements[i][1]->setChessPiece(new Pawn(this, elements[i][1], topColor, PAWN));
-        elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomColor, PAWN));
+        elements[i][1]->setChessPiece(new Pawn(this, elements[i][1], topColor));
+        elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomColor));
     }
 
     // add all pieces at the bottom of the board
-    elements[0][7]->setChessPiece(new Rook(this, elements[0][7], bottomColor, ROOK));
-    elements[1][7]->setChessPiece(new Knight(this, elements[1][7], bottomColor, KNIGHT));
-    elements[2][7]->setChessPiece(new Bishop(this, elements[2][7], bottomColor, BISHOP));
+    elements[0][7]->setChessPiece(new Rook(this, elements[0][7], bottomColor));
+    elements[1][7]->setChessPiece(new Knight(this, elements[1][7], bottomColor));
+    elements[2][7]->setChessPiece(new Bishop(this, elements[2][7], bottomColor));
     elements[3][7]->setChessPiece(
-            new Queen(this, elements[3][7], bottomColor, bottomColor == BLACK ? KING : QUEEN));
+            new Queen(this, elements[3][7], bottomColor));
     elements[4][7]->setChessPiece(
-            new King(this, elements[4][7], bottomColor, bottomColor == BLACK ? QUEEN : KING));
-    elements[5][7]->setChessPiece(new Bishop(this, elements[5][7], bottomColor, BISHOP));
-    elements[6][7]->setChessPiece(new Knight(this, elements[6][7], bottomColor, KNIGHT));
-    elements[7][7]->setChessPiece(new Rook(this, elements[7][7], bottomColor, ROOK));
+            new King(this, elements[4][7], bottomColor));
+    elements[5][7]->setChessPiece(new Bishop(this, elements[5][7], bottomColor));
+    elements[6][7]->setChessPiece(new Knight(this, elements[6][7], bottomColor));
+    elements[7][7]->setChessPiece(new Rook(this, elements[7][7], bottomColor));
 }
 
 void Board::selectGridElementFromMousePos(int x, int y) {

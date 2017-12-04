@@ -7,14 +7,8 @@
 
 using namespace sf;
 
-ChessPiece::ChessPiece(Board *board, GridElement *location, PieceColor color, PieceType type) : board(board),
-                                                                                                location(location),
-                                                                                                color(color),
-                                                                                                type(type) {
-    // for the finding images
-    std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-    imageUrlPrefix = color == BLACK ? "Black" : "White";
-    img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
+ChessPiece::ChessPiece(Board *board, GridElement *location, PieceColor color)
+        : board(board), location(location), color(color) {
 }
 
 void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
@@ -122,3 +116,9 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
     return moves;
 }
 
+void ChessPiece::generateImage(PieceType type) {
+    // for the finding images
+    std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
+    imageUrlPrefix = color == BLACK ? "Black" : "White";
+    img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
+}
