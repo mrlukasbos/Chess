@@ -36,48 +36,31 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
                     board->elements[x][y + (2 * direction)]);
         }
     } else if (type == ROOK) {
-        for (short i = y + 1; i < 8; i++) {
-            GridElement *element = board->elements[x][i];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(element);
-                break;
-            }
-            availableMoves.push_back(element);
-        }
 
-        for (short i = y - 1; i >= 0; i--) {
-            GridElement *element = board->elements[x][i];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(element);
-                break;
-            }
-            availableMoves.push_back(element);
-        }
+        // rook can go in 4 directions
+        short rook_directions_x[] = {0, 1, 0, -1};
+        short rook_directions_y[] = {1, 0, -1, 0};
 
-        for (short i = x + 1; i < 8; i++) {
-            GridElement *element = board->elements[i][y];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(element);
-                break;
-            }
-            availableMoves.push_back(element);
-        }
+        for (int i = 0; i < 5; i++) {
 
-        for (short i = x - 1; i >= 0; i--) {
-            GridElement *element = board->elements[i][y];
-            if (element->chessPiece && element->chessPiece->color == color) {
-                break;
-            } else if (element->chessPiece) {
-                availableMoves.push_back(element);
-                break;
+            // bishop can maximally move 8 places
+            for (short j = 1; j < 8; j++) {
+                short xLocation = x + j * rook_directions_x[i];
+                short yLocation = y + j * rook_directions_y[i];
+
+                bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+                if (elementExists) {
+                    GridElement *element = board->elements[xLocation][yLocation];
+                    if (element->chessPiece && element->chessPiece->color == color) {
+                        break;
+                    } else if (element->chessPiece) {
+                        availableMoves.push_back(element);
+                        break;
+                    }
+                    availableMoves.push_back(element);
+                }
+
             }
-            availableMoves.push_back(element);
         }
     } else if (type == KNIGHT) {
         short knight_places_x[] = {-2, -2, -1, -1, 1, 1, 2, 2};
