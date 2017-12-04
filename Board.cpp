@@ -3,11 +3,11 @@
 //
 
 #include "Board.h"
+#include "Rook.h"
 
 using namespace sf;
 
 Board::Board(sf::RenderWindow& window) : window(window) {
-
     createBoard();
 }
 
@@ -30,7 +30,7 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     //@TODO make the queens switch place dependent on color
 
     // add all pieces at the top of the board
-    elements[0][0]->setChessPiece(new ChessPiece(this, elements[0][0], topColor, ROOK));
+    elements[0][0]->setChessPiece(new Rook(this, elements[0][0], topColor, ROOK));
     elements[1][0]->setChessPiece(new ChessPiece(this, elements[1][0], topColor, KNIGHT));
     elements[2][0]->setChessPiece(new ChessPiece(this, elements[2][0], topColor, BISHOP));
     elements[3][0]->setChessPiece(new ChessPiece(this, elements[3][0], topColor, topColor == WHITE ? KING : QUEEN));

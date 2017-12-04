@@ -8,6 +8,7 @@
 #include "GridElement.h"
 #include <SFML/Graphics.hpp>
 
+
 class GridElement;
 class Board {
 public:
