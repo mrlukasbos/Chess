@@ -98,6 +98,27 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
             }
 
         }
+    } else if (type == KING) {
+
+        short king_places_x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        short king_places_y[] = {1, 0, -1, 1, -1, 1, 0, -1};
+
+        // king can move to 8 places
+        for (short i = 0; i < 9; i++) {
+            short xLocation = x + king_places_x[i];
+            short yLocation = y + king_places_y[i];
+
+            bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+            if (elementExists) {
+                GridElement *element = board->elements[xLocation][yLocation];
+                bool elementIsOccupied = element->chessPiece && element->chessPiece->color == color;
+
+                if (!elementIsOccupied) {
+                    availableMoves.push_back(element);
+                }
+            }
+
+        }
     }
     return availableMoves;
 }
