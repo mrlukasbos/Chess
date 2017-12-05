@@ -35,7 +35,7 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    std::vector<GridElement *> getAvailableMoves();
+    virtual std::vector<GridElement *> getAvailableMoves();
 
     std::vector<GridElement *>
     calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,

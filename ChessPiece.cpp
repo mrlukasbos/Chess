@@ -19,74 +19,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
 }
 
 std::vector<GridElement *> ChessPiece::getAvailableMoves() {
-    std::vector<GridElement *> availableMoves;
-
-    //TODO refactor this to make it more readable -> maybe use inheritance?
-
-    // Rook
-    Vector2i horizontalAndVerticalDirections[] = {
-            Vector2i(0, 1),  // Down
-            Vector2i(1, 0),  // Right
-            Vector2i(0, -1), // Up
-            Vector2i(-1, 0)  // Left
-    };
-
-    // Bishop
-    Vector2i diagonalDirections[] = {
-            Vector2i(1, 1),   // Right-Down
-            Vector2i(1, -1),  // Right-Up
-            Vector2i(-1, -1), // Left-Up
-            Vector2i(-1, 1)   // Left-Down
-    };
-
-    // Queen and King
-    Vector2i allDirections[] = {
-            Vector2i(0, 1),   // Down
-            Vector2i(1, 0),   // Right
-            Vector2i(0, -1),  // Up
-            Vector2i(-1, 0),  // Left
-            Vector2i(1, 1),   // Right-Down
-            Vector2i(1, -1),  // Right-Up
-            Vector2i(-1, -1), // Left-Up
-            Vector2i(-1, 1)   // Left-Down
-    };
-
-    // Knight
-    Vector2i knightDirections[] = {
-            Vector2i(-2, 1),
-            Vector2i(-2, -1),
-            Vector2i(-1, 2),
-            Vector2i(-1, -2),
-            Vector2i(1, 2),
-            Vector2i(1, -2),
-            Vector2i(2, 1),
-            Vector2i(2, -1)
-    };
-
-
-    short y = location->coordinates.y;
-    short x = location->coordinates.x;
-    if (type == PAWN) {
-        bool isBottomColor = board->bottomColor == color;
-        short direction = isBottomColor ? -1 : 1;
-        availableMoves.push_back(board->elements[x][y + (1 * direction)]);
-        if (!hasMoved) {
-            availableMoves.push_back(
-                    board->elements[x][y + (2 * direction)]);
-        }
-    } else if (type == ROOK) {
-        availableMoves = calculateMovesForDirections(location, horizontalAndVerticalDirections, board, color, 4, 7);
-    } else if (type == KNIGHT) {
-        availableMoves = calculateMovesForDirections(location, knightDirections, board, color, 8, 1);
-    } else if (type == KING) {
-        availableMoves = calculateMovesForDirections(location, allDirections, board, color, 8, 1);
-    } else if (type == BISHOP) {
-        availableMoves = calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7);
-    } else if (type == QUEEN) {
-        availableMoves = calculateMovesForDirections(location, allDirections, board, color, 8, 7);
-    }
-
-    return availableMoves;
+    // virtual method for child classes
 }
 
 std::vector<GridElement *>

@@ -11,6 +11,7 @@ class King : public ChessPiece {
 public:
     King(Board *board, GridElement *location, PieceColor color);
 
+    std::vector<GridElement *> getAvailableMoves();
 };
 
 

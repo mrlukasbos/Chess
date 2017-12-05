@@ -11,6 +11,7 @@ class Pawn : public ChessPiece {
 public:
     Pawn(Board *board, GridElement *location, PieceColor color);
 
+    std::vector<GridElement *> getAvailableMoves();
 };
 
 #endif //CHESS_PAWN_H
