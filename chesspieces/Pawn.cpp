@@ -13,9 +13,6 @@ Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
 std::vector<GridElement *> Pawn::getAvailableMoves() {
     std::vector<GridElement *> availableMoves;
 
-    //TODO disable double jump when other piece is in the way
-    //TODO add diagonal capture of pieces
-
     short y = location->coordinates.y;
     short x = location->coordinates.x;
 
