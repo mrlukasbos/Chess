@@ -43,7 +43,9 @@ public:
 
     void generateImage(PieceType type);
 
+    bool isCaptured = false;
 
+    //TODO move this to subclasses
     bool hasMoved = false;
 };
 

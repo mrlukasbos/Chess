@@ -17,7 +17,6 @@ Board::Board(sf::RenderWindow& window) : window(window) {
 }
 
 void Board::drawBoard() {
-    //draw the gridElements
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             elements[i][j]->drawGridElement(window);
@@ -32,14 +31,18 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     this->bottomColor = bottomColor;
     this->topColor = topColor;
 
-    //@TODO make the queens switch place dependent on color
+    short kingXPosition = 3, queenXPosition = 4;
+    if (topColor == BLACK) {
+        kingXPosition = 4;
+        queenXPosition = 3;
+    }
 
     // add all pieces at the top of the board
     elements[0][0]->setChessPiece(new Rook(this, elements[0][0], topColor));
     elements[1][0]->setChessPiece(new Knight(this, elements[1][0], topColor));
     elements[2][0]->setChessPiece(new Bishop(this, elements[2][0], topColor));
-    elements[3][0]->setChessPiece(new Queen(this, elements[3][0], topColor));
-    elements[4][0]->setChessPiece(new King(this, elements[4][0], topColor));
+    elements[queenXPosition][0]->setChessPiece(new Queen(this, elements[queenXPosition][0], topColor));
+    elements[kingXPosition][0]->setChessPiece(new King(this, elements[kingXPosition][0], topColor));
     elements[5][0]->setChessPiece(new Bishop(this, elements[5][0], topColor));
     elements[6][0]->setChessPiece(new Knight(this, elements[6][0], topColor));
     elements[7][0]->setChessPiece(new Rook(this, elements[7][0], topColor));
@@ -54,10 +57,8 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     elements[0][7]->setChessPiece(new Rook(this, elements[0][7], bottomColor));
     elements[1][7]->setChessPiece(new Knight(this, elements[1][7], bottomColor));
     elements[2][7]->setChessPiece(new Bishop(this, elements[2][7], bottomColor));
-    elements[3][7]->setChessPiece(
-            new Queen(this, elements[3][7], bottomColor));
-    elements[4][7]->setChessPiece(
-            new King(this, elements[4][7], bottomColor));
+    elements[kingXPosition][7]->setChessPiece(new King(this, elements[kingXPosition][7], bottomColor));
+    elements[queenXPosition][7]->setChessPiece(new Queen(this, elements[queenXPosition][7], bottomColor));
     elements[5][7]->setChessPiece(new Bishop(this, elements[5][7], bottomColor));
     elements[6][7]->setChessPiece(new Knight(this, elements[6][7], bottomColor));
     elements[7][7]->setChessPiece(new Rook(this, elements[7][7], bottomColor));
@@ -84,6 +85,13 @@ void Board::selectGridElementFromMousePos(int x, int y) {
                     element->chessPiece->hasMoved = true;
 
                     selectedGridElement->chessPiece = NULL;
+                } else if (element->isFocused) { //let's capture a piece!
+                    element->chessPiece->isCaptured = true;
+
+                    // set the piece that has captured to other to the position
+                    element->chessPiece = selectedGridElement->chessPiece;
+                    element->chessPiece->location = element;
+                    element->chessPiece->hasMoved = true;
                 } else {
                     element->setSelected(true);
                     selectedGridElement = element;
