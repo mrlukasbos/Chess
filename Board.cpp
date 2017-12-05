@@ -31,6 +31,8 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
     this->bottomColor = bottomColor;
     this->topColor = topColor;
 
+    playerToMove = bottomColor;
+
     short kingXPosition = 3, queenXPosition = 4;
     if (topColor == BLACK) {
         kingXPosition = 4;
@@ -71,11 +73,10 @@ void Board::selectGridElementFromMousePos(int x, int y) {
             GridElement *element = elements[i][j];
             element->setSelected(false); // there should be no other elements be selected.
 
-
-
             if (x > element->posX && x < element->posX + BLOCK_SIZE
                 && y > element->posY && y < element->posY + BLOCK_SIZE) {
                 // now we have the clicked element
+
 
                 // when we click on a focused element
                 if (element->isFocused && !element->chessPiece) {
@@ -84,8 +85,9 @@ void Board::selectGridElementFromMousePos(int x, int y) {
                     element->chessPiece = selectedGridElement->chessPiece;
                     element->chessPiece->location = element;
                     element->chessPiece->hasMoved = true;
-
                     selectedGridElement->chessPiece = NULL;
+
+                    switchPlayer();
                 } else if (element->isFocused) { //let's capture a piece!
                     element->chessPiece->isCaptured = true;
 
@@ -93,10 +95,17 @@ void Board::selectGridElementFromMousePos(int x, int y) {
                     element->chessPiece = selectedGridElement->chessPiece;
                     element->chessPiece->location = element;
                     element->chessPiece->hasMoved = true;
+                    switchPlayer();
                 } else {
-                    element->setSelected(true);
-                    selectedGridElement = element;
+                    // if a piece of the current player is selected
+                    if (element->chessPiece && element->chessPiece->color == playerToMove) {
+
+                        element->setSelected(true);
+                        selectedGridElement = element;
+                    }
                 }
+
+
 
             }
         }
@@ -138,5 +147,13 @@ void Board::createBoard() {
             sf::Vector2i coordinates = sf::Vector2i(i, j);
             elements[i][j] = new GridElement(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
         }
+    }
+}
+
+void Board::switchPlayer() {
+    if (playerToMove == BLACK) {
+        playerToMove = WHITE;
+    } else {
+        playerToMove = BLACK;
     }
 }

@@ -8,7 +8,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),"Chess",sf::Style::Default, settings);
 
     Board board(window);
-    board.startGame(BLACK, WHITE);
+    board.startGame(WHITE, BLACK);
 
     //start interface
     while(window.isOpen()){
@@ -26,40 +26,45 @@ int main() {
                 board.selectGridElementFromMousePos(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
             }
 
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+                board.startGame(BLACK, WHITE);
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                board.startGame(WHITE, BLACK);
+            }
+
+
+            sf::Font font;
+            font.loadFromFile("OpenSans-Regular.ttf");
+
+            sf::Font boldFont;
+            boldFont.loadFromFile("OpenSans-Bold.ttf");
 
             GridElement *selectedElement = board.selectedGridElement;
             if (selectedElement) {
 
                 sf::Vector2i newCoordinates = selectedElement->coordinates;
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                    newCoordinates.x = (newCoordinates.x + 7) % 8;
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                    newCoordinates.x = (newCoordinates.x + 1) % 8;
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    newCoordinates.y = (newCoordinates.y + 7) % 8;
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                    newCoordinates.y = (newCoordinates.y + 1) % 8;
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-                    board.startGame(BLACK, WHITE);
-                }
-
                 board.selectGridElementFromCoordinates(newCoordinates);
 
+                sf::Text elementName(selectedElement->name, font, 26);
+                elementName.setFillColor(sf::Color::Black);
+                elementName.setCharacterSize(32);
+                elementName.setPosition(BOARD_SIZE + 40, 120);
 
-                sf::Font font;
-                font.loadFromFile("OpenSans-Bold.ttf");
-
-
-                sf::Text text(selectedElement->name, font, 26);
-                text.setFillColor(sf::Color::Black);
-                text.setCharacterSize(32);
-                text.setPosition(BOARD_SIZE + 40, 40);
-
-                window.draw(text);
+                window.draw(elementName);
             }
 
+            sf::Text currentMoveText("Current move", font, 26);
+            currentMoveText.setFillColor(sf::Color::Black);
+            currentMoveText.setCharacterSize(24);
+            currentMoveText.setPosition(BOARD_SIZE + 40, 20);
 
+            sf::Text currentColorToMoveName(board.playerToMove == BLACK ? "Black" : "White", boldFont, 26);
+            currentColorToMoveName.setFillColor(sf::Color::Black);
+            currentColorToMoveName.setCharacterSize(48);
+            currentColorToMoveName.setPosition(BOARD_SIZE + 40, 40);
+
+            window.draw(currentMoveText);
+            window.draw(currentColorToMoveName);
             window.display();
         }
     }

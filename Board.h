@@ -27,6 +27,8 @@ public:
 
     PieceColor bottomColor;
     PieceColor topColor;
+    PieceColor playerToMove = WHITE;
+
 private:
     sf::RenderWindow& window;
 
@@ -34,6 +36,7 @@ private:
 
     void createBoard();
 
+    void switchPlayer();
 };
 
 
