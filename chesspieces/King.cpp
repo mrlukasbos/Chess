@@ -12,6 +12,8 @@ King::King(Board *board, GridElement *location, PieceColor color)
 
 std::vector<GridElement *> King::getAvailableMoves() {
 
+    //TODO remove check positions from available moves
+
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
             Vector2i(1, 0),   // Right

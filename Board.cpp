@@ -37,33 +37,34 @@ void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
         queenXPosition = 3;
     }
 
-    // add all pieces at the top of the board
-    elements[0][0]->setChessPiece(new Rook(this, elements[0][0], topColor));
-    elements[1][0]->setChessPiece(new Knight(this, elements[1][0], topColor));
-    elements[2][0]->setChessPiece(new Bishop(this, elements[2][0], topColor));
-    elements[queenXPosition][0]->setChessPiece(new Queen(this, elements[queenXPosition][0], topColor));
-    elements[kingXPosition][0]->setChessPiece(new King(this, elements[kingXPosition][0], topColor));
-    elements[5][0]->setChessPiece(new Bishop(this, elements[5][0], topColor));
-    elements[6][0]->setChessPiece(new Knight(this, elements[6][0], topColor));
-    elements[7][0]->setChessPiece(new Rook(this, elements[7][0], topColor));
+    // make all pieces twice
+    for (int i = 0; i < 2; i++) {
+        PieceColor color = topColor;
+        short row = 0;
+
+        if (i == 1) {
+            color = bottomColor;
+            row = 7;
+        }
+
+        elements[0][row]->setChessPiece(new Rook(this, elements[0][row], color));
+        elements[1][row]->setChessPiece(new Knight(this, elements[1][row], color));
+        elements[2][row]->setChessPiece(new Bishop(this, elements[2][row], color));
+        elements[queenXPosition][row]->setChessPiece(new Queen(this, elements[queenXPosition][row], color));
+        elements[kingXPosition][row]->setChessPiece(new King(this, elements[kingXPosition][row], color));
+        elements[5][row]->setChessPiece(new Bishop(this, elements[5][row], color));
+        elements[6][row]->setChessPiece(new Knight(this, elements[6][row], color));
+        elements[7][row]->setChessPiece(new Rook(this, elements[7][row], color));
+    }
 
     // add pawns
     for (int i = 0; i < 8; i++) {
         elements[i][1]->setChessPiece(new Pawn(this, elements[i][1], topColor));
         elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomColor));
     }
-
-    // add all pieces at the bottom of the board
-    elements[0][7]->setChessPiece(new Rook(this, elements[0][7], bottomColor));
-    elements[1][7]->setChessPiece(new Knight(this, elements[1][7], bottomColor));
-    elements[2][7]->setChessPiece(new Bishop(this, elements[2][7], bottomColor));
-    elements[kingXPosition][7]->setChessPiece(new King(this, elements[kingXPosition][7], bottomColor));
-    elements[queenXPosition][7]->setChessPiece(new Queen(this, elements[queenXPosition][7], bottomColor));
-    elements[5][7]->setChessPiece(new Bishop(this, elements[5][7], bottomColor));
-    elements[6][7]->setChessPiece(new Knight(this, elements[6][7], bottomColor));
-    elements[7][7]->setChessPiece(new Rook(this, elements[7][7], bottomColor));
 }
 
+//TODO add player implementation
 void Board::selectGridElementFromMousePos(int x, int y) {
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
@@ -72,8 +73,8 @@ void Board::selectGridElementFromMousePos(int x, int y) {
 
 
 
-            if (x > element->posX && x < element->posX+BLOCK_SIZE
-                    && y > element->posY && y < element->posY+BLOCK_SIZE) {
+            if (x > element->posX && x < element->posX + BLOCK_SIZE
+                && y > element->posY && y < element->posY + BLOCK_SIZE) {
                 // now we have the clicked element
 
                 // when we click on a focused element
