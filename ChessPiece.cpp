@@ -22,6 +22,10 @@ std::vector<GridElement *> ChessPiece::getAvailableMoves() {
     // virtual method for child classes
 }
 
+std::vector<GridElement *> ChessPiece::getAvailableMovesWithCheck() {
+    // virtual method for child classes
+}
+
 std::vector<GridElement *>
 ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps) {

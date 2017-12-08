@@ -12,6 +12,8 @@ public:
     King(Board *board, GridElement *location, PieceColor color);
 
     std::vector<GridElement *> getAvailableMoves();
+
+    std::vector<GridElement *> getAvailableMovesWithCheck();
 };
 
 

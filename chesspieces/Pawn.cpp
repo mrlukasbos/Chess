@@ -32,15 +32,15 @@ std::vector<GridElement *> Pawn::getAvailableMoves() {
     }
 
 
-    GridElement *diagonalup1 = board->elements[x + 1][y + (1 * direction)];
-    GridElement *diagonalup2 = board->elements[x - 1][y + (1 * direction)];
-
-    if (diagonalup1->chessPiece && diagonalup1->chessPiece->color != color) {
-        availableMoves.push_back(diagonalup1);
-    }
-
-    if (diagonalup2->chessPiece && diagonalup2->chessPiece->color != color) {
-        availableMoves.push_back(diagonalup2);
-    }
+//    GridElement *diagonalup1 = board->elements[x + 1][y + (1 * direction)];
+//    GridElement *diagonalup2 = board->elements[x - 1][y + (1 * direction)];
+//
+//    if (diagonalup1 && diagonalup1->chessPiece && diagonalup1->chessPiece->color != color) {
+//        availableMoves.push_back(diagonalup1);
+//    }
+//
+//    if (diagonalup2 && diagonalup2->chessPiece && diagonalup2->chessPiece->color != color) {
+//        availableMoves.push_back(diagonalup2);
+//    }
     return availableMoves;
 }

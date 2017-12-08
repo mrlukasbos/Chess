@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Chess"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake_modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/mrlukasbos/development/Chess/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/mrlukasbos/development/Chess/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/mrlukasbos/development/Chess/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Chess">
+				<Option output="/Users/mrlukasbos/development/Chess/cmake-build-debug/Chess" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mrlukasbos/development/Chess/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Frameworks/SFML.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 Chess"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Chess/fast">
+				<Option output="/Users/mrlukasbos/development/Chess/cmake-build-debug/Chess" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mrlukasbos/development/Chess/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Frameworks/SFML.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 Chess/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mrlukasbos/development/Chess/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Board.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Board.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/ChessPiece.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/ChessPiece.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Bishop.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Bishop.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/King.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/King.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Knight.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Knight.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Pawn.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Pawn.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Queen.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Queen.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Rook.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Rook.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/constants.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/gridElement.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/gridElement.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/main.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/cmake_modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\cmake_modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

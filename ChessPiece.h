@@ -37,6 +37,8 @@ public:
 
     virtual std::vector<GridElement *> getAvailableMoves();
 
+    virtual std::vector<GridElement *> getAvailableMovesWithCheck();
+
     std::vector<GridElement *>
     calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
                                 PieceColor color, short amountOfDirections, short maxAmountOfSteps);

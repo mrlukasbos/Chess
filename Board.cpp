@@ -131,8 +131,14 @@ void Board::focusGridElements() {
 
     // here check for the elements where the selected element may move to
     if (selectedGridElement && selectedGridElement->chessPiece) {
-        std::vector<GridElement *> availableMoves = selectedGridElement->chessPiece->getAvailableMoves();
 
+        std::vector<GridElement *> availableMoves;
+        // we need special treatment for the king. He cannot move into check positions...
+        if (selectedGridElement->chessPiece->type == KING) {
+            availableMoves = selectedGridElement->chessPiece->getAvailableMovesWithCheck();
+        } else {
+            availableMoves = selectedGridElement->chessPiece->getAvailableMoves();
+        }
         for (int i = 0; i < availableMoves.size(); i++) {
             availableMoves.at(i)->setFocused(true);
         }
