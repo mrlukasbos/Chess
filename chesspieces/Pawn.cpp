@@ -2,6 +2,7 @@
 // Created by Lukas Bos on 04/12/2017.
 //
 
+#include <iostream>
 #include "Pawn.h"
 
 Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
@@ -19,30 +20,49 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     bool isBottomColor = board->bottomColor == color;
     short direction = isBottomColor ? -1 : 1;
 
+    Vector2i pawnDirections[] = {
+            Vector2i(0, 1),
+            Vector2i(0, 2),
 
-    GridElement *oneForward = board->elements[x][y + (1 * direction)];
-    GridElement *twoForward = board->elements[x][y + (2 * direction)];
+    };
 
-    if (!oneForward->chessPiece) {
-        availableMoves.push_back(oneForward);
+    // capturing works differently for pawns...
+    Vector2i pawnCaptureDirections[]{
+            Vector2i(1, 1),
+            Vector2i(-1, 1),
+    };
 
-        if (!twoForward->chessPiece && !hasMoved) {
-            availableMoves.push_back(twoForward);
+    for (int i = 0; i < sizeof(pawnCaptureDirections); i++) {
+        short xLocation = x + pawnCaptureDirections[i].x;
+        short yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
+
+        bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+        if (elementExists) {
+            GridElement *element = board->elements[xLocation][yLocation];
+            if (!considerOtherPieces || (element->chessPiece && element->chessPiece->color != color)) {
+                availableMoves.push_back(element);
+            }
         }
     }
 
+    if (!considerOtherPieces) {
+        return availableMoves;
+    }
 
-    //TODO check for diagonal positions
+    short maxAmountOfSteps = hasMoved ? 1 : 2;
 
-//    GridElement *diagonalup1 = board->elements[x + 1][y + (1 * direction)];
-//    GridElement *diagonalup2 = board->elements[x - 1][y + (1 * direction)];
-//
-//    if (diagonalup1 && diagonalup1->chessPiece && diagonalup1->chessPiece->color != color) {
-//        availableMoves.push_back(diagonalup1);
-//    }
-//
-//    if (diagonalup2 && diagonalup2->chessPiece && diagonalup2->chessPiece->color != color) {
-//        availableMoves.push_back(diagonalup2);
-//    }
+    for (int i = 0; i < maxAmountOfSteps; i++) {
+        short yLocation = y + (direction * pawnDirections[i].y); // reverse ydirection for other color
+
+        // no need to check for x; we do not change it
+        bool elementExists = yLocation >= 0 && yLocation < 8;
+        if (elementExists) {
+            GridElement *element = board->elements[x][yLocation];
+            if (!element->chessPiece) {
+                availableMoves.push_back(element);
+            }
+        }
+    }
+
     return availableMoves;
 }

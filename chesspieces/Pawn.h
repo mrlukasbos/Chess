@@ -13,7 +13,6 @@ public:
 
     std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
 
-    bool hasMoved = false;
 };
 
 #endif //CHESS_PAWN_H
