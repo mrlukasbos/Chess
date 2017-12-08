@@ -10,7 +10,7 @@ Rook::Rook(Board *board, GridElement *location, PieceColor color)
     generateImage(type);
 }
 
-std::vector<GridElement *> Rook::getAvailableMoves() {
+std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces) {
 
     Vector2i horizontalAndVerticalDirections[] = {
             Vector2i(0, 1),  // Down
@@ -19,5 +19,6 @@ std::vector<GridElement *> Rook::getAvailableMoves() {
             Vector2i(-1, 0)  // Left
     };
 
-    return calculateMovesForDirections(location, horizontalAndVerticalDirections, board, color, 4, 7);
+    return calculateMovesForDirections(location, horizontalAndVerticalDirections, board, color, 4, 7,
+                                       considerOtherPieces);
 }

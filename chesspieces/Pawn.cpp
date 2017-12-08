@@ -10,7 +10,7 @@ Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
     generateImage(type);
 }
 
-std::vector<GridElement *> Pawn::getAvailableMoves() {
+std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     std::vector<GridElement *> availableMoves;
 
     short y = location->coordinates.y;
@@ -31,6 +31,8 @@ std::vector<GridElement *> Pawn::getAvailableMoves() {
         }
     }
 
+
+    //TODO check for diagonal positions
 
 //    GridElement *diagonalup1 = board->elements[x + 1][y + (1 * direction)];
 //    GridElement *diagonalup2 = board->elements[x - 1][y + (1 * direction)];

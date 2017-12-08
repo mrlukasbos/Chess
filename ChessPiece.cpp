@@ -18,7 +18,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<GridElement *> ChessPiece::getAvailableMoves() {
+std::vector<GridElement *> ChessPiece::getAvailableMoves(bool considerOtherPieces) {
     // virtual method for child classes
 }
 
@@ -28,7 +28,8 @@ std::vector<GridElement *> ChessPiece::getAvailableMovesWithCheck() {
 
 std::vector<GridElement *>
 ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
-                                        PieceColor color, short amountOfDirections, short maxAmountOfSteps) {
+                                        PieceColor color, short amountOfDirections, short maxAmountOfSteps,
+                                        bool considerOtherPieces) {
     std::vector<GridElement *> moves;
     short y = location->coordinates.y;
     short x = location->coordinates.x;
@@ -41,6 +42,12 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
             if (elementExists) {
                 GridElement *element = board->elements[xLocation][yLocation];
                 if (element->chessPiece && element->chessPiece->color == color) {
+
+                    // if we have to check for mate we must be able to travel one further...
+                    // todo make names more descirptive
+                    if (!considerOtherPieces) {
+                        moves.push_back(element);
+                    }
                     break;
                 } else if (element->chessPiece) {
                     moves.push_back(element);

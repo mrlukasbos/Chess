@@ -35,13 +35,14 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    virtual std::vector<GridElement *> getAvailableMoves();
+    virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
 
     virtual std::vector<GridElement *> getAvailableMovesWithCheck();
 
     std::vector<GridElement *>
     calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
-                                PieceColor color, short amountOfDirections, short maxAmountOfSteps);
+                                PieceColor color, short amountOfDirections, short maxAmountOfSteps,
+                                bool considerOtherPieces);
 
     void generateImage(PieceType type);
 

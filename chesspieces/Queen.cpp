@@ -10,7 +10,7 @@ Queen::Queen(Board *board, GridElement *location, PieceColor color)
     generateImage(type);
 }
 
-std::vector<GridElement *> Queen::getAvailableMoves() {
+std::vector<GridElement *> Queen::getAvailableMoves(bool considerOtherPieces) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
@@ -23,5 +23,5 @@ std::vector<GridElement *> Queen::getAvailableMoves() {
             Vector2i(-1, 1)   // Left-Down
     };
 
-    return calculateMovesForDirections(location, allDirections, board, color, 8, 7);
+    return calculateMovesForDirections(location, allDirections, board, color, 8, 7, considerOtherPieces);
 }

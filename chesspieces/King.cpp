@@ -12,7 +12,7 @@ King::King(Board *board, GridElement *location, PieceColor color)
 }
 
 
-std::vector<GridElement *> King::getAvailableMoves() {
+std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces) {
 
     //TODO remove check positions from available moves
 
@@ -54,6 +54,10 @@ std::vector<GridElement *> King::getAvailableMoves() {
         }
     }
 
+    if (considerOtherPieces) {
+        return getAvailableMovesWithCheck();
+    }
+
     return moves;
 }
 
@@ -61,7 +65,7 @@ std::vector<GridElement *> King::getAvailableMoves() {
 std::vector<GridElement *> King::getAvailableMovesWithCheck() {
 
     // the elements are pointers but the queue is a copy
-    std::vector<GridElement *> allmoves = getAvailableMoves();
+    std::vector<GridElement *> allmoves = getAvailableMoves(false);
 
 
     // if iim correct we have the size of moves here.
@@ -78,12 +82,11 @@ std::vector<GridElement *> King::getAvailableMovesWithCheck() {
                     // note that we should not check the other king if he can become checked.
                     // This does not matter then.
 
-                    std::vector<GridElement *> coveredLocations = piece->getAvailableMoves();
+                    std::vector<GridElement *> coveredLocations = piece->getAvailableMoves(false);
 
                     for (int m = 0; m < coveredLocations.size(); m++) {
                         for (int n = 0; n < allmoves.size(); n++) {
                             if (coveredLocations.at(m) == allmoves.at(n)) { // these are references
-                                GridElement *elem = allmoves.at(n);
                                 allmoves.erase(allmoves.begin() + n);
                             }
                         }
