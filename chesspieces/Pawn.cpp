@@ -32,9 +32,9 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     };
 
     // there are 2 directions
-    for (int i = 0; i < 2; i++) {
-        short xLocation = x + pawnCaptureDirections[i].x;
-        short yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
+    for (short i = 0; i < 2; i++) {
+        int xLocation = x + pawnCaptureDirections[i].x;
+        int yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
 
         bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
         if (elementExists) {
@@ -49,10 +49,10 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
         return availableMoves;
     }
 
-    short maxAmountOfSteps = hasMoved ? 1 : 2;
+    int maxAmountOfSteps = hasMoved ? 1 : 2;
 
     for (int i = 0; i < maxAmountOfSteps; i++) {
-        short yLocation = y + (direction * pawnDirections[i].y); // reverse ydirection for other color
+        int yLocation = y + (direction * pawnDirections[i].y); // reverse ydirection for other color
 
         // no need to check for x; we do not change it
         bool elementExists = yLocation >= 0 && yLocation < 8;

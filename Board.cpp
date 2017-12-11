@@ -9,11 +9,16 @@
 #include "chesspieces/Pawn.h"
 #include "chesspieces/Queen.h"
 #include "chesspieces/King.h"
+#include "Player.h"
+#include "HumanPlayer.h"
 
 using namespace sf;
 
 Board::Board(sf::RenderWindow& window) : window(window) {
     createBoard();
+
+    Player *bottomPlayer = new HumanPlayer(WHITE);
+    Player *topPlayer = new HumanPlayer(BLACK);
 }
 
 void Board::drawBoard() {
