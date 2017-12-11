@@ -39,49 +39,6 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
     drawPiecesOnBoard();
 }
 
-void Board::selectGridElementFromMousePos(int x, int y) {
-    for (short i  = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            GridElement *element = elements[i][j];
-            element->setSelected(false); // there should be no other elements be selected.
-
-            if (x > element->posX && x < element->posX + BLOCK_SIZE
-                && y > element->posY && y < element->posY + BLOCK_SIZE) {
-                // now we have the clicked element
-
-
-                // when we click on a focused element
-                if (element->isFocused && !element->chessPiece) {
-                    //move the piece to there
-
-                    element->chessPiece = selectedGridElement->chessPiece;
-                    element->chessPiece->location = element;
-                    element->chessPiece->hasMoved = true;
-                    selectedGridElement->chessPiece = NULL;
-
-                    switchPlayer();
-                } else if (element->isFocused) { //let's capture a piece!
-                    element->chessPiece->isCaptured = true;
-
-                    // set the piece that has captured to other to the position
-                    element->chessPiece = selectedGridElement->chessPiece;
-                    element->chessPiece->location = element;
-                    element->chessPiece->hasMoved = true;
-                    switchPlayer();
-                } else {
-                    // if a piece of the current player is selected
-                    if (element->chessPiece && element->chessPiece->color == currentPlayer->color) {
-
-                        element->setSelected(true);
-                        selectedGridElement = element;
-                    }
-                }
-            }
-        }
-    }
-
-    focusGridElements();
-}
 
 
 void Board::drawPiecesOnBoard() {
@@ -120,8 +77,9 @@ void Board::drawPiecesOnBoard() {
 }
 
 void Board::doMove() {
+
     if (currentPlayer->getNextMove(this)) {
-        nextMove = currentPlayer->getNextMove(this);
+        Move *nextMove = currentPlayer->getNextMove(this);
 
         // possibly capture a chesspiece
         if (nextMove->endOfMove->chessPiece) {
@@ -131,8 +89,10 @@ void Board::doMove() {
 
         // move the chesspiece
         nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
+        nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
         nextMove->startOfMove->chessPiece = NULL;
 
+        nextMove->endOfMove->chessPiece->hasMoved = true;
 
         switchPlayer();
     }

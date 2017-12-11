@@ -16,9 +16,10 @@ public:
 
     HumanPlayer(PieceColor color);
 
-    PieceColor color;
-
     Move *getNextMove(Board *board);
+
+private:
+    Move *DetermineMoveFromMousePos(Board *board, int x, int y);
 };
 
 

@@ -24,8 +24,9 @@ public:
     void drawBoard();
 
     void startGame(Player *bottomPlayer, Player *topPlayer);
-    void selectGridElementFromMousePos(int x, int y);
     void selectGridElementFromCoordinates(Vector2i coordinates);
+
+    void focusGridElements();
 
     GridElement * selectedGridElement;
 
@@ -33,16 +34,14 @@ public:
     Player *topPlayer;
     Player *currentPlayer;
 
-private:
     RenderWindow &window;
-    void focusGridElements();
+
+private:
     void createBoard();
     void switchPlayer();
     void drawPiecesOnBoard();
 
     void doMove();
-
-    Move *nextMove = NULL;
 };
 
 

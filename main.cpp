@@ -30,9 +30,7 @@ int main() {
 
             board.drawBoard(); // this is where the redraw of the board happens
 
-            if (Mouse::isButtonPressed(Mouse::Left)) {
-                board.selectGridElementFromMousePos(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
-            }
+
 
             if (sf::Keyboard::isKeyPressed(Keyboard::B)) {
                 Player *bottomPlayer = new HumanPlayer(WHITE);
