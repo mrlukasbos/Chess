@@ -7,11 +7,8 @@
 
 Move::Move() {}
 
-Move::Move(GridElement *startOfMove, GridElement *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
+Move::Move(GridElement *startOfMove, GridElement *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {}
 
-}
-
-//TODO check if this needs to be a pointer
 Move *Move::getReverseMove() {
     return new Move(this->endOfMove, this->startOfMove);
 }

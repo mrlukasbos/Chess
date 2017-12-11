@@ -18,29 +18,20 @@ class Move;
 class Board {
 public:
     Board(RenderWindow &window);
-
     GridElement *elements[8][8];
-
     void drawBoard();
-
     void startGame(Player *bottomPlayer, Player *topPlayer);
     void selectGridElementFromCoordinates(Vector2i coordinates);
-
     void focusGridElements();
-
     GridElement * selectedGridElement;
-
     Player *bottomPlayer;
     Player *topPlayer;
     Player *currentPlayer;
-
     RenderWindow &window;
-
 private:
     void createBoard();
     void switchPlayer();
     void drawPiecesOnBoard();
-
     void doMove();
 };
 

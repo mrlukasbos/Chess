@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
-#include "HumanPlayer.h"
+#include "players/HumanPlayer.h"
 
 using namespace sf;
 

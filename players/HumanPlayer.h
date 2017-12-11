@@ -6,9 +6,9 @@
 #define CHESS_HUMANPLAYER_H
 
 
-#include "constants.h"
-#include "Board.h"
-#include "Player.h"
+#include "../constants.h"
+#include "../Board.h"
+#include "../Player.h"
 
 class HumanPlayer : public Player {
 public:
