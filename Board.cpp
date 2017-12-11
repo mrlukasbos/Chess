@@ -104,9 +104,6 @@ void Board::selectGridElementFromMousePos(int x, int y) {
                         selectedGridElement = element;
                     }
                 }
-
-
-
             }
         }
     }

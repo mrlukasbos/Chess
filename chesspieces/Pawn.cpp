@@ -23,7 +23,6 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     Vector2i pawnDirections[] = {
             Vector2i(0, 1),
             Vector2i(0, 2),
-
     };
 
     // capturing works differently for pawns...
@@ -32,7 +31,8 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
             Vector2i(-1, 1),
     };
 
-    for (int i = 0; i < sizeof(pawnCaptureDirections); i++) {
+    // there are 2 directions
+    for (int i = 0; i < 2; i++) {
         short xLocation = x + pawnCaptureDirections[i].x;
         short yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
 
@@ -58,6 +58,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
         bool elementExists = yLocation >= 0 && yLocation < 8;
         if (elementExists) {
             GridElement *element = board->elements[x][yLocation];
+
             if (!element->chessPiece) {
                 availableMoves.push_back(element);
             }
