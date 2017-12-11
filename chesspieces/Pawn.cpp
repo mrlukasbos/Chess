@@ -17,7 +17,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     short y = location->coordinates.y;
     short x = location->coordinates.x;
 
-    bool isBottomColor = board->bottomColor == color;
+    bool isBottomColor = board->bottomPlayer->color == color;
     short direction = isBottomColor ? -1 : 1;
 
     Vector2i pawnDirections[] = {

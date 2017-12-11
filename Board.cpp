@@ -9,16 +9,12 @@
 #include "chesspieces/Pawn.h"
 #include "chesspieces/Queen.h"
 #include "chesspieces/King.h"
-#include "Player.h"
 #include "HumanPlayer.h"
 
 using namespace sf;
 
 Board::Board(sf::RenderWindow& window) : window(window) {
     createBoard();
-
-    Player *bottomPlayer = new HumanPlayer(WHITE);
-    Player *topPlayer = new HumanPlayer(BLACK);
 }
 
 void Board::drawBoard() {
@@ -31,44 +27,18 @@ void Board::drawBoard() {
 
 // set all pieces to the initial position
 void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
+
+    // draw the board
     createBoard();
 
-    this->bottomColor = bottomColor;
-    this->topColor = topColor;
+    // initialize the players
+    bottomPlayer = new HumanPlayer(WHITE);
+    topPlayer = new HumanPlayer(BLACK);
+    currentPlayer = bottomPlayer;
 
-    playerToMove = bottomColor;
+    currentPlayer = bottomPlayer;
 
-    short kingXPosition = 3, queenXPosition = 4;
-    if (topColor == BLACK) {
-        kingXPosition = 4;
-        queenXPosition = 3;
-    }
-
-    // make all pieces twice
-    for (int i = 0; i < 2; i++) {
-        PieceColor color = topColor;
-        short row = 0;
-
-        if (i == 1) {
-            color = bottomColor;
-            row = 7;
-        }
-
-        elements[0][row]->setChessPiece(new Rook(this, elements[0][row], color));
-        elements[1][row]->setChessPiece(new Knight(this, elements[1][row], color));
-        elements[2][row]->setChessPiece(new Bishop(this, elements[2][row], color));
-        elements[queenXPosition][row]->setChessPiece(new Queen(this, elements[queenXPosition][row], color));
-        elements[kingXPosition][row]->setChessPiece(new King(this, elements[kingXPosition][row], color));
-        elements[5][row]->setChessPiece(new Bishop(this, elements[5][row], color));
-        elements[6][row]->setChessPiece(new Knight(this, elements[6][row], color));
-        elements[7][row]->setChessPiece(new Rook(this, elements[7][row], color));
-    }
-
-    // add pawns
-    for (int i = 0; i < 8; i++) {
-        elements[i][1]->setChessPiece(new Pawn(this, elements[i][1], topColor));
-        elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomColor));
-    }
+    drawPiecesOnBoard();
 }
 
 //TODO add player implementation
@@ -103,7 +73,7 @@ void Board::selectGridElementFromMousePos(int x, int y) {
                     switchPlayer();
                 } else {
                     // if a piece of the current player is selected
-                    if (element->chessPiece && element->chessPiece->color == playerToMove) {
+                    if (element->chessPiece && element->chessPiece->color == currentPlayer->color) {
 
                         element->setSelected(true);
                         selectedGridElement = element;
@@ -114,6 +84,42 @@ void Board::selectGridElementFromMousePos(int x, int y) {
     }
 
     focusGridElements();
+}
+
+
+void Board::drawPiecesOnBoard() {
+    short kingXPosition = 3, queenXPosition = 4;
+    if (topPlayer->color == BLACK) {
+        kingXPosition = 4;
+        queenXPosition = 3;
+    }
+
+    // make all pieces twice
+    for (int i = 0; i < 2; i++) {
+        PieceColor color = topPlayer->color;
+        short row = 0;
+
+        if (i == 1) {
+            color = bottomPlayer->color;
+            row = 7;
+        }
+
+        elements[0][row]->setChessPiece(new Rook(this, elements[0][row], color));
+        elements[1][row]->setChessPiece(new Knight(this, elements[1][row], color));
+        elements[2][row]->setChessPiece(new Bishop(this, elements[2][row], color));
+        elements[queenXPosition][row]->setChessPiece(new Queen(this, elements[queenXPosition][row], color));
+        elements[kingXPosition][row]->setChessPiece(new King(this, elements[kingXPosition][row], color));
+        elements[5][row]->setChessPiece(new Bishop(this, elements[5][row], color));
+        elements[6][row]->setChessPiece(new Knight(this, elements[6][row], color));
+        elements[7][row]->setChessPiece(new Rook(this, elements[7][row], color));
+    }
+
+    // add pawns
+    for (int i = 0; i < 8; i++) {
+        elements[i][1]->setChessPiece(new Pawn(this, elements[i][1], topPlayer->color));
+        elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomPlayer->color));
+    }
+
 }
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {
@@ -155,9 +161,9 @@ void Board::createBoard() {
 }
 
 void Board::switchPlayer() {
-    if (playerToMove == BLACK) {
-        playerToMove = WHITE;
+    if (currentPlayer == topPlayer) {
+        currentPlayer = bottomPlayer;
     } else {
-        playerToMove = BLACK;
+        currentPlayer = topPlayer;
     }
 }

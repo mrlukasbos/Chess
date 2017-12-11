@@ -6,37 +6,39 @@
 #define CHESS_BOARD_H
 
 #include "GridElement.h"
+#include "Player.h"
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
 
+class Player;
 class GridElement;
 class Board {
 public:
-    Board(sf::RenderWindow& window);
+    Board(RenderWindow &window);
 
     GridElement *elements[8][8];
     void drawBoard();
 
     void startGame(PieceColor bottomColor, PieceColor topColor);
-
     void selectGridElementFromMousePos(int x, int y);
 
-    void selectGridElementFromCoordinates(sf::Vector2i coordinates);
+    void selectGridElementFromCoordinates(Vector2i coordinates);
 
     GridElement * selectedGridElement;
 
-    PieceColor bottomColor;
-    PieceColor topColor;
-    PieceColor playerToMove = WHITE;
+    // initialize colors
+    Player *bottomPlayer;
+    Player *topPlayer;
+    Player *currentPlayer;
 
 private:
-    sf::RenderWindow& window;
-
+    RenderWindow &window;
     void focusGridElements();
-
     void createBoard();
-
     void switchPlayer();
+
+    void drawPiecesOnBoard();
 };
 
 

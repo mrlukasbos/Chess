@@ -8,6 +8,7 @@
 
 #include "gridElement.h"
 
+class GridElement;
 class Move {
 public:
     Move();

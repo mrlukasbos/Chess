@@ -58,7 +58,7 @@ int main() {
             currentMoveText.setCharacterSize(24);
             currentMoveText.setPosition(BOARD_SIZE + 40, 20);
 
-            sf::Text currentColorToMoveName(board.playerToMove == BLACK ? "Black" : "White", boldFont, 26);
+            sf::Text currentColorToMoveName(board.currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
             currentColorToMoveName.setFillColor(sf::Color::Black);
             currentColorToMoveName.setCharacterSize(48);
             currentColorToMoveName.setPosition(BOARD_SIZE + 40, 40);

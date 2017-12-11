@@ -12,6 +12,9 @@
 
 using namespace sf;
 
+class Move;
+
+class Board;
 class Player {
 public:
     Player();
