@@ -9,7 +9,6 @@
 #include "chesspieces/Pawn.h"
 #include "chesspieces/Queen.h"
 #include "chesspieces/King.h"
-#include "HumanPlayer.h"
 
 using namespace sf;
 
@@ -18,6 +17,9 @@ Board::Board(sf::RenderWindow& window) : window(window) {
 }
 
 void Board::drawBoard() {
+
+    doMove();
+
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             elements[i][j]->drawGridElement(window);
@@ -26,22 +28,17 @@ void Board::drawBoard() {
 }
 
 // set all pieces to the initial position
-void Board::startGame(PieceColor bottomColor, PieceColor topColor) {
+void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
+    this->bottomPlayer = bottomPlayer;
+    this->topPlayer = topPlayer;
 
-    // draw the board
+    // white begins
+    currentPlayer = bottomPlayer->color == WHITE ? bottomPlayer : topPlayer;
+
     createBoard();
-
-    // initialize the players
-    bottomPlayer = new HumanPlayer(WHITE);
-    topPlayer = new HumanPlayer(BLACK);
-    currentPlayer = bottomPlayer;
-
-    currentPlayer = bottomPlayer;
-
     drawPiecesOnBoard();
 }
 
-//TODO add player implementation
 void Board::selectGridElementFromMousePos(int x, int y) {
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
@@ -120,6 +117,25 @@ void Board::drawPiecesOnBoard() {
         elements[i][6]->setChessPiece(new Pawn(this, elements[i][6], bottomPlayer->color));
     }
 
+}
+
+void Board::doMove() {
+    if (currentPlayer->getNextMove(this)) {
+        nextMove = currentPlayer->getNextMove(this);
+
+        // possibly capture a chesspiece
+        if (nextMove->endOfMove->chessPiece) {
+            nextMove->endOfMove->chessPiece->isCaptured = true;
+            nextMove->endOfMove->chessPiece = NULL;
+        }
+
+        // move the chesspiece
+        nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
+        nextMove->startOfMove->chessPiece = NULL;
+
+
+        switchPlayer();
+    }
 }
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {

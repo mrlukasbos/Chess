@@ -13,21 +13,22 @@ using namespace sf;
 
 class Player;
 class GridElement;
+
+class Move;
 class Board {
 public:
     Board(RenderWindow &window);
 
     GridElement *elements[8][8];
+
     void drawBoard();
 
-    void startGame(PieceColor bottomColor, PieceColor topColor);
+    void startGame(Player *bottomPlayer, Player *topPlayer);
     void selectGridElementFromMousePos(int x, int y);
-
     void selectGridElementFromCoordinates(Vector2i coordinates);
 
     GridElement * selectedGridElement;
 
-    // initialize colors
     Player *bottomPlayer;
     Player *topPlayer;
     Player *currentPlayer;
@@ -37,8 +38,11 @@ private:
     void focusGridElements();
     void createBoard();
     void switchPlayer();
-
     void drawPiecesOnBoard();
+
+    void doMove();
+
+    Move *nextMove = NULL;
 };
 
 

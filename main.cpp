@@ -1,65 +1,75 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
+#include "HumanPlayer.h"
+
+using namespace sf;
 
 int main() {
-    sf::ContextSettings settings;
+
+    // set the context
+    ContextSettings settings;
     settings.antialiasingLevel = 8;
+    RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),"Chess",sf::Style::Default, settings);
-
+    // draw the board & init game
     Board board(window);
-    board.startGame(WHITE, BLACK);
+    Player *bottomPlayer = new HumanPlayer(WHITE);
+    Player *topPlayer = new HumanPlayer(BLACK);
+    board.startGame(bottomPlayer, topPlayer);
 
     //start interface
     while(window.isOpen()){
-        sf::Event event;
+        Event event;
         while(window.pollEvent(event)) {
-            if(event.type == sf::Event::Closed){
+            if (event.type == Event::Closed) {
                 window.close();
             }
-            sf::Color menuColor(220, 220, 220);
+
+            Color menuColor(220, 220, 220); // light gray
             window.clear(menuColor);
 
-            board.drawBoard();
+            board.drawBoard(); // this is where the redraw of the board happens
 
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                board.selectGridElementFromMousePos(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+            if (Mouse::isButtonPressed(Mouse::Left)) {
+                board.selectGridElementFromMousePos(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
-                board.startGame(BLACK, WHITE);
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                board.startGame(WHITE, BLACK);
+            if (sf::Keyboard::isKeyPressed(Keyboard::B)) {
+                Player *bottomPlayer = new HumanPlayer(WHITE);
+                Player *topPlayer = new HumanPlayer(BLACK);
+                board.startGame(bottomPlayer, topPlayer);
+
+            } else if (Keyboard::isKeyPressed(Keyboard::W)) {
+                Player *bottomPlayer = new HumanPlayer(BLACK);
+                Player *topPlayer = new HumanPlayer(WHITE);
+                board.startGame(bottomPlayer, topPlayer);
             }
 
-
-            sf::Font font;
+            Font font;
+            Font boldFont;
             font.loadFromFile("OpenSans-Regular.ttf");
-
-            sf::Font boldFont;
             boldFont.loadFromFile("OpenSans-Bold.ttf");
 
             GridElement *selectedElement = board.selectedGridElement;
             if (selectedElement) {
-
-                sf::Vector2i newCoordinates = selectedElement->coordinates;
+                Vector2i newCoordinates = selectedElement->coordinates;
                 board.selectGridElementFromCoordinates(newCoordinates);
 
-                sf::Text elementName(selectedElement->name, font, 26);
-                elementName.setFillColor(sf::Color::Black);
+                Text elementName(selectedElement->name, font, 26);
+                elementName.setFillColor(Color::Black);
                 elementName.setCharacterSize(32);
                 elementName.setPosition(BOARD_SIZE + 40, 120);
 
                 window.draw(elementName);
             }
 
-            sf::Text currentMoveText("Current move", font, 26);
-            currentMoveText.setFillColor(sf::Color::Black);
+            Text currentMoveText("Current move", font, 26);
+            currentMoveText.setFillColor(Color::Black);
             currentMoveText.setCharacterSize(24);
             currentMoveText.setPosition(BOARD_SIZE + 40, 20);
 
-            sf::Text currentColorToMoveName(board.currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
-            currentColorToMoveName.setFillColor(sf::Color::Black);
+            Text currentColorToMoveName(board.currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
+            currentColorToMoveName.setFillColor(Color::Black);
             currentColorToMoveName.setCharacterSize(48);
             currentColorToMoveName.setPosition(BOARD_SIZE + 40, 40);
 
@@ -70,4 +80,3 @@ int main() {
     }
     return 0;
 }
-
