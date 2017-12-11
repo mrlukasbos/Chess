@@ -12,18 +12,14 @@ RandomPlayer::RandomPlayer(PieceColor color) : Player(color) {}
 
 Move *RandomPlayer::getNextMove(Board *board) {
     RenderWindow &window = board->window;
+    std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
 
-    // for all elements
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            GridElement *element = board->elements[i][j];
+    for (int i = 0; i < pieces.size(); i++) {
+        ChessPiece *randomPiece = pieces[std::rand() % pieces.size()];
+        std::vector<GridElement *> moves = randomPiece->getAvailableMoves(true);
 
-
-            if (element->chessPiece && element->chessPiece->color == this->color) {
-                if (!element->chessPiece->getAvailableMoves(true).empty()) { // if the chesspiece has available moves
-                    return new Move(element, element->chessPiece->getAvailableMoves(true).at(0));
-                }
-            }
+        if (!moves.empty()) { // if the chesspiece has available moves
+            return new Move(randomPiece->location, moves.at(std::rand() % moves.size())); // return random move
         }
     }
 

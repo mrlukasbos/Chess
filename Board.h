@@ -14,6 +14,7 @@ using namespace sf;
 class Player;
 class GridElement;
 
+class ChessPiece;
 class Move;
 class Board {
 public:
@@ -28,11 +29,15 @@ public:
     Player *topPlayer;
     Player *currentPlayer;
     RenderWindow &window;
+
+    std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 private:
     void createBoard();
     void switchPlayer();
     void drawPiecesOnBoard();
     void doMove();
+
+
 };
 
 

@@ -143,3 +143,18 @@ void Board::switchPlayer() {
         currentPlayer = topPlayer;
     }
 }
+
+std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
+    std::vector<ChessPiece *> pieces;
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
+            GridElement *element = elements[i][j];
+
+            if (element->chessPiece && element->chessPiece->color == color) {
+                pieces.push_back(element->chessPiece);
+            }
+        }
+    }
+    return pieces;
+}
+
