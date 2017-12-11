@@ -14,8 +14,8 @@ int main() {
 
     // draw the board & init game
     Board board(window);
-    Player *bottomPlayer = new HumanPlayer(WHITE);
-    Player *topPlayer = new RandomPlayer(BLACK);
+    Player *bottomPlayer = new HumanPlayer(BLACK);
+    Player *topPlayer = new RandomPlayer(WHITE);
     board.startGame(bottomPlayer, topPlayer);
 
     //start interface
@@ -28,19 +28,19 @@ int main() {
 
             Color menuColor(220, 220, 220); // light gray
             window.clear(menuColor);
-
             board.drawBoard(); // this is where the redraw of the board happens
 
+            // use keys to set window modi.
+            // When having a humanplayer it is recommended to make the human the bottomplayer
 
-
-            if (sf::Keyboard::isKeyPressed(Keyboard::B)) {
+            if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
                 Player *bottomPlayer = new HumanPlayer(WHITE);
-                Player *topPlayer = new HumanPlayer(BLACK);
+                Player *topPlayer = new RandomPlayer(BLACK);
                 board.startGame(bottomPlayer, topPlayer);
 
-            } else if (Keyboard::isKeyPressed(Keyboard::W)) {
+            } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
                 Player *bottomPlayer = new HumanPlayer(BLACK);
-                Player *topPlayer = new HumanPlayer(WHITE);
+                Player *topPlayer = new RandomPlayer(WHITE);
                 board.startGame(bottomPlayer, topPlayer);
             }
 
@@ -57,7 +57,7 @@ int main() {
                 Text elementName(selectedElement->name, font, 26);
                 elementName.setFillColor(Color::Black);
                 elementName.setCharacterSize(32);
-                elementName.setPosition(BOARD_SIZE + 40, 120);
+                elementName.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 + 40);
 
                 window.draw(elementName);
             }
@@ -65,13 +65,27 @@ int main() {
             Text currentMoveText("Current move", font, 26);
             currentMoveText.setFillColor(Color::Black);
             currentMoveText.setCharacterSize(24);
-            currentMoveText.setPosition(BOARD_SIZE + 40, 20);
+            currentMoveText.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 - 50);
 
             Text currentColorToMoveName(board.currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
             currentColorToMoveName.setFillColor(Color::Black);
             currentColorToMoveName.setCharacterSize(48);
-            currentColorToMoveName.setPosition(BOARD_SIZE + 40, 40);
+            currentColorToMoveName.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 - 20);
 
+
+            Text topPlayerTypeText(board.topPlayer->getType(), font, 26);
+            topPlayerTypeText.setFillColor(Color::Black);
+            topPlayerTypeText.setCharacterSize(24);
+            topPlayerTypeText.setPosition(BOARD_SIZE + 40, 40);
+
+            Text bottomPlayerTypeText(board.bottomPlayer->getType(), font, 26);
+            bottomPlayerTypeText.setFillColor(Color::Black);
+            bottomPlayerTypeText.setCharacterSize(24);
+            bottomPlayerTypeText.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT - 80);
+
+
+            window.draw(topPlayerTypeText);
+            window.draw(bottomPlayerTypeText);
             window.draw(currentMoveText);
             window.draw(currentColorToMoveName);
             window.display();

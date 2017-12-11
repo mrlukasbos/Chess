@@ -17,8 +17,9 @@ public:
 
     Move *getNextMove(Board *board);
 
+    sf::String getType();
 private:
-
+    sf::String type = "RandomPlayer";
 };
 
 

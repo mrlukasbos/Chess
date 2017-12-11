@@ -21,6 +21,11 @@ public:
     Player(PieceColor color);
     PieceColor color;
     virtual Move *getNextMove(Board *board);
+
+    virtual sf::String getType();
+
+private:
+    sf::String type;
 };
 
 

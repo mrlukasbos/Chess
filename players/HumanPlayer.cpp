@@ -46,3 +46,8 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
     board->focusGridElements();
     return NULL;
 }
+
+
+String HumanPlayer::getType() {
+    return type;
+}

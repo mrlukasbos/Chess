@@ -13,13 +13,14 @@
 class HumanPlayer : public Player {
 public:
     HumanPlayer();
-
     HumanPlayer(PieceColor color);
-
     Move *getNextMove(Board *board);
 
+    sf::String getType();
 private:
     Move *DetermineMoveFromMousePos(Board *board, int x, int y);
+
+    sf::String type = "HumanPlayer";
 };
 
 

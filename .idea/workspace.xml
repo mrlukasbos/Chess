@@ -13,9 +13,13 @@
   <component name="ChangeListManager">
     <list default="true" id="60ff5d32-4447-4760-a0bb-95c88e7cb629" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Board.cpp" afterPath="$PROJECT_DIR$/Board.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Board.h" afterPath="$PROJECT_DIR$/Board.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Player.cpp" afterPath="$PROJECT_DIR$/Player.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Player.h" afterPath="$PROJECT_DIR$/Player.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/HumanPlayer.cpp" afterPath="$PROJECT_DIR$/players/HumanPlayer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/HumanPlayer.h" afterPath="$PROJECT_DIR$/players/HumanPlayer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/RandomPlayer.cpp" afterPath="$PROJECT_DIR$/players/RandomPlayer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/RandomPlayer.h" afterPath="$PROJECT_DIR$/players/RandomPlayer.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
@@ -34,7 +38,7 @@
             <file leaf-file-name="Board.cpp" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Board.cpp">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="644">
+                  <state relative-caret-position="2190">
                     <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="25" />
                     <folding>
                       <element signature="e#46#64#0" expanded="true" />
@@ -53,8 +57,8 @@
       <file leaf-file-name="Player.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Player.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            <state relative-caret-position="360">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="20" />
               <folding>
                 <element signature="e#93#121#0" expanded="true" />
               </folding>
@@ -65,18 +69,18 @@
       <file leaf-file-name="HumanPlayer.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/players/HumanPlayer.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="43" column="5" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="43" selection-end-column="5" />
+            <state relative-caret-position="566">
+              <caret line="50" column="27" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomPlayer.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RandomPlayer.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/players/RandomPlayer.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -85,8 +89,8 @@
       <file leaf-file-name="RandomPlayer.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/players/RandomPlayer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+            <state relative-caret-position="270">
+              <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="e#105#130#0" expanded="true" />
               </folding>
@@ -107,8 +111,8 @@
       <file leaf-file-name="HumanPlayer.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/players/HumanPlayer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="25" />
               <folding>
                 <element signature="e#104#129#0" expanded="true" />
               </folding>
@@ -126,23 +130,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Board.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Board.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Board.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="270">
+              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="e#91#115#0" expanded="true" />
               </folding>
@@ -198,18 +190,20 @@
         <option value="$PROJECT_DIR$/chesspieces/Queen.cpp" />
         <option value="$PROJECT_DIR$/chesspieces/Rook.cpp" />
         <option value="$PROJECT_DIR$/chesspieces/Pawn.h" />
-        <option value="$PROJECT_DIR$/Player.cpp" />
         <option value="$PROJECT_DIR$/Move.h" />
         <option value="$PROJECT_DIR$/chesspieces/Pawn.cpp" />
-        <option value="$PROJECT_DIR$/Player.h" />
         <option value="$PROJECT_DIR$/HumanPlayer.h" />
         <option value="$PROJECT_DIR$/HumanPlayer.cpp" />
         <option value="$PROJECT_DIR$/Move.cpp" />
+        <option value="$PROJECT_DIR$/Board.cpp" />
+        <option value="$PROJECT_DIR$/Board.h" />
+        <option value="$PROJECT_DIR$/Player.h" />
+        <option value="$PROJECT_DIR$/Player.cpp" />
+        <option value="$PROJECT_DIR$/players/HumanPlayer.cpp" />
+        <option value="$PROJECT_DIR$/players/RandomPlayer.cpp" />
+        <option value="$PROJECT_DIR$/players/HumanPlayer.h" />
         <option value="$PROJECT_DIR$/players/RandomPlayer.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/Board.cpp" />
-        <option value="$PROJECT_DIR$/players/RandomPlayer.cpp" />
-        <option value="$PROJECT_DIR$/Board.h" />
       </list>
     </option>
   </component>
@@ -246,16 +240,6 @@
             <path>
               <item name="Chess" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Chess" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chess" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="Chess" type="462c0819:PsiDirectoryNode" />
-              <item name="chesspieces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chess" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="Chess" type="462c0819:PsiDirectoryNode" />
-              <item name="players" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -321,14 +305,7 @@
       <workItem from="1512395363116" duration="7786000" />
       <workItem from="1512419714496" duration="17463000" />
       <workItem from="1512746792450" duration="7239000" />
-      <workItem from="1512763523903" duration="15527000" />
-    </task>
-    <task id="LOCAL-00010" summary="add deselection of grid elements">
-      <created>1512128603545</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1512128603545</updated>
+      <workItem from="1512763523903" duration="17860000" />
     </task>
     <task id="LOCAL-00011" summary="add deselection of grid elements">
       <created>1512130770193</created>
@@ -666,11 +643,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513009739536</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Make the randomplayer really random">
+      <created>1513010609642</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1513010609642</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105206000" />
+    <option name="totallyTimeSpent" value="107539000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -708,14 +692,14 @@
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279743" sideWeight="0.73511904" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.73511904" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.49761903" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.54761904" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23874345" sideWeight="0.45238096" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23794213" sideWeight="0.45238096" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16239317" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -723,7 +707,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2937564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23365487" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -736,7 +720,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="add Bishop behaviour" />
     <MESSAGE value="add Queen behaviour" />
     <MESSAGE value="simplify rook behaviour code" />
     <MESSAGE value="attempt to make the code shorter (breaks bishop behaviour)" />
@@ -761,7 +744,8 @@
     <MESSAGE value="fix game functionality, now using two 'HumanPlayers'" />
     <MESSAGE value="create files for the randomplayer" />
     <MESSAGE value="Add an extremely stupid (not really random) player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add an extremely stupid (not really random) player" />
+    <MESSAGE value="Make the randomplayer really random" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make the randomplayer really random" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -771,7 +755,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="101" />
+      <option name="time" value="104" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -1062,14 +1046,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Move.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1102,31 +1078,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/chesspieces/Bishop.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gridElement.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/players/RandomPlayer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-          <folding>
-            <element signature="e#105#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,45 +1102,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Board.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="e#91#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/players/HumanPlayer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="25" />
           <folding>
             <element signature="e#104#129#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/players/HumanPlayer.cpp">
+    <entry file="file://$PROJECT_DIR$/players/RandomPlayer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="43" column="5" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="43" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/Bishop.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        <state relative-caret-position="270">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
-            <element signature="e#93#121#0" expanded="true" />
+            <element signature="e#105#130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-607">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
+        <state relative-caret-position="2190">
           <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="25" />
           <folding>
             <element signature="e#46#64#0" expanded="true" />
@@ -1184,21 +1152,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/players/RandomPlayer.cpp">
+    <entry file="file://$PROJECT_DIR$/Player.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Board.h">
+    <entry file="file://$PROJECT_DIR$/Player.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="20" />
           <folding>
-            <element signature="e#91#115#0" expanded="true" />
+            <element signature="e#93#121#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/players/HumanPlayer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="50" column="27" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/players/RandomPlayer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

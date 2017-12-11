@@ -25,3 +25,8 @@ Move *RandomPlayer::getNextMove(Board *board) {
 
     return NULL;
 }
+
+
+String RandomPlayer::getType() {
+    return type;
+}
