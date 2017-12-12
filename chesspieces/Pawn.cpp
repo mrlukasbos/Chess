@@ -59,9 +59,11 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
         if (elementExists) {
             GridElement *element = board->elements[x][yLocation];
 
-            if (!element->chessPiece) {
-                availableMoves.push_back(element);
+            if (element->chessPiece) {
+                break;
             }
+            availableMoves.push_back(element);
+
         }
     }
 

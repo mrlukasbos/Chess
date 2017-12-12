@@ -14,8 +14,8 @@ int main() {
 
     // draw the board & init game
     Board board(window);
-    Player *bottomPlayer = new HumanPlayer(BLACK);
-    Player *topPlayer = new RandomPlayer(WHITE);
+    Player *bottomPlayer = new HumanPlayer(WHITE);
+    Player *topPlayer = new RandomPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
 
     //start interface
@@ -35,12 +35,12 @@ int main() {
 
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
                 Player *bottomPlayer = new HumanPlayer(WHITE);
-                Player *topPlayer = new RandomPlayer(BLACK);
+                Player *topPlayer = new HumanPlayer(BLACK);
                 board.startGame(bottomPlayer, topPlayer);
 
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
                 Player *bottomPlayer = new HumanPlayer(BLACK);
-                Player *topPlayer = new RandomPlayer(WHITE);
+                Player *topPlayer = new HumanPlayer(WHITE);
                 board.startGame(bottomPlayer, topPlayer);
             }
 
