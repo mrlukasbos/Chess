@@ -31,13 +31,13 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
                                         bool considerOtherPieces) {
     std::vector<GridElement *> moves;
-    short y = location->coordinates.y;
-    short x = location->coordinates.x;
+    int y = location->coordinates.y;
+    int x = location->coordinates.x;
 
     for (int i = 0; i < amountOfDirections; i++) {
-        for (short j = 1; j <= maxAmountOfSteps; j++) {
-            short xLocation = x + (j * directions[i].x);
-            short yLocation = y + (j * directions[i].y);
+        for (int j = 1; j <= maxAmountOfSteps; j++) {
+            int xLocation = x + (j * directions[i].x);
+            int yLocation = y + (j * directions[i].y);
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
                 GridElement *element = board->elements[xLocation][yLocation];

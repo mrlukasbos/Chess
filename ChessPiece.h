@@ -13,44 +13,44 @@
 using namespace sf;
 
 class GridElement;
-
 class Board;
 class ChessPiece {
 public:
     ChessPiece();
-
     ChessPiece(Board *board, GridElement *location, PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
 
+    void generateImage(PieceType type);
+
     PieceColor color;
     PieceType type;
-
     GridElement *location;
     Board *board;
+    bool isCaptured = false;
+    bool hasMoved = false;
 
+    // image utilities
     std::string imageUrlPrefix;
-
-    // image utils
     sf::Image img;
     sf::Texture texture;
     sf::Sprite sprite;
 
+    // functions to be used by subclasses
     virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
-
     virtual std::vector<GridElement *> getAvailableMovesWithCheck();
 
-    std::vector<GridElement *>
-    calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
-                                PieceColor color, short amountOfDirections, short maxAmountOfSteps,
-                                bool considerOtherPieces);
+    int pieceScore;
+    int locationScores[64];
 
-    void generateImage(PieceType type);
-
-    bool isCaptured = false;
-
-    //TODO move this to subclasses
-    bool hasMoved = false;
+    std::vector<GridElement *> calculateMovesForDirections(
+            GridElement *location,
+            Vector2i directions[],
+            Board *board,
+            PieceColor color,
+            short amountOfDirections,
+            short maxAmountOfSteps,
+            bool considerOtherPieces
+    );
 };
-
 
 #endif //CHESS_CHESSPIECE_H
