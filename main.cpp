@@ -17,6 +17,11 @@ int main() {
     Player *bottomPlayer = new MinMaxPlayer(WHITE);
     Player *topPlayer = new MinMaxPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
+    Player *currentPlayer;
+
+    // white begins
+    currentPlayer = bottomPlayer->color == WHITE ? bottomPlayer : topPlayer;
+
 
     //start interface
     while(window.isOpen()){
@@ -28,6 +33,20 @@ int main() {
 
             Color menuColor(220, 220, 220); // light gray
             window.clear(menuColor);
+
+
+            Move *nextMove = currentPlayer->getNextMove(&board);
+            if (nextMove) {
+                board.doMove(nextMove);
+
+                // switch player after move
+                if (currentPlayer == topPlayer) {
+                    currentPlayer = bottomPlayer;
+                } else {
+                    currentPlayer = topPlayer;
+                }
+            }
+
             board.drawBoard(); // this is where the redraw of the board happens
 
             // use keys to set window modi.
@@ -67,7 +86,7 @@ int main() {
             currentMoveText.setCharacterSize(24);
             currentMoveText.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 - 50);
 
-            Text currentColorToMoveName(board.currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
+            Text currentColorToMoveName(currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
             currentColorToMoveName.setFillColor(Color::Black);
             currentColorToMoveName.setCharacterSize(48);
             currentColorToMoveName.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 - 20);

@@ -18,8 +18,6 @@ Board::Board(sf::RenderWindow& window) : window(window) {
 
 void Board::drawBoard() {
 
-    doMove();
-
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             elements[i][j]->drawGridElement(window);
@@ -32,8 +30,6 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
     this->bottomPlayer = bottomPlayer;
     this->topPlayer = topPlayer;
 
-    // white begins
-    currentPlayer = bottomPlayer->color == WHITE ? bottomPlayer : topPlayer;
 
     createBoard();
     drawPiecesOnBoard();
@@ -76,8 +72,7 @@ void Board::drawPiecesOnBoard() {
 
 }
 
-void Board::doMove() {
-    Move *nextMove = currentPlayer->getNextMove(this);
+void Board::doMove(Move *nextMove) {
 
     if (nextMove) {
 
@@ -93,8 +88,6 @@ void Board::doMove() {
         nextMove->startOfMove->chessPiece = NULL;
 
         nextMove->endOfMove->chessPiece->hasMoved = true;
-
-        switchPlayer();
     }
 }
 
@@ -136,14 +129,6 @@ void Board::createBoard() {
     }
 }
 
-void Board::switchPlayer() {
-    if (currentPlayer == topPlayer) {
-        currentPlayer = bottomPlayer;
-    } else {
-        currentPlayer = topPlayer;
-    }
-}
-
 std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     std::vector<ChessPiece *> pieces;
     for (short i = 0; i < 8; i++) {
@@ -157,4 +142,3 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     }
     return pieces;
 }
-

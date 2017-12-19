@@ -24,18 +24,16 @@ public:
     void startGame(Player *bottomPlayer, Player *topPlayer);
     void selectGridElementFromCoordinates(Vector2i coordinates);
     void focusGridElements();
+
+    void doMove(Move *nextMove);
     GridElement * selectedGridElement;
     Player *bottomPlayer;
     Player *topPlayer;
-    Player *currentPlayer;
     RenderWindow &window;
-
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 private:
     void createBoard();
-    void switchPlayer();
     void drawPiecesOnBoard();
-    void doMove();
 
 };
 
