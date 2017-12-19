@@ -6,6 +6,7 @@
 #define CHESS_CHESSPIECE_H
 
 #include <SFML/Graphics.hpp>
+#include <array>
 #include "constants.h"
 #include "gridElement.h"
 #include "board.h"
@@ -39,8 +40,10 @@ public:
     virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
     virtual std::vector<GridElement *> getAvailableMovesWithCheck();
 
+    virtual int getLocationScore(int x, int y);
+
     int pieceScore;
-    int locationScores[64];
+    std::array<std::array<int, 8>, 8> locationScores;
 
     std::vector<GridElement *> calculateMovesForDirections(
             GridElement *location,

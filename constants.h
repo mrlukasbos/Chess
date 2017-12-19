@@ -15,12 +15,12 @@
 
 
 // SCORE SYSTEM USED BY AI
-#define KING_SCORE       900
-#define QUEEN_SCORE      90
-#define ROOKS_CORE       50
-#define BISHOP_SCORE     30
-#define KNIGHT_SCORE     30
-#define PAWN_SCORE       10
+#define KING_SCORE       20000
+#define QUEEN_SCORE      900
+#define ROOK_SCORE       500
+#define BISHOP_SCORE     330
+#define KNIGHT_SCORE     320
+#define PAWN_SCORE       100
 
 
 // SCORES FOR THE POSITIONS ON THE BOARD

@@ -26,6 +26,11 @@ std::vector<GridElement *> ChessPiece::getAvailableMovesWithCheck() {
     // virtual method for child classes
 }
 
+int ChessPiece::getLocationScore(int x, int y) {
+    // check first y then x.
+    return locationScores.at(y).at(x);
+}
+
 std::vector<GridElement *>
 ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,

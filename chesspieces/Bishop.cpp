@@ -8,6 +8,20 @@ Bishop::Bishop(Board *board, GridElement *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = BISHOP;
     generateImage(type);
+
+    pieceScore = BISHOP_SCORE;
+
+    locationScores = {{
+                              {-20, -10, -10, -10, -10, -10, -10, -20},
+                              {-10, 0, 0, 0, 0, 0, 0, -10},
+                              {-10, 0, 5, 10, 10, 5, 0, -10},
+                              {-10, 5, 5, 10, 10, 5, 5, -10},
+                              {-10, 0, 10, 10, 10, 10, 0, -10},
+                              {-10, 10, 10, 10, 10, 10, 10, -10},
+                              {-10, 5, 0, 0, 0, 0, 5, -10},
+                              {-20, -10, -10, -10, -10, -10, -10, -20}
+                      }};
+
 }
 
 std::vector<GridElement *> Bishop::getAvailableMoves(bool considerOtherPieces) {

@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 #include "players/HumanPlayer.h"
-#include "players/RandomPlayer.h"
+#include "players/MinMaxPlayer.h"
 
 using namespace sf;
 
@@ -14,8 +14,8 @@ int main() {
 
     // draw the board & init game
     Board board(window);
-    Player *bottomPlayer = new HumanPlayer(WHITE);
-    Player *topPlayer = new RandomPlayer(BLACK);
+    Player *bottomPlayer = new MinMaxPlayer(WHITE);
+    Player *topPlayer = new HumanPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
 
     //start interface

@@ -8,6 +8,19 @@ Rook::Rook(Board *board, GridElement *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = ROOK;
     generateImage(type);
+
+    pieceScore = ROOK_SCORE;
+
+    locationScores = {{
+                              {0, 0, 0, 0, 0, 0, 0, 0},
+                              {5, 10, 10, 10, 10, 10, 10, 5},
+                              {-5, 0, 0, 0, 0, 0, 0, -5},
+                              {-5, 0, 0, 0, 0, 0, 0, -5},
+                              {-5, 0, 0, 0, 0, 0, 0, -5},
+                              {-5, 0, 0, 0, 0, 0, 0, -5},
+                              {-5, 0, 0, 0, 0, 0, 0, -5},
+                              {0, 0, 0, 5, 5, 0, 0, 0}
+                      }};
 }
 
 std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces) {
