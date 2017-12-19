@@ -27,6 +27,12 @@ std::vector<GridElement *> ChessPiece::getAvailableMovesWithCheck() {
 }
 
 int ChessPiece::getLocationScore(int x, int y) {
+
+    // if we are the topPlayer we must reverse the scores
+    if (board->bottomPlayer->color == color) {
+        y = 7 - y;
+    }
+
     // check first y then x.
     return locationScores.at(y).at(x);
 }

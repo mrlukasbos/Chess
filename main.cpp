@@ -15,7 +15,7 @@ int main() {
     // draw the board & init game
     Board board(window);
     Player *bottomPlayer = new MinMaxPlayer(WHITE);
-    Player *topPlayer = new HumanPlayer(BLACK);
+    Player *topPlayer = new MinMaxPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
 
     //start interface

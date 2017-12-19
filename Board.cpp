@@ -77,9 +77,9 @@ void Board::drawPiecesOnBoard() {
 }
 
 void Board::doMove() {
+    Move *nextMove = currentPlayer->getNextMove(this);
 
-    if (currentPlayer->getNextMove(this)) {
-        Move *nextMove = currentPlayer->getNextMove(this);
+    if (nextMove) {
 
         // possibly capture a chesspiece
         if (nextMove->endOfMove->chessPiece) {
