@@ -12,11 +12,11 @@
 
 using namespace sf;
 
-Board::Board(sf::RenderWindow& window) : window(window) {
+Board::Board() {
     createBoard();
 }
 
-void Board::drawBoard() {
+void Board::drawBoard(sf::RenderWindow &window) {
 
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {

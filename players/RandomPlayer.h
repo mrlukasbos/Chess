@@ -15,11 +15,7 @@ public:
 
     RandomPlayer(PieceColor color);
 
-    Move *getNextMove(Board *board);
-
-    sf::String getType();
-private:
-    sf::String type = "RandomPlayer";
+    Move *getNextMove(Board &board);
 };
 
 

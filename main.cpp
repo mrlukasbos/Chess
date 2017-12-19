@@ -13,9 +13,9 @@ int main() {
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
 
     // draw the board & init game
-    Board board(window);
+    Board board;
     Player *bottomPlayer = new MinMaxPlayer(WHITE);
-    Player *topPlayer = new MinMaxPlayer(BLACK);
+    Player *topPlayer = new HumanPlayer(BLACK, window);
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
 
@@ -35,7 +35,7 @@ int main() {
             window.clear(menuColor);
 
 
-            Move *nextMove = currentPlayer->getNextMove(&board);
+            Move *nextMove = currentPlayer->getNextMove(board);
             if (nextMove) {
                 board.doMove(nextMove);
 
@@ -47,19 +47,19 @@ int main() {
                 }
             }
 
-            board.drawBoard(); // this is where the redraw of the board happens
+            board.drawBoard(window); // this is where the redraw of the board happens
 
             // use keys to set window modi.
             // When having a humanplayer it is recommended to make the human the bottomplayer
 
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
-                Player *bottomPlayer = new HumanPlayer(WHITE);
-                Player *topPlayer = new HumanPlayer(BLACK);
+                Player *bottomPlayer = new HumanPlayer(WHITE, window);
+                Player *topPlayer = new HumanPlayer(BLACK, window);
                 board.startGame(bottomPlayer, topPlayer);
 
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
-                Player *bottomPlayer = new HumanPlayer(BLACK);
-                Player *topPlayer = new HumanPlayer(WHITE);
+                Player *bottomPlayer = new HumanPlayer(BLACK, window);
+                Player *topPlayer = new HumanPlayer(WHITE, window);
                 board.startGame(bottomPlayer, topPlayer);
             }
 

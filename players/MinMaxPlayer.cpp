@@ -8,26 +8,20 @@
 
 using namespace sf;
 
-MinMaxPlayer::MinMaxPlayer() {}
-
-MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {}
-
-String MinMaxPlayer::getType() {
-    return type;
+MinMaxPlayer::MinMaxPlayer() {
+    type = "MinMaxPlayer";
 }
 
-Move *MinMaxPlayer::getNextMove(Board *board) {
-    RenderWindow &window = board->window;
-    std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
+MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
+    type = "MinMaxPlayer";
+}
+
+Move *MinMaxPlayer::getNextMove(Board &board) {
+    std::vector<ChessPiece *> pieces = board.getPiecesByColor(color);
 
     GridElement *bestElement = NULL;
     ChessPiece *pieceToMove = NULL;
-    int highestScore = 0;
-
-    // make a copy of the board to simulate a game
-    Board fakeBoard = *board;
-
-    // fakeBoard.doMove();
+    int highestScore = -999999;
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
@@ -50,7 +44,16 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
             }
         }
     }
-    return new Move(pieceToMove->location, bestElement); // return best move
+
+
+    // make a copy of the board to simulate a game
+    Board fakeBoard = Board(board);
+
+    Move *epicMove = new Move(pieceToMove->location, bestElement); // return best move
+
+    //  fakeBoard.doMove(epicMove);
+
+    return epicMove;
 }
 
 

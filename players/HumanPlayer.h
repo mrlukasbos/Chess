@@ -12,15 +12,16 @@
 
 class HumanPlayer : public Player {
 public:
-    HumanPlayer();
-    HumanPlayer(PieceColor color);
-    Move *getNextMove(Board *board);
+    HumanPlayer(sf::RenderWindow &window);
 
-    sf::String getType();
+    HumanPlayer(PieceColor color, sf::RenderWindow &window);
+
+    Move *getNextMove(Board &board);
+
 private:
-    Move *DetermineMoveFromMousePos(Board *board, int x, int y);
+    Move *DetermineMoveFromMousePos(Board &board, int x, int y);
 
-    sf::String type = "HumanPlayer";
+    sf::RenderWindow &window;
 };
 
 

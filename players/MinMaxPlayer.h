@@ -15,12 +15,8 @@ public:
 
     MinMaxPlayer(PieceColor color);
 
-    Move *getNextMove(Board *board);
+    Move *getNextMove(Board &board);
 
-    sf::String getType();
-
-private:
-    sf::String type = "MinMaxPlayer";
 };
 
 #endif //CHESS_MINMAXPLAYER_H

@@ -18,9 +18,13 @@ class ChessPiece;
 class Move;
 class Board {
 public:
-    Board(RenderWindow &window);
+    Board();
+
+    // constructs a board from an existing board (copies the board)
+    Board(Board const &) = default;
     GridElement *elements[8][8];
-    void drawBoard();
+
+    void drawBoard(sf::RenderWindow &window);
     void startGame(Player *bottomPlayer, Player *topPlayer);
     void selectGridElementFromCoordinates(Vector2i coordinates);
     void focusGridElements();
@@ -29,7 +33,6 @@ public:
     GridElement * selectedGridElement;
     Player *bottomPlayer;
     Player *topPlayer;
-    RenderWindow &window;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 private:
     void createBoard();

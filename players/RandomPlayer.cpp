@@ -6,13 +6,16 @@
 
 using namespace sf;
 
-RandomPlayer::RandomPlayer() {}
+RandomPlayer::RandomPlayer() {
+    type = "Randomplayer";
+}
 
-RandomPlayer::RandomPlayer(PieceColor color) : Player(color) {}
+RandomPlayer::RandomPlayer(PieceColor color) : Player(color) {
+    type = "Randomplayer";
+}
 
-Move *RandomPlayer::getNextMove(Board *board) {
-    RenderWindow &window = board->window;
-    std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
+Move *RandomPlayer::getNextMove(Board &board) {
+    std::vector<ChessPiece *> pieces = board.getPiecesByColor(color);
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *randomPiece = pieces[std::rand() % pieces.size()];
@@ -24,9 +27,4 @@ Move *RandomPlayer::getNextMove(Board *board) {
     }
 
     return NULL;
-}
-
-
-String RandomPlayer::getType() {
-    return type;
 }

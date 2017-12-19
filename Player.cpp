@@ -8,7 +8,7 @@ Player::Player() {}
 
 Player::Player(PieceColor color) : color(color) {}
 
-Move *Player::getNextMove(Board *board) {}
+Move *Player::getNextMove(Board &board) {}
 
 String Player::getType() {
     return type;
