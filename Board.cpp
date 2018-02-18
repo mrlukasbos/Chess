@@ -2,6 +2,7 @@
 // Created by Lukas Bos on 30/11/2017.
 //
 
+#include <iostream>
 #include "Board.h"
 #include "chesspieces/Rook.h"
 #include "chesspieces/Bishop.h"
@@ -30,11 +31,9 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
     this->bottomPlayer = bottomPlayer;
     this->topPlayer = topPlayer;
 
-
     createBoard();
     drawPiecesOnBoard();
 }
-
 
 
 void Board::drawPiecesOnBoard() {
@@ -73,7 +72,6 @@ void Board::drawPiecesOnBoard() {
 }
 
 void Board::doMove(Move *nextMove) {
-
     if (nextMove) {
 
         // possibly capture a chesspiece
@@ -89,6 +87,46 @@ void Board::doMove(Move *nextMove) {
 
         nextMove->endOfMove->chessPiece->hasMoved = true;
     }
+
+    if (checkedKing()) {
+        if (checkMate()) {
+            std::cout << "We have a winner! \n";
+        } else {
+            std::cout << "Check! \n";
+        }
+    }
+}
+
+ChessPiece *Board::checkedKing() {
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
+            ChessPiece *piece = elements[i][j]->chessPiece;
+
+            if (piece) {
+                for (GridElement *element : piece->getAvailableMoves(true)) {
+                    ChessPiece *pieceToHit = element->chessPiece;
+                    if (pieceToHit && pieceToHit->type == KING && pieceToHit->color != piece->color) {
+                        return pieceToHit;
+                    }
+                }
+            }
+        }
+    }
+    return nullptr;
+}
+
+bool Board::checkMate() {
+    return (checkedKing() && checkedKing()->getAvailableMovesWithCheck().size() == 0);
+
+    // two approaches to blocking
+    // try all pieces and see if this results in a non-check status
+    // looks like algorithm. should try this.
+
+
+    // or calculate which grid elements are available and
+    // check if these are contained by any of the other pieces.
+
+    // how to get this ai proof?
 }
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {

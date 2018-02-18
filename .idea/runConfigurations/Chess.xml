@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Chess" type="CMakeRunConfiguration" factoryName="Application" singleton="true" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Chess" TARGET_NAME="Chess" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Chess" RUN_TARGET_NAME="Chess">
+    <envs>
+      <env name="NSZombieEnabled" value="YES" />
+    </envs>
+    <method />
+  </configuration>
+</component>

@@ -14,14 +14,13 @@ int main() {
 
     // draw the board & init game
     Board board;
-    Player *bottomPlayer = new MinMaxPlayer(WHITE);
-    Player *topPlayer = new HumanPlayer(BLACK, window);
+    Player *bottomPlayer = new HumanPlayer(WHITE, window);
+    Player *topPlayer = new MinMaxPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
 
     // white begins
     currentPlayer = bottomPlayer->color == WHITE ? bottomPlayer : topPlayer;
-
 
     //start interface
     while(window.isOpen()){
@@ -33,7 +32,6 @@ int main() {
 
             Color menuColor(220, 220, 220); // light gray
             window.clear(menuColor);
-
 
             Move *nextMove = currentPlayer->getNextMove(board);
             if (nextMove) {
@@ -54,12 +52,12 @@ int main() {
 
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
                 Player *bottomPlayer = new HumanPlayer(WHITE, window);
-                Player *topPlayer = new HumanPlayer(BLACK, window);
+                Player *topPlayer = new MinMaxPlayer(BLACK);
                 board.startGame(bottomPlayer, topPlayer);
 
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
                 Player *bottomPlayer = new HumanPlayer(BLACK, window);
-                Player *topPlayer = new HumanPlayer(WHITE, window);
+                Player *topPlayer = new MinMaxPlayer(WHITE);
                 board.startGame(bottomPlayer, topPlayer);
             }
 

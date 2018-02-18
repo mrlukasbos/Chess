@@ -34,10 +34,13 @@ public:
     Player *bottomPlayer;
     Player *topPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
+
+    ChessPiece *checkedKing();
+
+    bool checkMate();
 private:
     void createBoard();
     void drawPiecesOnBoard();
-
 };
 
 
