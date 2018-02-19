@@ -59,7 +59,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     }
 
     if (!considerOtherPieces) {
-        return availableMoves;
+        return removeMovesLeadingToSelfCheck(availableMoves);
     }
 
     int maxAmountOfSteps = (amountOfSteps > 0) ? 1 : 2;
@@ -80,5 +80,5 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
         }
     }
 
-    return availableMoves;
+    return removeMovesLeadingToSelfCheck(availableMoves);
 }
