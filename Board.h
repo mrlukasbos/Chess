@@ -39,6 +39,7 @@ public:
     void checkGameStatus();
 
     GridElement * selectedGridElement;
+    GridElement *checkedGridElement;
     Player *bottomPlayer;
     Player *topPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);

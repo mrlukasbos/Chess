@@ -15,7 +15,7 @@ int main() {
     // draw the board & init game
     Board board;
     Player *bottomPlayer = new HumanPlayer(WHITE, window);
-    Player *topPlayer = new HumanPlayer(BLACK, window);
+    Player *topPlayer = new MinMaxPlayer(BLACK);
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
 
@@ -62,6 +62,7 @@ int main() {
                 board.startGame(bottomPlayer, topPlayer);
             } else if (Keyboard::isKeyPressed(Keyboard::R)) {
                 board.undoMove();
+                board.checkGameStatus();
             }
 
             Font font;

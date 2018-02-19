@@ -22,6 +22,7 @@ public:
     int posY;
     bool isSelected = false;
     bool isFocused = false;
+    bool isChecked = false;
     void setSelected(bool selected);
 
     void setFocused(bool focused);

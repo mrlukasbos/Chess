@@ -25,6 +25,8 @@ void GridElement::drawGridElement(sf::RenderWindow &window) {
         rectangle.setOutlineColor(sf::Color::Red);
     } else if (isFocused) {
         rectangle.setOutlineColor(sf::Color::Green);
+    } else if (isChecked) {
+        rectangle.setOutlineColor(sf::Color::Yellow);
     } else {
         rectangle.setOutlineColor(color);
     }

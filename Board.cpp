@@ -108,14 +108,16 @@ void Board::undoMove() {
 }
 
 ChessPiece *Board::checkedKing() {
+
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = elements[i][j]->chessPiece;
-
             if (piece) {
                 for (GridElement *element : piece->getAvailableMoves(true)) {
                     ChessPiece *pieceToHit = element->chessPiece;
                     if (pieceToHit && pieceToHit->type == KING && pieceToHit->color != piece->color) {
+                        checkedGridElement = pieceToHit->location;
+                        checkedGridElement->isChecked = true;
                         return pieceToHit;
                     }
                 }
@@ -126,7 +128,6 @@ ChessPiece *Board::checkedKing() {
 }
 
 bool Board::checkMate() {
-
     if (checkedKing()) {
         for (short i = 0; i < 8; i++) {
             for (short j = 0; j < 8; j++) {
@@ -204,6 +205,8 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 }
 
 void Board::checkGameStatus() {
+    if (checkedGridElement) checkedGridElement->isChecked = false;
+
     if (checkedKing()) {
         if (checkMate()) {
             std::cout << "We have a winner! \n";
