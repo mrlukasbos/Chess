@@ -25,7 +25,7 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
-        std::vector<GridElement *> moves = piece->getAvailableMoves(true);
+        std::vector<GridElement *> moves = piece->getAvailableMoves(true, true);
 
         for (int j = 0; j < moves.size(); j++) {
             GridElement *element = moves[j];

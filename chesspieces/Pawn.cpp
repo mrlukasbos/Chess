@@ -24,7 +24,7 @@ Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
+std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
     std::vector<GridElement *> availableMoves;
 
     short y = location->coordinates.y;
@@ -59,7 +59,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
     }
 
     if (!considerOtherPieces) {
-        return removeMovesLeadingToSelfCheck(availableMoves);
+        return removeMovesLeadingToSelfCheck(availableMoves, considerCheck);
     }
 
     int maxAmountOfSteps = (amountOfSteps > 0) ? 1 : 2;
@@ -79,6 +79,6 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
 
         }
     }
+    return removeMovesLeadingToSelfCheck(availableMoves, considerCheck);
 
-    return removeMovesLeadingToSelfCheck(availableMoves);
 }

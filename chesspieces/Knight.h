@@ -12,7 +12,7 @@ class Knight : public ChessPiece {
 public:
     Knight(Board *board, GridElement *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
+    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 

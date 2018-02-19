@@ -25,9 +25,7 @@ King::King(Board *board, GridElement *location, PieceColor color)
 }
 
 
-std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces) {
-
-    //TODO remove check positions from available moves
+std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
@@ -67,48 +65,6 @@ std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces) {
         }
     }
 
-    if (considerOtherPieces) {
-        return getAvailableMovesWithCheck();
-    }
+    return removeMovesLeadingToSelfCheck(moves, considerCheck);
 
-    return moves;
-}
-
-
-std::vector<GridElement *> King::getAvailableMovesWithCheck() {
-
-    // the elements are pointers but the queue is a copy
-    std::vector<GridElement *> allmoves = getAvailableMoves(false);
-
-
-    // if iim correct we have the size of moves here.
-    for (int i = 0; i < allmoves.size(); i++) {
-        // for all grid elements
-        for (short k = 0; k < 8; k++) {
-            for (short l = 0; l < 8; l++) {
-                GridElement *element = board->elements[k][l];
-                ChessPiece *piece = element->chessPiece;
-
-                // Get all pieces of the opposite color. This should result in 16 pieces
-                if (piece && piece->color != color) {
-                    // get the available moves of all pieces
-                    // note that we should not check the other king if he can become checked.
-                    // This does not matter then.
-
-                    std::vector<GridElement *> coveredLocations = piece->getAvailableMoves(false);
-
-                    for (int m = 0; m < coveredLocations.size(); m++) {
-                        for (int n = 0; n < allmoves.size(); n++) {
-                            if (coveredLocations.at(m) == allmoves.at(n)) { // these are references
-                                allmoves.erase(allmoves.begin() + n);
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-
-    return allmoves;
 }

@@ -12,7 +12,7 @@ class Rook : public ChessPiece {
 public:
     Rook(Board *board, GridElement *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
+    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 

@@ -104,6 +104,7 @@ void Board::undoMove() {
         move->initialPiece->location = move->startOfMove;
         move->startOfMove->chessPiece = move->initialPiece;
         move->initialPiece->amountOfSteps--;
+
     }
 }
 
@@ -113,7 +114,7 @@ void Board::searchForCheckedKing() {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = elements[i][j]->chessPiece;
             if (piece) {
-                for (GridElement *element : piece->getAvailableMoves(true)) {
+                for (GridElement *element : piece->getAvailableMoves(true, false)) {
                     ChessPiece *pieceToHit = element->chessPiece;
                     if (pieceToHit && pieceToHit->type == KING && pieceToHit->color != piece->color) {
                         checkedGridElement = pieceToHit->location;
@@ -134,7 +135,7 @@ bool Board::checkMate() {
                 GridElement *element = elements[i][j];
                 if (element->chessPiece && element->chessPiece->color != checkedKing->color) {
                     ChessPiece *piece = element->chessPiece;
-                    for (GridElement *availableMove : piece->getAvailableMoves(true)) {
+                    for (GridElement *availableMove : piece->getAvailableMoves(true, true)) {
                         Move *moveToTry = new Move(piece->location, availableMove);
                         doMove(moveToTry);
                         if (!checkedKing) {
@@ -171,7 +172,7 @@ void Board::focusGridElements() {
     if (selectedGridElement && selectedGridElement->chessPiece) {
 
         std::vector<GridElement *> availableMoves;
-        availableMoves = selectedGridElement->chessPiece->getAvailableMoves(true);
+        availableMoves = selectedGridElement->chessPiece->getAvailableMoves(true, true);
 
         for (int i = 0; i < availableMoves.size(); i++) {
             availableMoves.at(i)->setFocused(true);

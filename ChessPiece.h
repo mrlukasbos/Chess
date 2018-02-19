@@ -36,11 +36,10 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    std::vector<GridElement *> removeMovesLeadingToSelfCheck(std::vector<GridElement *> moves);
+    std::vector<GridElement *> removeMovesLeadingToSelfCheck(std::vector<GridElement *> moves, bool considerCheck);
 
     // functions to be used by subclasses
-    virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
-    virtual std::vector<GridElement *> getAvailableMovesWithCheck();
+    virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
 
@@ -54,7 +53,8 @@ public:
             PieceColor color,
             short amountOfDirections,
             short maxAmountOfSteps,
-            bool considerOtherPieces
+            bool considerOtherPieces,
+            bool considerCheck
     );
 };
 

@@ -18,11 +18,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<GridElement *> ChessPiece::getAvailableMoves(bool considerOtherPieces) {
-    // virtual method for child classes
-}
-
-std::vector<GridElement *> ChessPiece::getAvailableMovesWithCheck() {
+std::vector<GridElement *> ChessPiece::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
     // virtual method for child classes
 }
 
@@ -40,7 +36,16 @@ int ChessPiece::getLocationScore(int x, int y) {
 std::vector<GridElement *>
 ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
-                                        bool considerOtherPieces) {
+                                        bool considerOtherPieces, bool considerCheck) {
+
+    /* considerOtherPieces
+     * with considerOtherpieces == true the location of a chesspiece is also stored in the vector
+     * Otherwise only the path towards it is stored.
+     *
+     * ConsiderCheck states if we should check if the moves are valid (thus aren't setting the own king check)
+     */
+
+
     std::vector<GridElement *> moves;
     int y = location->coordinates.y;
     int x = location->coordinates.x;
@@ -68,17 +73,31 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
             }
         }
     }
-    return removeMovesLeadingToSelfCheck(moves);
+
+    return removeMovesLeadingToSelfCheck(moves, considerCheck);
 }
 
-std::vector<GridElement *> ChessPiece::removeMovesLeadingToSelfCheck(std::vector<GridElement *> destinations) {
+std::vector<GridElement *>
+ChessPiece::removeMovesLeadingToSelfCheck(std::vector<GridElement *> destinations, bool considerCheck) {
     std::vector<GridElement *> safeDestinations;
     for (GridElement *destination : destinations) {
         Move *moveToTry = new Move(location, destination);
         board->doMove(moveToTry);
 
-        if (board->checkedKing && board->checkedKing->color == color) {
-        } else {
+        if (considerCheck) {
+            if (board->checkedGridElement) board->checkedGridElement->isChecked = false;
+            board->checkedKing = NULL;
+
+            board->searchForCheckedKing();
+        }
+
+        // this also works by setting check upon the other king :p
+        // quite spectacular tactic I would say
+
+
+        // if there is no king checked or if it is the other king...
+        if (!board->checkedKing || board->checkedKing->color != color) {
+
             safeDestinations.push_back(destination);
 
         }

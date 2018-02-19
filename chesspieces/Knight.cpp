@@ -23,7 +23,7 @@ Knight::Knight(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Knight::getAvailableMoves(bool considerOtherPieces) {
+std::vector<GridElement *> Knight::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
     std::vector<GridElement *> availableMoves;
 
     Vector2i knightDirections[] = {
@@ -37,5 +37,6 @@ std::vector<GridElement *> Knight::getAvailableMoves(bool considerOtherPieces) {
             Vector2i(2, -1)
     };
 
-    return calculateMovesForDirections(location, knightDirections, board, color, 8, 1, considerOtherPieces);
+    return calculateMovesForDirections(location, knightDirections, board, color, 8, 1, considerOtherPieces,
+                                       considerCheck);
 }

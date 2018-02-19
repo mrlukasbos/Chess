@@ -23,7 +23,7 @@ Rook::Rook(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces) {
+std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i horizontalAndVerticalDirections[] = {
             Vector2i(0, 1),  // Down
@@ -33,5 +33,5 @@ std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces) {
     };
 
     return calculateMovesForDirections(location, horizontalAndVerticalDirections, board, color, 4, 7,
-                                       considerOtherPieces);
+                                       considerOtherPieces, considerCheck);
 }

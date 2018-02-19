@@ -24,7 +24,7 @@ Bishop::Bishop(Board *board, GridElement *location, PieceColor color)
 
 }
 
-std::vector<GridElement *> Bishop::getAvailableMoves(bool considerOtherPieces) {
+std::vector<GridElement *> Bishop::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i diagonalDirections[] = {
             Vector2i(1, 1),   // Right-Down
@@ -32,5 +32,6 @@ std::vector<GridElement *> Bishop::getAvailableMoves(bool considerOtherPieces) {
             Vector2i(-1, -1), // Left-Up
             Vector2i(-1, 1)   // Left-Down
     };
-    return calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7, considerOtherPieces);
+    return calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7, considerOtherPieces,
+                                       considerCheck);
 }
