@@ -62,7 +62,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces) {
         return availableMoves;
     }
 
-    int maxAmountOfSteps = hasMoved ? 1 : 2;
+    int maxAmountOfSteps = (amountOfSteps > 0) ? 1 : 2;
 
     for (int i = 0; i < maxAmountOfSteps; i++) {
         int yLocation = y + (direction * pawnDirections[i].y); // reverse ydirection for other color

@@ -77,7 +77,6 @@ void Board::doMove(Move *nextMove) {
         // possibly capture a chesspiece
         if (nextMove->endOfMove->chessPiece) {
             nextMove->endOfMove->chessPiece->isCaptured = true;
-            nextMove->endOfMove->chessPiece = NULL;
         }
 
         // move the chesspiece
@@ -85,16 +84,31 @@ void Board::doMove(Move *nextMove) {
         nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
         nextMove->startOfMove->chessPiece = NULL;
 
-        nextMove->endOfMove->chessPiece->hasMoved = true;
+        nextMove->endOfMove->chessPiece->amountOfSteps++;
     }
 
-    if (checkedKing()) {
-        if (checkMate()) {
-            std::cout << "We have a winner! \n";
-        } else {
-            std::cout << "Check! \n";
+    allMoves.push_back(nextMove);
+
+    checkGameStatus();
+}
+
+void Board::undoMove() {
+    Move *move = allMoves.back();
+
+    if (move) {
+        allMoves.pop_back();
+        // revive a piece when it was taken
+        if (move->takenPiece) {
+            move->takenPiece->isCaptured = false;
+            move->takenPiece->location = move->endOfMove;
         }
+        move->endOfMove->chessPiece = move->takenPiece;
+
+        move->initialPiece->location = move->startOfMove;
+        move->startOfMove->chessPiece = move->initialPiece;
+        move->initialPiece->amountOfSteps--;
     }
+    checkGameStatus();
 }
 
 ChessPiece *Board::checkedKing() {
@@ -179,4 +193,14 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
         }
     }
     return pieces;
+}
+
+void Board::checkGameStatus() {
+    if (checkedKing()) {
+        if (checkMate()) {
+            std::cout << "We have a winner! \n";
+        } else {
+            std::cout << "Check! \n";
+        }
+    }
 }

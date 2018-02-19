@@ -7,8 +7,11 @@
 
 
 #include "gridElement.h"
+#include "ChessPiece.h"
 
 class GridElement;
+
+class ChessPiece;
 class Move {
 public:
     Move();
@@ -17,6 +20,9 @@ public:
 
     GridElement *startOfMove;
     GridElement *endOfMove;
+
+    ChessPiece *initialPiece;
+    ChessPiece *takenPiece;
 
     Move *getReverseMove();
 };

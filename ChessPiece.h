@@ -28,7 +28,7 @@ public:
     GridElement *location;
     Board *board;
     bool isCaptured = false;
-    bool hasMoved = false;
+    int amountOfSteps = 0;
 
     // image utilities
     std::string imageUrlPrefix;

@@ -30,6 +30,14 @@ public:
     void focusGridElements();
 
     void doMove(Move *nextMove);
+
+    void undoMove();
+
+    std::vector<Move *> allMoves;
+
+
+    void checkGameStatus();
+
     GridElement * selectedGridElement;
     Player *bottomPlayer;
     Player *topPlayer;

@@ -59,6 +59,8 @@ int main() {
                 Player *bottomPlayer = new HumanPlayer(BLACK, window);
                 Player *topPlayer = new MinMaxPlayer(WHITE);
                 board.startGame(bottomPlayer, topPlayer);
+            } else if (Keyboard::isKeyPressed(Keyboard::R)) {
+                board.undoMove();
             }
 
             Font font;
