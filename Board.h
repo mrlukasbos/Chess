@@ -35,7 +35,8 @@ public:
 
     std::vector<Move *> allMoves;
 
-
+    // there can be only one checked king.
+    ChessPiece *checkedKing;
     void checkGameStatus();
 
     GridElement * selectedGridElement;
@@ -44,7 +45,7 @@ public:
     Player *topPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 
-    ChessPiece *checkedKing();
+    void searchForCheckedKing();
 
     bool checkMate();
 private:

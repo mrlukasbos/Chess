@@ -68,7 +68,23 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
             }
         }
     }
-    return moves;
+    return removeMovesLeadingToSelfCheck(moves);
+}
+
+std::vector<GridElement *> ChessPiece::removeMovesLeadingToSelfCheck(std::vector<GridElement *> destinations) {
+    std::vector<GridElement *> safeDestinations;
+    for (GridElement *destination : destinations) {
+        Move *moveToTry = new Move(location, destination);
+        board->doMove(moveToTry);
+
+        if (board->checkedKing && board->checkedKing->color == color) {
+        } else {
+            safeDestinations.push_back(destination);
+
+        }
+        board->undoMove();
+    }
+    return safeDestinations;
 }
 
 void ChessPiece::generateImage(PieceType type) {

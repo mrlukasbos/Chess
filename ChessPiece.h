@@ -36,6 +36,8 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
+    std::vector<GridElement *> removeMovesLeadingToSelfCheck(std::vector<GridElement *> moves);
+
     // functions to be used by subclasses
     virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces);
     virtual std::vector<GridElement *> getAvailableMovesWithCheck();

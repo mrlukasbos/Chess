@@ -107,7 +107,7 @@ void Board::undoMove() {
     }
 }
 
-ChessPiece *Board::checkedKing() {
+void Board::searchForCheckedKing() {
 
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
@@ -118,26 +118,26 @@ ChessPiece *Board::checkedKing() {
                     if (pieceToHit && pieceToHit->type == KING && pieceToHit->color != piece->color) {
                         checkedGridElement = pieceToHit->location;
                         checkedGridElement->isChecked = true;
-                        return pieceToHit;
+                        checkedKing = pieceToHit;
                     }
                 }
             }
         }
     }
-    return nullptr;
 }
 
 bool Board::checkMate() {
-    if (checkedKing()) {
+    // todo check if this function still works
+    if (checkedKing) {
         for (short i = 0; i < 8; i++) {
             for (short j = 0; j < 8; j++) {
                 GridElement *element = elements[i][j];
-                if (element->chessPiece && element->chessPiece->color != checkedKing()->color) {
+                if (element->chessPiece && element->chessPiece->color != checkedKing->color) {
                     ChessPiece *piece = element->chessPiece;
                     for (GridElement *availableMove : piece->getAvailableMoves(true)) {
                         Move *moveToTry = new Move(piece->location, availableMove);
                         doMove(moveToTry);
-                        if (!checkedKing()) {
+                        if (!checkedKing) {
                             undoMove();
                             return false;
                         }
@@ -206,8 +206,11 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 
 void Board::checkGameStatus() {
     if (checkedGridElement) checkedGridElement->isChecked = false;
+    checkedKing = NULL;
 
-    if (checkedKing()) {
+    searchForCheckedKing();
+
+    if (checkedKing) {
         if (checkMate()) {
             std::cout << "We have a winner! \n";
         } else {
