@@ -109,6 +109,14 @@ void Board::undoMove() {
 }
 
 void Board::searchForCheckedKing() {
+//todo this might later be changed in a function for threats for all pieces
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
+            ChessPiece *piece = elements[i][j]->chessPiece;
+            if (piece) piece->isChecked = false;
+        }
+    }
+
 
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
@@ -116,10 +124,8 @@ void Board::searchForCheckedKing() {
             if (piece) {
                 for (GridElement *element : piece->getAvailableMoves(true, false)) {
                     ChessPiece *pieceToHit = element->chessPiece;
-                    if (pieceToHit && pieceToHit->type == KING && pieceToHit->color != piece->color) {
-                        checkedGridElement = pieceToHit->location;
-                        checkedGridElement->isChecked = true;
-                        checkedKing = pieceToHit;
+                    if (pieceToHit && pieceToHit->type == KING) {
+                        pieceToHit->isChecked = true;
                     }
                 }
             }

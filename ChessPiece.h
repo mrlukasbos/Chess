@@ -30,6 +30,8 @@ public:
     bool isCaptured = false;
     int amountOfSteps = 0;
 
+    bool isChecked = false;
+
     // image utilities
     std::string imageUrlPrefix;
     sf::Image img;

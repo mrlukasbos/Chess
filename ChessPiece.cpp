@@ -85,22 +85,18 @@ ChessPiece::removeMovesLeadingToSelfCheck(std::vector<GridElement *> destination
         board->doMove(moveToTry);
 
         if (considerCheck) {
-            if (board->checkedGridElement) board->checkedGridElement->isChecked = false;
-            board->checkedKing = NULL;
-
             board->searchForCheckedKing();
         }
 
-        // this also works by setting check upon the other king :p
-        // quite spectacular tactic I would say
+        // check if the move results in a situation where it's not check anymore
+        for (ChessPiece *piece : board->getPiecesByColor(color)) {
 
-
-        // if there is no king checked or if it is the other king...
-        if (!board->checkedKing || board->checkedKing->color != color) {
-
-            safeDestinations.push_back(destination);
-
+            //todo bug here: isChecked is dependent on moves of other pieces and is prevented when checking other king.
+            if (piece->type == KING && !piece->isChecked) {
+                safeDestinations.push_back(destination);
+            }
         }
+
         board->undoMove();
     }
     return safeDestinations;

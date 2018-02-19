@@ -16,20 +16,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Board.cpp" afterPath="$PROJECT_DIR$/Board.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChessPiece.cpp" afterPath="$PROJECT_DIR$/ChessPiece.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChessPiece.h" afterPath="$PROJECT_DIR$/ChessPiece.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Bishop.cpp" afterPath="$PROJECT_DIR$/chesspieces/Bishop.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Bishop.h" afterPath="$PROJECT_DIR$/chesspieces/Bishop.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/King.cpp" afterPath="$PROJECT_DIR$/chesspieces/King.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/King.h" afterPath="$PROJECT_DIR$/chesspieces/King.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Knight.cpp" afterPath="$PROJECT_DIR$/chesspieces/Knight.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Knight.h" afterPath="$PROJECT_DIR$/chesspieces/Knight.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Pawn.cpp" afterPath="$PROJECT_DIR$/chesspieces/Pawn.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Pawn.h" afterPath="$PROJECT_DIR$/chesspieces/Pawn.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Queen.cpp" afterPath="$PROJECT_DIR$/chesspieces/Queen.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Queen.h" afterPath="$PROJECT_DIR$/chesspieces/Queen.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Rook.cpp" afterPath="$PROJECT_DIR$/chesspieces/Rook.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chesspieces/Rook.h" afterPath="$PROJECT_DIR$/chesspieces/Rook.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/MinMaxPlayer.cpp" afterPath="$PROJECT_DIR$/players/MinMaxPlayer.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/players/RandomPlayer.cpp" afterPath="$PROJECT_DIR$/players/RandomPlayer.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
@@ -44,11 +30,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5648148">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Board.cpp" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Board.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Board.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="211" selection-end-column="27" />
+                <state relative-caret-position="501">
+                  <caret line="135" column="25" lean-forward="true" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
                   <folding>
                     <element signature="e#46#65#0" expanded="true" />
                   </folding>
@@ -56,11 +42,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ChessPiece.cpp" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ChessPiece.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ChessPiece.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="96" column="69" lean-forward="false" selection-start-line="96" selection-start-column="69" selection-end-line="96" selection-end-column="69" />
+                <state relative-caret-position="279">
+                  <caret line="93" column="119" lean-forward="false" selection-start-line="93" selection-start-column="119" selection-end-line="93" selection-end-column="119" />
                   <folding />
                 </state>
               </provider>
@@ -71,28 +57,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="450">
                   <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="new" pinned="false" current-in-tab="false">
-            <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/new">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#8999#9037#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="vector" pinned="false" current-in-tab="false">
-            <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="1590" column="0" lean-forward="false" selection-start-line="1590" selection-start-column="0" selection-end-line="1590" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -131,18 +95,8 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Bishop.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/chesspieces/Bishop.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
+                <state relative-caret-position="190">
+                  <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -165,8 +119,28 @@
           <file leaf-file-name="ChessPiece.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ChessPiece.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="38" column="100" lean-forward="false" selection-start-line="38" selection-start-column="100" selection-end-line="38" selection-end-column="100" />
+                <state relative-caret-position="315">
+                  <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Queen.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/chesspieces/Queen.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="13" column="94" lean-forward="false" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="94" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Pawn.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/chesspieces/Pawn.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
                   <folding />
                 </state>
               </provider>
@@ -237,8 +211,8 @@
         <option value="$PROJECT_DIR$/players/MinMaxPlayer.cpp" />
         <option value="$PROJECT_DIR$/chesspieces/King.h" />
         <option value="$PROJECT_DIR$/chesspieces/King.cpp" />
-        <option value="$PROJECT_DIR$/ChessPiece.h" />
         <option value="$PROJECT_DIR$/chesspieces/Pawn.cpp" />
+        <option value="$PROJECT_DIR$/ChessPiece.h" />
         <option value="$PROJECT_DIR$/Board.cpp" />
         <option value="$PROJECT_DIR$/ChessPiece.cpp" />
       </list>
@@ -364,14 +338,7 @@
       <workItem from="1515923319849" duration="224000" />
       <workItem from="1517309623392" duration="2931000" />
       <workItem from="1518015356098" duration="146000" />
-      <workItem from="1518944425671" duration="22696000" />
-    </task>
-    <task id="LOCAL-00023" summary="be red when another piece is there">
-      <created>1512301457932</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1512301457932</updated>
+      <workItem from="1518944425671" duration="25782000" />
     </task>
     <task id="LOCAL-00024" summary="be red when another piece is there">
       <created>1512308209649</created>
@@ -709,11 +676,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519049316378</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="good improvements on movesets (can now prevent check by putting other pieces in the way etc.)">
+      <created>1519054599925</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1519054599927</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157890000" />
+    <option name="totallyTimeSpent" value="160976000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -779,7 +753,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="update pawn behavour: no capture diagonally and check if pieces are in the way" />
     <MESSAGE value="rm todo statements" />
     <MESSAGE value="Checking for check almost works" />
     <MESSAGE value="improve check-checking" />
@@ -804,7 +777,8 @@
     <MESSAGE value="some ui for 'check'" />
     <MESSAGE value="Apply 'check'-rules for all pieces except pawn" />
     <MESSAGE value="allso add check rule on pawn" />
-    <option name="LAST_COMMIT_MESSAGE" value="allso add check rule on pawn" />
+    <MESSAGE value="good improvements on movesets (can now prevent check by putting other pieces in the way etc.)" />
+    <option name="LAST_COMMIT_MESSAGE" value="good improvements on movesets (can now prevent check by putting other pieces in the way etc.)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -814,7 +788,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="144" />
+      <option name="time" value="150" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -823,13 +797,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Board.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gridElement.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -1064,26 +1031,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/Pawn.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chesspieces/Queen.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="489">
           <caret line="38" column="118" lean-forward="false" selection-start-line="38" selection-start-column="118" selection-end-line="38" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/Queen.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="94" lean-forward="false" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="94" />
           <folding />
         </state>
       </provider>
@@ -1128,42 +1079,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/Knight.cpp">
+    <entry file="file://$PROJECT_DIR$/chesspieces/Queen.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="13" column="94" lean-forward="false" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="94" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/King.cpp">
+    <entry file="file://$PROJECT_DIR$/chesspieces/Pawn.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="917">
-          <caret line="67" column="61" lean-forward="false" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="61" />
+        <state relative-caret-position="195">
+          <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ChessPiece.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="38" column="100" lean-forward="false" selection-start-line="38" selection-start-column="100" selection-end-line="38" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chesspieces/Pawn.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="847">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="190">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/iterator">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="1518" column="0" lean-forward="false" selection-start-line="1518" selection-start-column="0" selection-end-line="1518" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1173,7 +1124,7 @@
         <state relative-caret-position="195">
           <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
           <folding>
-            <element signature="e#8999#9037#0" expanded="true" />
+            <element signature="e#8999#9037#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1186,6 +1137,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/chesspieces/King.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="67" column="61" lean-forward="false" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chesspieces/Pawn.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="847">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chesspieces/Knight.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/chesspieces/Rook.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1194,21 +1169,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Board.cpp">
+    <entry file="file://$PROJECT_DIR$/ChessPiece.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="211" selection-end-column="27" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="279">
+          <caret line="93" column="119" lean-forward="false" selection-start-line="93" selection-start-column="119" selection-end-line="93" selection-end-column="119" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessPiece.cpp">
+    <entry file="file://$PROJECT_DIR$/Board.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="96" column="69" lean-forward="false" selection-start-line="96" selection-start-column="69" selection-end-line="96" selection-end-column="69" />
-          <folding />
+        <state relative-caret-position="501">
+          <caret line="135" column="25" lean-forward="true" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
