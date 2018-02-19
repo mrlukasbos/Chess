@@ -15,7 +15,7 @@ int main() {
     // draw the board & init game
     Board board;
     Player *bottomPlayer = new HumanPlayer(WHITE, window);
-    Player *topPlayer = new MinMaxPlayer(BLACK);
+    Player *topPlayer = new HumanPlayer(BLACK, window);
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
 
@@ -36,6 +36,7 @@ int main() {
             Move *nextMove = currentPlayer->getNextMove(board);
             if (nextMove) {
                 board.doMove(nextMove);
+                board.checkGameStatus();
 
                 // switch player after move
                 if (currentPlayer == topPlayer) {

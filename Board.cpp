@@ -18,7 +18,6 @@ Board::Board() {
 }
 
 void Board::drawBoard(sf::RenderWindow &window) {
-
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             elements[i][j]->drawGridElement(window);
@@ -88,8 +87,6 @@ void Board::doMove(Move *nextMove) {
     }
 
     allMoves.push_back(nextMove);
-
-    checkGameStatus();
 }
 
 void Board::undoMove() {
@@ -108,7 +105,6 @@ void Board::undoMove() {
         move->startOfMove->chessPiece = move->initialPiece;
         move->initialPiece->amountOfSteps--;
     }
-    checkGameStatus();
 }
 
 ChessPiece *Board::checkedKing() {
@@ -130,17 +126,29 @@ ChessPiece *Board::checkedKing() {
 }
 
 bool Board::checkMate() {
-    return (checkedKing() && checkedKing()->getAvailableMovesWithCheck().size() == 0);
 
-    // two approaches to blocking
-    // try all pieces and see if this results in a non-check status
-    // looks like algorithm. should try this.
+    if (checkedKing()) {
+        for (short i = 0; i < 8; i++) {
+            for (short j = 0; j < 8; j++) {
+                GridElement *element = elements[i][j];
+                if (element->chessPiece && element->chessPiece->color != checkedKing()->color) {
+                    ChessPiece *piece = element->chessPiece;
+                    for (GridElement *availableMove : piece->getAvailableMoves(true)) {
+                        Move *moveToTry = new Move(piece->location, availableMove);
+                        doMove(moveToTry);
+                        if (!checkedKing()) {
+                            undoMove();
+                            return false;
+                        }
+                        undoMove();
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
-
-    // or calculate which grid elements are available and
-    // check if these are contained by any of the other pieces.
-
-    // how to get this ai proof?
+    return false;
 }
 
 void Board::selectGridElementFromCoordinates(sf::Vector2i coordinates) {
