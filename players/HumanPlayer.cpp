@@ -27,18 +27,18 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
     // for all squares
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            Square *element = board.squares[i][j];
-            element->setSelected(false); // there should be no other squares be selected.
+            Square *square = board.squares[i][j];
+            square->setSelected(false); // there should be no other squares be selected.
 
-            bool elementIsClicked = x > element->posX && x < element->posX + BLOCK_SIZE
-                                    && y > element->posY && y < element->posY + BLOCK_SIZE;
+            bool squareIsClicked = x > square->posX && x < square->posX + BLOCK_SIZE
+                                    && y > square->posY && y < square->posY + BLOCK_SIZE;
 
-            if (elementIsClicked) {
-                if (element->isFocused) {
-                    return new Move(board.selectedSquare, element);
-                } else if (element->chessPiece && element->chessPiece->color == this->color) {
-                    element->setSelected(true);
-                    board.selectedSquare = element;
+            if (squareIsClicked) {
+                if (square->isFocused) {
+                    return new Move(board.selectedSquare, square);
+                } else if (square->chessPiece && square->chessPiece->color == this->color) {
+                    square->setSelected(true);
+                    board.selectedSquare = square;
                 }
             }
         }

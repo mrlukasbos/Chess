@@ -28,18 +28,18 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
         std::vector<Square *> moves = piece->getAvailableMoves(true, true);
 
         for (int j = 0; j < moves.size(); j++) {
-            Square *element = moves[j];
+            Square *square = moves[j];
 
-            int elementScore = 0;
-            if (element->chessPiece) {
-                elementScore += element->chessPiece->pieceScore;
+            int squareScore = 0;
+            if (square->chessPiece) {
+                squareScore += square->chessPiece->pieceScore;
             }
 
-            elementScore += piece->getLocationScore(element->coordinates.x, element->coordinates.y);
+            squareScore += piece->getLocationScore(square->coordinates.x, square->coordinates.y);
 
-            if (elementScore >= highestScore) {
-                highestScore = elementScore;
-                bestElement = element;
+            if (squareScore >= highestScore) {
+                highestScore = squareScore;
+                bestElement = square;
                 pieceToMove = piece;
             }
         }

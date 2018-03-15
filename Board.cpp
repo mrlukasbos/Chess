@@ -122,8 +122,8 @@ void Board::searchForCheckedKing() {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = squares[i][j]->chessPiece;
             if (piece) {
-                for (Square *element : piece->getAvailableMoves(true, false)) {
-                    ChessPiece *pieceToHit = element->chessPiece;
+                for (Square *square : piece->getAvailableMoves(true, false)) {
+                    ChessPiece *pieceToHit = square->chessPiece;
                     if (pieceToHit && pieceToHit->type == KING) {
                         pieceToHit->isChecked = true;
                     }
@@ -138,9 +138,9 @@ bool Board::checkMate() {
     if (checkedKing) {
         for (short i = 0; i < 8; i++) {
             for (short j = 0; j < 8; j++) {
-                Square *element = squares[i][j];
-                if (element->chessPiece && element->chessPiece->color != checkedKing->color) {
-                    ChessPiece *piece = element->chessPiece;
+                Square *square = squares[i][j];
+                if (square->chessPiece && square->chessPiece->color != checkedKing->color) {
+                    ChessPiece *piece = square->chessPiece;
                     for (Square *availableMove : piece->getAvailableMoves(true, true)) {
                         Move *moveToTry = new Move(piece->location, availableMove);
                         doMove(moveToTry);
@@ -160,9 +160,9 @@ bool Board::checkMate() {
 }
 
 void Board::selectSquareFromCoordinates(sf::Vector2i coordinates) {
-    selectedSquare->setSelected(false); // set selected property of previous element to false
+    selectedSquare->setSelected(false); // set selected property of previous square to false
     selectedSquare = squares[(coordinates.x)][coordinates.y];
-    selectedSquare->setSelected(true); // set new element to selected
+    selectedSquare->setSelected(true); // set new square to selected
 
     focusSquares();
 }
@@ -174,7 +174,7 @@ void Board::focusSquares() {
         }
     }
 
-    // here check for the squares where the selected element may move to
+    // here check for the squares where the selected square may move to
     if (selectedSquare && selectedSquare->chessPiece) {
 
         std::vector<Square *> availableMoves;
@@ -201,10 +201,10 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     std::vector<ChessPiece *> pieces;
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            Square *element = squares[i][j];
+            Square *square = squares[i][j];
 
-            if (element->chessPiece && element->chessPiece->color == color) {
-                pieces.push_back(element->chessPiece);
+            if (square->chessPiece && square->chessPiece->color == color) {
+                pieces.push_back(square->chessPiece);
             }
         }
     }

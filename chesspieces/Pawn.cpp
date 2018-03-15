@@ -49,11 +49,11 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         int xLocation = x + pawnCaptureDirections[i].x;
         int yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
 
-        bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
-        if (elementExists) {
-            Square *element = board->squares[xLocation][yLocation];
-            if (!considerOtherPieces || (element->chessPiece && element->chessPiece->color != color)) {
-                availableMoves.push_back(element);
+        bool squareExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+        if (squareExists) {
+            Square *square = board->squares[xLocation][yLocation];
+            if (!considerOtherPieces || (square->chessPiece && square->chessPiece->color != color)) {
+                availableMoves.push_back(square);
             }
         }
     }
@@ -68,14 +68,14 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         int yLocation = y + (direction * pawnDirections[i].y); // reverse ydirection for other color
 
         // no need to check for x; we do not change it
-        bool elementExists = yLocation >= 0 && yLocation < 8;
-        if (elementExists) {
-            Square *element = board->squares[x][yLocation];
+        bool squareExists = yLocation >= 0 && yLocation < 8;
+        if (squareExists) {
+            Square *square = board->squares[x][yLocation];
 
-            if (element->chessPiece) {
+            if (square->chessPiece) {
                 break;
             }
-            availableMoves.push_back(element);
+            availableMoves.push_back(square);
 
         }
     }

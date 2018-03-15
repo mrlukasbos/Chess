@@ -50,17 +50,17 @@ std::vector<Square *> King::getAvailableMoves(bool considerOtherPieces, bool con
             short xLocation = x + (j * allDirections[i].x);
             short yLocation = y + (j * allDirections[i].y);
 
-            bool elementShouldExist = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+            bool squareShouldExist = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
 
-            if (elementShouldExist) {
-                Square *element = board->squares[xLocation][yLocation];
-                if (element->chessPiece && element->chessPiece->color == color) {
+            if (squareShouldExist) {
+                Square *square = board->squares[xLocation][yLocation];
+                if (square->chessPiece && square->chessPiece->color == color) {
                     break;
-                } else if (element->chessPiece) {
-                    moves.push_back(element);
+                } else if (square->chessPiece) {
+                    moves.push_back(square);
                     break;
                 }
-                moves.push_back(element);
+                moves.push_back(square);
             }
         }
     }

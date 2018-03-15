@@ -34,12 +34,12 @@ void Interface::showSelectedSquareName() {
         Vector2i newCoordinates = selectedElement->coordinates;
         board.selectSquareFromCoordinates(newCoordinates);
 
-        Text elementName(selectedElement->name, font, 26);
-        elementName.setFillColor(Color::Black);
-        elementName.setCharacterSize(32);
-        elementName.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 + 40);
+        Text squareName(selectedElement->name, font, 26);
+        squareName.setFillColor(Color::Black);
+        squareName.setCharacterSize(32);
+        squareName.setPosition(BOARD_SIZE + 40, WINDOW_HEIGHT / 2 + 40);
 
-        window.draw(elementName);
+        window.draw(squareName);
     }
 }
 
