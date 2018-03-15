@@ -70,6 +70,7 @@ void Board::drawPiecesOnBoard() {
 
 }
 
+
 void Board::doMove(Move *nextMove) {
     if (nextMove) {
 
@@ -86,6 +87,9 @@ void Board::doMove(Move *nextMove) {
         nextMove->endOfMove->chessPiece->amountOfSteps++;
     }
 
+    if (!nextMove->isSimulated) {
+        std::cout << "move is done: " + nextMove->getName() + "\n";
+    }
     allMoves.push_back(nextMove);
 }
 
@@ -105,6 +109,10 @@ void Board::undoMove() {
         move->startOfMove->chessPiece = move->initialPiece;
         move->initialPiece->amountOfSteps--;
 
+    }
+
+    if (!move->isSimulated) {
+        std::cout << "move is undone: " + move->getName() + "\n";
     }
 }
 
@@ -142,7 +150,7 @@ bool Board::checkMate() {
                 if (square->chessPiece && square->chessPiece->color != checkedKing->color) {
                     ChessPiece *piece = square->chessPiece;
                     for (Square *availableMove : piece->getAvailableMoves(true, true)) {
-                        Move *moveToTry = new Move(piece->location, availableMove);
+                        Move *moveToTry = new Move(piece->location, availableMove, true);
                         doMove(moveToTry);
                         if (!checkedKing) {
                             undoMove();

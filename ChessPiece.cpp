@@ -81,7 +81,7 @@ std::vector<Square *>
 ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations, bool considerCheck) {
     std::vector<Square *> safeDestinations;
     for (Square *destination : destinations) {
-        Move *moveToTry = new Move(location, destination);
+        Move *moveToTry = new Move(location, destination, true);
         board->doMove(moveToTry);
 
         if (considerCheck) {

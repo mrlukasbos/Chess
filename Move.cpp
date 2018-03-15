@@ -8,10 +8,24 @@
 Move::Move() {}
 
 Move::Move(Square *startOfMove, Square *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
-    initialPiece = startOfMove->chessPiece;
-    takenPiece = endOfMove->chessPiece;
+    identifyPieces();
 }
 
-Move *Move::getReverseMove() {
-    return new Move(this->endOfMove, this->startOfMove);
+Move::Move(Square *startOfMove, Square *endOfMove, bool isSimulated) : startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
+    identifyPieces();
+}
+
+std::string Move::getName() {
+    std::string shortNames[] = {"k", "q", "r", "b", "n", ""};
+    name = shortNames[initialPiece->type];
+    if (takenPiece) name += 'X';
+    name += endOfMove->name;
+    // if (check) name += '+';
+
+    return name;
+}
+
+void Move::identifyPieces() {
+    initialPiece = startOfMove->chessPiece;
+    takenPiece = endOfMove->chessPiece;
 }

@@ -15,8 +15,8 @@ class ChessPiece;
 class Move {
 public:
     Move();
-
     Move(Square *startOfMove, Square *endOfMove);
+    Move(Square *startOfMove, Square *endOfMove, bool isSimulated);
 
     Square *startOfMove;
     Square *endOfMove;
@@ -24,7 +24,13 @@ public:
     ChessPiece *initialPiece;
     ChessPiece *takenPiece;
 
-    Move *getReverseMove();
+    bool isSimulated = false;
+
+    std::string name;
+    std::string getName();
+
+private:
+    void identifyPieces();
 };
 
 

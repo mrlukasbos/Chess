@@ -30,7 +30,6 @@ public:
     void focusSquares();
 
     void doMove(Move *nextMove);
-
     void undoMove();
 
     std::vector<Move *> allMoves;
