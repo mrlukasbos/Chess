@@ -44,6 +44,8 @@ int main() {
                 }
             }
 
+            interface.showBoardBackground();
+
             board.drawBoard(window); // this is where the redraw of the board happens
 
             // use keys to set window modi.
@@ -66,6 +68,7 @@ int main() {
             interface.showCurrentPlayerText(currentPlayer);
             interface.showSelectedSquareName();
             interface.showPlayerTypes();
+            interface.showCoordinates();
 
             window.display();
         }

@@ -27,7 +27,11 @@ public:
     void showSelectedSquareName();
 
     void showPlayerTypes();
-};
+
+    void showCoordinates();
+
+    void showBoardBackground();
+    };
 
 
 #endif //CHESS_INTERFACE_H

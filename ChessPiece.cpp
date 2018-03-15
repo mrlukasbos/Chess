@@ -13,6 +13,8 @@ ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
 
 void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     texture.loadFromImage(img);
+    texture.setSmooth(true);
+    sprite.setScale(0.9, 0.9);
     sprite.setTexture(texture, true);
     sprite.setPosition(sf::Vector2f(location->posX + 10, location->posY + 10)); // absolute position
     window.draw(sprite);

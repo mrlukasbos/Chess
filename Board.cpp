@@ -200,7 +200,11 @@ void Board::createBoard() {
             Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
 
             sf::Vector2i coordinates = sf::Vector2i(i, j);
-            squares[i][j] = new Square(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, color, coordinates);
+            squares[i][j] = new Square(BOARD_BORDER_THICKNESS + (i * BLOCK_SIZE),
+                                       BOARD_BORDER_THICKNESS + (j * BLOCK_SIZE),
+                                       BLOCK_SIZE,
+                                       color,
+                                       coordinates);
         }
     }
 }

@@ -9,7 +9,7 @@ Square::Square() {}
 Square::Square(int x, int y, int size, sf::Color color, sf::Vector2i coordinates)
         : posX(x), posY(y), size(size), color(color), coordinates(coordinates) {
 
-    char letters[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    char letters[8] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     name = letters[coordinates.x] + std::to_string(8 - coordinates.y);
 }
 
