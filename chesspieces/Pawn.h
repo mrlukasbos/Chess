@@ -9,9 +9,9 @@
 
 class Pawn : public ChessPiece {
 public:
-    Pawn(Board *board, GridElement *location, PieceColor color);
+    Pawn(Board *board, Square *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 #endif //CHESS_PAWN_H

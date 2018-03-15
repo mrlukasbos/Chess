@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Pawn.h"
 
-Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
+Pawn::Pawn(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = PAWN;
     generateImage(type);
@@ -24,8 +24,8 @@ Pawn::Pawn(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
-    std::vector<GridElement *> availableMoves;
+std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+    std::vector<Square *> availableMoves;
 
     short y = location->coordinates.y;
     short x = location->coordinates.x;
@@ -51,7 +51,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces, boo
 
         bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
         if (elementExists) {
-            GridElement *element = board->elements[xLocation][yLocation];
+            Square *element = board->squares[xLocation][yLocation];
             if (!considerOtherPieces || (element->chessPiece && element->chessPiece->color != color)) {
                 availableMoves.push_back(element);
             }
@@ -70,7 +70,7 @@ std::vector<GridElement *> Pawn::getAvailableMoves(bool considerOtherPieces, boo
         // no need to check for x; we do not change it
         bool elementExists = yLocation >= 0 && yLocation < 8;
         if (elementExists) {
-            GridElement *element = board->elements[x][yLocation];
+            Square *element = board->squares[x][yLocation];
 
             if (element->chessPiece) {
                 break;

@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /Users/mrlukasbos/development/Chess/Board.cpp
+iostream
+-
 Board.h
 /Users/mrlukasbos/development/Chess/Board.h
 chesspieces/Rook.h
@@ -23,8 +25,10 @@ chesspieces/King.h
 /Users/mrlukasbos/development/Chess/chesspieces/King.h
 
 /Users/mrlukasbos/development/Chess/Board.h
-GridElement.h
-/Users/mrlukasbos/development/Chess/GridElement.h
+Square.h
+/Users/mrlukasbos/development/Chess/Square.h
+Player.h
+/Users/mrlukasbos/development/Chess/Player.h
 SFML/Graphics.hpp
 -
 
@@ -37,14 +41,54 @@ ChessPiece.h
 /Users/mrlukasbos/development/Chess/ChessPiece.h
 SFML/Graphics.hpp
 -
+array
+-
 constants.h
 /Users/mrlukasbos/development/Chess/constants.h
-gridElement.h
-/Users/mrlukasbos/development/Chess/gridElement.h
+Square.h
+/Users/mrlukasbos/development/Chess/Square.h
 board.h
 /Users/mrlukasbos/development/Chess/board.h
 
-/Users/mrlukasbos/development/Chess/GridElement.h
+/Users/mrlukasbos/development/Chess/Interface.cpp
+Interface.h
+/Users/mrlukasbos/development/Chess/Interface.h
+
+/Users/mrlukasbos/development/Chess/Interface.h
+SFML/Graphics.hpp
+-
+Board.h
+/Users/mrlukasbos/development/Chess/Board.h
+
+/Users/mrlukasbos/development/Chess/Move.cpp
+Move.h
+/Users/mrlukasbos/development/Chess/Move.h
+
+/Users/mrlukasbos/development/Chess/Move.h
+Square.h
+/Users/mrlukasbos/development/Chess/Square.h
+ChessPiece.h
+/Users/mrlukasbos/development/Chess/ChessPiece.h
+
+/Users/mrlukasbos/development/Chess/Player.cpp
+Player.h
+/Users/mrlukasbos/development/Chess/Player.h
+
+/Users/mrlukasbos/development/Chess/Player.h
+SFML/Graphics.hpp
+-
+constants.h
+/Users/mrlukasbos/development/Chess/constants.h
+Board.h
+/Users/mrlukasbos/development/Chess/Board.h
+Move.h
+/Users/mrlukasbos/development/Chess/Move.h
+
+/Users/mrlukasbos/development/Chess/Square.cpp
+Square.h
+/Users/mrlukasbos/development/Chess/Square.h
+
+/Users/mrlukasbos/development/Chess/Square.h
 SFML/Graphics.hpp
 -
 ChessPiece.h
@@ -53,8 +97,10 @@ constants.h
 /Users/mrlukasbos/development/Chess/constants.h
 
 /Users/mrlukasbos/development/Chess/board.h
-GridElement.h
-/Users/mrlukasbos/development/Chess/GridElement.h
+Square.h
+/Users/mrlukasbos/development/Chess/Square.h
+Player.h
+/Users/mrlukasbos/development/Chess/Player.h
 SFML/Graphics.hpp
 -
 
@@ -67,6 +113,8 @@ Bishop.h
 /Users/mrlukasbos/development/Chess/ChessPiece.h
 
 /Users/mrlukasbos/development/Chess/chesspieces/King.cpp
+iostream
+-
 King.h
 /Users/mrlukasbos/development/Chess/chesspieces/King.h
 
@@ -83,6 +131,8 @@ Knight.h
 /Users/mrlukasbos/development/Chess/ChessPiece.h
 
 /Users/mrlukasbos/development/Chess/chesspieces/Pawn.cpp
+iostream
+-
 Pawn.h
 /Users/mrlukasbos/development/Chess/chesspieces/Pawn.h
 
@@ -108,21 +158,53 @@ Rook.h
 
 /Users/mrlukasbos/development/Chess/constants.h
 
-/Users/mrlukasbos/development/Chess/gridElement.cpp
-GridElement.h
-/Users/mrlukasbos/development/Chess/GridElement.h
-
-/Users/mrlukasbos/development/Chess/gridElement.h
-SFML/Graphics.hpp
--
-ChessPiece.h
-/Users/mrlukasbos/development/Chess/ChessPiece.h
-constants.h
-/Users/mrlukasbos/development/Chess/constants.h
-
 /Users/mrlukasbos/development/Chess/main.cpp
 SFML/Graphics.hpp
 -
 Board.h
 /Users/mrlukasbos/development/Chess/Board.h
+players/HumanPlayer.h
+/Users/mrlukasbos/development/Chess/players/HumanPlayer.h
+players/MinMaxPlayer.h
+/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h
+Interface.h
+/Users/mrlukasbos/development/Chess/Interface.h
+
+/Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp
+HumanPlayer.h
+/Users/mrlukasbos/development/Chess/players/HumanPlayer.h
+
+/Users/mrlukasbos/development/Chess/players/HumanPlayer.h
+../constants.h
+/Users/mrlukasbos/development/Chess/constants.h
+../Board.h
+/Users/mrlukasbos/development/Chess/Board.h
+../Player.h
+/Users/mrlukasbos/development/Chess/Player.h
+
+/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp
+iostream
+-
+MinMaxPlayer.h
+/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h
+
+/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h
+../constants.h
+/Users/mrlukasbos/development/Chess/constants.h
+../Board.h
+/Users/mrlukasbos/development/Chess/Board.h
+../Player.h
+/Users/mrlukasbos/development/Chess/Player.h
+
+/Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp
+RandomPlayer.h
+/Users/mrlukasbos/development/Chess/players/RandomPlayer.h
+
+/Users/mrlukasbos/development/Chess/players/RandomPlayer.h
+../constants.h
+/Users/mrlukasbos/development/Chess/constants.h
+../Board.h
+/Users/mrlukasbos/development/Chess/Board.h
+../Player.h
+/Users/mrlukasbos/development/Chess/Player.h
 

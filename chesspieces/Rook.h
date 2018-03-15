@@ -10,9 +10,9 @@
 
 class Rook : public ChessPiece {
 public:
-    Rook(Board *board, GridElement *location, PieceColor color);
+    Rook(Board *board, Square *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 

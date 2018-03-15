@@ -24,7 +24,7 @@ public:
 
     void showCurrentPlayerText(Player *currentPlayer);
 
-    void showSelectedGridElementName();
+    void showSelectedSquareName();
 
     void showPlayerTypes();
 };

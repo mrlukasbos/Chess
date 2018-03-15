@@ -5,7 +5,7 @@
 #include <iostream>
 #include "King.h"
 
-King::King(Board *board, GridElement *location, PieceColor color)
+King::King(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = KING;
     generateImage(type);
@@ -25,7 +25,7 @@ King::King(Board *board, GridElement *location, PieceColor color)
 }
 
 
-std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> King::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
@@ -38,7 +38,7 @@ std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces, boo
             Vector2i(-1, 1)   // Left-Down
     };
 
-    std::vector<GridElement *> moves;
+    std::vector<Square *> moves;
 
     short y = location->coordinates.y;
     short x = location->coordinates.x;
@@ -53,7 +53,7 @@ std::vector<GridElement *> King::getAvailableMoves(bool considerOtherPieces, boo
             bool elementShouldExist = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
 
             if (elementShouldExist) {
-                GridElement *element = board->elements[xLocation][yLocation];
+                Square *element = board->squares[xLocation][yLocation];
                 if (element->chessPiece && element->chessPiece->color == color) {
                     break;
                 } else if (element->chessPiece) {

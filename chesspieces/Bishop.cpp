@@ -4,7 +4,7 @@
 
 #include "Bishop.h"
 
-Bishop::Bishop(Board *board, GridElement *location, PieceColor color)
+Bishop::Bishop(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = BISHOP;
     generateImage(type);
@@ -24,7 +24,7 @@ Bishop::Bishop(Board *board, GridElement *location, PieceColor color)
 
 }
 
-std::vector<GridElement *> Bishop::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> Bishop::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i diagonalDirections[] = {
             Vector2i(1, 1),   // Right-Down

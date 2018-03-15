@@ -94,6 +94,30 @@
 		<Unit filename="/Users/mrlukasbos/development/Chess/ChessPiece.h">
 			<Option target="Chess"/>
 		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Interface.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Interface.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Move.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Move.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Player.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Player.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Square.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/Square.h">
+			<Option target="Chess"/>
+		</Unit>
 		<Unit filename="/Users/mrlukasbos/development/Chess/chesspieces/Bishop.cpp">
 			<Option target="Chess"/>
 		</Unit>
@@ -133,13 +157,25 @@
 		<Unit filename="/Users/mrlukasbos/development/Chess/constants.h">
 			<Option target="Chess"/>
 		</Unit>
-		<Unit filename="/Users/mrlukasbos/development/Chess/gridElement.cpp">
-			<Option target="Chess"/>
-		</Unit>
-		<Unit filename="/Users/mrlukasbos/development/Chess/gridElement.h">
-			<Option target="Chess"/>
-		</Unit>
 		<Unit filename="/Users/mrlukasbos/development/Chess/main.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/HumanPlayer.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/RandomPlayer.h">
 			<Option target="Chess"/>
 		</Unit>
 		<Unit filename="/Users/mrlukasbos/development/Chess/CMakeLists.txt">

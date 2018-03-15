@@ -19,7 +19,7 @@ Move *RandomPlayer::getNextMove(Board &board) {
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *randomPiece = pieces[std::rand() % pieces.size()];
-        std::vector<GridElement *> moves = randomPiece->getAvailableMoves(true, true);
+        std::vector<Square *> moves = randomPiece->getAvailableMoves(true, true);
 
         if (!moves.empty()) { // if the chesspiece has available moves
             return new Move(randomPiece->location, moves.at(std::rand() % moves.size())); // return random move

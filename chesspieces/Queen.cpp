@@ -4,7 +4,7 @@
 
 #include "Queen.h"
 
-Queen::Queen(Board *board, GridElement *location, PieceColor color)
+Queen::Queen(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = QUEEN;
     generateImage(type);
@@ -23,7 +23,7 @@ Queen::Queen(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Queen::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> Queen::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down

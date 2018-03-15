@@ -7,7 +7,7 @@
 
 using namespace sf;
 
-ChessPiece::ChessPiece(Board *board, GridElement *location, PieceColor color)
+ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
         : board(board), location(location), color(color) {
 }
 
@@ -18,7 +18,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<GridElement *> ChessPiece::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> ChessPiece::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
     // virtual method for child classes
 }
 
@@ -33,8 +33,8 @@ int ChessPiece::getLocationScore(int x, int y) {
     return locationScores.at(y).at(x);
 }
 
-std::vector<GridElement *>
-ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directions[], Board *board,
+std::vector<Square *>
+ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
                                         bool considerOtherPieces, bool considerCheck) {
 
@@ -46,7 +46,7 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
      */
 
 
-    std::vector<GridElement *> moves;
+    std::vector<Square *> moves;
     int y = location->coordinates.y;
     int x = location->coordinates.x;
 
@@ -56,7 +56,7 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
             int yLocation = y + (j * directions[i].y);
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
-                GridElement *element = board->elements[xLocation][yLocation];
+                Square *element = board->squares[xLocation][yLocation];
                 if (element->chessPiece && element->chessPiece->color == color) {
 
                     // if we have to check for mate we must be able to travel one further...
@@ -77,10 +77,10 @@ ChessPiece::calculateMovesForDirections(GridElement *location, Vector2i directio
     return removeMovesLeadingToSelfCheck(moves, considerCheck);
 }
 
-std::vector<GridElement *>
-ChessPiece::removeMovesLeadingToSelfCheck(std::vector<GridElement *> destinations, bool considerCheck) {
-    std::vector<GridElement *> safeDestinations;
-    for (GridElement *destination : destinations) {
+std::vector<Square *>
+ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations, bool considerCheck) {
+    std::vector<Square *> safeDestinations;
+    for (Square *destination : destinations) {
         Move *moveToTry = new Move(location, destination);
         board->doMove(moveToTry);
 

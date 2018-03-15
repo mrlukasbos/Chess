@@ -27,12 +27,12 @@ void Interface::showCurrentPlayerText(Player *currentPlayer) {
     window.draw(currentColorToMoveName);
 }
 
-void Interface::showSelectedGridElementName() {
+void Interface::showSelectedSquareName() {
 
-    GridElement *selectedElement = board.selectedGridElement;
+    Square *selectedElement = board.selectedSquare;
     if (selectedElement) {
         Vector2i newCoordinates = selectedElement->coordinates;
-        board.selectGridElementFromCoordinates(newCoordinates);
+        board.selectSquareFromCoordinates(newCoordinates);
 
         Text elementName(selectedElement->name, font, 26);
         elementName.setFillColor(Color::Black);

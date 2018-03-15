@@ -4,7 +4,9 @@
 CMakeFiles/Chess.dir/Board.cpp.o: ../Board.cpp
 CMakeFiles/Chess.dir/Board.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/Board.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/Board.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/Board.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/Board.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../board.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../chesspieces/Bishop.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../chesspieces/King.h
@@ -13,75 +15,152 @@ CMakeFiles/Chess.dir/Board.cpp.o: ../chesspieces/Pawn.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../chesspieces/Queen.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../chesspieces/Rook.h
 CMakeFiles/Chess.dir/Board.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/Board.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../ChessPiece.cpp
 CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../board.h
 CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/ChessPiece.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Interface.cpp
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Interface.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../board.h
+CMakeFiles/Chess.dir/Interface.cpp.o: ../constants.h
+
+CMakeFiles/Chess.dir/Move.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../Move.cpp
+CMakeFiles/Chess.dir/Move.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../board.h
+CMakeFiles/Chess.dir/Move.cpp.o: ../constants.h
+
+CMakeFiles/Chess.dir/Player.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../Player.cpp
+CMakeFiles/Chess.dir/Player.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../board.h
+CMakeFiles/Chess.dir/Player.cpp.o: ../constants.h
+
+CMakeFiles/Chess.dir/Square.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../Square.cpp
+CMakeFiles/Chess.dir/Square.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../board.h
+CMakeFiles/Chess.dir/Square.cpp.o: ../constants.h
+
+CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../chesspieces/Bishop.cpp
 CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../chesspieces/Bishop.h
 CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../chesspieces/King.cpp
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../chesspieces/King.h
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/King.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../chesspieces/Knight.cpp
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../chesspieces/Knight.h
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../chesspieces/Pawn.cpp
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../chesspieces/Pawn.h
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../chesspieces/Queen.cpp
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../chesspieces/Queen.h
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o: ../gridElement.h
 
+CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../board.h
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../chesspieces/Rook.cpp
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../chesspieces/Rook.h
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o: ../gridElement.h
-
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../GridElement.h
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../board.h
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../gridElement.cpp
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../gridElement.h
 
 CMakeFiles/Chess.dir/main.cpp.o: ../Board.h
 CMakeFiles/Chess.dir/main.cpp.o: ../ChessPiece.h
-CMakeFiles/Chess.dir/main.cpp.o: ../GridElement.h
+CMakeFiles/Chess.dir/main.cpp.o: ../Interface.h
+CMakeFiles/Chess.dir/main.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/main.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/main.cpp.o: ../Square.h
 CMakeFiles/Chess.dir/main.cpp.o: ../board.h
 CMakeFiles/Chess.dir/main.cpp.o: ../constants.h
-CMakeFiles/Chess.dir/main.cpp.o: ../gridElement.h
 CMakeFiles/Chess.dir/main.cpp.o: ../main.cpp
+CMakeFiles/Chess.dir/main.cpp.o: ../players/HumanPlayer.h
+CMakeFiles/Chess.dir/main.cpp.o: ../players/MinMaxPlayer.h
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../board.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../constants.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../players/HumanPlayer.cpp
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../players/HumanPlayer.h
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../board.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../constants.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../players/MinMaxPlayer.cpp
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../players/MinMaxPlayer.h
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../Board.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../ChessPiece.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../Move.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../Player.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../Square.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../board.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../constants.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../players/RandomPlayer.cpp
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../players/RandomPlayer.h
 

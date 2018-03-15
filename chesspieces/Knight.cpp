@@ -4,7 +4,7 @@
 
 #include "Knight.h"
 
-Knight::Knight(Board *board, GridElement *location, PieceColor color)
+Knight::Knight(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = KNIGHT;
     generateImage(type);
@@ -23,8 +23,8 @@ Knight::Knight(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Knight::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
-    std::vector<GridElement *> availableMoves;
+std::vector<Square *> Knight::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+    std::vector<Square *> availableMoves;
 
     Vector2i knightDirections[] = {
             Vector2i(-2, 1),

@@ -4,7 +4,7 @@
 
 #include "Rook.h"
 
-Rook::Rook(Board *board, GridElement *location, PieceColor color)
+Rook::Rook(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = ROOK;
     generateImage(type);
@@ -23,7 +23,7 @@ Rook::Rook(Board *board, GridElement *location, PieceColor color)
                       }};
 }
 
-std::vector<GridElement *> Rook::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> Rook::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
 
     Vector2i horizontalAndVerticalDirections[] = {
             Vector2i(0, 1),  // Down

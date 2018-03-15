@@ -64,7 +64,7 @@ int main() {
             }
 
             interface.showCurrentPlayerText(currentPlayer);
-            interface.showSelectedGridElementName();
+            interface.showSelectedSquareName();
             interface.showPlayerTypes();
 
             window.display();

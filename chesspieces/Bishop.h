@@ -9,9 +9,9 @@
 
 class Bishop : public ChessPiece {
 public:
-    Bishop(Board *board, GridElement *location, PieceColor color);
+    Bishop(Board *board, Square *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 

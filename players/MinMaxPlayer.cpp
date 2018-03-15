@@ -19,16 +19,16 @@ MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
 Move *MinMaxPlayer::getNextMove(Board &board) {
     std::vector<ChessPiece *> pieces = board.getPiecesByColor(color);
 
-    GridElement *bestElement = NULL;
+    Square *bestElement = NULL;
     ChessPiece *pieceToMove = NULL;
     int highestScore = -999999;
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
-        std::vector<GridElement *> moves = piece->getAvailableMoves(true, true);
+        std::vector<Square *> moves = piece->getAvailableMoves(true, true);
 
         for (int j = 0; j < moves.size(); j++) {
-            GridElement *element = moves[j];
+            Square *element = moves[j];
 
             int elementScore = 0;
             if (element->chessPiece) {

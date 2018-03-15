@@ -177,6 +177,114 @@ ChessPiece.cpp.s:
 	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/ChessPiece.cpp.s
 .PHONY : ChessPiece.cpp.s
 
+Interface.o: Interface.cpp.o
+
+.PHONY : Interface.o
+
+# target to build an object file
+Interface.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Interface.cpp.o
+.PHONY : Interface.cpp.o
+
+Interface.i: Interface.cpp.i
+
+.PHONY : Interface.i
+
+# target to preprocess a source file
+Interface.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Interface.cpp.i
+.PHONY : Interface.cpp.i
+
+Interface.s: Interface.cpp.s
+
+.PHONY : Interface.s
+
+# target to generate assembly for a file
+Interface.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Interface.cpp.s
+.PHONY : Interface.cpp.s
+
+Move.o: Move.cpp.o
+
+.PHONY : Move.o
+
+# target to build an object file
+Move.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Move.cpp.o
+.PHONY : Move.cpp.o
+
+Move.i: Move.cpp.i
+
+.PHONY : Move.i
+
+# target to preprocess a source file
+Move.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Move.cpp.i
+.PHONY : Move.cpp.i
+
+Move.s: Move.cpp.s
+
+.PHONY : Move.s
+
+# target to generate assembly for a file
+Move.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Move.cpp.s
+.PHONY : Move.cpp.s
+
+Player.o: Player.cpp.o
+
+.PHONY : Player.o
+
+# target to build an object file
+Player.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Player.cpp.o
+.PHONY : Player.cpp.o
+
+Player.i: Player.cpp.i
+
+.PHONY : Player.i
+
+# target to preprocess a source file
+Player.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Player.cpp.i
+.PHONY : Player.cpp.i
+
+Player.s: Player.cpp.s
+
+.PHONY : Player.s
+
+# target to generate assembly for a file
+Player.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Player.cpp.s
+.PHONY : Player.cpp.s
+
+Square.o: Square.cpp.o
+
+.PHONY : Square.o
+
+# target to build an object file
+Square.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Square.cpp.o
+.PHONY : Square.cpp.o
+
+Square.i: Square.cpp.i
+
+.PHONY : Square.i
+
+# target to preprocess a source file
+Square.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Square.cpp.i
+.PHONY : Square.cpp.i
+
+Square.s: Square.cpp.s
+
+.PHONY : Square.s
+
+# target to generate assembly for a file
+Square.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Square.cpp.s
+.PHONY : Square.cpp.s
+
 chesspieces/Bishop.o: chesspieces/Bishop.cpp.o
 
 .PHONY : chesspieces/Bishop.o
@@ -339,33 +447,6 @@ chesspieces/Rook.cpp.s:
 	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/chesspieces/Rook.cpp.s
 .PHONY : chesspieces/Rook.cpp.s
 
-gridElement.o: gridElement.cpp.o
-
-.PHONY : gridElement.o
-
-# target to build an object file
-gridElement.cpp.o:
-	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/gridElement.cpp.o
-.PHONY : gridElement.cpp.o
-
-gridElement.i: gridElement.cpp.i
-
-.PHONY : gridElement.i
-
-# target to preprocess a source file
-gridElement.cpp.i:
-	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/gridElement.cpp.i
-.PHONY : gridElement.cpp.i
-
-gridElement.s: gridElement.cpp.s
-
-.PHONY : gridElement.s
-
-# target to generate assembly for a file
-gridElement.cpp.s:
-	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/gridElement.cpp.s
-.PHONY : gridElement.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -393,6 +474,87 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+players/HumanPlayer.o: players/HumanPlayer.cpp.o
+
+.PHONY : players/HumanPlayer.o
+
+# target to build an object file
+players/HumanPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o
+.PHONY : players/HumanPlayer.cpp.o
+
+players/HumanPlayer.i: players/HumanPlayer.cpp.i
+
+.PHONY : players/HumanPlayer.i
+
+# target to preprocess a source file
+players/HumanPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HumanPlayer.cpp.i
+.PHONY : players/HumanPlayer.cpp.i
+
+players/HumanPlayer.s: players/HumanPlayer.cpp.s
+
+.PHONY : players/HumanPlayer.s
+
+# target to generate assembly for a file
+players/HumanPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HumanPlayer.cpp.s
+.PHONY : players/HumanPlayer.cpp.s
+
+players/MinMaxPlayer.o: players/MinMaxPlayer.cpp.o
+
+.PHONY : players/MinMaxPlayer.o
+
+# target to build an object file
+players/MinMaxPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o
+.PHONY : players/MinMaxPlayer.cpp.o
+
+players/MinMaxPlayer.i: players/MinMaxPlayer.cpp.i
+
+.PHONY : players/MinMaxPlayer.i
+
+# target to preprocess a source file
+players/MinMaxPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.i
+.PHONY : players/MinMaxPlayer.cpp.i
+
+players/MinMaxPlayer.s: players/MinMaxPlayer.cpp.s
+
+.PHONY : players/MinMaxPlayer.s
+
+# target to generate assembly for a file
+players/MinMaxPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.s
+.PHONY : players/MinMaxPlayer.cpp.s
+
+players/RandomPlayer.o: players/RandomPlayer.cpp.o
+
+.PHONY : players/RandomPlayer.o
+
+# target to build an object file
+players/RandomPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o
+.PHONY : players/RandomPlayer.cpp.o
+
+players/RandomPlayer.i: players/RandomPlayer.cpp.i
+
+.PHONY : players/RandomPlayer.i
+
+# target to preprocess a source file
+players/RandomPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/RandomPlayer.cpp.i
+.PHONY : players/RandomPlayer.cpp.i
+
+players/RandomPlayer.s: players/RandomPlayer.cpp.s
+
+.PHONY : players/RandomPlayer.s
+
+# target to generate assembly for a file
+players/RandomPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/RandomPlayer.cpp.s
+.PHONY : players/RandomPlayer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -408,6 +570,18 @@ help:
 	@echo "... ChessPiece.o"
 	@echo "... ChessPiece.i"
 	@echo "... ChessPiece.s"
+	@echo "... Interface.o"
+	@echo "... Interface.i"
+	@echo "... Interface.s"
+	@echo "... Move.o"
+	@echo "... Move.i"
+	@echo "... Move.s"
+	@echo "... Player.o"
+	@echo "... Player.i"
+	@echo "... Player.s"
+	@echo "... Square.o"
+	@echo "... Square.i"
+	@echo "... Square.s"
 	@echo "... chesspieces/Bishop.o"
 	@echo "... chesspieces/Bishop.i"
 	@echo "... chesspieces/Bishop.s"
@@ -426,12 +600,18 @@ help:
 	@echo "... chesspieces/Rook.o"
 	@echo "... chesspieces/Rook.i"
 	@echo "... chesspieces/Rook.s"
-	@echo "... gridElement.o"
-	@echo "... gridElement.i"
-	@echo "... gridElement.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... players/HumanPlayer.o"
+	@echo "... players/HumanPlayer.i"
+	@echo "... players/HumanPlayer.s"
+	@echo "... players/MinMaxPlayer.o"
+	@echo "... players/MinMaxPlayer.i"
+	@echo "... players/MinMaxPlayer.s"
+	@echo "... players/RandomPlayer.o"
+	@echo "... players/RandomPlayer.i"
+	@echo "... players/RandomPlayer.s"
 .PHONY : help
 
 

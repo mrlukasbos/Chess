@@ -8,24 +8,24 @@
 #include <SFML/Graphics.hpp>
 #include <array>
 #include "constants.h"
-#include "gridElement.h"
+#include "Square.h"
 #include "board.h"
 
 using namespace sf;
 
-class GridElement;
+class Square;
 class Board;
 class ChessPiece {
 public:
     ChessPiece();
-    ChessPiece(Board *board, GridElement *location, PieceColor color);
+    ChessPiece(Board *board, Square *location, PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
 
     void generateImage(PieceType type);
 
     PieceColor color;
     PieceType type;
-    GridElement *location;
+    Square *location;
     Board *board;
     bool isCaptured = false;
     int amountOfSteps = 0;
@@ -38,18 +38,18 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    std::vector<GridElement *> removeMovesLeadingToSelfCheck(std::vector<GridElement *> moves, bool considerCheck);
+    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves, bool considerCheck);
 
     // functions to be used by subclasses
-    virtual std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    virtual std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
 
     int pieceScore;
     std::array<std::array<int, 8>, 8> locationScores;
 
-    std::vector<GridElement *> calculateMovesForDirections(
-            GridElement *location,
+    std::vector<Square *> calculateMovesForDirections(
+            Square *location,
             Vector2i directions[],
             Board *board,
             PieceColor color,

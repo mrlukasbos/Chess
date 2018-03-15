@@ -7,7 +7,7 @@
 
 Move::Move() {}
 
-Move::Move(GridElement *startOfMove, GridElement *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
+Move::Move(Square *startOfMove, Square *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
     initialPiece = startOfMove->chessPiece;
     takenPiece = endOfMove->chessPiece;
 }

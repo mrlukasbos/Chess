@@ -5,14 +5,14 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
-#include "GridElement.h"
+#include "Square.h"
 #include "Player.h"
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
 
 class Player;
-class GridElement;
+class Square;
 
 class ChessPiece;
 class Move;
@@ -22,12 +22,12 @@ public:
 
     // constructs a board from an existing board (copies the board)
     Board(Board const &) = default;
-    GridElement *elements[8][8];
+    Square *squares[8][8];
 
     void drawBoard(sf::RenderWindow &window);
     void startGame(Player *bottomPlayer, Player *topPlayer);
-    void selectGridElementFromCoordinates(Vector2i coordinates);
-    void focusGridElements();
+    void selectSquareFromCoordinates(Vector2i coordinates);
+    void focusSquares();
 
     void doMove(Move *nextMove);
 
@@ -39,8 +39,8 @@ public:
     ChessPiece *checkedKing;
     void checkGameStatus();
 
-    GridElement * selectedGridElement;
-    GridElement *checkedGridElement;
+    Square * selectedSquare;
+    Square *checkedSquare;
     Player *bottomPlayer;
     Player *topPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);

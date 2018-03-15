@@ -5,7 +5,9 @@ CMakeFiles/Chess.dir/Board.cpp.o
  /Users/mrlukasbos/development/Chess/Board.cpp
  /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Bishop.h
  /Users/mrlukasbos/development/Chess/chesspieces/King.h
@@ -14,74 +16,151 @@ CMakeFiles/Chess.dir/Board.cpp.o
  /Users/mrlukasbos/development/Chess/chesspieces/Queen.h
  /Users/mrlukasbos/development/Chess/chesspieces/Rook.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/ChessPiece.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.cpp
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
-CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o
+CMakeFiles/Chess.dir/Interface.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Interface.cpp
+ /Users/mrlukasbos/development/Chess/Interface.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+CMakeFiles/Chess.dir/Move.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.cpp
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+CMakeFiles/Chess.dir/Player.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.cpp
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+CMakeFiles/Chess.dir/Square.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.cpp
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+CMakeFiles/Chess.dir/chesspieces/Bishop.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Bishop.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/Bishop.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/King.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/King.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Knight.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/Knight.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Pawn.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/Pawn.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Queen.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/Queen.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/chesspieces/Rook.cpp
  /Users/mrlukasbos/development/Chess/chesspieces/Rook.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
-CMakeFiles/Chess.dir/gridElement.cpp.o
- /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
- /Users/mrlukasbos/development/Chess/board.h
- /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.cpp
- /Users/mrlukasbos/development/Chess/gridElement.h
 CMakeFiles/Chess.dir/main.cpp.o
  /Users/mrlukasbos/development/Chess/Board.h
  /Users/mrlukasbos/development/Chess/ChessPiece.h
- /Users/mrlukasbos/development/Chess/GridElement.h
+ /Users/mrlukasbos/development/Chess/Interface.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
  /Users/mrlukasbos/development/Chess/board.h
  /Users/mrlukasbos/development/Chess/constants.h
- /Users/mrlukasbos/development/Chess/gridElement.h
  /Users/mrlukasbos/development/Chess/main.cpp
+ /Users/mrlukasbos/development/Chess/players/HumanPlayer.h
+ /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+ /Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp
+ /Users/mrlukasbos/development/Chess/players/HumanPlayer.h
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+ /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp
+ /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.h
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o
+ /Users/mrlukasbos/development/Chess/Board.h
+ /Users/mrlukasbos/development/Chess/ChessPiece.h
+ /Users/mrlukasbos/development/Chess/Move.h
+ /Users/mrlukasbos/development/Chess/Player.h
+ /Users/mrlukasbos/development/Chess/Square.h
+ /Users/mrlukasbos/development/Chess/board.h
+ /Users/mrlukasbos/development/Chess/constants.h
+ /Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp
+ /Users/mrlukasbos/development/Chess/players/RandomPlayer.h

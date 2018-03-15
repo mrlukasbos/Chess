@@ -81,28 +81,28 @@ CMakeFiles/Chess.dir/main.cpp.o.provides: CMakeFiles/Chess.dir/main.cpp.o.requir
 CMakeFiles/Chess.dir/main.cpp.o.provides.build: CMakeFiles/Chess.dir/main.cpp.o
 
 
-CMakeFiles/Chess.dir/gridElement.cpp.o: CMakeFiles/Chess.dir/flags.make
-CMakeFiles/Chess.dir/gridElement.cpp.o: ../gridElement.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Chess.dir/gridElement.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/gridElement.cpp.o -c /Users/mrlukasbos/development/Chess/gridElement.cpp
+CMakeFiles/Chess.dir/Square.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/Square.cpp.o: ../Square.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Chess.dir/Square.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/Square.cpp.o -c /Users/mrlukasbos/development/Chess/Square.cpp
 
-CMakeFiles/Chess.dir/gridElement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/gridElement.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/gridElement.cpp > CMakeFiles/Chess.dir/gridElement.cpp.i
+CMakeFiles/Chess.dir/Square.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/Square.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/Square.cpp > CMakeFiles/Chess.dir/Square.cpp.i
 
-CMakeFiles/Chess.dir/gridElement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/gridElement.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/gridElement.cpp -o CMakeFiles/Chess.dir/gridElement.cpp.s
+CMakeFiles/Chess.dir/Square.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/Square.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/Square.cpp -o CMakeFiles/Chess.dir/Square.cpp.s
 
-CMakeFiles/Chess.dir/gridElement.cpp.o.requires:
+CMakeFiles/Chess.dir/Square.cpp.o.requires:
 
-.PHONY : CMakeFiles/Chess.dir/gridElement.cpp.o.requires
+.PHONY : CMakeFiles/Chess.dir/Square.cpp.o.requires
 
-CMakeFiles/Chess.dir/gridElement.cpp.o.provides: CMakeFiles/Chess.dir/gridElement.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/gridElement.cpp.o.provides.build
-.PHONY : CMakeFiles/Chess.dir/gridElement.cpp.o.provides
+CMakeFiles/Chess.dir/Square.cpp.o.provides: CMakeFiles/Chess.dir/Square.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Square.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/Square.cpp.o.provides
 
-CMakeFiles/Chess.dir/gridElement.cpp.o.provides.build: CMakeFiles/Chess.dir/gridElement.cpp.o
+CMakeFiles/Chess.dir/Square.cpp.o.provides.build: CMakeFiles/Chess.dir/Square.cpp.o
 
 
 CMakeFiles/Chess.dir/Board.cpp.o: CMakeFiles/Chess.dir/flags.make
@@ -297,10 +297,154 @@ CMakeFiles/Chess.dir/chesspieces/King.cpp.o.provides: CMakeFiles/Chess.dir/chess
 CMakeFiles/Chess.dir/chesspieces/King.cpp.o.provides.build: CMakeFiles/Chess.dir/chesspieces/King.cpp.o
 
 
+CMakeFiles/Chess.dir/Player.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/Player.cpp.o: ../Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Chess.dir/Player.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/Player.cpp.o -c /Users/mrlukasbos/development/Chess/Player.cpp
+
+CMakeFiles/Chess.dir/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/Player.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/Player.cpp > CMakeFiles/Chess.dir/Player.cpp.i
+
+CMakeFiles/Chess.dir/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/Player.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/Player.cpp -o CMakeFiles/Chess.dir/Player.cpp.s
+
+CMakeFiles/Chess.dir/Player.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/Player.cpp.o.requires
+
+CMakeFiles/Chess.dir/Player.cpp.o.provides: CMakeFiles/Chess.dir/Player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Player.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/Player.cpp.o.provides
+
+CMakeFiles/Chess.dir/Player.cpp.o.provides.build: CMakeFiles/Chess.dir/Player.cpp.o
+
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o: ../players/HumanPlayer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o -c /Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/players/HumanPlayer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp > CMakeFiles/Chess.dir/players/HumanPlayer.cpp.i
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/players/HumanPlayer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/players/HumanPlayer.cpp -o CMakeFiles/Chess.dir/players/HumanPlayer.cpp.s
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.requires
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.provides: CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.provides
+
+CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.provides.build: CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o
+
+
+CMakeFiles/Chess.dir/Move.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/Move.cpp.o: ../Move.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Chess.dir/Move.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/Move.cpp.o -c /Users/mrlukasbos/development/Chess/Move.cpp
+
+CMakeFiles/Chess.dir/Move.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/Move.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/Move.cpp > CMakeFiles/Chess.dir/Move.cpp.i
+
+CMakeFiles/Chess.dir/Move.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/Move.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/Move.cpp -o CMakeFiles/Chess.dir/Move.cpp.s
+
+CMakeFiles/Chess.dir/Move.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/Move.cpp.o.requires
+
+CMakeFiles/Chess.dir/Move.cpp.o.provides: CMakeFiles/Chess.dir/Move.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Move.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/Move.cpp.o.provides
+
+CMakeFiles/Chess.dir/Move.cpp.o.provides.build: CMakeFiles/Chess.dir/Move.cpp.o
+
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o: ../players/RandomPlayer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o -c /Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/players/RandomPlayer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp > CMakeFiles/Chess.dir/players/RandomPlayer.cpp.i
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/players/RandomPlayer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/players/RandomPlayer.cpp -o CMakeFiles/Chess.dir/players/RandomPlayer.cpp.s
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.requires
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.provides: CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.provides
+
+CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.provides.build: CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o
+
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o: ../players/MinMaxPlayer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o -c /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp > CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.i
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp -o CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.s
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.requires
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.provides: CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.provides
+
+CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.provides.build: CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o
+
+
+CMakeFiles/Chess.dir/Interface.cpp.o: CMakeFiles/Chess.dir/flags.make
+CMakeFiles/Chess.dir/Interface.cpp.o: ../Interface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Chess.dir/Interface.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Chess.dir/Interface.cpp.o -c /Users/mrlukasbos/development/Chess/Interface.cpp
+
+CMakeFiles/Chess.dir/Interface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Chess.dir/Interface.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mrlukasbos/development/Chess/Interface.cpp > CMakeFiles/Chess.dir/Interface.cpp.i
+
+CMakeFiles/Chess.dir/Interface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Chess.dir/Interface.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mrlukasbos/development/Chess/Interface.cpp -o CMakeFiles/Chess.dir/Interface.cpp.s
+
+CMakeFiles/Chess.dir/Interface.cpp.o.requires:
+
+.PHONY : CMakeFiles/Chess.dir/Interface.cpp.o.requires
+
+CMakeFiles/Chess.dir/Interface.cpp.o.provides: CMakeFiles/Chess.dir/Interface.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/Interface.cpp.o.provides.build
+.PHONY : CMakeFiles/Chess.dir/Interface.cpp.o.provides
+
+CMakeFiles/Chess.dir/Interface.cpp.o.provides.build: CMakeFiles/Chess.dir/Interface.cpp.o
+
+
 # Object files for target Chess
 Chess_OBJECTS = \
 "CMakeFiles/Chess.dir/main.cpp.o" \
-"CMakeFiles/Chess.dir/gridElement.cpp.o" \
+"CMakeFiles/Chess.dir/Square.cpp.o" \
 "CMakeFiles/Chess.dir/Board.cpp.o" \
 "CMakeFiles/Chess.dir/ChessPiece.cpp.o" \
 "CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o" \
@@ -308,13 +452,19 @@ Chess_OBJECTS = \
 "CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o" \
 "CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o" \
 "CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o" \
-"CMakeFiles/Chess.dir/chesspieces/King.cpp.o"
+"CMakeFiles/Chess.dir/chesspieces/King.cpp.o" \
+"CMakeFiles/Chess.dir/Player.cpp.o" \
+"CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o" \
+"CMakeFiles/Chess.dir/Move.cpp.o" \
+"CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o" \
+"CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o" \
+"CMakeFiles/Chess.dir/Interface.cpp.o"
 
 # External object files for target Chess
 Chess_EXTERNAL_OBJECTS =
 
 Chess: CMakeFiles/Chess.dir/main.cpp.o
-Chess: CMakeFiles/Chess.dir/gridElement.cpp.o
+Chess: CMakeFiles/Chess.dir/Square.cpp.o
 Chess: CMakeFiles/Chess.dir/Board.cpp.o
 Chess: CMakeFiles/Chess.dir/ChessPiece.cpp.o
 Chess: CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o
@@ -323,9 +473,15 @@ Chess: CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o
 Chess: CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o
 Chess: CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o
 Chess: CMakeFiles/Chess.dir/chesspieces/King.cpp.o
+Chess: CMakeFiles/Chess.dir/Player.cpp.o
+Chess: CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o
+Chess: CMakeFiles/Chess.dir/Move.cpp.o
+Chess: CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o
+Chess: CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o
+Chess: CMakeFiles/Chess.dir/Interface.cpp.o
 Chess: CMakeFiles/Chess.dir/build.make
 Chess: CMakeFiles/Chess.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Chess"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mrlukasbos/development/Chess/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable Chess"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Chess.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -334,7 +490,7 @@ CMakeFiles/Chess.dir/build: Chess
 .PHONY : CMakeFiles/Chess.dir/build
 
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/main.cpp.o.requires
-CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/gridElement.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/Square.cpp.o.requires
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/Board.cpp.o.requires
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/ChessPiece.cpp.o.requires
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o.requires
@@ -343,6 +499,12 @@ CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/chesspieces/Knight.cpp.o.req
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o.requires
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o.requires
 CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/chesspieces/King.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/Player.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/Move.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o.requires
+CMakeFiles/Chess.dir/requires: CMakeFiles/Chess.dir/Interface.cpp.o.requires
 
 .PHONY : CMakeFiles/Chess.dir/requires
 

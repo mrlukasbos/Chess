@@ -6,20 +6,20 @@
 #define CHESS_MOVE_H
 
 
-#include "gridElement.h"
+#include "Square.h"
 #include "ChessPiece.h"
 
-class GridElement;
+class Square;
 
 class ChessPiece;
 class Move {
 public:
     Move();
 
-    Move(GridElement *startOfMove, GridElement *endOfMove);
+    Move(Square *startOfMove, Square *endOfMove);
 
-    GridElement *startOfMove;
-    GridElement *endOfMove;
+    Square *startOfMove;
+    Square *endOfMove;
 
     ChessPiece *initialPiece;
     ChessPiece *takenPiece;

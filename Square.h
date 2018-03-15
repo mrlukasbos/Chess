@@ -2,22 +2,22 @@
 // Created by Lukas Bos on 30/11/2017.
 //
 
-#ifndef CHESS_GRIDELEMENT_H
-#define CHESS_GRIDELEMENT_H
+#ifndef CHESS_Square_H
+#define CHESS_Square_H
 
 #include <SFML/Graphics.hpp>
 #include "ChessPiece.h"
 #include "constants.h"
 
 class ChessPiece;
-class GridElement {
+class Square {
 
 public:
-    GridElement();
+    Square();
 
-    GridElement(int x, int y, int size, sf::Color color, sf::Vector2i coordinates);
+    Square(int x, int y, int size, sf::Color color, sf::Vector2i coordinates);
     sf::RectangleShape rectangle;
-    void drawGridElement(sf::RenderWindow &window);
+    void drawSquare(sf::RenderWindow &window);
     int posX;
     int posY;
     bool isSelected = false;
@@ -38,4 +38,4 @@ public:
 };
 
 
-#endif //CHESS_GRIDELEMENT_H
+#endif //CHESS_Square_H

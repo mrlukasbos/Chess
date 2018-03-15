@@ -9,9 +9,9 @@
 
 class Queen : public ChessPiece {
 public:
-    Queen(Board *board, GridElement *location, PieceColor color);
+    Queen(Board *board, Square *location, PieceColor color);
 
-    std::vector<GridElement *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
 };
 
 

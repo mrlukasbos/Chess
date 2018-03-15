@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Chess.dir/main.cpp.o"
-  "CMakeFiles/Chess.dir/gridElement.cpp.o"
+  "CMakeFiles/Chess.dir/Square.cpp.o"
   "CMakeFiles/Chess.dir/Board.cpp.o"
   "CMakeFiles/Chess.dir/ChessPiece.cpp.o"
   "CMakeFiles/Chess.dir/chesspieces/Rook.cpp.o"
@@ -9,6 +9,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/Chess.dir/chesspieces/Pawn.cpp.o"
   "CMakeFiles/Chess.dir/chesspieces/Queen.cpp.o"
   "CMakeFiles/Chess.dir/chesspieces/King.cpp.o"
+  "CMakeFiles/Chess.dir/Player.cpp.o"
+  "CMakeFiles/Chess.dir/players/HumanPlayer.cpp.o"
+  "CMakeFiles/Chess.dir/Move.cpp.o"
+  "CMakeFiles/Chess.dir/players/RandomPlayer.cpp.o"
+  "CMakeFiles/Chess.dir/players/MinMaxPlayer.cpp.o"
+  "CMakeFiles/Chess.dir/Interface.cpp.o"
   "Chess.pdb"
   "Chess"
 )
