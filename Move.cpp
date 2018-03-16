@@ -14,7 +14,7 @@ Move::Move(Board * board, Square *startOfMove, Square *endOfMove) : board(board)
 
 Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated) :  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
     identifyPieces();
-    generateName();
+    if (!isSimulated) generateName();
 }
 
 // Simulate move to look if this causes a check(mate).
@@ -27,7 +27,11 @@ void Move::generateName() {
     bool tempIsSimulated = isSimulated;
     isSimulated = true;
     board->doMove(this);
-    if (board->isInCheck(inverse(initialPiece->color))) name += '+';
+    if (board->checkMate()) {
+        name += '#';
+    } else if (board->isInCheck(inverse(initialPiece->color))) {
+        name += '+';
+    }
     board->undoMove();
     isSimulated = tempIsSimulated;
 }

@@ -140,29 +140,18 @@ bool Board::isInCheck(PieceColor color) {
 }
 
 bool Board::checkMate() {
-    // todo check if this function still works
-    if (checkedKing) {
-        for (short i = 0; i < 8; i++) {
-            for (short j = 0; j < 8; j++) {
-                Square *square = squares[i][j];
-                if (square->chessPiece && square->chessPiece->color != checkedKing->color) {
-                    ChessPiece *piece = square->chessPiece;
-                    for (Square *availableMove : piece->getAvailableMoves(false)) {
-                        Move *moveToTry = new Move(this, piece->location, availableMove, true);
-                        doMove(moveToTry);
-                        if (!checkedKing) {
-                            undoMove();
-                            return false;
-                        }
-                        undoMove();
-                    }
-                }
-            }
-        }
-        return true;
-    }
+    PieceColor color;
+    if (isInCheck(PieceColor::WHITE)) color = PieceColor::WHITE;
+    else if (isInCheck(PieceColor::BLACK)) color = PieceColor::BLACK;
+    else return false;
 
-    return false;
+    // look for all pieces and look if they have available moves
+    for (ChessPiece * piece : getPiecesByColor(color)) {
+        if (piece->getAvailableMoves(true).size() > 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Board::selectSquareFromCoordinates(sf::Vector2i coordinates) {
