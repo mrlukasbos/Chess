@@ -40,29 +40,27 @@ std::vector<Square *> King::getAvailableMoves(bool considerOtherPieces, bool con
 
     std::vector<Square *> moves;
 
-    short y = location->coordinates.y;
-    short x = location->coordinates.x;
+    int y = location->coordinates.y;
+    int x = location->coordinates.x;
 
-
-    // --- at this part we get all the directions where the king may initially go
+    // At this part we get all the directions where the king may initially go
     for (int i = 0; i < 8; i++) {
-        for (short j = 1; j <= 1; j++) {
-            short xLocation = x + (j * allDirections[i].x);
-            short yLocation = y + (j * allDirections[i].y);
+        int xLocation = x + (allDirections[i].x);
+        int yLocation = y + (allDirections[i].y);
 
-            bool squareShouldExist = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+        bool squareShouldExist = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
 
-            if (squareShouldExist) {
-                Square *square = board->squares[xLocation][yLocation];
-                if (square->chessPiece && square->chessPiece->color == color) {
-                    break;
-                } else if (square->chessPiece) {
-                    moves.push_back(square);
-                    break;
-                }
+        if (squareShouldExist) {
+            Square *square = board->squares[xLocation][yLocation];
+            if (square->chessPiece && square->chessPiece->color == color) {
+                break;
+            } else if (square->chessPiece) {
                 moves.push_back(square);
+                break;
             }
+            moves.push_back(square);
         }
+
     }
 
     if (considerCheck) {

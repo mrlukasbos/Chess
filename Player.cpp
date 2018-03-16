@@ -4,11 +4,11 @@
 
 #include "Player.h"
 
-Player::Player() {}
+Player::Player() = default;
 
 Player::Player(PieceColor color) : color(color) {}
 
-Move *Player::getNextMove(Board &board) {}
+Move *Player::getNextMove(Board &board) { return nullptr; }
 
 String Player::getType() {
     return type;

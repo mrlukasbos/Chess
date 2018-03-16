@@ -18,18 +18,12 @@ private:
     Font boldFont;
     RenderWindow &window;
     Board &board;
-    Player *currentPlayer;
 public:
     Interface(RenderWindow &window, Board &board);
-
     void showCurrentPlayerText(Player *currentPlayer);
-
     void showSelectedSquareName();
-
     void showPlayerTypes();
-
     void showCoordinates();
-
     void showBoardBackground();
     };
 

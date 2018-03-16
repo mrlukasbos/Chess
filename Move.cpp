@@ -5,7 +5,7 @@
 #include "Move.h"
 
 
-Move::Move() {}
+Move::Move() = default;
 
 Move::Move(Square *startOfMove, Square *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
     identifyPieces();
@@ -16,7 +16,7 @@ Move::Move(Square *startOfMove, Square *endOfMove, bool isSimulated) : startOfMo
 }
 
 std::string Move::getName() {
-    std::string shortNames[] = {"k", "q", "r", "b", "n", ""};
+    std::string shortNames[] = {"K", "Q", "R", "B", "N", ""};
     name = shortNames[initialPiece->type];
     if (takenPiece) name += 'x';
     name += endOfMove->name;

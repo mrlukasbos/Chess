@@ -27,25 +27,24 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
 std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
     std::vector<Square *> availableMoves;
 
-    short y = location->coordinates.y;
-    short x = location->coordinates.x;
+    int y = location->coordinates.y;
+    int x = location->coordinates.x;
 
     bool isBottomColor = board->bottomPlayer->color == color;
-    short direction = isBottomColor ? -1 : 1;
+    int direction = isBottomColor ? -1 : 1;
 
     Vector2i pawnDirections[] = {
             Vector2i(0, 1),
             Vector2i(0, 2),
     };
 
-    // capturing works differently for pawns...
     Vector2i pawnCaptureDirections[]{
             Vector2i(1, 1),
             Vector2i(-1, 1),
     };
 
-    // there are 2 directions
-    for (short i = 0; i < 2; i++) {
+    // 2 directions
+    for (int i = 0; i < 2; i++) {
         int xLocation = x + pawnCaptureDirections[i].x;
         int yLocation = y + (direction * pawnCaptureDirections[i].y); // reverse ydirection for other color
 
@@ -58,10 +57,6 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         }
     }
 
-//    if (!considerOtherPieces) {
-//        return removeMovesLeadingToSelfCheck(availableMoves);
-//    }
-
     int maxAmountOfSteps = (amountOfSteps > 0) ? 1 : 2;
 
     for (int i = 0; i < maxAmountOfSteps; i++) {
@@ -71,12 +66,10 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         bool squareExists = yLocation >= 0 && yLocation < 8;
         if (squareExists) {
             Square *square = board->squares[x][yLocation];
-
             if (square->chessPiece) {
                 break;
             }
             availableMoves.push_back(square);
-
         }
     }
 

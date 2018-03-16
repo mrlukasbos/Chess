@@ -5,8 +5,7 @@
 #include "Interface.h"
 
 
-Interface::Interface(RenderWindow &window, Board &board)
-        : window(window), board(board), currentPlayer(currentPlayer) {
+Interface::Interface(RenderWindow &window, Board &board) : window(window), board(board) {
 
     font.loadFromFile("OpenSans-Regular.ttf");
     boldFont.loadFromFile("OpenSans-Bold.ttf");
