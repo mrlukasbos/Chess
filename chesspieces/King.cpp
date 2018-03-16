@@ -52,13 +52,12 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
 
         if (squareShouldExist) {
             Square *square = board->squares[xLocation][yLocation];
-            if (square->chessPiece && square->chessPiece->color == color) {
-                break;
-            } else if (square->chessPiece) {
+            
+            bool squareHasFriendlyPiece = square->chessPiece && square->chessPiece->color == color;
+
+            if (!squareHasFriendlyPiece) {
                 moves.push_back(square);
-                break;
             }
-            moves.push_back(square);
         }
 
     }
