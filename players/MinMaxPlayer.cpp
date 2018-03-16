@@ -25,7 +25,7 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
-        std::vector<Square *> moves = piece->getAvailableMoves(true, true);
+        std::vector<Square *> moves = piece->getAvailableMoves(true);
 
         for (int j = 0; j < moves.size(); j++) {
             Square *square = moves[j];

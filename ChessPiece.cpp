@@ -20,7 +20,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<Square *> ChessPiece::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> ChessPiece::getAvailableMoves(bool considerCheck) {
     // virtual method for child classes
 }
 
@@ -38,15 +38,7 @@ int ChessPiece::getLocationScore(int x, int y) {
 std::vector<Square *>
 ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
-                                        bool considerOtherPieces, bool considerCheck) {
-
-    /* considerOtherPieces
-     * with considerOtherpieces == true the location of a chesspiece is also stored in the vector
-     * Otherwise only the path towards it is stored.
-     *
-     * ConsiderCheck states if we should check if the moves are valid (thus aren't setting the own king check)
-     */
-
+                                        bool considerCheck) {
 
     std::vector<Square *> moves;
     int y = location->coordinates.y;
@@ -60,12 +52,6 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
             if (elementExists) {
                 Square *element = board->squares[xLocation][yLocation];
                 if (element->chessPiece && element->chessPiece->color == color) {
-
-                    // if we have to check for mate we must be able to travel one further...
-                    // todo make names more descirptive
-                    if (!considerOtherPieces) {
-                        moves.push_back(element);
-                    }
                     break;
                 } else if (element->chessPiece) {
                     moves.push_back(element);

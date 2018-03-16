@@ -25,7 +25,7 @@ King::King(Board *board, Square *location, PieceColor color)
 }
 
 
-std::vector<Square *> King::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down

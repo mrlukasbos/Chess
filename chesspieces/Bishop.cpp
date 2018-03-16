@@ -24,7 +24,7 @@ Bishop::Bishop(Board *board, Square *location, PieceColor color)
 
 }
 
-std::vector<Square *> Bishop::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> Bishop::getAvailableMoves(bool considerCheck) {
 
     Vector2i diagonalDirections[] = {
             Vector2i(1, 1),   // Right-Down
@@ -32,6 +32,5 @@ std::vector<Square *> Bishop::getAvailableMoves(bool considerOtherPieces, bool c
             Vector2i(-1, -1), // Left-Up
             Vector2i(-1, 1)   // Left-Down
     };
-    return calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7, considerOtherPieces,
-                                       considerCheck);
+    return calculateMovesForDirections(location, diagonalDirections, board, color, 4, 7, considerCheck);
 }

@@ -24,7 +24,7 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
                       }};
 }
 
-std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool considerCheck) {
+std::vector<Square *> Pawn::getAvailableMoves(bool considerCheck) {
     std::vector<Square *> availableMoves;
 
     int y = location->coordinates.y;
@@ -51,7 +51,7 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         bool squareExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
         if (squareExists) {
             Square *square = board->squares[xLocation][yLocation];
-            if (!considerOtherPieces || (square->chessPiece && square->chessPiece->color != color)) {
+            if (square->chessPiece && square->chessPiece->color != color) {
                 availableMoves.push_back(square);
             }
         }

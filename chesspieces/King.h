@@ -11,7 +11,7 @@ class King : public ChessPiece {
 public:
     King(Board *board, Square *location, PieceColor color);
 
-    std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    std::vector<Square *> getAvailableMoves(bool considerCheck);
 };
 
 

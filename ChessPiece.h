@@ -41,7 +41,7 @@ public:
     std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
 
     // functions to be used by subclasses
-    virtual std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);
+    virtual std::vector<Square *> getAvailableMoves(bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
 
@@ -55,7 +55,6 @@ public:
             PieceColor color,
             short amountOfDirections,
             short maxAmountOfSteps,
-            bool considerOtherPieces,
             bool considerCheck
     );
 };
