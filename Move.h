@@ -27,7 +27,7 @@ public:
     bool isSimulated = false;
 
     std::string name;
-    std::string getName();
+    void generateName();
 
 private:
     void identifyPieces();

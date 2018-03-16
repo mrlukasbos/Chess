@@ -9,19 +9,27 @@ Move::Move() = default;
 
 Move::Move(Board * board, Square *startOfMove, Square *endOfMove) : board(board), startOfMove(startOfMove), endOfMove(endOfMove) {
     identifyPieces();
+    generateName();
 }
 
 Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated) :  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
     identifyPieces();
+    generateName();
 }
 
-std::string Move::getName() {
+// Simulate move to look if this causes a check(mate).
+void Move::generateName() {
     std::string shortNames[] = {"K", "Q", "R", "B", "N", ""};
     name = shortNames[initialPiece->type];
     if (takenPiece) name += 'x';
     name += endOfMove->name;
+
+    bool tempIsSimulated = isSimulated;
+    isSimulated = true;
+    board->doMove(this);
     if (board->isInCheck(inverse(initialPiece->color))) name += '+';
-    return name;
+    board->undoMove();
+    isSimulated = tempIsSimulated;
 }
 
 void Move::identifyPieces() {

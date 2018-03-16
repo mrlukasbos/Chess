@@ -86,7 +86,7 @@ void Board::doMove(Move *nextMove) {
     nextMove->endOfMove->chessPiece->amountOfSteps++;
 
     if (!nextMove->isSimulated) {
-        std::cout << "move is done: " + nextMove->getName() + "\n";
+        std::cout << "move is done: " + nextMove->name + "\n";
     }
     allMoves.push_back(nextMove);
 }
@@ -108,7 +108,7 @@ void Board::undoMove() {
         move->initialPiece->amountOfSteps--;
 
         if (!move->isSimulated) {
-            std::cout << "move is undone: " + move->getName() + "\n";
+            std::cout << "move is undone: " + move->name + "\n";
         }
     }
 }
@@ -225,8 +225,6 @@ void Board::checkGameStatus() {
     if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
         if (checkMate()) {
             std::cout << "We have a winner! \n";
-        } else {
-            std::cout << "Check! \n";
         }
     }
 }
