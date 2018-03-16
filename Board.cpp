@@ -31,11 +31,11 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
     this->topPlayer = topPlayer;
 
     createBoard();
-    drawPiecesOnBoard();
+    initPieces();
 }
 
 
-void Board::drawPiecesOnBoard() {
+void Board::initPieces() {
     short kingXPosition = 3, queenXPosition = 4;
     if (topPlayer->color == BLACK) {
         kingXPosition = 4;
@@ -116,8 +116,10 @@ void Board::undoMove() {
     }
 }
 
-void Board::searchForCheckedKing() {
-//todo this might later be changed in a function for threats for all pieces
+bool Board::isInCheck(PieceColor color) {
+
+    PieceColor enemyColor = color == BLACK ? WHITE : BLACK;
+
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = squares[i][j]->chessPiece;
@@ -125,20 +127,19 @@ void Board::searchForCheckedKing() {
         }
     }
 
+    // check if the enemy has moves that set the king of the chosen color in check
+    for (ChessPiece * piece : getPiecesByColor(enemyColor)) {
 
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            ChessPiece *piece = squares[i][j]->chessPiece;
-            if (piece) {
-                for (Square *square : piece->getAvailableMoves(true, false)) {
-                    ChessPiece *pieceToHit = square->chessPiece;
-                    if (pieceToHit && pieceToHit->type == KING) {
-                        pieceToHit->isChecked = true;
-                    }
-                }
+        //considerotherpieces: true, considerCheck FALSE! otherwise infinite loop.
+        for (Square * square : piece->getAvailableMoves(true, false)) {
+            ChessPiece *pieceToHit = square->chessPiece;
+            if (pieceToHit && pieceToHit->type == KING && pieceToHit->color == color) {
+                pieceToHit->isChecked = true;
+                return true;
             }
         }
     }
+    return false;
 }
 
 bool Board::checkMate() {
@@ -149,7 +150,7 @@ bool Board::checkMate() {
                 Square *square = squares[i][j];
                 if (square->chessPiece && square->chessPiece->color != checkedKing->color) {
                     ChessPiece *piece = square->chessPiece;
-                    for (Square *availableMove : piece->getAvailableMoves(true, true)) {
+                    for (Square *availableMove : piece->getAvailableMoves(true, false)) {
                         Move *moveToTry = new Move(piece->location, availableMove, true);
                         doMove(moveToTry);
                         if (!checkedKing) {
@@ -224,12 +225,7 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 }
 
 void Board::checkGameStatus() {
-    if (checkedSquare) checkedSquare->isChecked = false;
-    checkedKing = NULL;
-
-    searchForCheckedKing();
-
-    if (checkedKing) {
+    if (isInCheck(WHITE) || isInCheck(BLACK)) {
         if (checkMate()) {
             std::cout << "We have a winner! \n";
         } else {

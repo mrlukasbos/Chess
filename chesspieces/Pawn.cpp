@@ -58,9 +58,9 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
         }
     }
 
-    if (!considerOtherPieces) {
-        return removeMovesLeadingToSelfCheck(availableMoves, considerCheck);
-    }
+//    if (!considerOtherPieces) {
+//        return removeMovesLeadingToSelfCheck(availableMoves);
+//    }
 
     int maxAmountOfSteps = (amountOfSteps > 0) ? 1 : 2;
 
@@ -79,6 +79,9 @@ std::vector<Square *> Pawn::getAvailableMoves(bool considerOtherPieces, bool con
 
         }
     }
-    return removeMovesLeadingToSelfCheck(availableMoves, considerCheck);
 
+    if (considerCheck) {
+        return removeMovesLeadingToSelfCheck(availableMoves);
+    }
+    return availableMoves;
 }

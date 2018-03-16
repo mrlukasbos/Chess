@@ -38,7 +38,7 @@ public:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves, bool considerCheck);
+    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
 
     // functions to be used by subclasses
     virtual std::vector<Square *> getAvailableMoves(bool considerOtherPieces, bool considerCheck);

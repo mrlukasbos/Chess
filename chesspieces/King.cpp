@@ -65,6 +65,8 @@ std::vector<Square *> King::getAvailableMoves(bool considerOtherPieces, bool con
         }
     }
 
-    return removeMovesLeadingToSelfCheck(moves, considerCheck);
-
+    if (considerCheck) {
+        return removeMovesLeadingToSelfCheck(moves);
+    }
+    return moves;
 }

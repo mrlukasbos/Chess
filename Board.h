@@ -34,22 +34,20 @@ public:
 
     std::vector<Move *> allMoves;
 
-    // there can be only one checked king.
     ChessPiece *checkedKing;
     void checkGameStatus();
 
     Square * selectedSquare;
-    Square *checkedSquare;
     Player *bottomPlayer;
     Player *topPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 
-    void searchForCheckedKing();
+    bool isInCheck(PieceColor color);
 
     bool checkMate();
 private:
     void createBoard();
-    void drawPiecesOnBoard();
+    void initPieces();
 };
 
 

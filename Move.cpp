@@ -18,9 +18,11 @@ Move::Move(Square *startOfMove, Square *endOfMove, bool isSimulated) : startOfMo
 std::string Move::getName() {
     std::string shortNames[] = {"k", "q", "r", "b", "n", ""};
     name = shortNames[initialPiece->type];
-    if (takenPiece) name += 'X';
+    if (takenPiece) name += 'x';
     name += endOfMove->name;
-    // if (check) name += '+';
+
+    // if checkmate name += '#';
+    // else if (check) name += '+';
 
     return name;
 }

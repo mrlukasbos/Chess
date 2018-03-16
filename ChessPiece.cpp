@@ -76,27 +76,21 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
         }
     }
 
-    return removeMovesLeadingToSelfCheck(moves, considerCheck);
+    if (considerCheck) {
+        return removeMovesLeadingToSelfCheck(moves);
+    }
+    return moves;
 }
 
 std::vector<Square *>
-ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations, bool considerCheck) {
+ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
     std::vector<Square *> safeDestinations;
     for (Square *destination : destinations) {
         Move *moveToTry = new Move(location, destination, true);
         board->doMove(moveToTry);
 
-        if (considerCheck) {
-            board->searchForCheckedKing();
-        }
-
-        // check if the move results in a situation where it's not check anymore
-        for (ChessPiece *piece : board->getPiecesByColor(color)) {
-
-            //todo bug here: isChecked is dependent on moves of other pieces and is prevented when checking other king.
-            if (piece->type == KING && !piece->isChecked) {
-                safeDestinations.push_back(destination);
-            }
+        if (!board->isInCheck(color)){
+          safeDestinations.push_back(destination);
         }
 
         board->undoMove();
