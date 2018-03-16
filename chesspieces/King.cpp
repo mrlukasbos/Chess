@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "King.h"
+#include "../PieceColor.h"
 
 King::King(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
@@ -52,7 +53,7 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
 
         if (squareShouldExist) {
             Square *square = board->squares[xLocation][yLocation];
-            
+
             bool squareHasFriendlyPiece = square->chessPiece && square->chessPiece->color == color;
 
             if (!squareHasFriendlyPiece) {

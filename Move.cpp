@@ -7,11 +7,11 @@
 
 Move::Move() = default;
 
-Move::Move(Square *startOfMove, Square *endOfMove) : startOfMove(startOfMove), endOfMove(endOfMove) {
+Move::Move(Board * board, Square *startOfMove, Square *endOfMove) : board(board), startOfMove(startOfMove), endOfMove(endOfMove) {
     identifyPieces();
 }
 
-Move::Move(Square *startOfMove, Square *endOfMove, bool isSimulated) : startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
+Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated) :  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
     identifyPieces();
 }
 
@@ -20,10 +20,7 @@ std::string Move::getName() {
     name = shortNames[initialPiece->type];
     if (takenPiece) name += 'x';
     name += endOfMove->name;
-
-    // if checkmate name += '#';
-    // else if (check) name += '+';
-
+    if (board->isInCheck(inverse(initialPiece->color))) name += '+';
     return name;
 }
 

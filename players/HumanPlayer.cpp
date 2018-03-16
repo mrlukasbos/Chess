@@ -35,7 +35,7 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
 
             if (squareIsClicked) {
                 if (square->isFocused) {
-                    return new Move(board.selectedSquare, square);
+                    return new Move(&board, board.selectedSquare, square);
                 } else if (square->chessPiece && square->chessPiece->color == this->color) {
                     square->setSelected(true);
                     board.selectedSquare = square;

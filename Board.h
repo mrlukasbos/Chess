@@ -8,6 +8,7 @@
 #include "Square.h"
 #include "Player.h"
 #include <SFML/Graphics.hpp>
+#include "PieceColor.h"
 
 using namespace sf;
 

@@ -8,6 +8,7 @@
 #include "../constants.h"
 #include "../Board.h"
 #include "../Player.h"
+#include "../PieceColor.h"
 
 class RandomPlayer : public Player {
 public:

@@ -72,7 +72,7 @@ std::vector<Square *>
 ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
     std::vector<Square *> safeDestinations;
     for (Square *destination : destinations) {
-        Move *moveToTry = new Move(location, destination, true);
+        Move *moveToTry = new Move(board, location, destination, true);
         board->doMove(moveToTry);
 
         if (!board->isInCheck(color)){
@@ -87,6 +87,6 @@ ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
 void ChessPiece::generateImage(PieceType type) {
     // for the finding images
     std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-    imageUrlPrefix = color == BLACK ? "Black" : "White";
+    imageUrlPrefix = color == PieceColor::BLACK ? "Black" : "White";
     img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
 }

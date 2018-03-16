@@ -10,13 +10,13 @@
 #include "ChessPiece.h"
 
 class Square;
-
+class Board;
 class ChessPiece;
 class Move {
 public:
     Move();
-    Move(Square *startOfMove, Square *endOfMove);
-    Move(Square *startOfMove, Square *endOfMove, bool isSimulated);
+    Move(Board * board, Square *startOfMove, Square *endOfMove);
+    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated);
 
     Square *startOfMove;
     Square *endOfMove;
@@ -31,6 +31,7 @@ public:
 
 private:
     void identifyPieces();
+    Board * board;
 };
 
 

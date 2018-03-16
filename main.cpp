@@ -11,14 +11,14 @@ int main() {
     settings.antialiasingLevel = 8;
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
     Board board;
-    Player *bottomPlayer = new HumanPlayer(WHITE, window);
-    Player *topPlayer = new MinMaxPlayer(BLACK);
+    Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
+    Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
     Interface interface(window, board);
 
     // white begins
-    currentPlayer = bottomPlayer->color == WHITE ? bottomPlayer : topPlayer;
+    currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
 
     //start interface
     while(window.isOpen()){
@@ -52,13 +52,13 @@ int main() {
             // When having a humanplayer it is recommended to make the human the bottomplayer
 
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
-                Player *bottomPlayer = new HumanPlayer(WHITE, window);
-                Player *topPlayer = new MinMaxPlayer(BLACK);
+                Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
+                Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
                 board.startGame(bottomPlayer, topPlayer);
 
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
-                Player *bottomPlayer = new HumanPlayer(BLACK, window);
-                Player *topPlayer = new MinMaxPlayer(WHITE);
+                Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
+                Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
                 board.startGame(bottomPlayer, topPlayer);
             } else if (Keyboard::isKeyPressed(Keyboard::R)) {
                 board.undoMove();

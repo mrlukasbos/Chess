@@ -9,6 +9,7 @@
 #include "../constants.h"
 #include "../Board.h"
 #include "../Player.h"
+#include "../PieceColor.h"
 
 class HumanPlayer : public Player {
 public:

@@ -17,7 +17,7 @@ void Interface::showCurrentPlayerText(Player *currentPlayer) {
     currentMoveText.setCharacterSize(24);
     currentMoveText.setPosition(GAME_SIZE + 40, WINDOW_HEIGHT / 2 - 50);
 
-    Text currentColorToMoveName(currentPlayer->color == BLACK ? "Black" : "White", boldFont, 26);
+    Text currentColorToMoveName(currentPlayer->color == PieceColor::BLACK ? "Black" : "White", boldFont, 26);
     currentColorToMoveName.setFillColor(Color::Black);
     currentColorToMoveName.setCharacterSize(48);
     currentColorToMoveName.setPosition(GAME_SIZE + 40, WINDOW_HEIGHT / 2 - 20);

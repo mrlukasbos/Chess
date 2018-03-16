@@ -45,14 +45,7 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
         }
     }
 
-
-    // make a copy of the board to simulate a game
-    Board fakeBoard = Board(board);
-
-    Move *epicMove = new Move(pieceToMove->location, bestElement); // return best move
-
-    //  fakeBoard.doMove(epicMove);
-
+    Move *epicMove = new Move(&board, pieceToMove->location, bestElement); // return best move
     return epicMove;
 }
 

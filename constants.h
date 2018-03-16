@@ -27,11 +27,6 @@
 // SCORES FOR THE POSITIONS ON THE BOARD
 // source: https://chessprogramming.wikispaces.com/Simplified+evaluation+function
 
-// set enumerator for colors of pieces
-enum PieceColor {
-    BLACK, WHITE
-};
-
 enum PieceType {
     KING = 0,
     QUEEN = 1,

@@ -22,7 +22,7 @@ Move *RandomPlayer::getNextMove(Board &board) {
         std::vector<Square *> moves = randomPiece->getAvailableMoves(true);
 
         if (!moves.empty()) { // if the chesspiece has available moves
-            return new Move(randomPiece->location, moves.at(std::rand() % moves.size())); // return random move
+            return new Move(&board, randomPiece->location, moves.at(std::rand() % moves.size())); // return random move
         }
     }
 

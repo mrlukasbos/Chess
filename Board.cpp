@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Board.h"
+#include "PieceColor.h"
 #include "chesspieces/Rook.h"
 #include "chesspieces/Bishop.h"
 #include "chesspieces/Knight.h"
@@ -37,7 +38,7 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
 
 void Board::initPieces() {
     short kingXPosition = 3, queenXPosition = 4;
-    if (topPlayer->color == BLACK) {
+    if (topPlayer->color == PieceColor::BLACK) {
         kingXPosition = 4;
         queenXPosition = 3;
     }
@@ -114,7 +115,7 @@ void Board::undoMove() {
 
 bool Board::isInCheck(PieceColor color) {
 
-    PieceColor enemyColor = color == BLACK ? WHITE : BLACK;
+    PieceColor enemyColor = inverse(color);
 
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
@@ -147,7 +148,7 @@ bool Board::checkMate() {
                 if (square->chessPiece && square->chessPiece->color != checkedKing->color) {
                     ChessPiece *piece = square->chessPiece;
                     for (Square *availableMove : piece->getAvailableMoves(false)) {
-                        Move *moveToTry = new Move(piece->location, availableMove, true);
+                        Move *moveToTry = new Move(this, piece->location, availableMove, true);
                         doMove(moveToTry);
                         if (!checkedKing) {
                             undoMove();
@@ -221,7 +222,7 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 }
 
 void Board::checkGameStatus() {
-    if (isInCheck(WHITE) || isInCheck(BLACK)) {
+    if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
         if (checkMate()) {
             std::cout << "We have a winner! \n";
         } else {

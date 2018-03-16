@@ -6,7 +6,7 @@
 #define CHESS_PLAYER_H
 
 #include <SFML/Graphics.hpp>
-#include "constants.h"
+#include "PieceColor.h"
 #include "Board.h"
 #include "Move.h"
 
