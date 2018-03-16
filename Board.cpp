@@ -109,10 +109,9 @@ void Board::undoMove() {
         move->startOfMove->chessPiece = move->initialPiece;
         move->initialPiece->amountOfSteps--;
 
-    }
-
-    if (!move->isSimulated) {
-        std::cout << "move is undone: " + move->getName() + "\n";
+        if (!move->isSimulated) {
+            std::cout << "move is undone: " + move->getName() + "\n";
+        }
     }
 }
 
