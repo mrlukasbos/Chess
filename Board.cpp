@@ -72,20 +72,17 @@ void Board::initPieces() {
 
 
 void Board::doMove(Move *nextMove) {
-    if (nextMove) {
-
-        // possibly capture a chesspiece
-        if (nextMove->endOfMove->chessPiece) {
-            nextMove->endOfMove->chessPiece->isCaptured = true;
-        }
-
-        // move the chesspiece
-        nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
-        nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
-        nextMove->startOfMove->chessPiece = NULL;
-
-        nextMove->endOfMove->chessPiece->amountOfSteps++;
+    // possibly capture a chesspiece
+    if (nextMove->endOfMove->chessPiece) {
+        nextMove->endOfMove->chessPiece->isCaptured = true;
     }
+
+    // move the chesspiece
+    nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
+    nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
+    nextMove->startOfMove->chessPiece = NULL;
+
+    nextMove->endOfMove->chessPiece->amountOfSteps++;
 
     if (!nextMove->isSimulated) {
         std::cout << "move is done: " + nextMove->getName() + "\n";
@@ -188,8 +185,8 @@ void Board::focusSquares() {
         std::vector<Square *> availableMoves;
         availableMoves = selectedSquare->chessPiece->getAvailableMoves(true, true);
 
-        for (int i = 0; i < availableMoves.size(); i++) {
-            availableMoves.at(i)->setFocused(true);
+        for (Square * square : availableMoves) {
+            square->setFocused(true);
         }
     }
 }
