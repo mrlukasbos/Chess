@@ -22,32 +22,22 @@ public:
     ChessPiece(Board *board, Square *location, PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
 
-    void generateImage(PieceType type);
-
     PieceColor color;
     PieceType type;
     Square *location;
     Board *board;
-    bool isCaptured = false;
     int amountOfSteps = 0;
-
     bool isChecked = false;
-
-    // image utilities
-    std::string imageUrlPrefix;
-    sf::Image img;
-    sf::Texture texture;
-    sf::Sprite sprite;
-
-    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
-
-    // functions to be used by subclasses
+    bool isCaptured = false;
     virtual std::vector<Square *> getAvailableMoves(bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
-
     int pieceScore;
     std::array<std::array<int, 8>, 8> locationScores;
+
+protected:
+    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
+
 
     std::vector<Square *> calculateMovesForDirections(
             Square *location,
@@ -58,6 +48,14 @@ public:
             short maxAmountOfSteps,
             bool considerCheck
     );
+    void generateImage(PieceType type);
+
+private:
+    // image utilities
+    std::string imageUrlPrefix;
+    sf::Image img;
+    sf::Texture texture;
+    sf::Sprite sprite;
 };
 
 #endif //CHESS_CHESSPIECE_H

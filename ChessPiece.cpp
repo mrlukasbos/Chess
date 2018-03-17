@@ -7,8 +7,17 @@
 
 using namespace sf;
 
+ChessPiece::ChessPiece() {
+    pieceScore = 0;
+    type = PAWN;
+};
+
 ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
         : board(board), location(location), color(color) {
+
+    // type and piecescore is defined in the subclasses.
+    pieceScore = 0;
+    type = PAWN;
 }
 
 void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
@@ -34,6 +43,13 @@ int ChessPiece::getLocationScore(int x, int y) {
     // check first y then x.
     return locationScores.at(y).at(x);
 }
+
+/*
+ * This function takes an array of directional vectors (sf::vector21)
+ * For example: (1,1) means up-right and (-1,0) means left.
+ * It returns the available legal moves according to the board.
+ * Considercheck is usually always true, but it is needed for the program to detect check(mate)
+ */
 
 std::vector<Square *>
 ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[], Board *board,

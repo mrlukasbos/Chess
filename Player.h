@@ -18,7 +18,7 @@ class Board;
 class Player {
 public:
     Player();
-    Player(PieceColor color);
+    explicit Player(PieceColor color);
     PieceColor color;
 
     virtual Move *getNextMove(Board &board);

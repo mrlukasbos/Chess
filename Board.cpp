@@ -1,6 +1,9 @@
-//
-// Created by Lukas Bos on 30/11/2017.
-//
+/*
+ * Board.cpp
+ * Created by Lukas Bos on 30/11/2017.
+ * Board is where the game is played.
+ * Contains: Check, Checkmate, initial positions and allows moves to be set on the board.
+*/
 
 #include <iostream>
 #include "Board.h"

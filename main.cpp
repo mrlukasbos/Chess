@@ -1,9 +1,21 @@
+/*
+ * CHESS
+ * This game is created to explore algorithms and C++ in general.
+ * It is mainly a project to gain experience and understanding in these topics,
+ * so it probably won't be the best chess program.
+ *
+ * main.cpp
+ * Created by Lukas Bos on 30/11/2017.
+ * Initialize a board and the players and handle the immediate user input
+ * Initialize a proper interface for the player/viewer
+ * 
+*/
+
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 #include "players/HumanPlayer.h"
 #include "players/MinMaxPlayer.h"
 #include "Interface.h"
-#include "players/RandomPlayer.h"
 
 using namespace sf;
 
