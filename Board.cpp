@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "Board.h"
-#include "PieceColor.h"
 #include "chesspieces/Rook.h"
 #include "chesspieces/Bishop.h"
 #include "chesspieces/Knight.h"
@@ -15,6 +14,10 @@
 using namespace sf;
 
 Board::Board() {
+    bottomPlayer = nullptr;
+    topPlayer = nullptr;
+    selectedSquare = nullptr;
+
     createBoard();
 }
 
@@ -81,7 +84,7 @@ void Board::doMove(Move *nextMove) {
     // move the chesspiece
     nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
     nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
-    nextMove->startOfMove->chessPiece = NULL;
+    nextMove->startOfMove->chessPiece = nullptr;
 
     nextMove->endOfMove->chessPiece->amountOfSteps++;
 
@@ -213,7 +216,13 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 void Board::checkGameStatus() {
     if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
         if (checkMate()) {
-            std::cout << "We have a winner! \n";
+            std::string winnerName = isInCheck(PieceColor::WHITE) ? "white" : "black";
+            std::cout << "The winner is " + winnerName + "\n" ;
+
+            // just start the game again ;-) switch players
+            bottomPlayer->color = inverse(bottomPlayer->color);
+            topPlayer->color = inverse(topPlayer->color);
+            startGame(bottomPlayer, topPlayer);
         }
     }
 }

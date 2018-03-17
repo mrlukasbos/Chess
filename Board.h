@@ -35,7 +35,6 @@ public:
 
     std::vector<Move *> allMoves;
 
-    ChessPiece *checkedKing;
     void checkGameStatus();
 
     Square * selectedSquare;

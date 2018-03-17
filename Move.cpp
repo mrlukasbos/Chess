@@ -19,8 +19,9 @@ Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulat
 
 // Simulate move to look if this causes a check(mate).
 void Move::generateName() {
-    std::string shortNames[] = {"K", "Q", "R", "B", "N", ""};
+    char shortNames[] = "KQRBNP";
     name = shortNames[initialPiece->type];
+    if (name == "P") name = ""; // pawn is usually not written down.
     if (takenPiece) name += 'x';
     name += endOfMove->name;
 

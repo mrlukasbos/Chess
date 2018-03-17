@@ -3,6 +3,7 @@
 #include "players/HumanPlayer.h"
 #include "players/MinMaxPlayer.h"
 #include "Interface.h"
+#include "players/RandomPlayer.h"
 
 using namespace sf;
 
