@@ -12,7 +12,7 @@ class Knight : public ChessPiece {
 public:
     Knight(Board *board, Square *location, PieceColor color);
 
-    std::vector<Square *> getAvailableMoves(bool considerCheck);
+    std::vector<Move *> getAvailableMoves(bool considerCheck);
 };
 
 

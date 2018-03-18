@@ -23,7 +23,7 @@ Knight::Knight(Board *board, Square *location, PieceColor color)
                       }};
 }
 
-std::vector<Square *> Knight::getAvailableMoves(bool considerCheck) {
+std::vector<Move *> Knight::getAvailableMoves(bool considerCheck) {
 
     Vector2i knightDirections[] = {
             Vector2i(-2, 1),

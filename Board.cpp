@@ -13,6 +13,7 @@
 #include "chesspieces/Pawn.h"
 #include "chesspieces/Queen.h"
 #include "chesspieces/King.h"
+#include "PieceColor.h"
 
 using namespace sf;
 
@@ -79,19 +80,23 @@ void Board::initPieces() {
 
 
 void Board::doMove(Move *nextMove) {
+
+    nextMove->generateName();
+
     // possibly capture a chesspiece
-    if (nextMove->endOfMove->chessPiece) {
-        nextMove->endOfMove->chessPiece->isCaptured = true;
+    if (nextMove->takenPiece) {
+        nextMove->takenPiece->isCaptured = true;
     }
 
     // move the chesspiece
-    nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
-    nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
+    nextMove->endOfMove->chessPiece = nextMove->initialPiece;
+    nextMove->initialPiece->location = nextMove->endOfMove;
     nextMove->startOfMove->chessPiece = nullptr;
 
-    nextMove->endOfMove->chessPiece->amountOfSteps++;
+    nextMove->initialPiece->amountOfSteps++;
 
     if (!nextMove->isSimulated) {
+        nextMove->generateName();
         std::cout << "move is done: " + nextMove->name + "\n";
     }
     allMoves.push_back(nextMove);
@@ -134,8 +139,8 @@ bool Board::isInCheck(PieceColor color) {
     for (ChessPiece * piece : getPiecesByColor(enemyColor)) {
 
         //considerotherpieces: true, considerCheck FALSE! otherwise infinite loop.
-        for (Square * square : piece->getAvailableMoves(false)) {
-            ChessPiece *pieceToHit = square->chessPiece;
+        for (Move * move : piece->getAvailableMoves(false)) {
+            ChessPiece *pieceToHit = move->takenPiece;
             if (pieceToHit && pieceToHit->type == KING && pieceToHit->color == color) {
                 pieceToHit->isChecked = true;
                 return true;
@@ -178,11 +183,11 @@ void Board::focusSquares() {
     // here check for the squares where the selected square may move to
     if (selectedSquare && selectedSquare->chessPiece) {
 
-        std::vector<Square *> availableMoves;
+        std::vector<Move *> availableMoves;
         availableMoves = selectedSquare->chessPiece->getAvailableMoves(true);
 
-        for (Square * square : availableMoves) {
-            square->setFocused(true);
+        for (Move * move : availableMoves) {
+            move->endOfMove->setFocused(true);
         }
     }
 }

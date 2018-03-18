@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "King.h"
-#include "../PieceColor.h"
 
 King::King(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
@@ -26,7 +25,7 @@ King::King(Board *board, Square *location, PieceColor color)
 }
 
 
-std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
+std::vector<Move *> King::getAvailableMoves(bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
@@ -39,7 +38,7 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
             Vector2i(-1, 1)   // Left-Down
     };
 
-    std::vector<Square *> moves;
+    std::vector<Move *> moves;
 
     int y = location->coordinates.y;
     int x = location->coordinates.x;
@@ -53,18 +52,58 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
 
         if (squareShouldExist) {
             Square *square = board->squares[xLocation][yLocation];
-
             bool squareHasFriendlyPiece = square->chessPiece && square->chessPiece->color == color;
 
             if (!squareHasFriendlyPiece) {
-                moves.push_back(square);
+                Move *move  = new Move(board, location, square);
+                moves.push_back(move);
             }
         }
 
     }
+
+    moves = addCastlingMoves(moves, considerCheck);
 
     if (considerCheck) {
         return removeMovesLeadingToSelfCheck(moves);
     }
     return moves;
 }
+
+std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool considerCheck) {
+    if (amountOfSteps == 0) {
+
+        // first try to the right (kingside castling)
+        for (int i = 1; i <= 3; i++) {
+            Square * neighbourSquare = board->squares[location->coordinates.x + i][location->coordinates.y];
+            if (i <= 2) {
+                // castling not allowed when piece in between
+                if (neighbourSquare->chessPiece) break;
+
+                if (considerCheck) {
+                    // check if positions 1 and 2 have check
+                    bool positionsBetweenHasCheck = false;
+                    for (ChessPiece *piece : board->getPiecesByColor(inverse(color))) {
+                        for (Move *move : piece->getAvailableMoves(false)) {
+                            if (move->endOfMove == neighbourSquare) {
+                                positionsBetweenHasCheck = true;
+                            }
+                        }
+                    }
+                    if (positionsBetweenHasCheck) break;
+                }
+            }
+            else if (i == 3) {
+               if (neighbourSquare->chessPiece->type == ROOK && neighbourSquare->chessPiece->amountOfSteps == 0) {
+                   Move *move = new Move(board, location, board->squares[location->coordinates.x + 2][location->coordinates.y]);
+
+                   // add some castling rule and/or indication here...
+
+                   moves.push_back(move);
+               }
+            }
+        }
+    }
+    return moves;
+}
+

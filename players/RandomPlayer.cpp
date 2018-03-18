@@ -19,12 +19,12 @@ Move *RandomPlayer::getNextMove(Board &board) {
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *randomPiece = pieces[std::rand() % pieces.size()];
-        std::vector<Square *> moves = randomPiece->getAvailableMoves(true);
+        std::vector<Move *> moves = randomPiece->getAvailableMoves(true);
 
         if (!moves.empty()) { // if the chesspiece has available moves
-            return new Move(&board, randomPiece->location, moves.at(std::rand() % moves.size())); // return random move
+            return moves.at(std::rand() % moves.size()); // return random move
         }
     }
 
-    return NULL;
+    return nullptr;
 }
