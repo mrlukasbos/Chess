@@ -11,7 +11,7 @@ class Bishop : public ChessPiece {
 public:
     Bishop(Board *board, Square *location, PieceColor color);
 
-    std::vector<Move *> getAvailableMoves(bool considerCheck) override;
+    std::vector<Square *> getAvailableMoves(bool considerCheck) override;
 };
 
 

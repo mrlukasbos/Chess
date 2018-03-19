@@ -25,23 +25,21 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
-        std::vector<Move *> moves = piece->getAvailableMoves(true);
+        std::vector<Square *> moves = piece->getAvailableMoves(true);
 
         for (int j = 0; j < moves.size(); j++) {
-            Move *move = moves[j];
+            Square *square = moves[j];
 
             int squareScore = 0;
-            if (move->takenPiece) {
-                squareScore += move->takenPiece->pieceScore;
+            if (square->chessPiece) {
+                squareScore += square->chessPiece->pieceScore;
             }
 
-            Square *destinationSquare = move->endOfMove;
-
-            squareScore += piece->getLocationScore(destinationSquare->coordinates.x, destinationSquare->coordinates.y);
+            squareScore += piece->getLocationScore(square->coordinates.x, square->coordinates.y);
 
             if (squareScore >= highestScore) {
                 highestScore = squareScore;
-                bestElement = destinationSquare;
+                bestElement = square;
                 pieceToMove = piece;
             }
         }

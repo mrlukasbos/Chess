@@ -29,7 +29,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> ChessPiece::getAvailableMoves(bool considerCheck) {
     // virtual method for child classes
 }
 
@@ -51,12 +51,12 @@ int ChessPiece::getLocationScore(int x, int y) {
  * Considercheck is usually always true, but it is needed for the program to detect check(mate)
  */
 
-std::vector<Move *>
+std::vector<Square *>
 ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
                                         bool considerCheck) {
 
-    std::vector<Move *> moves;
+    std::vector<Square *> moves;
     int y = location->coordinates.y;
     int x = location->coordinates.x;
 
@@ -66,15 +66,14 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
             int yLocation = y + (j * directions[i].y);
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
-                Square *targetSquare = board->squares[xLocation][yLocation];
-                Move * move = new Move(board, location, targetSquare);
-                if (targetSquare->chessPiece && targetSquare->chessPiece->color == color) {
+                Square *element = board->squares[xLocation][yLocation];
+                if (element->chessPiece && element->chessPiece->color == color) {
                     break;
-                } else if (targetSquare->chessPiece) {
-                    moves.push_back(move);
+                } else if (element->chessPiece) {
+                    moves.push_back(element);
                     break;
                 }
-                moves.push_back(move);
+                moves.push_back(element);
             }
         }
     }
@@ -85,20 +84,20 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
     return moves;
 }
 
-std::vector<Move *>
-ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Move *> moves) {
-    std::vector<Move *> safeMoves;
-    for (Move *moveToTry : moves) {
-        moveToTry->isSimulated = true;
+std::vector<Square *>
+ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
+    std::vector<Square *> safeDestinations;
+    for (Square *destination : destinations) {
+        Move *moveToTry = new Move(board, location, destination, true);
         board->doMove(moveToTry);
 
         if (!board->isInCheck(color)){
-            safeMoves.push_back(moveToTry);
+          safeDestinations.push_back(destination);
         }
 
         board->undoMove();
     }
-    return safeMoves;
+    return safeDestinations;
 }
 
 void ChessPiece::generateImage(PieceType type) {

@@ -24,7 +24,7 @@ Bishop::Bishop(Board *board, Square *location, PieceColor color)
 
 }
 
-std::vector<Move *> Bishop::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> Bishop::getAvailableMoves(bool considerCheck) {
 
     Vector2i diagonalDirections[] = {
             Vector2i(1, 1),   // Right-Down

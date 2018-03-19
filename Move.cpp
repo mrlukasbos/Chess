@@ -9,10 +9,12 @@ Move::Move() = default;
 
 Move::Move(Board * board, Square *startOfMove, Square *endOfMove) : board(board), startOfMove(startOfMove), endOfMove(endOfMove) {
     identifyPieces();
+    generateName();
 }
 
 Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated) :  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated) {
     identifyPieces();
+    if (!isSimulated) generateName();
 }
 
 // Simulate move to look if this causes a check(mate).

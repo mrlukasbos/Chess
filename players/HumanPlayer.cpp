@@ -19,7 +19,7 @@ Move *HumanPlayer::getNextMove(Board &board) {
         return DetermineMoveFromMousePos(board, Mouse::getPosition(window).x, Mouse::getPosition(window).y);
     }
 
-    return nullptr;
+    return NULL;
 }
 
 Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
@@ -45,5 +45,5 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
     }
 
     board.focusSquares();
-    return nullptr;
+    return NULL;
 }

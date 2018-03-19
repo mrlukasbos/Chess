@@ -9,13 +9,11 @@
 #include <array>
 #include "constants.h"
 #include "Square.h"
-#include "Move.h"
 #include "board.h"
 #include "PieceColor.h"
 
 using namespace sf;
 
-class Move;
 class Square;
 class Board;
 class ChessPiece {
@@ -31,17 +29,17 @@ public:
     int amountOfSteps = 0;
     bool isChecked = false;
     bool isCaptured = false;
-    virtual std::vector<Move *> getAvailableMoves(bool considerCheck);
+    virtual std::vector<Square *> getAvailableMoves(bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
     int pieceScore;
     std::array<std::array<int, 8>, 8> locationScores;
 
 protected:
-    std::vector<Move *> removeMovesLeadingToSelfCheck(std::vector<Move *> moves);
+    std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
 
 
-    std::vector<Move *> calculateMovesForDirections(
+    std::vector<Square *> calculateMovesForDirections(
             Square *location,
             Vector2i directions[],
             Board *board,
