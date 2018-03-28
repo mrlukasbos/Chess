@@ -17,10 +17,10 @@ public:
 
     HumanPlayer(PieceColor color, sf::RenderWindow &window);
 
-    Move *getNextMove(Board &board);
+    Move * getNextMove(Board *board);
 
 private:
-    Move *DetermineMoveFromMousePos(Board &board, int x, int y);
+    Move *DetermineMoveFromMousePos(Board * board, int x, int y);
 
     sf::RenderWindow &window;
 };

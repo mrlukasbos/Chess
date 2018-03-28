@@ -14,7 +14,7 @@ HumanPlayer::HumanPlayer(PieceColor color, sf::RenderWindow &window) : Player(co
     type = "HumanPlayer";
 }
 
-Move *HumanPlayer::getNextMove(Board &board) {
+Move *HumanPlayer::getNextMove(Board *board) {
     if (Mouse::isButtonPressed(Mouse::Left)) {
         return DetermineMoveFromMousePos(board, Mouse::getPosition(window).x, Mouse::getPosition(window).y);
     }
@@ -22,12 +22,12 @@ Move *HumanPlayer::getNextMove(Board &board) {
     return NULL;
 }
 
-Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
+Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
 
     // for all squares
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            Square *square = board.squares[i][j];
+            Square *square = board->squares[i][j];
             square->setSelected(false); // there should be no other squares be selected.
 
             bool squareIsClicked = x > square->posX && x < square->posX + BLOCK_SIZE
@@ -35,15 +35,15 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board &board, int x, int y) {
 
             if (squareIsClicked) {
                 if (square->isFocused) {
-                    return new Move(&board, board.selectedSquare, square);
+                    return new Move(board, board->selectedSquare, square);
                 } else if (square->chessPiece && square->chessPiece->color == this->color) {
                     square->setSelected(true);
-                    board.selectedSquare = square;
+                    board->selectedSquare = square;
                 }
             }
         }
     }
 
-    board.focusSquares();
+    board->focusSquares();
     return NULL;
 }

@@ -30,9 +30,6 @@ void Interface::showSelectedSquareName() {
 
     Square *selectedElement = board.selectedSquare;
     if (selectedElement) {
-        Vector2i newCoordinates = selectedElement->coordinates;
-        board.selectSquareFromCoordinates(newCoordinates); 
-
         Text squareName(selectedElement->name, font, 26);
         squareName.setFillColor(Color::Black);
         squareName.setCharacterSize(32);

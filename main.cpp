@@ -75,14 +75,13 @@ int main() {
                 interface.showCurrentPlayerText(currentPlayer);
                 interface.showPlayerTypes();
                 interface.showCoordinates();
-
-            
+                interface.showSelectedSquareName();
                 updateWindowNextCycle = false;
             }
 
         }
 
-        Move *nextMove = currentPlayer->getNextMove(board);
+        Move *nextMove = currentPlayer->getNextMove(&board);
         if (nextMove) {
             board.doMove(nextMove);
             board.checkGameStatus();
@@ -99,7 +98,6 @@ int main() {
         }
 
         
-        interface.showSelectedSquareName();
       
         window.display();
     }

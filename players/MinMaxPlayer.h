@@ -16,7 +16,7 @@ public:
 
     MinMaxPlayer(PieceColor color);
 
-    Move *getNextMove(Board &board);
+    Move *getNextMove(Board *board);
 
 };
 

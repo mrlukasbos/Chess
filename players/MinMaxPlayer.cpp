@@ -16,8 +16,8 @@ MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
     type = "MinMaxPlayer";
 }
 
-Move *MinMaxPlayer::getNextMove(Board &board) {
-    std::vector<ChessPiece *> pieces = board.getPiecesByColor(color);
+Move *MinMaxPlayer::getNextMove(Board *board) {
+    std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
 
     Square *bestElement = NULL;
     ChessPiece *pieceToMove = NULL;
@@ -45,7 +45,7 @@ Move *MinMaxPlayer::getNextMove(Board &board) {
         }
     }
 
-    Move *epicMove = new Move(&board, pieceToMove->location, bestElement); // return best move
+    Move *epicMove = new Move(board, pieceToMove->location, bestElement); // return best move
     return epicMove;
 }
 

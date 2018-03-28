@@ -161,7 +161,9 @@ bool Board::checkMate() {
 }
 
 void Board::selectSquareFromCoordinates(sf::Vector2i coordinates) {
-    selectedSquare->setSelected(false); // set selected property of previous square to false
+    if (selectedSquare){
+        selectedSquare->setSelected(false); // set selected property of previous square to false
+    }
     selectedSquare = squares[(coordinates.x)][coordinates.y];
     selectedSquare->setSelected(true); // set new square to selected
 
