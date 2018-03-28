@@ -9,7 +9,7 @@
 #include <array>
 #include "constants.h"
 #include "Square.h"
-#include "board.h"
+#include "Board.h"
 #include "PieceColor.h"
 
 using namespace sf;
