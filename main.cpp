@@ -30,6 +30,9 @@ int main() {
     board.startGame(bottomPlayer, topPlayer);
     Player *currentPlayer;
     Interface interface(window, board);
+    Color menuColor(220, 220, 220); // light gray
+    
+    bool updateWindowNextCycle = false; // indicate if the window needs a refresh.
 
     // white begins
     currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
@@ -41,21 +44,21 @@ int main() {
         Event event;
 
         while (window.pollEvent(event)) {
-
+            
 
             if (event.type == Event::Closed) {
                 window.close();
             }
-
-
+            
+            if (event.type != sf::Event::MouseMoved || updateWindowNextCycle) {
             // use keys to set window modi.
             // When having a humanplayer it is recommended to make the human the bottomplayer
-
+            
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
                 Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
                 Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
                 board.startGame(bottomPlayer, topPlayer);
-
+                
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
                 Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
                 Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
@@ -65,7 +68,17 @@ int main() {
                 board.checkGameStatus();
             }
 
+                // update screen after event.
+                window.clear(menuColor);
+                interface.showBoardBackground();
+                board.drawBoard(window); // this is where the redraw of the board happens
+                interface.showCurrentPlayerText(currentPlayer);
+                interface.showPlayerTypes();
+                interface.showCoordinates();
 
+            
+                updateWindowNextCycle = false;
+            }
 
         }
 
@@ -80,23 +93,14 @@ int main() {
             } else {
                 currentPlayer = topPlayer;
             }
-
+            
+            // the computer may have done a move so we want to update the screen.
+            updateWindowNextCycle = true;
         }
 
-        // update screen after move.
-        Color menuColor(220, 220, 220); // light gray
-        window.clear(menuColor);
-
-        interface.showBoardBackground();
-        board.drawBoard(window); // this is where the redraw of the board happens
-
-
-
-        interface.showCurrentPlayerText(currentPlayer);
+        
         interface.showSelectedSquareName();
-        interface.showPlayerTypes();
-        interface.showCoordinates();
-
+      
         window.display();
     }
 }
