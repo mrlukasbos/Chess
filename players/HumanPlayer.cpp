@@ -34,7 +34,12 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
                                     && y > square->posY && y < square->posY + BLOCK_SIZE;
 
             if (squareIsClicked) {
-                if (square->isFocused) {
+                
+                // here a bug occured
+                // It appears that when a square was focussed and a move was done, the square is being focussed until the next draw.
+                // still it wanted to do the move when the press was taking long. but then the chesspiece was already moved...
+                // todo fix this neatly. (selection of squares etc)
+                if (square->isFocused && board->selectedSquare->chessPiece) {
                     return new Move(board, board->selectedSquare, square);
                 } else if (square->chessPiece && square->chessPiece->color == this->color) {
                     square->setSelected(true);
