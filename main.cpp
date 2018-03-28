@@ -34,7 +34,7 @@ int main() {
     // white begins
     currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
 
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(20);
     
     //start interface
     while (window.isOpen()) {
@@ -48,19 +48,39 @@ int main() {
             }
 
 
-            Move *nextMove = currentPlayer->getNextMove(board);
-            if (nextMove) {
-                board.doMove(nextMove);
+            // use keys to set window modi.
+            // When having a humanplayer it is recommended to make the human the bottomplayer
+
+            if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
+                Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
+                Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
+                board.startGame(bottomPlayer, topPlayer);
+
+            } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
+                Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
+                Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
+                board.startGame(bottomPlayer, topPlayer);
+            } else if (Keyboard::isKeyPressed(Keyboard::R)) {
+                board.undoMove();
                 board.checkGameStatus();
-
-                // switch player after move
-                if (currentPlayer == topPlayer) {
-                    currentPlayer = bottomPlayer;
-                } else {
-                    currentPlayer = topPlayer;
-                }
-
             }
+
+
+
+        }
+
+        Move *nextMove = currentPlayer->getNextMove(board);
+        if (nextMove) {
+            board.doMove(nextMove);
+            board.checkGameStatus();
+
+            // switch player after move
+            if (currentPlayer == topPlayer) {
+                currentPlayer = bottomPlayer;
+            } else {
+                currentPlayer = topPlayer;
+            }
+
         }
 
         // update screen after move.
@@ -68,25 +88,9 @@ int main() {
         window.clear(menuColor);
 
         interface.showBoardBackground();
-
         board.drawBoard(window); // this is where the redraw of the board happens
 
-        // use keys to set window modi.
-        // When having a humanplayer it is recommended to make the human the bottomplayer
 
-        if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
-            Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
-            Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
-            board.startGame(bottomPlayer, topPlayer);
-
-        } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
-            Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
-            Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
-            board.startGame(bottomPlayer, topPlayer);
-        } else if (Keyboard::isKeyPressed(Keyboard::R)) {
-            board.undoMove();
-            board.checkGameStatus();
-        }
 
         interface.showCurrentPlayerText(currentPlayer);
         interface.showSelectedSquareName();
