@@ -4,6 +4,7 @@
 #define CHESS_MOVE_H
 
 #include "Square.h"
+#include "CastlingSide.h"
 #include "ChessPiece.h"
 
 class Board;
@@ -28,8 +29,9 @@ public:
 
     std::string name;
     void generateName();
-
-
+    CastlingSide getCastleSide();
+    ChessPiece * castlingKing = nullptr;
+    ChessPiece * castlingRook = nullptr;
 };
 
 

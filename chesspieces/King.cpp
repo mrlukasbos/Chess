@@ -74,12 +74,9 @@ std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool
     if (amountOfSteps == 0 && (considerCheck && !board->isInCheck(color))) {
         int directions[] = {-1, 1};
         
-        // this will be an enum later.
-        std::string castleNames[] = {"Queenside", "Kingside"};
-        
+        CastlingSide castlingSides[] = {CastlingSide::QUEENSIDE, CastlingSide::KINGSIDE};
         
         for (int i = 0; i < 2; i++) {
-            
             int castleAllowed = true;
             // 1 to 4 positions to the sides
             for (int j = 1; j<=4; j++) {
@@ -88,7 +85,6 @@ std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool
                 
                 Square * neighbour = board->squares[neighbourXLocation][location->coordinates.y];
                 
-                
                 // the outer squares must have a rook that did not move.
                 if ((neighbourXLocation == 0 || neighbourXLocation == 7)
                     && (!neighbour->chessPiece
@@ -96,8 +92,6 @@ std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool
                         || neighbour->chessPiece->amountOfSteps > 0))  {
                     castleAllowed = false;
                 } else if (neighbour->chessPiece && !(neighbourXLocation == 0 || neighbourXLocation == 7)) castleAllowed = false;
-                
-//                std::cout << "allowed? " << castleAllowed << " direction: " << castleNames[i] + " move: " << j << " \n";
                 
                 // At this point there is a king and a rook that has not moved and the squares between the king and rook are empty.
                 
@@ -113,6 +107,10 @@ std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool
             }
             
             if (castleAllowed) {
+                // TODO return moves instead of squares.
+                // such that we can do this:
+                // moves.push_back(new Move(... ... ... castlingSides[i] castlingRook this);
+                // then we can change the position of the rook in the board.doMove() function.
                 squares.push_back(board->squares[location->coordinates.x + (2 * directions[i])][location->coordinates.y]);
             }
         }
