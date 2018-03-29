@@ -40,7 +40,16 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
                 // still it wanted to do the move when the press was taking long. but then the chesspiece was already moved...
                 // todo fix this neatly. (selection of squares etc)
                 if (square->isFocused && board->selectedSquare->chessPiece) {
-                    return new Move(board, board->selectedSquare, square);
+                    
+                    for (Move * move : board->selectedSquare->chessPiece->getAvailableMoves(true)) {
+                        // we found the move we want to do in the list of available moves of the piece!
+                        // we need this method because we must look up if it is legal and if it is castling.
+                        if (move->endOfMove == square) {
+                            return move;
+                        }
+                    }
+                    
+                    // return new Move(board, board->selectedSquare, square);
                 } else if (square->chessPiece && square->chessPiece->color == this->color) {
                     square->setSelected(true);
                     board->selectedSquare = square;

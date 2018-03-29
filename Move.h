@@ -18,7 +18,7 @@ public:
     Move();
     Move(Board * board, Square *startOfMove, Square *endOfMove);
     Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated);
-
+    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook, Square * rookTargetSquare);
     Square *startOfMove;
     Square *endOfMove;
 
@@ -29,9 +29,9 @@ public:
 
     std::string name;
     void generateName();
-    CastlingSide getCastleSide();
-    ChessPiece * castlingKing = nullptr;
+    CastlingSide castlingSide;
     ChessPiece * castlingRook = nullptr;
+    Square * rookTargetSquare = nullptr;
 };
 
 
