@@ -1,6 +1,4 @@
-//
 // Created by Lukas Bos on 30/11/2017.
-//
 
 #ifndef CHESS_Square_H
 #define CHESS_Square_H

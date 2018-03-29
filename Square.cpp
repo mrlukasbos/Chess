@@ -1,6 +1,4 @@
-//
 // Created by Lukas Bos on 30/11/2017.
-//
 
 #include "Square.h"
 
@@ -9,7 +7,7 @@ Square::Square() {}
 Square::Square(int x, int y, int size, sf::Color color, sf::Vector2i coordinates)
         : posX(x), posY(y), size(size), color(color), coordinates(coordinates) {
 
-    char letters[8] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+    char letters[] = "abcdefgh";
     name = letters[coordinates.x] + std::to_string(8 - coordinates.y);
 }
 
