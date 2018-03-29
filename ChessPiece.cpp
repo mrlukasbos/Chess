@@ -31,6 +31,7 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
 
 std::vector<Square *> ChessPiece::getAvailableMoves(bool considerCheck) {
     // virtual method for child classes
+    return {};
 }
 
 int ChessPiece::getLocationScore(int x, int y) {

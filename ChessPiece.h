@@ -22,10 +22,10 @@ public:
     ChessPiece(Board *board, Square *location, PieceColor color);
     void drawChessPiece(sf::RenderWindow &window);
 
-    PieceColor color;
     PieceType type;
-    Square *location;
     Board *board;
+    Square *location;
+    PieceColor color;
     int amountOfSteps = 0;
     bool isChecked = false;
     bool isCaptured = false;

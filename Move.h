@@ -1,18 +1,18 @@
-//
 // Created by Lukas Bos on 11/12/2017.
-//
 
 #ifndef CHESS_MOVE_H
 #define CHESS_MOVE_H
 
-
 #include "Square.h"
 #include "ChessPiece.h"
 
-class Square;
 class Board;
+class Square;
 class ChessPiece;
 class Move {
+private:
+    Board *board;
+    void identifyPieces();
 public:
     Move();
     Move(Board * board, Square *startOfMove, Square *endOfMove);
@@ -29,9 +29,7 @@ public:
     std::string name;
     void generateName();
 
-private:
-    void identifyPieces();
-    Board * board;
+
 };
 
 

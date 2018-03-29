@@ -8,23 +8,20 @@ Knight::Knight(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = KNIGHT;
     generateImage(type);
-
     pieceScore = KNIGHT_SCORE;
-
     locationScores = {{
-                              {-50, -40, -30, -30, -30, -30, -40, -50},
-                              {-40, -20, 0, 0, 0, 0, -20, -40},
-                              {-30, 0, 10, 15, 15, 10, 0, -30},
-                              {-30, 5, 15, 20, 20, 15, 5, -30},
-                              {-30, 0, 15, 20, 20, 15, 0, -30},
-                              {-30, 5, 10, 15, 15, 10, 5, -30},
-                              {-40, -20, 0, 5, 5, 0, -20, -40},
-                              {-50, -40, -30, -30, -30, -30, -40, -50}
-                      }};
+        {{-50, -40, -30, -30, -30, -30, -40, -50}},
+        {{-40, -20,   0,   0,   0,   0, -20, -40}},
+        {{-30,   0,  10,  15,  15,  10,   0, -30}},
+        {{-30,   5,  15,  20,  20,  15,   5, -30}},
+        {{-30,   0,  15,  20,  20,  15,   0, -30}},
+        {{-30,   5,  10,  15,  15,  10,   5, -30}},
+        {{-40, -20,   0,   5,   5,   0, -20, -40}},
+        {{-50, -40, -30, -30, -30, -30, -40, -50}}
+    }};
 }
 
 std::vector<Square *> Knight::getAvailableMoves(bool considerCheck) {
-
     Vector2i knightDirections[] = {
             Vector2i(-2, 1),
             Vector2i(-2, -1),
@@ -35,6 +32,5 @@ std::vector<Square *> Knight::getAvailableMoves(bool considerCheck) {
             Vector2i(2, 1),
             Vector2i(2, -1)
     };
-
     return calculateMovesForDirections(location, knightDirections, board, color, 8, 1, considerCheck);
 }

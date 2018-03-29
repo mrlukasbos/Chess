@@ -14,26 +14,23 @@ class Square {
 
 public:
     Square();
-
     Square(int x, int y, int size, sf::Color color, sf::Vector2i coordinates);
     sf::RectangleShape rectangle;
     void drawSquare(sf::RenderWindow &window);
+    
     int posX;
     int posY;
+    int size;
+    sf::Color color;
+    sf::Vector2i coordinates;
+    
     bool isSelected = false;
     bool isFocused = false;
     bool isChecked = false;
     void setSelected(bool selected);
-
     void setFocused(bool focused);
-
-    sf::Color color;
-    sf::Vector2i coordinates;
     std::string name;
-    int size;
-
     ChessPiece *chessPiece = NULL;
-
     void setChessPiece(ChessPiece *piece);
 };
 
