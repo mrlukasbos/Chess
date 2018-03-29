@@ -180,11 +180,11 @@ void Board::focusSquares() {
     // here check for the squares where the selected square may move to
     if (selectedSquare && selectedSquare->chessPiece) {
 
-        std::vector<Square *> availableMoves;
-        availableMoves = selectedSquare->chessPiece->getAvailableSquares(true);
+        std::vector<Move *> availableMoves;
+        availableMoves = selectedSquare->chessPiece->getAvailableMoves(true);
 
-        for (Square * square : availableMoves) {
-            square->setFocused(true);
+        for (Move * move : availableMoves) {
+            move->endOfMove->setFocused(true);
         }
     }
 }
