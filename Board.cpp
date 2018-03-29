@@ -91,9 +91,20 @@ void Board::doMove(Move *nextMove) {
 
     nextMove->endOfMove->chessPiece->amountOfSteps++;
 
+    // if there is a castlingRook we must move it also
+    if (nextMove->castlingRook) {
+        std::cout << "castling... ";
+        
+        // move rook
+        nextMove->rookTargetSquare->chessPiece = nextMove->castlingRook;
+        nextMove->castlingRook->location = nextMove->rookTargetSquare;
+        nextMove->initalRookSquare->chessPiece = nullptr;
+    }
+    
     if (!nextMove->isSimulated) {
         std::cout << "move is done: " + nextMove->name + "\n";
     }
+    
     allMoves.push_back(nextMove);
 }
 
@@ -113,6 +124,18 @@ void Board::undoMove() {
         move->startOfMove->chessPiece = move->initialPiece;
         move->initialPiece->amountOfSteps--;
 
+        // if there is a castlingRook we must move undo it also
+        if (move->castlingRook) {
+            std::cout << "undo castling... ";
+            
+            // move rook
+            move->initalRookSquare->chessPiece = move->castlingRook;
+            move->castlingRook->location = move->initalRookSquare;
+
+            move->rookTargetSquare->chessPiece = nullptr;
+
+        }
+        
         if (!move->isSimulated) {
             std::cout << "move is undone: " + move->name + "\n";
         }

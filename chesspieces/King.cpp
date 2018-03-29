@@ -119,7 +119,7 @@ std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool consi
             if (castleAllowed && castlingRook) {
                 Square * kingTargetSquare = board->squares[location->coordinates.x + (2 * directions[i])][location->coordinates.y];
                 Square * rookTargetSquare = board->squares[location->coordinates.x + (1 * directions[i])][location->coordinates.y];
-                moves.push_back(new Move(board, location, kingTargetSquare, false, castlingSides[i], castlingRook, rookTargetSquare));
+                moves.push_back(new Move(board, location, kingTargetSquare, false, castlingSides[i], castlingRook, castlingRook->location, rookTargetSquare));
             }
         }
     }

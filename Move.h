@@ -18,7 +18,7 @@ public:
     Move();
     Move(Board * board, Square *startOfMove, Square *endOfMove);
     Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated);
-    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook, Square * rookTargetSquare);
+    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook, Square * initalRookSquare, Square * rookTargetSquare);
     Square *startOfMove;
     Square *endOfMove;
 
@@ -32,6 +32,7 @@ public:
     CastlingSide castlingSide;
     ChessPiece * castlingRook = nullptr;
     Square * rookTargetSquare = nullptr;
+    Square * initalRookSquare = nullptr;
 };
 
 
