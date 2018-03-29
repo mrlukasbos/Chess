@@ -24,7 +24,7 @@ King::King(Board *board, Square *location, PieceColor color)
 }
 
 
-std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> King::getAvailableSquares(bool considerCheck) {
 
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
@@ -37,7 +37,7 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
             Vector2i(-1, 1)   // Left-Down
     };
 
-    std::vector<Square *> moves;
+    std::vector<Square *> squares;
 
     int y = location->coordinates.y;
     int x = location->coordinates.x;
@@ -55,18 +55,18 @@ std::vector<Square *> King::getAvailableMoves(bool considerCheck) {
             bool squareHasFriendlyPiece = square->chessPiece && square->chessPiece->color == color;
 
             if (!squareHasFriendlyPiece) {
-                moves.push_back(square);
+                squares.push_back(square);
             }
         }
 
     }
 
-    moves = addCastlingMoves(moves, considerCheck);
+    squares = addCastlingMoves(squares, considerCheck);
     
     if (considerCheck) {
-        return removeMovesLeadingToSelfCheck(moves);
+        return removeMovesLeadingToSelfCheck(squares);
     }
-    return moves;
+    return squares;
 }
 
 std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool considerCheck) {
@@ -94,7 +94,6 @@ std::vector<Square *> King::addCastlingMoves(std::vector<Square *> squares, bool
                 } else if (neighbour->chessPiece && !(neighbourXLocation == 0 || neighbourXLocation == 7)) castleAllowed = false;
                 
                 // At this point there is a king and a rook that has not moved and the squares between the king and rook are empty.
-                
                 if (considerCheck) {
                     // check if the two positions next
                     if (j <= 2) {

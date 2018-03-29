@@ -19,7 +19,7 @@ Queen::Queen(Board *board, Square *location, PieceColor color)
     }};
 }
 
-std::vector<Square *> Queen::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> Queen::getAvailableSquares(bool considerCheck) {
     Vector2i allDirections[] = {
             Vector2i(0, 1),   // Down
             Vector2i(1, 0),   // Right

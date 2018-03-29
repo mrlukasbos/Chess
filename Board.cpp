@@ -134,7 +134,7 @@ bool Board::isInCheck(PieceColor color) {
     for (ChessPiece * piece : getPiecesByColor(enemyColor)) {
 
         //considerotherpieces: true, considerCheck FALSE! otherwise infinite loop.
-        for (Square * square : piece->getAvailableMoves(false)) {
+        for (Square * square : piece->getAvailableSquares(false)) {
             ChessPiece *pieceToHit = square->chessPiece;
             if (pieceToHit && pieceToHit->type == KING && pieceToHit->color == color) {
                 pieceToHit->isChecked = true;
@@ -153,7 +153,7 @@ bool Board::checkMate() {
 
     // look for all pieces and look if they have available moves
     for (ChessPiece * piece : getPiecesByColor(color)) {
-        if (piece->getAvailableMoves(true).size() > 0) {
+        if (piece->getAvailableSquares(true).size() > 0) {
             return false;
         }
     }
@@ -181,7 +181,7 @@ void Board::focusSquares() {
     if (selectedSquare && selectedSquare->chessPiece) {
 
         std::vector<Square *> availableMoves;
-        availableMoves = selectedSquare->chessPiece->getAvailableMoves(true);
+        availableMoves = selectedSquare->chessPiece->getAvailableSquares(true);
 
         for (Square * square : availableMoves) {
             square->setFocused(true);

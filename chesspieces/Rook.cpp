@@ -19,7 +19,7 @@ Rook::Rook(Board *board, Square *location, PieceColor color)
     }};
 }
 
-std::vector<Square *> Rook::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> Rook::getAvailableSquares(bool considerCheck) {
     Vector2i horizontalAndVerticalDirections[] = {
             Vector2i(0, 1),  // Down
             Vector2i(1, 0),  // Right

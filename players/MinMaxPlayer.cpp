@@ -19,34 +19,32 @@ MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
 Move *MinMaxPlayer::getNextMove(Board *board) {
     std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
 
-    Square *bestElement = NULL;
-    ChessPiece *pieceToMove = NULL;
+    Move * bestMove = nullptr;
     int highestScore = -999999;
 
     for (int i = 0; i < pieces.size(); i++) {
         ChessPiece *piece = pieces[i];
-        std::vector<Square *> moves = piece->getAvailableMoves(true);
+        
+        std::vector<Move *> moves = piece->getAvailableMoves(true);
 
         for (int j = 0; j < moves.size(); j++) {
-            Square *square = moves[j];
+            Square * targetSquare = moves[j]->endOfMove;
 
             int squareScore = 0;
-            if (square->chessPiece) {
-                squareScore += square->chessPiece->pieceScore;
+            if (targetSquare->chessPiece) {
+                squareScore += targetSquare->chessPiece->pieceScore;
             }
 
-            squareScore += piece->getLocationScore(square->coordinates.x, square->coordinates.y);
+            squareScore += piece->getLocationScore(targetSquare->coordinates.x, targetSquare->coordinates.y);
 
             if (squareScore >= highestScore) {
                 highestScore = squareScore;
-                bestElement = square;
-                pieceToMove = piece;
+                bestMove = moves[j];
             }
         }
     }
 
-    Move *epicMove = new Move(board, pieceToMove->location, bestElement); // return best move
-    return epicMove;
+    return bestMove;
 }
 
 

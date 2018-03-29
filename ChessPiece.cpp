@@ -29,9 +29,17 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<Square *> ChessPiece::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> ChessPiece::getAvailableSquares(bool considerCheck) {
     // virtual method for child classes
     return {};
+}
+
+std::vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
+    std::vector<Move *> moves;
+    for (Square * square : getAvailableSquares(considerCheck)) {
+        moves.push_back(new Move(board, location, square));
+    }
+    return moves;
 }
 
 int ChessPiece::getLocationScore(int x, int y) {

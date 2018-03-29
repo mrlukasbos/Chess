@@ -15,6 +15,7 @@
 using namespace sf;
 
 class Square;
+class Move;
 class Board;
 class ChessPiece {
 public:
@@ -29,7 +30,8 @@ public:
     int amountOfSteps = 0;
     bool isChecked = false;
     bool isCaptured = false;
-    virtual std::vector<Square *> getAvailableMoves(bool considerCheck);
+    virtual std::vector<Square *> getAvailableSquares(bool considerCheck);
+    virtual std::vector<Move *> getAvailableMoves(bool considerCheck);
 
     virtual int getLocationScore(int x, int y);
     int pieceScore;
@@ -37,7 +39,6 @@ public:
 
 protected:
     std::vector<Square *> removeMovesLeadingToSelfCheck(std::vector<Square *> moves);
-
 
     std::vector<Square *> calculateMovesForDirections(
             Square *location,

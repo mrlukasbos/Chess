@@ -24,10 +24,13 @@ int main() {
     settings.antialiasingLevel = 8;
 
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
+    window.setFramerateLimit(20);
+
     Board board;
     Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
     Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
     board.startGame(bottomPlayer, topPlayer);
+    
     Player *currentPlayer;
     Interface interface(window, board);
     Color menuColor(220, 220, 220); // light gray
@@ -36,16 +39,11 @@ int main() {
 
     // white begins
     currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
-
-    window.setFramerateLimit(20);
     
     //start interface
     while (window.isOpen()) {
         Event event;
-
         while (window.pollEvent(event)) {
-            
-
             if (event.type == Event::Closed) {
                 window.close();
             }
@@ -67,18 +65,17 @@ int main() {
                 board.undoMove();
                 board.checkGameStatus();
             }
-
-                // update screen after event.
-                window.clear(menuColor);
-                interface.showBoardBackground();
-                board.drawBoard(window); // this is where the redraw of the board happens
-                interface.showCurrentPlayerText(currentPlayer);
-                interface.showPlayerTypes();
-                interface.showCoordinates();
-                interface.showSelectedSquareName();
-                updateWindowNextCycle = false;
+                
+            // update screen after event.
+            window.clear(menuColor);
+            interface.showBoardBackground();
+            board.drawBoard(window); // this is where the redraw of the board happens
+            interface.showCurrentPlayerText(currentPlayer);
+            interface.showPlayerTypes();
+            interface.showCoordinates();
+            interface.showSelectedSquareName();
+            updateWindowNextCycle = false;
             }
-
         }
 
         Move *nextMove = currentPlayer->getNextMove(&board);
@@ -97,8 +94,6 @@ int main() {
             updateWindowNextCycle = true;
         }
 
-        
-      
         window.display();
     }
 }

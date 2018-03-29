@@ -24,7 +24,7 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
     }};
 }
 
-std::vector<Square *> Pawn::getAvailableMoves(bool considerCheck) {
+std::vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
     std::vector<Square *> availableMoves;
 
     int y = location->coordinates.y;
