@@ -24,6 +24,10 @@ Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulat
 
 // Simulate move to look if this causes a check(mate).
 void Move::generateName() {
+    if (castlingRook) {
+        name = castlingSide == CastlingSide::QUEENSIDE ? "0-0-0" : "0-0";
+        return;
+    }
     char shortNames[] = "KQRBNP";
     name = shortNames[initialPiece->type];
     if (name == "P") name = ""; // pawn is usually not written down.
