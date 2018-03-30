@@ -24,6 +24,21 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
     }};
 }
 
+std::vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
+    std::vector<Move *> moves;
+    for (Square * square : getAvailableSquares(considerCheck)) {
+        
+        Move * move = new Move(board, location, square);
+        // when a pawn reaches bottom or top it can promote
+        if (square->coordinates.y == 7 || square->coordinates.y == 0) {
+            move->isPromoting = true;
+        }
+        moves.push_back(move);
+    }
+    return moves;
+}
+
+
 std::vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
     std::vector<Square *> availableMoves;
 

@@ -59,14 +59,14 @@ void Board::initPieces() {
             row = 7;
         }
 
-        squares[0][row]->setChessPiece(new Rook(this, squares[0][row], color));
-        squares[1][row]->setChessPiece(new Knight(this, squares[1][row], color));
-        squares[2][row]->setChessPiece(new Bishop(this, squares[2][row], color));
-        squares[queenXPosition][row]->setChessPiece(new Queen(this, squares[queenXPosition][row], color));
-        squares[kingXPosition][row]->setChessPiece(new King(this, squares[kingXPosition][row], color));
-        squares[5][row]->setChessPiece(new Bishop(this, squares[5][row], color));
-        squares[6][row]->setChessPiece(new Knight(this, squares[6][row], color));
-        squares[7][row]->setChessPiece(new Rook(this, squares[7][row], color));
+       // squares[0][row]->setChessPiece(new Rook(this, squares[0][row], color));
+       // squares[1][row]->setChessPiece(new Knight(this, squares[1][row], color));
+      //  squares[2][row]->setChessPiece(new Bishop(this, squares[2][row], color));
+       // squares[queenXPosition][row]->setChessPiece(new Queen(this, squares[queenXPosition][row], color));
+        //squares[kingXPosition][row]->setChessPiece(new King(this, squares[kingXPosition][row], color));
+       // squares[5][row]->setChessPiece(new Bishop(this, squares[5][row], color));
+// squares[6][row]->setChessPiece(new Knight(this, squares[6][row], color));
+       // squares[7][row]->setChessPiece(new Rook(this, squares[7][row], color));
     }
 
     // add pawns
@@ -83,6 +83,7 @@ void Board::doMove(Move *nextMove) {
     if (nextMove->endOfMove->chessPiece) {
         nextMove->endOfMove->chessPiece->isCaptured = true;
     }
+    
 
     // move the chesspiece
     nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
@@ -90,12 +91,16 @@ void Board::doMove(Move *nextMove) {
     nextMove->startOfMove->chessPiece = nullptr;
 
     nextMove->endOfMove->chessPiece->amountOfSteps++;
+    
+    if (nextMove->isPromoting) {
+        nextMove->endOfMove->chessPiece = nullptr;
+        
+        // for now always become a queen
+        nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
+    }
 
     // if there is a castlingRook we must move it also
     if (nextMove->castlingRook) {
-        std::cout << "castling... ";
-        
-        // move rook
         nextMove->rookTargetSquare->chessPiece = nextMove->castlingRook;
         nextMove->castlingRook->location = nextMove->rookTargetSquare;
         nextMove->initalRookSquare->chessPiece = nullptr;
@@ -133,8 +138,8 @@ void Board::undoMove() {
             move->castlingRook->location = move->initalRookSquare;
 
             move->rookTargetSquare->chessPiece = nullptr;
-
         }
+        
         
         if (!move->isSimulated) {
             std::cout << "move is undone: " + move->name + "\n";

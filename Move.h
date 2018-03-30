@@ -29,10 +29,16 @@ public:
 
     std::string name;
     void generateName();
+    
+    // castling variables
     CastlingSide castlingSide;
     ChessPiece * castlingRook = nullptr;
     Square * rookTargetSquare = nullptr;
     Square * initalRookSquare = nullptr;
+    
+    // pawn promotion variables
+    bool isPromoting = false;
+    ChessPiece * promotedPiece = nullptr;
 };
 
 

@@ -10,8 +10,8 @@
 class Pawn : public ChessPiece {
 public:
     Pawn(Board *board, Square *location, PieceColor color);
-
     std::vector<Square *> getAvailableSquares(bool considerCheck);
+    std::vector<Move *> getAvailableMoves(bool considerCheck) override;
 };
 
 #endif //CHESS_PAWN_H
