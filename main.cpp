@@ -26,7 +26,7 @@ int main() {
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
     window.setFramerateLimit(20);
 
-    Board board;
+    Board board = Board(window);
     Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
     Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
     board.startGame(bottomPlayer, topPlayer);
@@ -69,7 +69,7 @@ int main() {
             // update screen after event.
             window.clear(menuColor);
             interface.showBoardBackground();
-            board.drawBoard(window); // this is where the redraw of the board happens
+            board.drawBoard(); // this is where the redraw of the board happens
             interface.showCurrentPlayerText(currentPlayer);
             interface.showPlayerTypes();
             interface.showCoordinates();

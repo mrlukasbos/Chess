@@ -16,15 +16,15 @@
 
 using namespace sf;
 
-Board::Board() {
+Board::Board(RenderWindow &window) : window(window) {
     bottomPlayer = nullptr;
     topPlayer = nullptr;
     selectedSquare = nullptr;
-
+    
     createBoard();
 }
 
-void Board::drawBoard(sf::RenderWindow &window) {
+void Board::drawBoard() {
     for (short i  = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             squares[i][j]->drawSquare(window);

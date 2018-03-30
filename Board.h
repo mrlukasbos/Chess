@@ -19,13 +19,13 @@ class ChessPiece;
 class Move;
 class Board {
 public:
-    Board();
 
+    Board(RenderWindow &window);
     // constructs a board from an existing board (copies the board)
     Board(Board const &) = default;
     Square *squares[8][8];
 
-    void drawBoard(sf::RenderWindow &window);
+    void drawBoard();
     void startGame(Player *bottomPlayer, Player *topPlayer);
     void selectSquareFromCoordinates(Vector2i coordinates);
     void focusSquares();
@@ -48,6 +48,7 @@ public:
 private:
     void createBoard();
     void initPieces();
+    RenderWindow &window;
 };
 
 
