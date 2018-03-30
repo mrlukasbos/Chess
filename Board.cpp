@@ -93,6 +93,33 @@ void Board::doMove(Move *nextMove) {
     nextMove->endOfMove->chessPiece->amountOfSteps++;
     
     if (nextMove->isPromoting) {
+        
+        RectangleShape rectangle;
+        rectangle.setPosition(0,0);
+        rectangle.setSize(Vector2f(400, 100));
+        
+        
+        rectangle.setFillColor(Color::Red);
+        window.draw(rectangle);
+        
+        Image img;
+        // for the finding images
+        std::string promotionOptions[4] = {"Queen", "Rook", "Bishop", "Knight"};
+        std::string imageUrlPrefix = nextMove->initialPiece->color == PieceColor::BLACK ? "Black" : "White";
+        
+        
+        for (int i = 0; i < 4; i++) {
+            img.loadFromFile("images/" + imageUrlPrefix + promotionOptions[i] + ".png");
+            Texture texture;
+            Sprite sprite;
+            texture.loadFromImage(img);
+            texture.setSmooth(true);
+            sprite.setScale(0.9, 0.9);
+            sprite.setTexture(texture, true);
+            sprite.setPosition(i*100, 0); // absolute position
+            window.draw(sprite);
+        }
+    
         nextMove->endOfMove->chessPiece = nullptr;
         
         // for now always become a queen
