@@ -19,6 +19,7 @@ using namespace sf;
 Board::Board(RenderWindow &window) : window(window) {
     bottomPlayer = nullptr;
     topPlayer = nullptr;
+    currentPlayer = nullptr;
     selectedSquare = nullptr;
     
     createBoard();
@@ -33,10 +34,10 @@ void Board::drawBoard() {
 }
 
 // set all pieces to the initial position
-void Board::startGame(Player *bottomPlayer, Player *topPlayer) {
+void Board::startGame(Player *bottomPlayer, Player *topPlayer, Player *currentPlayer) {
     this->bottomPlayer = bottomPlayer;
     this->topPlayer = topPlayer;
-
+    this->currentPlayer = currentPlayer;
     createBoard();
     initPieces();
 }
@@ -118,26 +119,37 @@ void Board::doMove(Move *nextMove) {
 //        }
 
         nextMove->endOfMove->chessPiece = nullptr;
-        char PromotionChoice = 'q';
-        while (nextMove->endOfMove->chessPiece == nullptr) {
-            std::cout << "make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
-            PromotionChoice = (char) std::cin.get();
 
-            switch(PromotionChoice) {
-                case 'q':
-                    nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
-                    break;
-                case 'r':
-                    nextMove->endOfMove->chessPiece = new Rook(this, nextMove->endOfMove, nextMove->initialPiece->color);
-                    break;
-                case 'b':
-                    nextMove->endOfMove->chessPiece = new Bishop(this, nextMove->endOfMove, nextMove->initialPiece->color);
-                    break;
-                case 'n':
-                    nextMove->endOfMove->chessPiece = new Knight(this, nextMove->endOfMove, nextMove->initialPiece->color);
-                    break;
-                default: std::cout << "error in input. make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
+        if (currentPlayer->isHuman) {
+            while (nextMove->endOfMove->chessPiece == nullptr) {
+
+                std::cout << "make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
+                char PromotionChoice = (char) std::cin.get();
+
+                switch (PromotionChoice) {
+                    case 'q':
+                        nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove,
+                                                                    nextMove->initialPiece->color);
+                        break;
+                    case 'r':
+                        nextMove->endOfMove->chessPiece = new Rook(this, nextMove->endOfMove,
+                                                                   nextMove->initialPiece->color);
+                        break;
+                    case 'b':
+                        nextMove->endOfMove->chessPiece = new Bishop(this, nextMove->endOfMove,
+                                                                     nextMove->initialPiece->color);
+                        break;
+                    case 'n':
+                        nextMove->endOfMove->chessPiece = new Knight(this, nextMove->endOfMove,
+                                                                     nextMove->initialPiece->color);
+                        break;
+                    default:
+                        std::cout << "error in input. make a choice: q -> queen, r -> rook, b -> bishop, n -> knight"
+                                  << std::endl;
+                }
             }
+        } else {
+            nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
         }
     }
 
@@ -294,7 +306,11 @@ void Board::checkGameStatus() {
             // just start the game again ;-) switch players
             bottomPlayer->color = inverse(bottomPlayer->color);
             topPlayer->color = inverse(topPlayer->color);
-            startGame(bottomPlayer, topPlayer);
+            startGame(bottomPlayer, topPlayer, currentPlayer);
         }
     }
+}
+
+void Board::setCurrentPlayer(Player *currentPlayer) {
+    this->currentPlayer = currentPlayer;
 }

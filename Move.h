@@ -9,6 +9,7 @@
 
 class Board;
 class Square;
+class Player;
 class ChessPiece;
 class Move {
 private:
@@ -16,14 +17,18 @@ private:
     void identifyPieces();
 public:
     Move();
-    Move(Board * board, Square *startOfMove, Square *endOfMove);
-    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated);
-    Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook, Square * initalRookSquare, Square * rookTargetSquare);
+    Move(Board *, Square *, Square *);
+    Move(Board *, Square *, Square *, bool);
+    Move(Board *, Square *, Square *, bool, CastlingSide, ChessPiece *, Square *, Square *);
+
+
     Square *startOfMove;
     Square *endOfMove;
 
     ChessPiece *initialPiece;
     ChessPiece *takenPiece;
+
+    Player * player;
 
     bool isSimulated = false;
 

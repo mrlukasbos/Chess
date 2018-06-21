@@ -26,11 +26,12 @@ public:
     Square *squares[8][8];
 
     void drawBoard();
-    void startGame(Player *bottomPlayer, Player *topPlayer);
+    void startGame(Player *bottomPlayer, Player *topPlayer, Player * currentPlayer);
     void selectSquareFromCoordinates(Vector2i coordinates);
     void focusSquares();
 
     void doMove(Move *nextMove);
+    void setCurrentPlayer(Player *currentPlayer);
     void undoMove();
 
     std::vector<Move *> allMoves;
@@ -40,6 +41,7 @@ public:
     Square * selectedSquare;
     Player *bottomPlayer;
     Player *topPlayer;
+    Player *currentPlayer;
     std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
 
     bool isInCheck(PieceColor color);

@@ -8,10 +8,12 @@ using namespace sf;
 
 HumanPlayer::HumanPlayer(sf::RenderWindow &window) : window(window) {
     type = "HumanPlayer";
+    isHuman = true;
 }
 
 HumanPlayer::HumanPlayer(PieceColor color, sf::RenderWindow &window) : Player(color), window(window) {
     type = "HumanPlayer";
+    isHuman = true;
 }
 
 Move *HumanPlayer::getNextMove(Board *board) {

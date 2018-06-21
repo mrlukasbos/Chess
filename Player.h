@@ -22,7 +22,7 @@ public:
     PieceColor color;
 
     virtual Move *getNextMove(Board *board);
-
+    bool isHuman = false;
     sf::String getType();
     sf::String type;
 };

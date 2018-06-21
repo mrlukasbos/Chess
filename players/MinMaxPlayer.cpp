@@ -10,10 +10,12 @@ using namespace sf;
 
 MinMaxPlayer::MinMaxPlayer() {
     type = "MinMaxPlayer";
+    isHuman = false;
 }
 
 MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
     type = "MinMaxPlayer";
+    isHuman = false;
 }
 
 Move *MinMaxPlayer::getNextMove(Board *board) {

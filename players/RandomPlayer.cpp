@@ -8,10 +8,14 @@ using namespace sf;
 
 RandomPlayer::RandomPlayer() {
     type = "Randomplayer";
+    isHuman = false;
+
 }
 
 RandomPlayer::RandomPlayer(PieceColor color) : Player(color) {
     type = "Randomplayer";
+    isHuman = false;
+
 }
 
 Move *RandomPlayer::getNextMove(Board * board) {

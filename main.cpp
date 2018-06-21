@@ -19,6 +19,7 @@
 
 using namespace sf;
 
+
 int main() {
     ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -29,17 +30,16 @@ int main() {
     Board board = Board(window);
     Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
     Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
-    board.startGame(bottomPlayer, topPlayer);
-    
-    Player *currentPlayer;
+
+
     Interface interface(window, board);
     Color menuColor(220, 220, 220); // light gray
     
     bool updateWindowNextCycle = false; // indicate if the window needs a refresh.
 
     // white begins
-    currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
-    
+    Player * currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
+    board.startGame(bottomPlayer, topPlayer, currentPlayer);
     //start interface
     while (window.isOpen()) {
         Event event;
@@ -55,12 +55,12 @@ int main() {
             if (sf::Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
                 Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
                 Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
-                board.startGame(bottomPlayer, topPlayer);
+                board.startGame(bottomPlayer, topPlayer, currentPlayer);
                 
             } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
                 Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
                 Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
-                board.startGame(bottomPlayer, topPlayer);
+                board.startGame(bottomPlayer, topPlayer, currentPlayer);
             } else if (Keyboard::isKeyPressed(Keyboard::R)) {
                 board.undoMove();
                 board.checkGameStatus();
@@ -89,6 +89,7 @@ int main() {
             } else {
                 currentPlayer = topPlayer;
             }
+            board.setCurrentPlayer(currentPlayer);
             
             // the computer may have done a move so we want to update the screen.
             updateWindowNextCycle = true;
