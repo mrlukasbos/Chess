@@ -309,7 +309,7 @@ std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
 void Board::checkGameStatus() {
     if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
         if (checkMate()) {
-            std::string winnerName = isInCheck(PieceColor::WHITE) ? "white" : "black";
+            std::string winnerName = isInCheck(PieceColor::WHITE) ? "black" : "white";
             std::cout << "The winner is " + winnerName + "\n" ;
 
             // just start the game again ;-) switch players

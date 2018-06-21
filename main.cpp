@@ -29,7 +29,7 @@ int main() {
 
     Board board = Board(window);
     Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
-    Player *topPlayer = new HumanPlayer(PieceColor::BLACK, window);
+    Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
 
     Interface interface(window, board);
     Color menuColor(220, 220, 220); // light gray
