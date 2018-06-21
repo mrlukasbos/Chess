@@ -44,6 +44,10 @@ public:
     // pawn promotion variables
     bool isPromoting = false;
     ChessPiece * promotedPiece = nullptr;
+
+    // en passant variable
+    ChessPiece * enPassantTakenPiece = nullptr;
+
 };
 
 

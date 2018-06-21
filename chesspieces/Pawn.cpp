@@ -97,7 +97,7 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
 vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
     Move * previousMove = board->allMoves.back();
 
-    if (previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
+    if (board->allMoves.size() > 0 && previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
         ChessPiece *opponentPawn = previousMove->initialPiece;
         Vector2i loc = this->location->coordinates;
         Vector2i opLoc = opponentPawn->location->coordinates;
@@ -107,9 +107,11 @@ vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
             if (opponentPawn->amountOfSteps == 1) {
                 if (movedTwoSquaresFromBottom) {
                     Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][2]);
+                    enPassantMove->enPassantTakenPiece = opponentPawn;
                     moves.push_back(enPassantMove);
                 } else if (movedTwoSquaresFromTop) {
                     Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][5]);
+                    enPassantMove->enPassantTakenPiece = opponentPawn;
                     moves.push_back(enPassantMove);
                 }
             }

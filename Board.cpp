@@ -85,6 +85,11 @@ void Board::doMove(Move *nextMove) {
         nextMove->endOfMove->chessPiece->isCaptured = true;
     }
 
+    if (nextMove->enPassantTakenPiece) {
+        nextMove->enPassantTakenPiece->isCaptured = true;
+        nextMove->enPassantTakenPiece->location->chessPiece = nullptr;
+    }
+
     // move the chesspiece
     nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
     nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
@@ -194,7 +199,11 @@ void Board::undoMove() {
             move->rookTargetSquare->chessPiece = nullptr;
         }
 
-        if (!move->isSimulated) {
+        if (move->enPassantTakenPiece) {
+            move->enPassantTakenPiece->location->chessPiece = move->enPassantTakenPiece;
+        }
+
+            if (!move->isSimulated) {
             std::cout << "move is undone: " + move->name + "\n";
         }
     }
