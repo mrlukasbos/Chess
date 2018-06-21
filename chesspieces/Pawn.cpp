@@ -24,7 +24,7 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
     }};
 }
 
-std::vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
+vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
     std::vector<Move *> moves;
     for (Square * square : getAvailableSquares(considerCheck)) {
         
@@ -35,11 +35,11 @@ std::vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
         }
         moves.push_back(move);
     }
-    return moves;
+    return addEnPassantMoves(moves);
 }
 
 
-std::vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
+vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
     std::vector<Square *> availableMoves;
 
     int y = location->coordinates.y;
@@ -92,4 +92,28 @@ std::vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
         return removeMovesLeadingToSelfCheck(availableMoves);
     }
     return availableMoves;
+}
+
+vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
+    Move * previousMove = board->allMoves.back();
+
+    if (previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
+        ChessPiece *opponentPawn = previousMove->initialPiece;
+        Vector2i loc = this->location->coordinates;
+        Vector2i opLoc = opponentPawn->location->coordinates;
+        if (loc.y == opLoc.y && (((loc.x + 1) == opLoc.x) || (loc.x - 1) == opLoc.x)) {
+            bool movedTwoSquaresFromBottom = opLoc.y == 3;
+            bool movedTwoSquaresFromTop = opLoc.y == 4;
+            if (opponentPawn->amountOfSteps == 1) {
+                if (movedTwoSquaresFromBottom) {
+                    Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][2]);
+                    moves.push_back(enPassantMove);
+                } else if (movedTwoSquaresFromTop) {
+                    Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][5]);
+                    moves.push_back(enPassantMove);
+                }
+            }
+        }
+    }
+    return moves;
 }

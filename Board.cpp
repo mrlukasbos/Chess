@@ -60,14 +60,14 @@ void Board::initPieces() {
             row = 7;
         }
 
-       // squares[0][row]->setChessPiece(new Rook(this, squares[0][row], color));
-       // squares[1][row]->setChessPiece(new Knight(this, squares[1][row], color));
-      //  squares[2][row]->setChessPiece(new Bishop(this, squares[2][row], color));
-       // squares[queenXPosition][row]->setChessPiece(new Queen(this, squares[queenXPosition][row], color));
-        //squares[kingXPosition][row]->setChessPiece(new King(this, squares[kingXPosition][row], color));
-       // squares[5][row]->setChessPiece(new Bishop(this, squares[5][row], color));
-// squares[6][row]->setChessPiece(new Knight(this, squares[6][row], color));
-       // squares[7][row]->setChessPiece(new Rook(this, squares[7][row], color));
+        squares[0][row]->setChessPiece(new Rook(this, squares[0][row], color));
+        squares[1][row]->setChessPiece(new Knight(this, squares[1][row], color));
+        squares[2][row]->setChessPiece(new Bishop(this, squares[2][row], color));
+        squares[queenXPosition][row]->setChessPiece(new Queen(this, squares[queenXPosition][row], color));
+        squares[kingXPosition][row]->setChessPiece(new King(this, squares[kingXPosition][row], color));
+        squares[5][row]->setChessPiece(new Bishop(this, squares[5][row], color));
+        squares[6][row]->setChessPiece(new Knight(this, squares[6][row], color));
+        squares[7][row]->setChessPiece(new Rook(this, squares[7][row], color));
     }
 
     // add pawns

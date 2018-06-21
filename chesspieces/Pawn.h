@@ -7,11 +7,14 @@
 
 #include "../ChessPiece.h"
 
+using namespace std;
+
 class Pawn : public ChessPiece {
 public:
-    Pawn(Board *board, Square *location, PieceColor color);
-    std::vector<Square *> getAvailableSquares(bool considerCheck);
-    std::vector<Move *> getAvailableMoves(bool considerCheck) override;
+    Pawn(Board *, Square *, PieceColor );
+    vector<Square *> getAvailableSquares(bool );
+    vector<Move *> getAvailableMoves(bool) override;
+    vector<Move *> addEnPassantMoves(vector<Move *>);
 };
 
 #endif //CHESS_PAWN_H
