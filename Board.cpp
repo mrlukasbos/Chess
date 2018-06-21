@@ -83,7 +83,6 @@ void Board::doMove(Move *nextMove) {
     if (nextMove->endOfMove->chessPiece) {
         nextMove->endOfMove->chessPiece->isCaptured = true;
     }
-    
 
     // move the chesspiece
     nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
@@ -94,36 +93,52 @@ void Board::doMove(Move *nextMove) {
     
     if (nextMove->isPromoting) {
         
-        RectangleShape rectangle;
-        rectangle.setPosition(0,0);
-        rectangle.setSize(Vector2f(400, 100));
-        
-        
-        rectangle.setFillColor(Color::Red);
-        window.draw(rectangle);
-        
-        Image img;
-        // for the finding images
-        std::string promotionOptions[4] = {"Queen", "Rook", "Bishop", "Knight"};
-        std::string imageUrlPrefix = nextMove->initialPiece->color == PieceColor::BLACK ? "Black" : "White";
-        
-        
-        for (int i = 0; i < 4; i++) {
-            img.loadFromFile("images/" + imageUrlPrefix + promotionOptions[i] + ".png");
-            Texture texture;
-            Sprite sprite;
-            texture.loadFromImage(img);
-            texture.setSmooth(true);
-            sprite.setScale(0.9, 0.9);
-            sprite.setTexture(texture, true);
-            sprite.setPosition(i*100, 0); // absolute position
-            window.draw(sprite);
-        }
-    
+//        RectangleShape rectangle;
+//        rectangle.setPosition(0,0);
+//        rectangle.setSize(Vector2f(400, 100));
+//
+//
+//        rectangle.setFillColor(Color::Red);
+//        window.draw(rectangle);
+//
+//        Image img;
+//        // for the finding images
+//        std::string promotionOptions[4] = {"Queen", "Rook", "Bishop", "Knight"};
+//        std::string imageUrlPrefix = nextMove->initialPiece->color == PieceColor::BLACK ? "Black" : "White";
+//        for (int i = 0; i < 4; i++) {
+//            img.loadFromFile("images/" + imageUrlPrefix + promotionOptions[i] + ".png");
+//            Texture texture;
+//            Sprite sprite;
+//            texture.loadFromImage(img);
+//            texture.setSmooth(true);
+//            sprite.setScale(0.9, 0.9);
+//            sprite.setTexture(texture, true);
+//            sprite.setPosition(i*100, 0); // absolute position
+//            window.draw(sprite);
+//        }
+
         nextMove->endOfMove->chessPiece = nullptr;
-        
-        // for now always become a queen
-        nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
+        char PromotionChoice = 'q';
+        while (nextMove->endOfMove->chessPiece == nullptr) {
+            std::cout << "make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
+            PromotionChoice = (char) std::cin.get();
+
+            switch(PromotionChoice) {
+                case 'q':
+                    nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
+                    break;
+                case 'r':
+                    nextMove->endOfMove->chessPiece = new Rook(this, nextMove->endOfMove, nextMove->initialPiece->color);
+                    break;
+                case 'b':
+                    nextMove->endOfMove->chessPiece = new Bishop(this, nextMove->endOfMove, nextMove->initialPiece->color);
+                    break;
+                case 'n':
+                    nextMove->endOfMove->chessPiece = new Knight(this, nextMove->endOfMove, nextMove->initialPiece->color);
+                    break;
+                default: std::cout << "error in input. make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
+            }
+        }
     }
 
     // if there is a castlingRook we must move it also
@@ -166,8 +181,7 @@ void Board::undoMove() {
 
             move->rookTargetSquare->chessPiece = nullptr;
         }
-        
-        
+
         if (!move->isSimulated) {
             std::cout << "move is undone: " + move->name + "\n";
         }
@@ -175,9 +189,7 @@ void Board::undoMove() {
 }
 
 bool Board::isInCheck(PieceColor color) {
-
     PieceColor enemyColor = inverse(color);
-
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = squares[i][j]->chessPiece;
