@@ -30,7 +30,8 @@ public:
     int amountOfSteps = 0;
     bool isChecked = false;
     bool isCaptured = false;
-    virtual std::vector<Square *> getAvailableSquares(bool considerCheck);
+
+    virtual std::vector<Square *> getAvailableSquares(bool considerCheck) =0;
     virtual std::vector<Move *> getAvailableMoves(bool considerCheck);
 
     virtual int getLocationScore(int x, int y);

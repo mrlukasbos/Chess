@@ -29,11 +29,6 @@ void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
     window.draw(sprite);
 }
 
-std::vector<Square *> ChessPiece::getAvailableSquares(bool considerCheck) {
-    // virtual method for child classes
-    return {};
-}
-
 std::vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
     std::vector<Move *> moves;
     for (Square * square : getAvailableSquares(considerCheck)) {

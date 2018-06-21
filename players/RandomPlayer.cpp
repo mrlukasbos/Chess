@@ -5,6 +5,7 @@
 #include "RandomPlayer.h"
 
 using namespace sf;
+using namespace std;
 
 RandomPlayer::RandomPlayer() {
     type = "Randomplayer";
@@ -22,13 +23,13 @@ Move *RandomPlayer::getNextMove(Board * board) {
     std::vector<ChessPiece *> pieces = board->getPiecesByColor(color);
 
     for (int i = 0; i < pieces.size(); i++) {
-        ChessPiece *randomPiece = pieces[std::rand() % pieces.size()];
+        ChessPiece *randomPiece = pieces[rand() % pieces.size()];
         std::vector<Move *> moves = randomPiece->getAvailableMoves(true);
 
         if (!moves.empty()) { // if the chesspiece has available moves
-            return moves.at(std::rand() % moves.size()); // return random move
+            return moves.at(rand() % moves.size()); // return random move
         }
     }
 
-    return NULL;
+    return nullptr;
 }
