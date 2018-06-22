@@ -6,6 +6,7 @@
 #include "ChessPiece.h"
 
 using namespace sf;
+using namespace std;
 
 ChessPiece::ChessPiece() {
     pieceScore = 0;
@@ -20,17 +21,17 @@ ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
     type = PAWN;
 }
 
-void ChessPiece::drawChessPiece(sf::RenderWindow &window) {
+void ChessPiece::drawChessPiece(RenderWindow &window) {
     texture.loadFromImage(img);
     texture.setSmooth(true);
     sprite.setScale(0.9, 0.9);
     sprite.setTexture(texture, true);
-    sprite.setPosition(sf::Vector2f(location->posX + 10, location->posY + 10)); // absolute position
+    sprite.setPosition(Vector2f(location->posX + 10, location->posY + 10)); // absolute position
     window.draw(sprite);
 }
 
-std::vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
-    std::vector<Move *> moves;
+vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
+    vector<Move *> moves;
     for (Square * square : getAvailableSquares(considerCheck)) {
         moves.push_back(new Move(board, location, square));
     }
@@ -55,12 +56,12 @@ int ChessPiece::getLocationScore(int x, int y) {
  * Considercheck is usually always true, but it is needed for the program to detect check(mate)
  */
 
-std::vector<Square *>
+vector<Square *>
 ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[], Board *board,
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
                                         bool considerCheck) {
 
-    std::vector<Square *> moves;
+    vector<Square *> moves;
     int y = location->coordinates.y;
     int x = location->coordinates.x;
 
@@ -88,9 +89,9 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
     return moves;
 }
 
-std::vector<Square *>
-ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
-    std::vector<Square *> safeDestinations;
+vector<Square *>
+ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
+    vector<Square *> safeDestinations;
     for (Square *destination : destinations) {
         Move *moveToTry = new Move(board, location, destination, true);
         board->doMove(moveToTry);
@@ -100,6 +101,7 @@ ChessPiece::removeMovesLeadingToSelfCheck(std::vector<Square *> destinations) {
         }
 
         board->undoMove();
+        delete moveToTry;
     }
     return safeDestinations;
 }

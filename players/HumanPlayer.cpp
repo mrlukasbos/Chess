@@ -21,7 +21,7 @@ Move *HumanPlayer::getNextMove(Board *board) {
         return DetermineMoveFromMousePos(board, Mouse::getPosition(window).x, Mouse::getPosition(window).y);
     }
 
-    return NULL;
+    return nullptr;
 }
 
 Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
@@ -42,7 +42,6 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
                 // still it wanted to do the move when the press was taking long. but then the chesspiece was already moved...
                 // todo fix this neatly. (selection of squares etc)
                 if (square->isFocused && board->selectedSquare->chessPiece) {
-                    
                     for (Move * move : board->selectedSquare->chessPiece->getAvailableMoves(true)) {
                         // we found the move we want to do in the list of available moves of the piece!
                         // we need this method because we must look up if it is legal and if it is castling.
@@ -61,5 +60,5 @@ Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
     }
 
     board->focusSquares();
-    return NULL;
+    return nullptr;
 }
