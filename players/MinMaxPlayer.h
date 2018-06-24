@@ -20,11 +20,11 @@ public:
 
     Move * getNextMove(Board *board);
     
-    long getMoveScore(Board *, Move *, PieceColor, int);
+    long getMoveScore(Board *, Move *, PieceColor, int, long, long);
     
     Move * determineMove(Board*, PieceColor);
 private:
-    int exitMax = 2;
+    int exitMax = 8;
     int getBoardScore(Board *, PieceColor);
     int evaluateScore(vector<ChessPiece *>);
 };
