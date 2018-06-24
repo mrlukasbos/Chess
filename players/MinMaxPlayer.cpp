@@ -51,8 +51,6 @@ long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor
     }
     
     long highestScore, newScore;
-    
-
     highestScore = INT_MIN;
     newScore = INT_MIN;
 
@@ -74,6 +72,14 @@ long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor
 
 int MinMaxPlayer::getBoardScore(Board * board, PieceColor c) {
     
+    if (board->isInCheck(inverse(c)) && board->checkMate()) {
+        return INT_MIN;
+    }
+    
+    if (board->isInCheck(c) && board->checkMate()) {
+        return INT_MAX;
+    }
+
     vector<ChessPiece *> friendlyPieces = board->getPiecesByColor(color);
     vector<ChessPiece *> opponentPieces = board->getPiecesByColor(inverse(color));
 
@@ -82,17 +88,17 @@ int MinMaxPlayer::getBoardScore(Board * board, PieceColor c) {
 
 int MinMaxPlayer::evaluateScore(vector<ChessPiece *> pieces) {
     
-    int materialScore = INT_MIN;
-    int locationScore = INT_MIN;
-    int movementScore = INT_MIN;
+    int materialScore = 0;
+    int locationScore = 0;
+    int movementScore = 0;
+    
     for (ChessPiece * piece : pieces) {
         materialScore += piece->pieceScore;
         locationScore += piece->getLocationScore(piece->location->coordinates.x, piece->location->coordinates.y);
         movementScore += piece->getAvailableSquares(false).size();
     }
     
-    
-    return materialScore + locationScore/10 + movementScore;
+    return materialScore + locationScore/20 + movementScore/20;
 }
 
 

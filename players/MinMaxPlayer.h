@@ -24,7 +24,7 @@ public:
     
     Move * determineMove(Board*, PieceColor);
 private:
-    int exitMax = 4;
+    int exitMax = 2;
     int getBoardScore(Board *, PieceColor);
     int evaluateScore(vector<ChessPiece *>);
 };

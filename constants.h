@@ -16,7 +16,7 @@
 #define SELECTION_LINE_THICKNESS 4
 
 // SCORE SYSTEM USED BY AI
-#define KING_SCORE       9000
+#define KING_SCORE       1000
 #define QUEEN_SCORE      900
 #define ROOK_SCORE       500
 #define BISHOP_SCORE     330
