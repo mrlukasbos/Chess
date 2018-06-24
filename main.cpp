@@ -48,7 +48,7 @@ int main() {
                 window.close();
             }
             
-            if (event.type != sf::Event::MouseMoved || updateWindowNextCycle) {
+            if (event.type != Event::MouseMoved || updateWindowNextCycle) {
             // use keys to set window modi.
             // When having a humanplayer it is recommended to make the human the bottomplayer
             
