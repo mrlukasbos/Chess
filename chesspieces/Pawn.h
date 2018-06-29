@@ -12,7 +12,7 @@ using namespace std;
 class Pawn : public ChessPiece {
 public:
     Pawn(Board *, Square *, PieceColor );
-    vector<Square *> getAvailableSquares(bool );
+    vector<Square *> getAvailableSquares(bool) override;
     vector<Move *> getAvailableMoves(bool) override;
     vector<Move *> addEnPassantMoves(vector<Move *>);
 };

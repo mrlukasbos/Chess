@@ -29,8 +29,8 @@ int main() {
     window.setFramerateLimit(20);
 
     Board board = Board(window);
-    Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
-    Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
+    Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
+    Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
 
     Interface interface(window, board);
     Color menuColor(220, 220, 220); // light gray
