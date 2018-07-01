@@ -11,6 +11,7 @@
 #include "PieceColor.h"
 
 using namespace sf;
+using namespace std;
 
 class Player;
 class Square;
@@ -21,8 +22,11 @@ class Board {
 public:
 
     Board(RenderWindow &window);
-    // constructs a board from an existing board (copies the board)
+    
+    /// Constructs a board from an existing board (copies the board)
     Board(Board const &) = default;
+    
+    
     Square *squares[8][8];
 
     void drawBoard();
@@ -34,18 +38,31 @@ public:
     void setCurrentPlayer(Player *currentPlayer);
     void undoMove();
 
-    std::vector<Move *> allMoves;
+    /// return the vector of all moves that were done.
+    vector<Move *> allMoves;
 
+    /// Checks if a color is in check and if there is checkmate
     void checkGameStatus();
 
+    /// a square being selected by a Humanplayer
     Square * selectedSquare;
+    
+    /// The player at the bottom of the board
     Player *bottomPlayer;
+    
+    /// The player at the top of the board
     Player *topPlayer;
+    
+    /// The player which is to move next
     Player *currentPlayer;
-    std::vector<ChessPiece *> getPiecesByColor(PieceColor color);
+    
+    /// Return a vector of chesspieces by color
+    vector<ChessPiece *> getPiecesByColor(PieceColor color);
 
+    /// checks if the given color is in check on the board.
     bool isInCheck(PieceColor color);
-
+    
+    /// checks if there is a checkmate on the board. Use isInCheck() to view which color is checkmated.
     bool checkMate();
 private:
     void createBoard();
