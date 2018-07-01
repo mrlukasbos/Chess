@@ -20,15 +20,17 @@ MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
 }
 
 Move *MinMaxPlayer::getNextMove(Board *board) {
-    long highestScore = -999999;
-    long newScore = -999999;
+    long highestScore = INT_MIN;
+    long newScore = INT_MIN;
     Move * bestMove = nullptr;
     
     vector<ChessPiece *> pieces = board->getPiecesByColor(color);
     for (ChessPiece * piece : pieces) {
         vector<Move *> moves = piece->getAvailableMoves(true);
         for (Move * move : moves) {
-            newScore = -getMoveScore(board, move, color, 0, INT_MIN, INT_MAX);
+            newScore = getMoveScore(board, move, color, 0, INT_MIN, INT_MAX);
+            
+           // cout << move->name << "\t" << newScore << endl;
             
             if (newScore > highestScore) {
                 highestScore = newScore;
@@ -40,7 +42,7 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
 }
 
 long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor, int exit, long alpha, long beta) {
-    if (exit >= exitMax) {
+    if (exit >= depth) {
         move->isSimulated = true;
         board->doMove(move);
         long boardScore = getBoardScore(board, pieceColor);
@@ -52,71 +54,60 @@ long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor
 
     // maximize
     if (pieceColor == color) {
-        bestScore = INT_MIN;
-        newScore = INT_MIN;
-        
-        move->isSimulated = true;
-        board->doMove(move);
-        
-        vector<ChessPiece *> pieces = board->getPiecesByColor(inverse(pieceColor));
-        for (ChessPiece * piece : pieces) {
-            vector<Move *> moves = piece->getAvailableMoves(true);
-            for (Move * move : moves) {
-                newScore = -getMoveScore(board, move, inverse(pieceColor), ++exit, alpha, beta);
-                bestScore = max(newScore, bestScore);
-                alpha = max(alpha, bestScore);
-                if (beta < alpha) break;
-            }
-            if (beta < alpha) break;
-        }
-        board->undoMove();
-    } else { // Minimize
         bestScore = INT_MAX;
         newScore = INT_MAX;
         
         move->isSimulated = true;
         board->doMove(move);
         
-        vector<ChessPiece *> pieces = board->getPiecesByColor(inverse(pieceColor));
+        vector<ChessPiece *> pieces = board->getPiecesByColor(inverse(color));
         for (ChessPiece * piece : pieces) {
             vector<Move *> moves = piece->getAvailableMoves(true);
             for (Move * move : moves) {
-                newScore = -getMoveScore(board, move, inverse(pieceColor), ++exit, alpha, beta);
+                newScore = -getMoveScore(board, move, inverse(color), ++exit, alpha, beta);
                 bestScore = min(newScore, bestScore);
+                alpha = min(alpha, bestScore);
+                if (beta < alpha) break;
+            }
+            if (beta < alpha) break;
+        }
+        board->undoMove();
+    } else { // Minimize
+        bestScore = INT_MIN;
+        newScore = INT_MIN;
+        
+        move->isSimulated = true;
+        board->doMove(move);
+        
+        vector<ChessPiece *> pieces = board->getPiecesByColor(color);
+        for (ChessPiece * piece : pieces) {
+            vector<Move *> moves = piece->getAvailableMoves(true);
+            for (Move * move : moves) {
+                newScore = -getMoveScore(board, move, color, ++exit, alpha, beta);
+                bestScore = max(newScore, bestScore);
 
-                beta = min(beta, bestScore);
+                beta = max(beta, bestScore);
                 if (beta < alpha) break;
             }
             if (beta < alpha) break;
         }
         board->undoMove();
     }
-   
- 
     return bestScore;
 }
 
 int MinMaxPlayer::getBoardScore(Board * board, PieceColor c) {
-    
-    if (board->isInCheck(inverse(c)) && board->checkMate()) {
-        return INT_MIN;
-    }
-    
-    if (board->isInCheck(c) && board->checkMate()) {
-        return INT_MAX;
-    }
+    vector<ChessPiece *> friendlyPieces = board->getPiecesByColor(c);
+    vector<ChessPiece *> opponentPieces = board->getPiecesByColor(inverse(c));
 
-    vector<ChessPiece *> friendlyPieces = board->getPiecesByColor(color);
-    vector<ChessPiece *> opponentPieces = board->getPiecesByColor(inverse(color));
-
-    return evaluateScore(friendlyPieces) - evaluateScore(opponentPieces);
+    long score = evaluateScore(friendlyPieces) - evaluateScore(opponentPieces);
+    return score;
 }
 
 int MinMaxPlayer::evaluateScore(vector<ChessPiece *> pieces) {
-    
-    int materialScore = 0;
-    int locationScore = 0;
-    int movementScore = 0;
+    int materialScore = INT_MIN;
+    int locationScore = INT_MIN;
+    int movementScore = INT_MIN;
     
     for (ChessPiece * piece : pieces) {
         materialScore += piece->pieceScore;
@@ -124,8 +115,17 @@ int MinMaxPlayer::evaluateScore(vector<ChessPiece *> pieces) {
         movementScore += piece->getAvailableSquares(false).size();
     }
     
-    return materialScore + locationScore/20 + movementScore/20;
+    if (materialScore < 9900) phase = MIDDLEGAME;
+    if (materialScore < 9000) phase = ENDGAME;
+    
+    int materialFactor = 1;
+    int locationFactor = phase == OPENING ? 1 : .25;
+    int movementFactor = phase == ENDGAME ? 2 : 1;
+    
+    long total = materialScore * materialFactor
+            + locationScore * locationFactor
+            + movementScore * movementFactor;
+    return total;
 }
-
 
 

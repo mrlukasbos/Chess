@@ -17,7 +17,7 @@ Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulat
     if (!isSimulated) generateName();
 }
 
-Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook,  Square * initalRookSquare, Square * rookTargetSquare):  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated), castlingSide(castlingSide), castlingRook(castlingRook), initalRookSquare(initalRookSquare), rookTargetSquare(rookTargetSquare) {
+Move::Move(Board * board, Square *startOfMove, Square *endOfMove, bool isSimulated, CastlingSide castlingSide, ChessPiece * castlingRook, Square * rookTargetSquare, Square * initalRookSquare):  board(board), startOfMove(startOfMove), endOfMove(endOfMove), isSimulated(isSimulated), castlingSide(castlingSide), castlingRook(castlingRook), rookTargetSquare(rookTargetSquare), initalRookSquare(initalRookSquare) {
     identifyPieces();
     if (!isSimulated) generateName();
 }

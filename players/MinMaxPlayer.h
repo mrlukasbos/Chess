@@ -24,9 +24,17 @@ public:
     
     Move * determineMove(Board*, PieceColor);
 private:
-    int exitMax = 8;
+    int depth = 6;
     int getBoardScore(Board *, PieceColor);
     int evaluateScore(vector<ChessPiece *>);
+    
+    enum GamePhase {
+        OPENING, MIDDLEGAME, ENDGAME
+    };
+    
+    GamePhase phase = OPENING;
 };
+
+
 
 #endif //CHESS_MINMAXPLAYER_H
