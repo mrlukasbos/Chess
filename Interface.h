@@ -11,7 +11,6 @@
 using namespace sf;
 
 class Board;
-
 class Interface {
 private:
     Font font;
@@ -20,7 +19,6 @@ private:
     void drawBoard();
     void drawChessPiece(ChessPiece *, Vector2f);
     bool SquareIsAvailableMoveOfSelectedSquare(Square *);
-    Square * selectedSquare = nullptr;
     RenderWindow &window;
 
     const Color darkSquareColor = Color(100, 100, 150);
@@ -30,8 +28,8 @@ private:
     const Color coordinateLettersColor = Color(255, 255, 255);
 
  public:
+    Square * selectedSquare = nullptr;
     Interface(Board *, RenderWindow &);
-    void handleEvent(Event event);
     Move * getHumanMove();
     void draw();
 };

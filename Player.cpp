@@ -15,3 +15,9 @@ String Player::getType() {
 void Player::setNextMove(Move* move) {
     this->nextMove = move;
 }
+const PieceColor Player::getColor() const {
+    return color;
+}
+void Player::setColor(PieceColor color) {
+    this->color = color;
+}

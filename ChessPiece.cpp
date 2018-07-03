@@ -32,7 +32,7 @@ vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
 int ChessPiece::getLocationScore(int x, int y) {
 
     // if we are the topPlayer we must reverse the scores
-    if (board->bottomPlayer->color == color) {
+    if (board->bottomPlayer->getColor() == color) {
         y = 7 - y;
     }
 
@@ -53,8 +53,8 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
                                         bool considerCheck) {
 
     vector<Square *> moves;
-    int y = location->coordinates.y;
-    int x = location->coordinates.x;
+    int y = location->getCoordinates().y;
+    int x = location->getCoordinates().x;
 
     for (int i = 0; i < amountOfDirections; i++) {
         for (int j = 1; j <= maxAmountOfSteps; j++) {
@@ -63,9 +63,9 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
                 Square *element = board->getSquare(xLocation, yLocation);
-                if (element->chessPiece && element->chessPiece->color == color) {
+                if (element->getChessPiece() && element->getChessPiece()->color == color) {
                     break;
-                } else if (element->chessPiece) {
+                } else if (element->getChessPiece()) {
                     moves.push_back(element);
                     break;
                 }

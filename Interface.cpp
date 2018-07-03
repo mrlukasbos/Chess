@@ -42,11 +42,11 @@ void Interface::drawBoard() {
             square.setOutlineThickness(SELECTION_LINE_THICKNESS);
 
             // Focus elements
-            if (selectedSquare && selectedSquare->chessPiece) {
-                ChessPiece * piece = selectedSquare->chessPiece;
+            if (selectedSquare && selectedSquare->getChessPiece()) {
+                ChessPiece * piece = selectedSquare->getChessPiece();
 
                  if (SquareIsAvailableMoveOfSelectedSquare(board->getSquare(i, j))) {
-                     if (board->getSquare(i, j)->chessPiece) {
+                     if (board->getSquare(i, j)->getChessPiece()) {
                          square.setOutlineColor(Color(255, 0, 0));
                      } else {
                          square.setOutlineColor(Color(0, 255, 0));
@@ -66,8 +66,8 @@ void Interface::drawBoard() {
             window.draw(square);
 
             // draw chesspieces
-            if (board->getSquare(i, j)->chessPiece) {
-                ChessPiece * piece = board->getSquare(i,j)->chessPiece;
+            if (board->getSquare(i, j)->getChessPiece()) {
+                ChessPiece * piece = board->getSquare(i,j)->getChessPiece();
                 drawChessPiece(piece, position);
             }
         }
@@ -97,9 +97,9 @@ Move * Interface::getHumanMove() {
     int mouseY = Mouse::getPosition(window).y;
 
     for (Square * square : board->getSquares()) {
-        int squareLeftSide = square->coordinates.x * BLOCK_SIZE + BOARD_BORDER_THICKNESS;
+        int squareLeftSide = square->getCoordinates().x * BLOCK_SIZE + BOARD_BORDER_THICKNESS;
         int squareRightSide = squareLeftSide + BLOCK_SIZE ;
-        int squareTopSide = square->coordinates.y * BLOCK_SIZE + BOARD_BORDER_THICKNESS;
+        int squareTopSide = square->getCoordinates().y * BLOCK_SIZE + BOARD_BORDER_THICKNESS;
         int squareBottomSide = squareTopSide + BLOCK_SIZE;
 
         if (squareLeftSide < mouseX
@@ -109,8 +109,6 @@ Move * Interface::getHumanMove() {
 
             if (selectedSquare != nullptr && SquareIsAvailableMoveOfSelectedSquare(square)) { // and if target square
                return new Move (board, selectedSquare, square);
-            } else if (selectedSquare) {
-                selectedSquare = nullptr;
             } else {
                 selectedSquare = square;
             }
@@ -120,17 +118,12 @@ Move * Interface::getHumanMove() {
 }
 
 bool Interface::SquareIsAvailableMoveOfSelectedSquare(Square * square) {
-    if (selectedSquare->chessPiece) {
-        for (Move* move : selectedSquare->chessPiece->getAvailableMoves(true)) {
-            if (move->endOfMove==square) {
+    if (selectedSquare->getChessPiece()) {
+        for (Move* move : selectedSquare->getChessPiece()->getAvailableMoves(true)) {
+            if (move->getEndOfMove() == square) {
                 return true;
             }
         }
     }
     return false;
-}
-void Interface::handleEvent(Event event) {
-    if (event.type == Event::MouseButtonPressed) {
-
-    }
 }

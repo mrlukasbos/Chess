@@ -29,8 +29,8 @@ vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
         
         Move * move = new Move(board, location, square);
         // when a pawn reaches bottom or top it can promote
-        if (square->coordinates.y == 7 || square->coordinates.y == 0) {
-            move->isPromoting = true;
+        if (square->getCoordinates().y == 7 || square->getCoordinates().y == 0) {
+            move->setPromoting(true);
         }
         moves.push_back(move);
     }
@@ -41,10 +41,10 @@ vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
 vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
     std::vector<Square *> availableMoves;
 
-    int y = location->coordinates.y;
-    int x = location->coordinates.x;
+    int y = location->getCoordinates().y;
+    int x = location->getCoordinates().x;
 
-    bool isBottomColor = board->bottomPlayer->color == color;
+    bool isBottomColor = board->bottomPlayer->getColor() == color;
     int direction = isBottomColor ? -1 : 1;
 
     Vector2i pawnDirections[] = {
@@ -65,7 +65,7 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
         bool squareExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
         if (squareExists) {
             Square *square = board->getSquare(xLocation, yLocation);
-            if (square->chessPiece && square->chessPiece->color != color) {
+            if (square->getChessPiece() && square->getChessPiece()->color != color) {
                 availableMoves.push_back(square);
             }
         }
@@ -80,7 +80,7 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
         bool squareExists = yLocation >= 0 && yLocation < 8;
         if (squareExists) {
             Square *square = board->getSquare(x, yLocation);
-            if (square->chessPiece) {
+            if (square->getChessPiece()) {
                 break;
             }
             availableMoves.push_back(square);
@@ -96,21 +96,21 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
 vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
     Move * previousMove = board->getAllMoves().back();
 
-    if (board->getAllMoves().size() > 0 && previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
-        ChessPiece *opponentPawn = previousMove->initialPiece;
-        Vector2i loc = this->location->coordinates;
-        Vector2i opLoc = opponentPawn->location->coordinates;
+    if (board->getAllMoves().size() > 0 && previousMove && previousMove->getInitialPiece()->type == PieceType::PAWN) {
+        ChessPiece *opponentPawn = previousMove->getInitialPiece();
+        Vector2i loc = this->location->getCoordinates();
+        Vector2i opLoc = opponentPawn->location->getCoordinates();
         if (loc.y == opLoc.y && (((loc.x + 1) == opLoc.x) || (loc.x - 1) == opLoc.x)) {
             bool movedTwoSquaresFromBottom = opLoc.y == 3;
             bool movedTwoSquaresFromTop = opLoc.y == 4;
             if (opponentPawn->amountOfSteps == 1) {
                 if (movedTwoSquaresFromBottom) {
                     Move * enPassantMove = new Move(board, this->location, board->getSquare(opLoc.x,2));
-                    enPassantMove->enPassantTakenPiece = opponentPawn;
+                    enPassantMove->setEnPassantTakenPiece(opponentPawn);
                     moves.push_back(enPassantMove);
                 } else if (movedTwoSquaresFromTop) {
                     Move * enPassantMove = new Move(board, this->location, board->getSquare(opLoc.x, 5));
-                    enPassantMove->enPassantTakenPiece = opponentPawn;
+                    enPassantMove->setEnPassantTakenPiece(opponentPawn);
                     moves.push_back(enPassantMove);
                 }
             }

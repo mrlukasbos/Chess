@@ -65,17 +65,17 @@ public:
 
     /// return a specific square of the board
     Square * getSquare(short, short);
+
+    /// return a vector of all previous moves
+    const vector<Move*>& getAllMoves() const;
 private:
     void initPieces();
 
     /// All squares on the board
     Square * squares[8][8];
 
-    /// return the vector of all moves that were done.
+    /// The vector of all moves that were done.
     vector<Move *> allMoves;
-public:
-    const vector<Move*>& getAllMoves() const;
-
 };
 
 

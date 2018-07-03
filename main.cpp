@@ -31,7 +31,7 @@ int main() {
     Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
 
     // white begins
-    Player * currentPlayer = bottomPlayer->color == PieceColor::WHITE ? bottomPlayer : topPlayer;
+    Player * currentPlayer = bottomPlayer->getColor() == PieceColor::WHITE ? bottomPlayer : topPlayer;
     board.startGame(bottomPlayer, topPlayer, currentPlayer);
 
     bool isSetup = false;
@@ -52,13 +52,11 @@ int main() {
 
             }
 
-            //draw interface once
             if (!isSetup) {
                 interface.draw();
                 isSetup = true;
             }
 
-            //    board.handleEvent(interface.getLastEvent());
             Move *nextMove = currentPlayer->getNextMove(&board);
             if (nextMove) {
                 board.doMove(nextMove);
@@ -66,6 +64,7 @@ int main() {
 
                 // remove the move from the player so it won't be tried again next time.
                 currentPlayer->setNextMove(nullptr);
+                interface.selectedSquare = nullptr;
                 // switch player after move
                 if (currentPlayer == topPlayer) {
                     currentPlayer = bottomPlayer;

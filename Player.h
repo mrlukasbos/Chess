@@ -13,19 +13,37 @@
 using namespace sf;
 
 class Move;
-
 class Board;
 class Player {
 public:
+    /// Initialize the player
     Player();
+
+    /// Initialize player
     explicit Player(PieceColor color);
-    PieceColor color;
-    Move * nextMove = nullptr;
+
+    /// Returns next move if available, otherwise nullptr
     virtual Move *getNextMove(Board *) =0;
+
+    /// Only used for HumanPlayers.
     virtual void setNextMove(Move *);
+
+    /// Only true for HumanPlayer
     bool isHuman = false;
-    sf::String getType();
-    sf::String type;
+
+    /// Return the type of player, which is generally a name
+    String getType();
+
+    /// Get the color of the pieces for which the player is playing
+    const PieceColor getColor() const;
+
+    /// Sets the color of the pieces of the player
+    void setColor(PieceColor);
+
+protected:
+    PieceColor color;
+    String type;
+    Move * nextMove = nullptr;
 };
 
 

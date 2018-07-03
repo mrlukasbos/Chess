@@ -38,7 +38,7 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
 
 long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor, int exit, long alpha, long beta) {
     if (exit >= depth) {
-        move->isSimulated = true;
+        move->setSimulated(true);
         board->doMove(move);
         long boardScore = getBoardScore(board, pieceColor);
         board->undoMove();
@@ -52,7 +52,7 @@ long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor
         bestScore = INT_MAX;
         newScore = INT_MAX;
         
-        move->isSimulated = true;
+        move->setSimulated(true);
         board->doMove(move);
         
         vector<ChessPiece *> pieces = board->getPiecesByColor(inverse(color));
@@ -71,7 +71,7 @@ long MinMaxPlayer::getMoveScore(Board *board, Move * move, PieceColor pieceColor
         bestScore = INT_MIN;
         newScore = INT_MIN;
         
-        move->isSimulated = true;
+        move->setSimulated(true);
         board->doMove(move);
         
         vector<ChessPiece *> pieces = board->getPiecesByColor(color);
@@ -106,7 +106,7 @@ int MinMaxPlayer::evaluateScore(vector<ChessPiece *> pieces) {
     
     for (ChessPiece * piece : pieces) {
         materialScore += piece->pieceScore;
-        locationScore += piece->getLocationScore(piece->location->coordinates.x, piece->location->coordinates.y);
+        locationScore += piece->getLocationScore(piece->location->getCoordinates().x, piece->location->getCoordinates().y);
         movementScore += piece->getAvailableSquares(false).size();
     }
     

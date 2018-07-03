@@ -17,15 +17,9 @@
 using namespace sf;
 
 Board::Board() {
-    bottomPlayer = nullptr;
-    topPlayer = nullptr;
-    currentPlayer = nullptr;
-
     // create the squares of the board
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
-
             Vector2i coordinates = Vector2i(i, j);
             squares[i][j] = new Square(coordinates);
         }
@@ -43,18 +37,18 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer, Player *currentPl
 
 void Board::initPieces() {
     short kingXPosition = 3, queenXPosition = 4;
-    if (topPlayer->color == PieceColor::BLACK) {
+    if (topPlayer->getColor() == PieceColor::BLACK) {
         kingXPosition = 4;
         queenXPosition = 3;
     }
 
     // make all pieces twice
     for (int i = 0; i < 2; i++) {
-        PieceColor color = topPlayer->color;
+        PieceColor color = topPlayer->getColor();
         short row = 0;
 
         if (i == 1) {
-            color = bottomPlayer->color;
+            color = bottomPlayer->getColor();
             row = 7;
         }
 
@@ -70,8 +64,8 @@ void Board::initPieces() {
 
     // add pawns
     for (int i = 0; i < 8; i++) {
-        squares[i][1]->setChessPiece(new Pawn(this, squares[i][1], topPlayer->color));
-        squares[i][6]->setChessPiece(new Pawn(this, squares[i][6], bottomPlayer->color));
+        squares[i][1]->setChessPiece(new Pawn(this, squares[i][1], topPlayer->getColor()));
+        squares[i][6]->setChessPiece(new Pawn(this, squares[i][6], bottomPlayer->getColor()));
     }
 
 }
@@ -79,47 +73,47 @@ void Board::initPieces() {
 
 void Board::doMove(Move *nextMove) {
     // possibly capture a chesspiece
-    if (nextMove->endOfMove->chessPiece) {
-        nextMove->endOfMove->chessPiece->isCaptured = true;
+    if (nextMove->getTakenPiece()) {
+        nextMove->getTakenPiece()->isCaptured = true;
     }
 
-    if (nextMove->enPassantTakenPiece) {
-        nextMove->enPassantTakenPiece->isCaptured = true;
-        nextMove->enPassantTakenPiece->location->chessPiece = nullptr;
+    if (nextMove->getEnPassantTakenPiece()) {
+        nextMove->getEnPassantTakenPiece()->isCaptured = true;
+        nextMove->getEnPassantTakenPiece()->location->removeChessPiece();
     }
 
     // move the chesspiece
-    nextMove->endOfMove->chessPiece = nextMove->startOfMove->chessPiece;
-    nextMove->startOfMove->chessPiece->location = nextMove->endOfMove;
-    nextMove->startOfMove->chessPiece = nullptr;
+    nextMove->getEndOfMove()->setChessPiece(nextMove->getStartOfMove()->getChessPiece());
+    nextMove->getEndOfMove()->getChessPiece()->location = nextMove->getEndOfMove();
+    nextMove->getStartOfMove()->removeChessPiece();
 
-    nextMove->endOfMove->chessPiece->amountOfSteps++;
+    nextMove->getEndOfMove()->getChessPiece()->amountOfSteps++;
     
-    if (nextMove->isPromoting) {
+    if (nextMove->isPromoting()) {
 
-        nextMove->endOfMove->chessPiece = nullptr;
+        nextMove->getEndOfMove()->removeChessPiece();
 
         if (currentPlayer->isHuman) {
-            while (nextMove->endOfMove->chessPiece == nullptr) {
+            while (nextMove->getEndOfMove()->getChessPiece() == nullptr) {
 
                 std::cout << "make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
                 char PromotionChoice = (char) std::cin.get();
 
-                Square * location = nextMove->endOfMove;
-                PieceColor color = nextMove->initialPiece->color;
+                Square * location = nextMove->getEndOfMove();
+                PieceColor color = nextMove->getInitialPiece()->color;
 
                 switch (PromotionChoice) {
                     case 'q':
-                        nextMove->endOfMove->chessPiece = new Queen(this, location, color);
+                        nextMove->getEndOfMove()->setChessPiece(new Queen(this, location, color));
                         break;
                     case 'r':
-                        nextMove->endOfMove->chessPiece = new Rook(this, location, color);
+                        nextMove->getEndOfMove()->setChessPiece(new Rook(this, location, color));
                         break;
                     case 'b':
-                        nextMove->endOfMove->chessPiece = new Bishop(this, location, color);
+                        nextMove->getEndOfMove()->setChessPiece(new Bishop(this, location, color));
                         break;
                     case 'n':
-                        nextMove->endOfMove->chessPiece = new Knight(this, location, color);
+                        nextMove->getEndOfMove()->setChessPiece(new Knight(this, location, color));
                         break;
                     default:
                         std::cout << "error in input. make a choice: q -> queen, r -> rook, b -> bishop, n -> knight"
@@ -127,19 +121,19 @@ void Board::doMove(Move *nextMove) {
                 }
             }
         } else {
-            nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove, nextMove->initialPiece->color);
+            nextMove->getEndOfMove()->setChessPiece(new Queen(this, nextMove->getEndOfMove(),  nextMove->getInitialPiece()->color));
         }
     }
 
     // if there is a castlingRook we must move it also
-    if (nextMove->castlingRook) {
-        nextMove->rookTargetSquare->chessPiece = nextMove->castlingRook;
-        nextMove->castlingRook->location = nextMove->rookTargetSquare;
-        nextMove->initalRookSquare->chessPiece = nullptr;
+    if (nextMove->getCastlingRook()) {
+        nextMove->getRookTargetSquare()->setChessPiece(nextMove->getCastlingRook());
+        nextMove->getCastlingRook()->location = nextMove->getRookTargetSquare();
+        nextMove->getInitalRookSquare()->removeChessPiece();
     }
     
-    if (!nextMove->isSimulated) {
-        cout << nextMove->name << endl;
+    if (!nextMove->isSimulated()) {
+        cout << nextMove->getName() << endl;
     }
     
     allMoves.push_back(nextMove);
@@ -151,31 +145,31 @@ void Board::undoMove() {
     if (move) {
         allMoves.pop_back();
         // revive a piece when it was taken
-        if (move->takenPiece) {
-            move->takenPiece->isCaptured = false;
-            move->takenPiece->location = move->endOfMove;
+        if (move->getTakenPiece()) {
+            move->getTakenPiece()->isCaptured = false;
+            move->getTakenPiece()->location = move->getEndOfMove();
         }
-        move->endOfMove->chessPiece = move->takenPiece;
+        move->getEndOfMove()->setChessPiece(move->getTakenPiece());
 
-        move->initialPiece->location = move->startOfMove;
-        move->startOfMove->chessPiece = move->initialPiece;
-        move->initialPiece->amountOfSteps--;
+        move->getInitialPiece()->location = move->getStartOfMove();
+        move->getStartOfMove()->setChessPiece(move->getInitialPiece());
+        move->getInitialPiece()->amountOfSteps--;
 
         // if there is a castlingRook we must move undo it also
-        if (move->castlingRook) {
+        if (move->getCastlingRook()) {
             // move rook
-            move->initalRookSquare->chessPiece = move->castlingRook;
-            move->castlingRook->location = move->initalRookSquare;
+            move->getInitalRookSquare()->setChessPiece(move->getCastlingRook());
+            move->getCastlingRook()->location = move->getInitalRookSquare();
 
-            move->rookTargetSquare->chessPiece = nullptr;
+            move->getRookTargetSquare()->removeChessPiece();
         }
 
-        if (move->enPassantTakenPiece) {
-            move->enPassantTakenPiece->location->chessPiece = move->enPassantTakenPiece;
+        if (move->getEnPassantTakenPiece()) {
+            move->getEnPassantTakenPiece()->location->setChessPiece(move->getEnPassantTakenPiece());
         }
 
-        if (!move->isSimulated) {
-            cout << "Undo: " << move->name << endl;
+        if (!move->isSimulated()) {
+            cout << "Undo: " << move->getName() << endl;
         }
     }
 }
@@ -184,7 +178,7 @@ bool Board::isInCheck(PieceColor color) {
     PieceColor enemyColor = inverse(color);
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            ChessPiece *piece = squares[i][j]->chessPiece;
+            ChessPiece *piece = squares[i][j]->getChessPiece();
             if (piece) piece->isChecked = false;
         }
     }
@@ -194,7 +188,7 @@ bool Board::isInCheck(PieceColor color) {
 
         //considerotherpieces: true, considerCheck FALSE! otherwise infinite loop.
         for (Square * square : piece->getAvailableSquares(false)) {
-            ChessPiece *pieceToHit = square->chessPiece;
+            ChessPiece *pieceToHit = square->getChessPiece();
             if (pieceToHit && pieceToHit->type == KING && pieceToHit->color == color) {
                 pieceToHit->isChecked = true;
                 return true;
@@ -219,18 +213,11 @@ bool Board::checkMate() {
     return true;
 }
 
-
-
-
 std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     std::vector<ChessPiece *> pieces;
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            Square *square = squares[i][j];
-
-            if (square->chessPiece && square->chessPiece->color == color) {
-                pieces.push_back(square->chessPiece);
-            }
+    for (Square * square : getSquares()) {
+        if (square->getChessPiece() && square->getChessPiece()->color == color) {
+            pieces.push_back(square->getChessPiece());
         }
     }
     return pieces;
@@ -246,8 +233,8 @@ void Board::checkGameStatus() {
 
 
             // just start the game again ;-) switch players
-            bottomPlayer->color = inverse(bottomPlayer->color);
-            topPlayer->color = inverse(topPlayer->color);
+            bottomPlayer->setColor(inverse(bottomPlayer->getColor()));
+            topPlayer->setColor(inverse(topPlayer->getColor()));
             startGame(bottomPlayer, topPlayer, currentPlayer);
         }
     }

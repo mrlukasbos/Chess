@@ -24,8 +24,8 @@ public:
     ChessPiece(Board *board, Square *location, PieceColor color);
 
     PieceType type;
-    Board *board;
-    Square *location;
+    Board * board;
+    Square * location;
     PieceColor color;
     int amountOfSteps = 0;
     bool isChecked = false;

@@ -14,10 +14,15 @@ class ChessPiece;
 class Square {
 public:
     Square(Vector2i coordinates);
+    string getName();
+    ChessPiece * getChessPiece();
+    Vector2i getCoordinates();
+    void setChessPiece(ChessPiece * piece);
+    void removeChessPiece();
+private:
     Vector2i coordinates;
     string name;
     ChessPiece * chessPiece = nullptr;
-    void setChessPiece(ChessPiece * piece);
 };
 
 

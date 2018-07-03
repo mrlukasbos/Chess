@@ -38,8 +38,8 @@ std::vector<Square *> King::getAvailableSquares(bool considerCheck) {
 
     std::vector<Square *> squares;
 
-    int y = location->coordinates.y;
-    int x = location->coordinates.x;
+    int y = location->getCoordinates().y;
+    int x = location->getCoordinates().x;
 
     // At this part we get all the directions where the king may initially go
     for (int i = 0; i < 8; i++) {
@@ -50,7 +50,7 @@ std::vector<Square *> King::getAvailableSquares(bool considerCheck) {
 
         if (squareShouldExist) {
             Square *square = board->getSquare(xLocation, yLocation);
-            bool squareHasFriendlyPiece = square->chessPiece && square->chessPiece->color == color;
+            bool squareHasFriendlyPiece = square->getChessPiece() && square->getChessPiece()->color == color;
 
             if (!squareHasFriendlyPiece) {
                 squares.push_back(square);
@@ -85,21 +85,21 @@ std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool consi
             ChessPiece * castlingRook;
             // 1 to 4 positions to the sides
             for (int j = 1; j<=4; j++) {
-                int neighbourXLocation = location->coordinates.x + j * directions[i];
+                int neighbourXLocation = location->getCoordinates().x + j * directions[i];
                 if (neighbourXLocation < 0 || neighbourXLocation > 7) continue; // don't look for squares outside the board
                 
-                Square * neighbour = board->getSquare(neighbourXLocation, location->coordinates.y);
+                Square * neighbour = board->getSquare(neighbourXLocation, location->getCoordinates().y);
                 
                 
                 // check the corner squares for a legal rook
                 if (neighbourXLocation == 0 || neighbourXLocation == 7) {
-                    if ((neighbour->chessPiece) && (neighbour->chessPiece->type == ROOK) && (neighbour->chessPiece->amountOfSteps == 0))  {
-                        castlingRook = neighbour->chessPiece;
+                    if ((neighbour->getChessPiece()) && (neighbour->getChessPiece()->type == ROOK) && (neighbour->getChessPiece()->amountOfSteps == 0))  {
+                        castlingRook = neighbour->getChessPiece();
                     } else {
                         castleAllowed = false;
                     }
                 } else { // not at a corner square
-                    if (neighbour->chessPiece) castleAllowed = false;
+                    if (neighbour->getChessPiece()) castleAllowed = false;
                 }
                 
                 // At this point there is a king and a rook that has not moved and the squares between the king and rook are empty.
@@ -115,8 +115,8 @@ std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool consi
             }
             
             if (castleAllowed && castlingRook) {
-                Square * kingTargetSquare = board->getSquare(location->coordinates.x + (2 * directions[i]), location->coordinates.y);
-                Square * rookTargetSquare = board->getSquare(location->coordinates.x + (1 * directions[i]), location->coordinates.y);
+                Square * kingTargetSquare = board->getSquare(location->getCoordinates().x + (2 * directions[i]), location->getCoordinates().y);
+                Square * rookTargetSquare = board->getSquare(location->getCoordinates().x + (1 * directions[i]), location->getCoordinates().y);
                 moves.push_back(new Move(board, location, kingTargetSquare, false, castlingSides[i], castlingRook, castlingRook->location, rookTargetSquare));
             }
         }

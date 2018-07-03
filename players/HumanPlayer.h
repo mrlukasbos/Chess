@@ -15,8 +15,6 @@ class HumanPlayer : public Player {
 public:
     HumanPlayer(PieceColor color);
     Move * getNextMove(Board *board);
-private:
-    Move *DetermineMoveFromMousePos(Board * board, int x, int y);
 };
 
 
