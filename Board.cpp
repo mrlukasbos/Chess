@@ -260,6 +260,17 @@ void Board::setCurrentPlayer(Player *currentPlayer) {
 Square * Board::getSquare(short x, short y) {
     return squares[x][y];
 }
+
+vector<Square *> Board::getSquares() {
+    vector<Square *> allSquares;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            allSquares.push_back(squares[i][j]);
+        }
+    }
+    return allSquares;
+}
+
 const vector<Move*>& Board::getAllMoves() const {
     return allMoves;
 }

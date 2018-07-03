@@ -60,7 +60,10 @@ public:
     /// checks if there is a checkmate on the board. Use isInCheck() to view which color is checkmated.
     bool checkMate();
 
-    /// return all squares of the board
+    /// return a vector of all squares
+    vector<Square *> getSquares();
+
+    /// return a specific square of the board
     Square * getSquare(short, short);
 private:
     void initPieces();

@@ -44,6 +44,7 @@ int main() {
                 window.close();
             }
 
+            interface.draw();
 
             //draw interface once
             if (!isSetup) {
@@ -64,7 +65,14 @@ int main() {
                     currentPlayer = topPlayer;
                 }
                 board.setCurrentPlayer(currentPlayer);
-                interface.draw();
+            } else if (currentPlayer->isHuman && interface.getHumanMove()) {
+                board.doMove(interface.getHumanMove());
+                // switch player after move
+                if (currentPlayer == topPlayer) {
+                    currentPlayer = bottomPlayer;
+                } else {
+                    currentPlayer = topPlayer;
+                }
             }
         }
         window.display();

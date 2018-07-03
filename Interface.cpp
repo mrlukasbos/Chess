@@ -12,39 +12,64 @@ Interface::Interface(Board * board, RenderWindow &window) : board(board), window
 }
 
 void Interface::draw() {
-    window.clear(Color(200, 200, 200));
+    window.clear(menuColor);
     drawBoard();
 }
 
 void Interface::drawBoard() {
     RectangleShape boardBackground;
     boardBackground.setPosition(10, 10);
-    boardBackground.setSize(sf::Vector2f(GAME_SIZE -20, GAME_SIZE -20));
+    boardBackground.setSize(Vector2f(GAME_SIZE -20, GAME_SIZE -20));
     boardBackground.setFillColor(boardBackgroundColor);
     window.draw(boardBackground);
 
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
+    for (short i = 0; i < 8; i++) {
+        for (short j = 0; j < 8; j++) {
             RectangleShape square;
+            Color squareColor = darkSquareColor;
             if ((i+j)%2 == 0) {
-                square.setFillColor(lightSquareColor);
-            } else {
-                square.setFillColor(darkSquareColor);
+                squareColor = lightSquareColor;
             }
+            square.setFillColor(squareColor);
 
             int posX = BOARD_BORDER_THICKNESS + i * BLOCK_SIZE;
             int posY = BOARD_BORDER_THICKNESS + j * BLOCK_SIZE;
             Vector2f position = Vector2f(posX, posY);
 
-            square.setPosition(position);
-            square.setSize(sf::Vector2f(BLOCK_SIZE, BLOCK_SIZE));
+
+            square.setPosition(position.x + SELECTION_LINE_THICKNESS, position.y + SELECTION_LINE_THICKNESS);
+            square.setSize(Vector2f(BLOCK_SIZE - 2*SELECTION_LINE_THICKNESS, BLOCK_SIZE - 2*SELECTION_LINE_THICKNESS));
+            square.setOutlineThickness(SELECTION_LINE_THICKNESS);
+
+            // Focus elements
+            if (selectedSquare && selectedSquare->chessPiece) {
+                ChessPiece * piece = selectedSquare->chessPiece;
+
+                 if (SquareIsAvailableMoveOfSelectedSquare(board->getSquare(i, j))) {
+                     if (board->getSquare(i, j)->chessPiece) {
+                         square.setOutlineColor(Color(255, 0, 0));
+                     } else {
+                         square.setOutlineColor(Color(0, 255, 0));
+                     }
+                 } else {
+                     square.setOutlineColor(squareColor);
+                 }
+            } else {
+                square.setOutlineColor(squareColor);
+            }
+
+            if ( board->getSquare(i, j) == selectedSquare) {
+                square.setOutlineColor(Color::Green);
+
+            }
+
             window.draw(square);
 
-            if (board->getSquare(i,j)->chessPiece) {
+            // draw chesspieces
+            if (board->getSquare(i, j)->chessPiece) {
                 ChessPiece * piece = board->getSquare(i,j)->chessPiece;
                 drawChessPiece(piece, position);
             }
-
         }
     }
 }
@@ -63,9 +88,99 @@ void Interface::drawChessPiece(ChessPiece * piece, Vector2f position) {
     texture.setSmooth(true);
     sprite.setScale(0.9, 0.9);
     sprite.setTexture(texture, true);
-    sprite.setPosition(position); // absolute position
+    sprite.setPosition(position.x + 10, position.y + 10); // absolute position
     window.draw(sprite);
 }
+
+Move * Interface::getHumanMove() {
+    if (Mouse::isButtonPressed(Mouse::Left)) {
+        int mouseX = Mouse::getPosition(window).x;
+        int mouseY = Mouse::getPosition(window).y;
+
+        for (Square * square : board->getSquares()) {
+            int squareLeftSide = square->coordinates.x * BLOCK_SIZE;
+            int squareRightSide = squareLeftSide + BLOCK_SIZE;
+            int squareTopSide = square->coordinates.y * BLOCK_SIZE;
+            int squareBottomSide = squareTopSide + BLOCK_SIZE;
+
+            if (squareLeftSide < mouseX
+                    && squareRightSide > mouseX
+                    && squareTopSide < mouseY
+                    && squareBottomSide > mouseY) {
+
+                if (selectedSquare != nullptr && SquareIsAvailableMoveOfSelectedSquare(square)) { // and if target square
+                   return new Move (board, selectedSquare, square);
+                } else if (selectedSquare) {
+                    selectedSquare = nullptr;
+                } else {
+                    selectedSquare = square;
+                }
+            }
+
+        }
+    }
+    return nullptr;
+}
+
+bool Interface::SquareIsAvailableMoveOfSelectedSquare(Square * square) {
+    if (selectedSquare->chessPiece) {
+        for (Move* move : selectedSquare->chessPiece->getAvailableMoves(true)) {
+            if (move->endOfMove==square) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//
+//Move *HumanPlayer::getNextMove(Board *board) {
+//    if (Mouse::isButtonPressed(Mouse::Left)) {
+//        return DetermineMoveFromMousePos(board, Mouse::getPosition(window).x, Mouse::getPosition(window).y);
+//    }
+//
+//    return nullptr;
+//}
+//
+//Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
+//
+//    // for all squares
+//    for (short i = 0; i < 8; i++) {
+//        for (short j = 0; j < 8; j++) {
+//            Square *square = board->squares[i][j];
+//            square->setSelected(false); // there should be no other squares be selected.
+//
+//            bool squareIsClicked = x > square->posX && x < square->posX + BLOCK_SIZE
+//                                   && y > square->posY && y < square->posY + BLOCK_SIZE;
+//
+//            if (squareIsClicked) {
+//
+//                // here a bug occured
+//                // It appears that when a square was focussed and a move was done, the square is being focussed until the next draw.
+//                // still it wanted to do the move when the press was taking long. but then the chesspiece was already moved...
+//                // todo fix this neatly. (selection of squares etc)
+//                if (square->isFocused && board->selectedSquare->chessPiece) {
+//                    for (Move * move : board->selectedSquare->chessPiece->getAvailableMoves(true)) {
+//                        // we found the move we want to do in the list of available moves of the piece!
+//                        // we need this method because we must look up if it is legal and if it is castling.
+//                        if (move->endOfMove == square) {
+//                            return move;
+//                        }
+//                    }
+//
+//                    // return new Move(board, board->selectedSquare, square);
+//                } else if (square->chessPiece && square->chessPiece->color == this->color) {
+//                    square->setSelected(true);
+//                    board->selectedSquare = square;
+//                }
+//            }
+//        }
+//    }
+//
+//    board->focusSquares();
+//    return nullptr;
+//}
+//
 
 
 //void Interface::showCurrentPlayerText(Player *currentPlayer) {
@@ -141,54 +256,6 @@ void Interface::drawChessPiece(ChessPiece * piece, Vector2f position) {
 //}
 
 
-//
-//Move *HumanPlayer::getNextMove(Board *board) {
-//    if (Mouse::isButtonPressed(Mouse::Left)) {
-//        return DetermineMoveFromMousePos(board, Mouse::getPosition(window).x, Mouse::getPosition(window).y);
-//    }
-//
-//    return nullptr;
-//}
-//
-//Move *HumanPlayer::DetermineMoveFromMousePos(Board *board, int x, int y) {
-//
-//    // for all squares
-//    for (short i = 0; i < 8; i++) {
-//        for (short j = 0; j < 8; j++) {
-//            Square *square = board->squares[i][j];
-//            square->setSelected(false); // there should be no other squares be selected.
-//
-//            bool squareIsClicked = x > square->posX && x < square->posX + BLOCK_SIZE
-//                                   && y > square->posY && y < square->posY + BLOCK_SIZE;
-//
-//            if (squareIsClicked) {
-//
-//                // here a bug occured
-//                // It appears that when a square was focussed and a move was done, the square is being focussed until the next draw.
-//                // still it wanted to do the move when the press was taking long. but then the chesspiece was already moved...
-//                // todo fix this neatly. (selection of squares etc)
-//                if (square->isFocused && board->selectedSquare->chessPiece) {
-//                    for (Move * move : board->selectedSquare->chessPiece->getAvailableMoves(true)) {
-//                        // we found the move we want to do in the list of available moves of the piece!
-//                        // we need this method because we must look up if it is legal and if it is castling.
-//                        if (move->endOfMove == square) {
-//                            return move;
-//                        }
-//                    }
-//
-//                    // return new Move(board, board->selectedSquare, square);
-//                } else if (square->chessPiece && square->chessPiece->color == this->color) {
-//                    square->setSelected(true);
-//                    board->selectedSquare = square;
-//                }
-//            }
-//        }
-//    }
-//
-//    board->focusSquares();
-//    return nullptr;
-//}
-//
 
 //
 //

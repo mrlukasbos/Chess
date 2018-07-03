@@ -15,3 +15,4 @@ Move *HumanPlayer::getNextMove(Board *board) {
     return nullptr;
 }
 
+

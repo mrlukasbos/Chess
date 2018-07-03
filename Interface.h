@@ -19,18 +19,21 @@ private:
     Board * board;
     void drawBoard();
     void drawChessPiece(ChessPiece *, Vector2f);
-
+    bool SquareIsAvailableMoveOfSelectedSquare(Square *);
+    Square * selectedSquare = nullptr;
     RenderWindow &window;
 
     const Color darkSquareColor = Color(100, 100, 150);
     const Color lightSquareColor = Color(255, 255, 255);
-    const Color menuColor = Color(100, 100, 150);
+    const Color menuColor = Color(200, 200, 200);
     const Color boardBackgroundColor = Color(0, 0, 0);
     const Color coordinateLettersColor = Color(255, 255, 255);
 
  public:
-  Interface(Board *, RenderWindow &);
-  void draw();
+    Interface(Board *, RenderWindow &);
+    Move * getHumanMove();
+
+    void draw();
 };
 
 
