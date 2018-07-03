@@ -11,3 +11,7 @@ Player::Player(PieceColor color) : color(color) {}
 String Player::getType() {
     return type;
 }
+
+void Player::setNextMove(Move* move) {
+    this->nextMove = move;
+}

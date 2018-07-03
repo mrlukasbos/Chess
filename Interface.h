@@ -31,8 +31,8 @@ private:
 
  public:
     Interface(Board *, RenderWindow &);
+    void handleEvent(Event event);
     Move * getHumanMove();
-
     void draw();
 };
 

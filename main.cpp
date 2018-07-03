@@ -23,7 +23,7 @@ int main() {
     ContextSettings settings;
     settings.antialiasingLevel = 8;
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
-    window.setFramerateLimit(20);
+    window.setFramerateLimit(40);
 
     Board board = Board();
     Interface interface(&board, window);
@@ -40,11 +40,17 @@ int main() {
 
         Event event;
         while (window.pollEvent(event)) {
+
+            // Handle Events
             if (event.type == Event::Closed) {
                 window.close();
-            }
+            } else if (event.type == Event::MouseButtonPressed) {
+                if (currentPlayer->isHuman) {
+                    currentPlayer->setNextMove(interface.getHumanMove());
+                }
+            } else if (event.type == Event::KeyPressed) {
 
-            interface.draw();
+            }
 
             //draw interface once
             if (!isSetup) {
@@ -58,6 +64,8 @@ int main() {
                 board.doMove(nextMove);
                 board.checkGameStatus();
 
+                // remove the move from the player so it won't be tried again next time.
+                currentPlayer->setNextMove(nullptr);
                 // switch player after move
                 if (currentPlayer == topPlayer) {
                     currentPlayer = bottomPlayer;
@@ -65,75 +73,9 @@ int main() {
                     currentPlayer = topPlayer;
                 }
                 board.setCurrentPlayer(currentPlayer);
-            } else if (currentPlayer->isHuman && interface.getHumanMove()) {
-                board.doMove(interface.getHumanMove());
-                // switch player after move
-                if (currentPlayer == topPlayer) {
-                    currentPlayer = bottomPlayer;
-                } else {
-                    currentPlayer = topPlayer;
-                }
             }
         }
+        interface.draw();
         window.display();
     }
 }
-
-
-//
-//
-////start interface
-//    while (window.isOpen()) {
-//        Event event;
-//        while (window.pollEvent(event)) {
-//            if (event.type == Event::Closed) {
-//                window.close();
-//            }
-//
-//            if (event.type != Event::MouseMoved) {
-//            // use keys to set window modi.
-//            // When having a humanplayer it is recommended to make the human the bottomplayer
-//
-//            if (Keyboard::isKeyPressed(Keyboard::W)) { // humanplayer plays as White
-//                Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE, window);
-//                Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
-//                board.startGame(bottomPlayer, topPlayer, currentPlayer);
-//
-//            } else if (Keyboard::isKeyPressed(Keyboard::B)) {  // humanplayer plays as Black
-//                Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK, window);
-//                Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
-//                board.startGame(bottomPlayer, topPlayer, currentPlayer);
-//            } else if (Keyboard::isKeyPressed(Keyboard::R)) {
-//                board.undoMove();
-//                board.checkGameStatus();
-//            }
-//
-//            // update screen after event.
-//                drawNextMoveOnBoard(window, currentPlayer, interface, board);
-//            }
-//        }
-//
-//        Move *nextMove = currentPlayer->getNextMove(&board);
-//        if (nextMove) {
-//            board.doMove(nextMove);
-//            board.checkGameStatus();
-//
-//            // switch player after move
-//            if (currentPlayer == topPlayer) {
-//                currentPlayer = bottomPlayer;
-//            } else {
-//                currentPlayer = topPlayer;
-//            }
-//            board.setCurrentPlayer(currentPlayer);
-//
-//            drawNextMoveOnBoard(window, currentPlayer, interface, board);
-//            if (!currentPlayer->isHuman) {
-//                interface.showLoadingText();
-//            }
-//
-//            // the computer may have done a move so we want to update the screen.
-//            updateWindowNextCycle = true;
-//        }
-//
-//        interface.display();
-

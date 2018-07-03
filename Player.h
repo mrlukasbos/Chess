@@ -20,8 +20,9 @@ public:
     Player();
     explicit Player(PieceColor color);
     PieceColor color;
-
-    virtual Move *getNextMove(Board *board) =0;
+    Move * nextMove = nullptr;
+    virtual Move *getNextMove(Board *) =0;
+    virtual void setNextMove(Move *);
     bool isHuman = false;
     sf::String getType();
     sf::String type;

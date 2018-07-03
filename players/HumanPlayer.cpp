@@ -12,7 +12,7 @@ HumanPlayer::HumanPlayer(PieceColor color) : Player(color) {
 }
 
 Move *HumanPlayer::getNextMove(Board *board) {
-    return nullptr;
+    return nextMove;
 }
 
 
