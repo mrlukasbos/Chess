@@ -1,0 +1,68 @@
+\hypertarget{class_move}{}\section{Move Class Reference}
+\label{class_move}\index{Move@{Move}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_move_a38c4990ac28b0cdfae9050409ab7415a}\label{class_move_a38c4990ac28b0cdfae9050409ab7415a}} 
+{\bfseries Move} (\mbox{\hyperlink{class_board}{Board}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$)
+\item 
+\mbox{\Hypertarget{class_move_acefd7884211b1f7a7d2b8ba4ddcf1ba9}\label{class_move_acefd7884211b1f7a7d2b8ba4ddcf1ba9}} 
+{\bfseries Move} (\mbox{\hyperlink{class_board}{Board}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{class_move_a904562de252b165c26c1f139d259c8eb}\label{class_move_a904562de252b165c26c1f139d259c8eb}} 
+{\bfseries Move} (\mbox{\hyperlink{class_board}{Board}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, bool, Castling\+Side, \mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$, \mbox{\hyperlink{class_square}{Square}} $\ast$)
+\item 
+\mbox{\Hypertarget{class_move_a9d91dd03207b55a7016a5f8de36f698a}\label{class_move_a9d91dd03207b55a7016a5f8de36f698a}} 
+void {\bfseries generate\+Name} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_move_adcbbe513c87c0dcc19f05619973a3b1d}\label{class_move_adcbbe513c87c0dcc19f05619973a3b1d}} 
+\mbox{\hyperlink{class_square}{Square}} $\ast$ {\bfseries start\+Of\+Move}
+\item 
+\mbox{\Hypertarget{class_move_a4e8eb6c451062b79d880ce3d346e20af}\label{class_move_a4e8eb6c451062b79d880ce3d346e20af}} 
+\mbox{\hyperlink{class_square}{Square}} $\ast$ {\bfseries end\+Of\+Move}
+\item 
+\mbox{\Hypertarget{class_move_a2f179bb489b6f1a14830e1e81b5eccfd}\label{class_move_a2f179bb489b6f1a14830e1e81b5eccfd}} 
+\mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$ {\bfseries initial\+Piece}
+\item 
+\mbox{\Hypertarget{class_move_adcc5fa48f045b094b32cd8f902d57acd}\label{class_move_adcc5fa48f045b094b32cd8f902d57acd}} 
+\mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$ {\bfseries taken\+Piece}
+\item 
+\mbox{\Hypertarget{class_move_a1fbc388e091cd5639b755ebca2a8f90b}\label{class_move_a1fbc388e091cd5639b755ebca2a8f90b}} 
+\mbox{\hyperlink{class_player}{Player}} $\ast$ {\bfseries player}
+\item 
+\mbox{\Hypertarget{class_move_a8861c7af9b982677666292f88c06029d}\label{class_move_a8861c7af9b982677666292f88c06029d}} 
+bool {\bfseries is\+Simulated} = false
+\item 
+\mbox{\Hypertarget{class_move_aeb167ac5b5026207799035ea00467a20}\label{class_move_aeb167ac5b5026207799035ea00467a20}} 
+std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{class_move_a264e68c2f070d39c895889b2edfc66b0}\label{class_move_a264e68c2f070d39c895889b2edfc66b0}} 
+Castling\+Side {\bfseries castling\+Side}
+\item 
+\mbox{\Hypertarget{class_move_a6a0dc44a92343f6f0f951df9d2c5add3}\label{class_move_a6a0dc44a92343f6f0f951df9d2c5add3}} 
+\mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$ {\bfseries castling\+Rook} = nullptr
+\item 
+\mbox{\Hypertarget{class_move_aa904a23353053bc9a8c963828a89e032}\label{class_move_aa904a23353053bc9a8c963828a89e032}} 
+\mbox{\hyperlink{class_square}{Square}} $\ast$ {\bfseries rook\+Target\+Square} = nullptr
+\item 
+\mbox{\Hypertarget{class_move_a0be40463b39204457c4c2a331403ad49}\label{class_move_a0be40463b39204457c4c2a331403ad49}} 
+\mbox{\hyperlink{class_square}{Square}} $\ast$ {\bfseries inital\+Rook\+Square} = nullptr
+\item 
+\mbox{\Hypertarget{class_move_a07f0eb12d13ed4f65c0dcc65946f583c}\label{class_move_a07f0eb12d13ed4f65c0dcc65946f583c}} 
+bool {\bfseries is\+Promoting} = false
+\item 
+\mbox{\Hypertarget{class_move_ae947bead41a531a56957916b007cdfb4}\label{class_move_ae947bead41a531a56957916b007cdfb4}} 
+\mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$ {\bfseries promoted\+Piece} = nullptr
+\item 
+\mbox{\Hypertarget{class_move_a8373efdfa68c28e953d337b95b946c08}\label{class_move_a8373efdfa68c28e953d337b95b946c08}} 
+\mbox{\hyperlink{class_chess_piece}{Chess\+Piece}} $\ast$ {\bfseries en\+Passant\+Taken\+Piece} = nullptr
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Move.\+h\item 
+Move.\+cpp\end{DoxyCompactItemize}

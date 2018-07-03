@@ -14,8 +14,6 @@ using namespace std;
 
 class MinMaxPlayer : public Player {
 public:
-    MinMaxPlayer();
-
     MinMaxPlayer(PieceColor color);
 
     Move * getNextMove(Board *board);

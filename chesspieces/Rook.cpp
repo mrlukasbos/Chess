@@ -5,7 +5,6 @@
 Rook::Rook(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = ROOK;
-    generateImage(type);
     pieceScore = ROOK_SCORE;
     locationScores = {{
         {{0, 0, 0, 0, 0, 0, 0, 0}},

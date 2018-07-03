@@ -16,19 +16,19 @@
 
 using namespace sf;
 
-Board::Board(RenderWindow &window) : window(window) {
+Board::Board() {
     bottomPlayer = nullptr;
     topPlayer = nullptr;
     currentPlayer = nullptr;
     selectedSquare = nullptr;
-    
-    createBoard();
-}
 
-void Board::drawBoard() {
-    for (short i  = 0; i < 8; i++) {
+    // create the squares of the board
+    for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
-            squares[i][j]->drawSquare(window);
+            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
+
+            Vector2i coordinates = Vector2i(i, j);
+            squares[i][j] = new Square(coordinates);
         }
     }
 }
@@ -38,7 +38,6 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer, Player *currentPl
     this->bottomPlayer = bottomPlayer;
     this->topPlayer = topPlayer;
     this->currentPlayer = currentPlayer;
-    createBoard();
     initPieces();
 }
 
@@ -107,22 +106,21 @@ void Board::doMove(Move *nextMove) {
                 std::cout << "make a choice: q -> queen, r -> rook, b -> bishop, n -> knight" << std::endl;
                 char PromotionChoice = (char) std::cin.get();
 
+                Square * location = nextMove->endOfMove;
+                PieceColor color = nextMove->initialPiece->color;
+
                 switch (PromotionChoice) {
                     case 'q':
-                        nextMove->endOfMove->chessPiece = new Queen(this, nextMove->endOfMove,
-                                                                    nextMove->initialPiece->color);
+                        nextMove->endOfMove->chessPiece = new Queen(this, location, color);
                         break;
                     case 'r':
-                        nextMove->endOfMove->chessPiece = new Rook(this, nextMove->endOfMove,
-                                                                   nextMove->initialPiece->color);
+                        nextMove->endOfMove->chessPiece = new Rook(this, location, color);
                         break;
                     case 'b':
-                        nextMove->endOfMove->chessPiece = new Bishop(this, nextMove->endOfMove,
-                                                                     nextMove->initialPiece->color);
+                        nextMove->endOfMove->chessPiece = new Bishop(this, location, color);
                         break;
                     case 'n':
-                        nextMove->endOfMove->chessPiece = new Knight(this, nextMove->endOfMove,
-                                                                     nextMove->initialPiece->color);
+                        nextMove->endOfMove->chessPiece = new Knight(this, location, color);
                         break;
                     default:
                         std::cout << "error in input. make a choice: q -> queen, r -> rook, b -> bishop, n -> knight"
@@ -177,8 +175,8 @@ void Board::undoMove() {
             move->enPassantTakenPiece->location->chessPiece = move->enPassantTakenPiece;
         }
 
-            if (!move->isSimulated) {
-            std::cout << "Undo: " << move->name << endl;
+        if (!move->isSimulated) {
+            cout << "Undo: " << move->name << endl;
         }
     }
 }
@@ -222,49 +220,8 @@ bool Board::checkMate() {
     return true;
 }
 
-void Board::selectSquareFromCoordinates(sf::Vector2i coordinates) {
-    if (selectedSquare){
-        selectedSquare->setSelected(false); // set selected property of previous square to false
-    }
-    selectedSquare = squares[(coordinates.x)][coordinates.y];
-    selectedSquare->setSelected(true); // set new square to selected
 
-    focusSquares();
-}
 
-void Board::focusSquares() {
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            squares[i][j]->setFocused(false); // there should be no other squares be selected.
-        }
-    }
-
-    // here check for the squares where the selected square may move to
-    if (selectedSquare && selectedSquare->chessPiece) {
-
-        std::vector<Move *> availableMoves;
-        availableMoves = selectedSquare->chessPiece->getAvailableMoves(true);
-
-        for (Move * move : availableMoves) {
-            move->endOfMove->setFocused(true);
-        }
-    }
-}
-
-void Board::createBoard() {
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            Color color = (j + i) % 2 == 1 ? Color(100, 100, 100) : Color::White;
-
-            sf::Vector2i coordinates = sf::Vector2i(i, j);
-            squares[i][j] = new Square(BOARD_BORDER_THICKNESS + (i * BLOCK_SIZE),
-                                       BOARD_BORDER_THICKNESS + (j * BLOCK_SIZE),
-                                       BLOCK_SIZE,
-                                       color,
-                                       coordinates);
-        }
-    }
-}
 
 std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     std::vector<ChessPiece *> pieces;
@@ -284,7 +241,10 @@ void Board::checkGameStatus() {
     if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
         if (checkMate()) {
             std::string winnerName = isInCheck(PieceColor::WHITE) ? "black" : "white";
-            std::cout << "The winner is " + winnerName + "\n" ;
+            std::cout << "The winner is "  << winnerName << endl ;
+
+            std::cout << "Restart game? Press B to play with Black and press W to play with white" << endl;
+
 
             // just start the game again ;-) switch players
             bottomPlayer->color = inverse(bottomPlayer->color);

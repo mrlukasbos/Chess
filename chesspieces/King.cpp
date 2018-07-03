@@ -9,7 +9,6 @@
 King::King(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = KING;
-    generateImage(type);
     pieceScore = KING_SCORE;
     locationScores = {{
         {{-30, -40, -40, -50, -50, -40, -40, -30}},

@@ -5,7 +5,6 @@
 Bishop::Bishop(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = BISHOP;
-    generateImage(type);
     pieceScore = BISHOP_SCORE;
     locationScores = {{
         {{-20, -10, -10, -10, -10, -10, -10, -20}},

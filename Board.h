@@ -21,7 +21,7 @@ class Move;
 class Board {
 public:
 
-    Board(RenderWindow &window);
+    Board();
     
     /// Constructs a board from an existing board (copies the board)
     Board(Board const &) = default;
@@ -29,7 +29,6 @@ public:
     
     Square *squares[8][8];
 
-    void drawBoard();
     void startGame(Player *bottomPlayer, Player *topPlayer, Player * currentPlayer);
     void selectSquareFromCoordinates(Vector2i coordinates);
     void focusSquares();
@@ -67,7 +66,6 @@ public:
 private:
     void createBoard();
     void initPieces();
-    RenderWindow &window;
 };
 
 

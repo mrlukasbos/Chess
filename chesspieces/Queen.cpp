@@ -5,7 +5,6 @@
 Queen::Queen(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = QUEEN;
-    generateImage(type);
     pieceScore = QUEEN_SCORE;
     locationScores = {{
         {{-20, -10, -10, -5, -5, -10, -10, -20}},

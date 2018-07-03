@@ -7,29 +7,17 @@
 #include "ChessPiece.h"
 #include "constants.h"
 
+using namespace sf;
+using namespace std;
+
 class ChessPiece;
 class Square {
-
 public:
-    Square();
-    Square(int x, int y, int size, sf::Color color, sf::Vector2i coordinates);
-    sf::RectangleShape rectangle;
-    void drawSquare(sf::RenderWindow &window);
-    
-    int posX;
-    int posY;
-    int size;
-    sf::Color color;
-    sf::Vector2i coordinates;
-    
-    bool isSelected = false;
-    bool isFocused = false;
-    bool isChecked = false;
-    void setSelected(bool selected);
-    void setFocused(bool focused);
-    std::string name;
-    ChessPiece *chessPiece = NULL;
-    void setChessPiece(ChessPiece *piece);
+    Square(Vector2i coordinates);
+    Vector2i coordinates;
+    string name;
+    ChessPiece * chessPiece = nullptr;
+    void setChessPiece(ChessPiece * piece);
 };
 
 

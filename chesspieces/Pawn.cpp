@@ -8,7 +8,6 @@
 Pawn::Pawn(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = PAWN;
-    generateImage(type);
 
     pieceScore = PAWN_SCORE;
 

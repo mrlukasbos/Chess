@@ -9,11 +9,6 @@
 using namespace sf;
 using namespace std;
 
-MinMaxPlayer::MinMaxPlayer() {
-    type = "MinMaxPlayer";
-    isHuman = false;
-}
-
 MinMaxPlayer::MinMaxPlayer(PieceColor color) : Player(color) {
     type = "MinMaxPlayer";
     isHuman = false;

@@ -21,15 +21,6 @@ ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
     type = PAWN;
 }
 
-void ChessPiece::drawChessPiece(RenderWindow &window) {
-    texture.loadFromImage(img);
-    texture.setSmooth(true);
-    sprite.setScale(0.9, 0.9);
-    sprite.setTexture(texture, true);
-    sprite.setPosition(Vector2f(location->posX + 10, location->posY + 10)); // absolute position
-    window.draw(sprite);
-}
-
 vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
     vector<Move *> moves;
     for (Square * square : getAvailableSquares(considerCheck)) {
@@ -106,9 +97,3 @@ ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
     return safeDestinations;
 }
 
-void ChessPiece::generateImage(PieceType type) {
-    // for the finding images
-    std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-    imageUrlPrefix = color == PieceColor::BLACK ? "Black" : "White";
-    img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
-}

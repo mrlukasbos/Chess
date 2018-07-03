@@ -12,8 +12,6 @@
 
 class RandomPlayer : public Player {
 public:
-    RandomPlayer();
-
     RandomPlayer(PieceColor color);
 
     Move *getNextMove(Board *board);

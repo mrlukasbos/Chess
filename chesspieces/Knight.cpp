@@ -7,7 +7,6 @@
 Knight::Knight(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = KNIGHT;
-    generateImage(type);
     pieceScore = KNIGHT_SCORE;
     locationScores = {{
         {{-50, -40, -30, -30, -30, -30, -40, -50}},
