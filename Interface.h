@@ -14,17 +14,19 @@ class Board;
 
 class Interface {
 private:
-  Font font;
-  Font boldFont;
-  Board * board;
-  void drawBoard();
-  RenderWindow &window;
+    Font font;
+    Font boldFont;
+    Board * board;
+    void drawBoard();
+    void drawChessPiece(ChessPiece *, Vector2f);
 
-  const Color darkSquareColor = Color(100, 100, 150);
-  const Color lightSquareColor = Color(255, 255, 255);
-  const Color menuColor = Color(100, 100, 150);
-  const Color boardBackgroundColor = Color(0, 0, 0);
-  const Color coordinateLettersColor = Color(255, 255, 255);
+    RenderWindow &window;
+
+    const Color darkSquareColor = Color(100, 100, 150);
+    const Color lightSquareColor = Color(255, 255, 255);
+    const Color menuColor = Color(100, 100, 150);
+    const Color boardBackgroundColor = Color(0, 0, 0);
+    const Color coordinateLettersColor = Color(255, 255, 255);
 
  public:
   Interface(Board *, RenderWindow &);

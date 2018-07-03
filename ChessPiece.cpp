@@ -62,7 +62,7 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
             int yLocation = y + (j * directions[i].y);
             bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
             if (elementExists) {
-                Square *element = board->squares[xLocation][yLocation];
+                Square *element = board->getSquare(xLocation, yLocation);
                 if (element->chessPiece && element->chessPiece->color == color) {
                     break;
                 } else if (element->chessPiece) {

@@ -31,16 +31,42 @@ void Interface::drawBoard() {
             } else {
                 square.setFillColor(darkSquareColor);
             }
-            square.setPosition(BOARD_BORDER_THICKNESS + i * BLOCK_SIZE, BOARD_BORDER_THICKNESS + j * BLOCK_SIZE);
+
+            int posX = BOARD_BORDER_THICKNESS + i * BLOCK_SIZE;
+            int posY = BOARD_BORDER_THICKNESS + j * BLOCK_SIZE;
+            Vector2f position = Vector2f(posX, posY);
+
+            square.setPosition(position);
             square.setSize(sf::Vector2f(BLOCK_SIZE, BLOCK_SIZE));
             window.draw(square);
+
+            if (board->getSquare(i,j)->chessPiece) {
+                ChessPiece * piece = board->getSquare(i,j)->chessPiece;
+                drawChessPiece(piece, position);
+            }
+
         }
     }
 }
 
-void Interface::drawPieces() {
 
+void Interface::drawChessPiece(ChessPiece * piece, Vector2f position) {
+    Image img;
+    string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
+    string imageUrlPrefix = piece->color == PieceColor::BLACK ? "Black" : "White";
+    img.loadFromFile("images/" + imageUrlPrefix + names[piece->type] + ".png");
+
+    Texture texture;
+    Sprite sprite;
+
+    texture.loadFromImage(img);
+    texture.setSmooth(true);
+    sprite.setScale(0.9, 0.9);
+    sprite.setTexture(texture, true);
+    sprite.setPosition(position); // absolute position
+    window.draw(sprite);
 }
+
 
 //void Interface::showCurrentPlayerText(Player *currentPlayer) {
 //    Text currentMoveText("Current move", font, 26);
@@ -194,21 +220,6 @@ void Interface::drawPieces() {
 
 
 //
-//void ChessPiece::generateImage(PieceType type) {
-//    // for the finding images
-//    std::string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-//    imageUrlPrefix = color == PieceColor::BLACK ? "Black" : "White";
-//    img.loadFromFile("images/" + imageUrlPrefix + names[type] + ".png");
-//}
-//
-//void ChessPiece::drawChessPiece(RenderWindow &window) {
-//    texture.loadFromImage(img);
-//    texture.setSmooth(true);
-//    sprite.setScale(0.9, 0.9);
-//    sprite.setTexture(texture, true);
-//    sprite.setPosition(Vector2f(location->posX + 10, location->posY + 10)); // absolute position
-//    window.draw(sprite);
-//}
 
 
 //

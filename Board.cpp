@@ -20,7 +20,6 @@ Board::Board() {
     bottomPlayer = nullptr;
     topPlayer = nullptr;
     currentPlayer = nullptr;
-    selectedSquare = nullptr;
 
     // create the squares of the board
     for (short i = 0; i < 8; i++) {
@@ -256,4 +255,11 @@ void Board::checkGameStatus() {
 
 void Board::setCurrentPlayer(Player *currentPlayer) {
     this->currentPlayer = currentPlayer;
+}
+
+Square * Board::getSquare(short x, short y) {
+    return squares[x][y];
+}
+const vector<Move*>& Board::getAllMoves() const {
+    return allMoves;
 }

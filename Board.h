@@ -21,30 +21,26 @@ class Move;
 class Board {
 public:
 
+    /// Initializes a board
     Board();
     
     /// Constructs a board from an existing board (copies the board)
     Board(Board const &) = default;
-    
-    
-    Square *squares[8][8];
 
+    /// Starts a game on the board
     void startGame(Player *bottomPlayer, Player *topPlayer, Player * currentPlayer);
-    void selectSquareFromCoordinates(Vector2i coordinates);
-    void focusSquares();
 
+    /// do a move on the board
     void doMove(Move *nextMove);
-    void setCurrentPlayer(Player *currentPlayer);
-    void undoMove();
 
-    /// return the vector of all moves that were done.
-    vector<Move *> allMoves;
+    /// Sets the current player
+    void setCurrentPlayer(Player *currentPlayer);
+
+    /// Undo the last move on the board
+    void undoMove();
 
     /// Checks if a color is in check and if there is checkmate
     void checkGameStatus();
-
-    /// a square being selected by a Humanplayer
-    Square * selectedSquare;
     
     /// The player at the bottom of the board
     Player *bottomPlayer;
@@ -63,9 +59,20 @@ public:
     
     /// checks if there is a checkmate on the board. Use isInCheck() to view which color is checkmated.
     bool checkMate();
+
+    /// return all squares of the board
+    Square * getSquare(short, short);
 private:
-    void createBoard();
     void initPieces();
+
+    /// All squares on the board
+    Square * squares[8][8];
+
+    /// return the vector of all moves that were done.
+    vector<Move *> allMoves;
+public:
+    const vector<Move*>& getAllMoves() const;
+
 };
 
 

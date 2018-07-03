@@ -64,7 +64,7 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
 
         bool squareExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
         if (squareExists) {
-            Square *square = board->squares[xLocation][yLocation];
+            Square *square = board->getSquare(xLocation, yLocation);
             if (square->chessPiece && square->chessPiece->color != color) {
                 availableMoves.push_back(square);
             }
@@ -79,7 +79,7 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
         // no need to check for x; we do not change it
         bool squareExists = yLocation >= 0 && yLocation < 8;
         if (squareExists) {
-            Square *square = board->squares[x][yLocation];
+            Square *square = board->getSquare(x, yLocation);
             if (square->chessPiece) {
                 break;
             }
@@ -94,9 +94,9 @@ vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
 }
 
 vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
-    Move * previousMove = board->allMoves.back();
+    Move * previousMove = board->getAllMoves().back();
 
-    if (board->allMoves.size() > 0 && previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
+    if (board->getAllMoves().size() > 0 && previousMove && previousMove->initialPiece->type == PieceType::PAWN) {
         ChessPiece *opponentPawn = previousMove->initialPiece;
         Vector2i loc = this->location->coordinates;
         Vector2i opLoc = opponentPawn->location->coordinates;
@@ -105,11 +105,11 @@ vector<Move *> Pawn::addEnPassantMoves(vector<Move *> moves) {
             bool movedTwoSquaresFromTop = opLoc.y == 4;
             if (opponentPawn->amountOfSteps == 1) {
                 if (movedTwoSquaresFromBottom) {
-                    Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][2]);
+                    Move * enPassantMove = new Move(board, this->location, board->getSquare(opLoc.x,2));
                     enPassantMove->enPassantTakenPiece = opponentPawn;
                     moves.push_back(enPassantMove);
                 } else if (movedTwoSquaresFromTop) {
-                    Move * enPassantMove = new Move(board, this->location, board->squares[opLoc.x][5]);
+                    Move * enPassantMove = new Move(board, this->location, board->getSquare(opLoc.x, 5));
                     enPassantMove->enPassantTakenPiece = opponentPawn;
                     moves.push_back(enPassantMove);
                 }
