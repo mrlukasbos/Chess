@@ -74,20 +74,20 @@ void Board::initPieces() {
 void Board::doMove(Move *nextMove) {
     // possibly capture a chesspiece
     if (nextMove->getTakenPiece()) {
-        nextMove->getTakenPiece()->isCaptured = true;
+        nextMove->getTakenPiece()->setCaptured(true);
     }
 
     if (nextMove->getEnPassantTakenPiece()) {
-        nextMove->getEnPassantTakenPiece()->isCaptured = true;
-        nextMove->getEnPassantTakenPiece()->location->removeChessPiece();
+        nextMove->getEnPassantTakenPiece()->setCaptured(true);
+        nextMove->getEnPassantTakenPiece()->getLocation()->removeChessPiece();
     }
 
     // move the chesspiece
     nextMove->getEndOfMove()->setChessPiece(nextMove->getStartOfMove()->getChessPiece());
-    nextMove->getEndOfMove()->getChessPiece()->location = nextMove->getEndOfMove();
+    nextMove->getEndOfMove()->getChessPiece()->setLocation(nextMove->getEndOfMove());
     nextMove->getStartOfMove()->removeChessPiece();
 
-    nextMove->getEndOfMove()->getChessPiece()->amountOfSteps++;
+    nextMove->getEndOfMove()->getChessPiece()->increaseAmountOfSteps(1);
     
     if (nextMove->isPromoting()) {
 
@@ -100,7 +100,7 @@ void Board::doMove(Move *nextMove) {
                 char PromotionChoice = (char) std::cin.get();
 
                 Square * location = nextMove->getEndOfMove();
-                PieceColor color = nextMove->getInitialPiece()->color;
+                PieceColor color = nextMove->getInitialPiece()->getColor();
 
                 switch (PromotionChoice) {
                     case 'q':
@@ -121,14 +121,14 @@ void Board::doMove(Move *nextMove) {
                 }
             }
         } else {
-            nextMove->getEndOfMove()->setChessPiece(new Queen(this, nextMove->getEndOfMove(),  nextMove->getInitialPiece()->color));
+            nextMove->getEndOfMove()->setChessPiece(new Queen(this, nextMove->getEndOfMove(),  nextMove->getInitialPiece()->getColor()));
         }
     }
 
     // if there is a castlingRook we must move it also
     if (nextMove->getCastlingRook()) {
         nextMove->getRookTargetSquare()->setChessPiece(nextMove->getCastlingRook());
-        nextMove->getCastlingRook()->location = nextMove->getRookTargetSquare();
+        nextMove->getCastlingRook()->setLocation(nextMove->getRookTargetSquare());
         nextMove->getInitalRookSquare()->removeChessPiece();
     }
     
@@ -146,26 +146,26 @@ void Board::undoMove() {
         allMoves.pop_back();
         // revive a piece when it was taken
         if (move->getTakenPiece()) {
-            move->getTakenPiece()->isCaptured = false;
-            move->getTakenPiece()->location = move->getEndOfMove();
+            move->getTakenPiece()->setCaptured(false) ;
+            move->getTakenPiece()->setLocation(move->getEndOfMove());
         }
         move->getEndOfMove()->setChessPiece(move->getTakenPiece());
 
-        move->getInitialPiece()->location = move->getStartOfMove();
+        move->getInitialPiece()->setLocation(move->getStartOfMove());
         move->getStartOfMove()->setChessPiece(move->getInitialPiece());
-        move->getInitialPiece()->amountOfSteps--;
+        move->getInitialPiece()->decreaseAmountOfSteps(1);
 
         // if there is a castlingRook we must move undo it also
         if (move->getCastlingRook()) {
             // move rook
             move->getInitalRookSquare()->setChessPiece(move->getCastlingRook());
-            move->getCastlingRook()->location = move->getInitalRookSquare();
+            move->getCastlingRook()->setLocation(move->getInitalRookSquare());
 
             move->getRookTargetSquare()->removeChessPiece();
         }
 
         if (move->getEnPassantTakenPiece()) {
-            move->getEnPassantTakenPiece()->location->setChessPiece(move->getEnPassantTakenPiece());
+            move->getEnPassantTakenPiece()->getLocation()->setChessPiece(move->getEnPassantTakenPiece());
         }
 
         if (!move->isSimulated()) {
@@ -179,7 +179,7 @@ bool Board::isInCheck(PieceColor color) {
     for (short i = 0; i < 8; i++) {
         for (short j = 0; j < 8; j++) {
             ChessPiece *piece = squares[i][j]->getChessPiece();
-            if (piece) piece->isChecked = false;
+            if (piece) piece->setChecked(false);
         }
     }
 
@@ -189,8 +189,8 @@ bool Board::isInCheck(PieceColor color) {
         //considerotherpieces: true, considerCheck FALSE! otherwise infinite loop.
         for (Square * square : piece->getAvailableSquares(false)) {
             ChessPiece *pieceToHit = square->getChessPiece();
-            if (pieceToHit && pieceToHit->type == KING && pieceToHit->color == color) {
-                pieceToHit->isChecked = true;
+            if (pieceToHit && pieceToHit->getType() == KING && pieceToHit->getColor() == color) {
+                pieceToHit->setChecked(true);
                 return true;
             }
         }
@@ -216,7 +216,7 @@ bool Board::checkMate() {
 std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
     std::vector<ChessPiece *> pieces;
     for (Square * square : getSquares()) {
-        if (square->getChessPiece() && square->getChessPiece()->color == color) {
+        if (square->getChessPiece() && square->getChessPiece()->getColor() == color) {
             pieces.push_back(square->getChessPiece());
         }
     }

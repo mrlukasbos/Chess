@@ -29,7 +29,7 @@ void Move::generateName() {
         return;
     }
     char shortNames[] = "KQRBNP";
-    name = shortNames[initialPiece->type];
+    name = shortNames[initialPiece->getType()];
     if (name == "P") name = ""; // pawn is usually not written down.
     if (this->getTakenPiece()) name += 'x';
     name += endOfMove->getName();
@@ -39,7 +39,7 @@ void Move::generateName() {
     board->doMove(this);
     if (board->checkMate()) {
         name += '#';
-    } else if (board->isInCheck(inverse(initialPiece->color))) {
+    } else if (board->isInCheck(inverse(initialPiece->getColor()))) {
         name += '+';
     }
     board->undoMove();

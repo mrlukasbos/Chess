@@ -30,7 +30,6 @@ vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
 }
 
 int ChessPiece::getLocationScore(int x, int y) {
-
     // if we are the topPlayer we must reverse the scores
     if (board->bottomPlayer->getColor() == color) {
         y = 7 - y;
@@ -95,5 +94,86 @@ ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
         delete moveToTry;
     }
     return safeDestinations;
+}
+
+
+int ChessPiece::getPieceScore() const {
+    return pieceScore;
+}
+
+void ChessPiece::setPieceScore(int pieceScore) {
+    ChessPiece::pieceScore = pieceScore;
+}
+
+const array<array<int, 8>, 8>& ChessPiece::getLocationScores() const {
+    return locationScores;
+}
+
+void ChessPiece::setLocationScores(const array<array<int, 8>, 8>& locationScores) {
+    ChessPiece::locationScores = locationScores;
+}
+
+PieceType ChessPiece::getType() const {
+    return type;
+}
+
+void ChessPiece::setType(PieceType type) {
+    ChessPiece::type = type;
+}
+
+Board* ChessPiece::getBoard() const {
+    return board;
+}
+
+void ChessPiece::setBoard(Board* board) {
+    ChessPiece::board = board;
+}
+
+Square* ChessPiece::getLocation() const {
+    return location;
+}
+
+void ChessPiece::setLocation(Square* location) {
+    ChessPiece::location = location;
+}
+
+PieceColor ChessPiece::getColor() const {
+    return color;
+}
+
+void ChessPiece::setColor(PieceColor color) {
+    ChessPiece::color = color;
+}
+
+int ChessPiece::getAmountOfSteps() const {
+    return amountOfSteps;
+}
+
+void ChessPiece::setAmountOfSteps(int amountOfSteps) {
+    ChessPiece::amountOfSteps = amountOfSteps;
+}
+
+void ChessPiece::increaseAmountOfSteps(int amount) {
+    ChessPiece::amountOfSteps += amount;
+}
+
+void ChessPiece::decreaseAmountOfSteps(int amount) {
+    ChessPiece::amountOfSteps -= amount;
+}
+
+bool ChessPiece::isChecked() const {
+    return checked;
+}
+
+void ChessPiece::setChecked(bool checked) {
+    ChessPiece::checked = checked;
+}
+
+bool ChessPiece::isCaptured() const {
+    return captured;
+}
+
+void ChessPiece::setCaptured(bool captured) {
+    ChessPiece::captured = captured;
 }
 

@@ -106,7 +106,7 @@ int MinMaxPlayer::evaluateScore(vector<ChessPiece *> pieces) {
     
     for (ChessPiece * piece : pieces) {
         materialScore += piece->pieceScore;
-        locationScore += piece->getLocationScore(piece->location->getCoordinates().x, piece->location->getCoordinates().y);
+        locationScore += piece->getLocationScore(piece->getLocation()->getCoordinates().x, piece->getLocation()->getCoordinates().y);
         movementScore += piece->getAvailableSquares(false).size();
     }
     

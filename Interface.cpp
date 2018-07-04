@@ -78,8 +78,8 @@ void Interface::drawBoard() {
 void Interface::drawChessPiece(ChessPiece * piece, Vector2f position) {
     Image img;
     string names[] = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-    string imageUrlPrefix = piece->color == PieceColor::BLACK ? "Black" : "White";
-    img.loadFromFile("images/" + imageUrlPrefix + names[piece->type] + ".png");
+    string imageUrlPrefix = piece->getColor() == PieceColor::BLACK ? "Black" : "White";
+    img.loadFromFile("images/" + imageUrlPrefix + names[piece->getType()] + ".png");
 
     Texture texture;
     Sprite sprite;
