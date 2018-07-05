@@ -8,11 +8,10 @@
 #include "../ChessPiece.h"
 
 class Queen : public ChessPiece {
-public:
-    Queen(Board *board, Square *location, PieceColor color);
+ public:
+  Queen(Board *board, Square *location, PieceColor color);
 
-    std::vector<Square *> getAvailableSquares(bool considerCheck);
+  std::vector<Square *> getAvailableSquares(bool considerCheck);
 };
-
 
 #endif //CHESS_QUEEN_H

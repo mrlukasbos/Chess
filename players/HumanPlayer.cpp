@@ -7,12 +7,12 @@
 using namespace sf;
 
 HumanPlayer::HumanPlayer(PieceColor color) : Player(color) {
-    type = "HumanPlayer";
-    isHuman = true;
+  type = "HumanPlayer";
+  isHuman = true;
 }
 
 Move *HumanPlayer::getNextMove(Board *board) {
-    return nextMove;
+  return nextMove;
 }
 
 

@@ -20,54 +20,54 @@
 using namespace sf;
 
 int main() {
-    ContextSettings settings;
-    settings.antialiasingLevel = 8;
-    RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
-    window.setFramerateLimit(40);
+  ContextSettings settings;
+  settings.antialiasingLevel = 8;
+  RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
+  window.setFramerateLimit(40);
 
-    Board board = Board();
-    Interface interface(&board, window);
-    Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK);
-    Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
+  Board board = Board();
+  Interface interface(&board, window);
+  Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK);
+  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
 
-    // white begins
-    Player * currentPlayer = bottomPlayer->getColor() == PieceColor::WHITE ? bottomPlayer : topPlayer;
-    board.startGame(bottomPlayer, topPlayer, currentPlayer);
+  // white begins
+  Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
+  board.startGame(bottomPlayer, topPlayer, currentPlayer);
 
-    while(window.isOpen()) {
+  while (window.isOpen()) {
 
-        Event event;
-        while (window.pollEvent(event)) {
+    Event event;
+    while (window.pollEvent(event)) {
 
-            // Handle Events
-            if (event.type == Event::Closed) {
-                window.close();
-            } else if (event.type == Event::MouseButtonPressed) {
-                if (currentPlayer->isHuman) {
-                    currentPlayer->setNextMove(interface.getHumanMove());
-                }
-            } else if (event.type == Event::KeyPressed) {
-
-            }
-
-            Move *nextMove = currentPlayer->getNextMove(&board);
-            if (nextMove) {
-                board.doMove(nextMove);
-                board.checkGameStatus();
-
-                // remove the move from the player so it won't be tried again next time.
-                currentPlayer->setNextMove(nullptr);
-                interface.selectedSquare = nullptr;
-                // switch player after move
-                if (currentPlayer == topPlayer) {
-                    currentPlayer = bottomPlayer;
-                } else {
-                    currentPlayer = topPlayer;
-                }
-                board.setCurrentPlayer(currentPlayer);
-            }
+      // Handle Events
+      if (event.type==Event::Closed) {
+        window.close();
+      } else if (event.type==Event::MouseButtonPressed) {
+        if (currentPlayer->isHuman) {
+          currentPlayer->setNextMove(interface.getHumanMove());
         }
-        interface.draw();
-        window.display();
+      } else if (event.type==Event::KeyPressed) {
+
+      }
+
+      Move *nextMove = currentPlayer->getNextMove(&board);
+      if (nextMove) {
+        board.doMove(nextMove);
+        board.checkGameStatus();
+
+        // remove the move from the player so it won't be tried again next time.
+        currentPlayer->setNextMove(nullptr);
+        interface.selectedSquare = nullptr;
+        // switch player after move
+        if (currentPlayer==topPlayer) {
+          currentPlayer = bottomPlayer;
+        } else {
+          currentPlayer = topPlayer;
+        }
+        board.setCurrentPlayer(currentPlayer);
+      }
     }
+    interface.draw();
+    window.display();
+  }
 }

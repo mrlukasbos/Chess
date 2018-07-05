@@ -19,46 +19,46 @@ class Square;
 class Move;
 class Board;
 class ChessPiece {
-protected:
-    std::vector<Square *> removeMovesLeadingToSelfCheck(vector<Square *> moves);
+ protected:
+  std::vector<Square *> removeMovesLeadingToSelfCheck(vector<Square *> moves);
 
-    std::vector<Square *> calculateMovesForDirections(
-            Square *location,
-            Vector2i directions[],
-            Board *board,
-            PieceColor color,
-            short amountOfDirections,
-            short maxAmountOfSteps,
-            bool considerCheck
-    );
+  std::vector<Square *> calculateMovesForDirections(
+      Square *location,
+      Vector2i directions[],
+      Board *board,
+      PieceColor color,
+      short amountOfDirections,
+      short maxAmountOfSteps,
+      bool considerCheck
+  );
 
-    PieceType type;
-    Board * board;
-    Square * location;
-    PieceColor color;
-    int amountOfSteps = 0;
-public:
+  PieceType type;
+  Board *board;
+  Square *location;
+  PieceColor color;
+  int amountOfSteps = 0;
+ public:
 
-    /// Initialize a chesspiece
-    explicit ChessPiece();
+  /// Initialize a chesspiece
+  explicit ChessPiece();
 
-    /// Initialize a chessPiece
-    explicit ChessPiece(Board *board, Square *location, PieceColor color);
+  /// Initialize a chessPiece
+  explicit ChessPiece(Board *board, Square *location, PieceColor color);
 
-    /// Returns available squares
-    virtual vector<Square *> getAvailableSquares(bool considerCheck) =0;
+  /// Returns available squares
+  virtual vector<Square *> getAvailableSquares(bool considerCheck) =0;
 
-    /// Returns available moves
-    virtual vector<Move *> getAvailableMoves(bool considerCheck);
+  /// Returns available moves
+  virtual vector<Move *> getAvailableMoves(bool considerCheck);
 
-    // Getters and setters
-    PieceType getType() const;
-    Square* getLocation() const;
-    void setLocation(Square* location);
-    PieceColor getColor() const;
-    int getAmountOfSteps() const;
-    void increaseAmountOfSteps(int amount);
-    void decreaseAmountOfSteps(int amount);
+  // Getters and setters
+  PieceType getType() const;
+  Square *getLocation() const;
+  void setLocation(Square *location);
+  PieceColor getColor() const;
+  int getAmountOfSteps() const;
+  void increaseAmountOfSteps(int amount);
+  void decreaseAmountOfSteps(int amount);
 };
 
 #endif //CHESS_CHESSPIECE_H

@@ -14,63 +14,62 @@ class Square;
 class Player;
 class ChessPiece;
 class Move {
-private:
-    Board *board;
-    Square *startOfMove = nullptr;
-    Square *endOfMove = nullptr;
-    ChessPiece *initialPiece = nullptr;
-    ChessPiece * takenPiece = nullptr;
-    Player * player;
-    bool simulated = false;
-    void identifyPieces();
+ private:
+  Board *board;
+  Square *startOfMove = nullptr;
+  Square *endOfMove = nullptr;
+  ChessPiece *initialPiece = nullptr;
+  ChessPiece *takenPiece = nullptr;
+  Player *player;
+  bool simulated = false;
+  void identifyPieces();
 
-    string name;
+  string name;
 
-    // castling variables
-    CastlingSide castlingSide;
-    ChessPiece * castlingRook = nullptr;
-    Square * rookTargetSquare = nullptr;
-    Square * initalRookSquare = nullptr;
+  // castling variables
+  CastlingSide castlingSide;
+  ChessPiece *castlingRook = nullptr;
+  Square *rookTargetSquare = nullptr;
+  Square *initalRookSquare = nullptr;
 
-    // pawn promotion variables
-    bool promoting = false;
-    ChessPiece * promotedPiece = nullptr;
+  // pawn promotion variables
+  bool promoting = false;
+  ChessPiece *promotedPiece = nullptr;
 
-    // en passant variable
-    ChessPiece * enPassantTakenPiece = nullptr;
-public:
+  // en passant variable
+  ChessPiece *enPassantTakenPiece = nullptr;
+ public:
 
-    /// Initialize a move
-    Move();
+  /// Initialize a move
+  Move();
 
-    /// Create a move
-    Move(Board *, Square *, Square *);
+  /// Create a move
+  Move(Board *, Square *, Square *);
 
-    /// Create a move with or without simulation
-    Move(Board *, Square *, Square *, bool);
+  /// Create a move with or without simulation
+  Move(Board *, Square *, Square *, bool);
 
-    /// Create a castling move
-    Move(Board *, Square *, Square *, bool, CastlingSide, ChessPiece *, Square *, Square *);
+  /// Create a castling move
+  Move(Board *, Square *, Square *, bool, CastlingSide, ChessPiece *, Square *, Square *);
 
-    /// Generate the chess notation name for the move
-    void generateName();
+  /// Generate the chess notation name for the move
+  void generateName();
 
-    // Getters and setters
-    Square* getStartOfMove() const;
-    Square* getEndOfMove() const;
-    ChessPiece* getInitialPiece() const;
-    ChessPiece* getTakenPiece() const;
-    bool isSimulated() const;
-    void setSimulated(bool simulated);
-    const string& getName() const;
-    ChessPiece* getCastlingRook() const;
-    Square* getRookTargetSquare() const;
-    Square* getInitalRookSquare() const;
-    bool isPromoting() const;
-    void setPromoting(bool promoting);
-    ChessPiece* getEnPassantTakenPiece() const;
-    void setEnPassantTakenPiece(ChessPiece* enPassantTakenPiece);
+  // Getters and setters
+  Square *getStartOfMove() const;
+  Square *getEndOfMove() const;
+  ChessPiece *getInitialPiece() const;
+  ChessPiece *getTakenPiece() const;
+  bool isSimulated() const;
+  void setSimulated(bool simulated);
+  const string &getName() const;
+  ChessPiece *getCastlingRook() const;
+  Square *getRookTargetSquare() const;
+  Square *getInitalRookSquare() const;
+  bool isPromoting() const;
+  void setPromoting(bool promoting);
+  ChessPiece *getEnPassantTakenPiece() const;
+  void setEnPassantTakenPiece(ChessPiece *enPassantTakenPiece);
 };
-
 
 #endif //CHESS_MOVE_H

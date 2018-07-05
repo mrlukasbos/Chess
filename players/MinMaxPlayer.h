@@ -13,26 +13,24 @@
 using namespace std;
 
 class MinMaxPlayer : public Player {
-public:
-    explicit MinMaxPlayer(PieceColor color);
+ public:
+  explicit MinMaxPlayer(PieceColor color);
 
-    Move * getNextMove(Board *board) override;
-    
-    long getMoveScore(Board *, Move *, PieceColor, int, long, long);
-private:
-    int depth = 6;
-    int getBoardScore(Board *, PieceColor);
-    int evaluateScore(Board *, vector<ChessPiece *>);
-    
-    enum GamePhase {
-        OPENING, MIDDLEGAME, ENDGAME
-    };
-    
-    GamePhase phase = OPENING;
-    int getLocationScore(Board * board, ChessPiece * piece, Vector2i location);
-    int getPieceScore(ChessPiece * piece);
+  Move *getNextMove(Board *board) override;
+
+  long getMoveScore(Board *, Move *, PieceColor, int, long, long);
+ private:
+  int depth = 6;
+  int getBoardScore(Board *, PieceColor);
+  int evaluateScore(Board *, vector<ChessPiece *>);
+
+  enum GamePhase {
+    OPENING, MIDDLEGAME, ENDGAME
+  };
+
+  GamePhase phase = OPENING;
+  int getLocationScore(Board *board, ChessPiece *piece, Vector2i location);
+  int getPieceScore(ChessPiece *piece);
 };
-
-
 
 #endif //CHESS_MINMAXPLAYER_H

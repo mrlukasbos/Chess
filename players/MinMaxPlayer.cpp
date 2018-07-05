@@ -96,7 +96,7 @@ int MinMaxPlayer::getBoardScore(Board *board, PieceColor c) {
   return score;
 }
 
-int MinMaxPlayer::evaluateScore(Board * board, vector<ChessPiece *> pieces) {
+int MinMaxPlayer::evaluateScore(Board *board, vector<ChessPiece *> pieces) {
   int materialScore = INT_MIN;
   int locationScore = INT_MIN;
   int movementScore = INT_MIN;
@@ -120,7 +120,9 @@ int MinMaxPlayer::evaluateScore(Board * board, vector<ChessPiece *> pieces) {
   return total;
 }
 
-int MinMaxPlayer::getLocationScore(Board * board, ChessPiece * piece, Vector2i location) {
+int MinMaxPlayer::getLocationScore(Board *board, ChessPiece *piece, Vector2i location) {
+  // source: https://chessprogramming.wikispaces.com/Simplified+evaluation+function
+
   PieceType type = piece->getType();
   array<array<int, 8>, 8> locationScores;
 
@@ -163,24 +165,24 @@ int MinMaxPlayer::getLocationScore(Board * board, ChessPiece * piece, Vector2i l
     case KNIGHT:
       locationScores = {{
                             {{-50, -40, -30, -30, -30, -30, -40, -50}},
-                            {{-40, -20,   0,   0,   0,   0, -20, -40}},
-                            {{-30,   0,  10,  15,  15,  10,   0, -30}},
-                            {{-30,   5,  15,  20,  20,  15,   5, -30}},
-                            {{-30,   0,  15,  20,  20,  15,   0, -30}},
-                            {{-30,   5,  10,  15,  15,  10,   5, -30}},
-                            {{-40, -20,   0,   5,   5,   0, -20, -40}},
+                            {{-40, -20, 0, 0, 0, 0, -20, -40}},
+                            {{-30, 0, 10, 15, 15, 10, 0, -30}},
+                            {{-30, 5, 15, 20, 20, 15, 5, -30}},
+                            {{-30, 0, 15, 20, 20, 15, 0, -30}},
+                            {{-30, 5, 10, 15, 15, 10, 5, -30}},
+                            {{-40, -20, 0, 5, 5, 0, -20, -40}},
                             {{-50, -40, -30, -30, -30, -30, -40, -50}}
                         }};
       break;
     case BISHOP:
       locationScores = {{
                             {{-20, -10, -10, -10, -10, -10, -10, -20}},
-                            {{-10,   0,   0,   0,   0,   0,   0, -10}},
-                            {{-10,   0,   5,  10,  10,   5,   0, -10}},
-                            {{-10,   5,   5,  10,  10,   5,   5, -10}},
-                            {{-10,   0,  10,  10,  10,  10,   0, -10}},
-                            {{-10,  10,  10,  10,  10,  10,  10, -10}},
-                            {{-10,   5,   0,   0,   0,   0,   5, -10}},
+                            {{-10, 0, 0, 0, 0, 0, 0, -10}},
+                            {{-10, 0, 5, 10, 10, 5, 0, -10}},
+                            {{-10, 5, 5, 10, 10, 5, 5, -10}},
+                            {{-10, 0, 10, 10, 10, 10, 0, -10}},
+                            {{-10, 10, 10, 10, 10, 10, 10, -10}},
+                            {{-10, 5, 0, 0, 0, 0, 5, -10}},
                             {{-20, -10, -10, -10, -10, -10, -10, -20}}
                         }};
       break;
@@ -198,7 +200,7 @@ int MinMaxPlayer::getLocationScore(Board * board, ChessPiece * piece, Vector2i l
   }
 
   int y = location.y;
-  if (board->bottomPlayer->getColor() == piece->getColor()) {
+  if (board->getBottomPlayer()->getColor()==piece->getColor()) {
     y = 7 - location.y;
   }
 
@@ -206,17 +208,12 @@ int MinMaxPlayer::getLocationScore(Board * board, ChessPiece * piece, Vector2i l
 }
 int MinMaxPlayer::getPieceScore(ChessPiece *piece) {
   switch (piece->getType()) {
-    case KING:    return 10000;
-    case QUEEN:   return 900;
-    case ROOK:    return 500;
-    case BISHOP:  return 330;
-    case KNIGHT:  return 320;
-    case PAWN:    return 100;
+    case KING: return 10000;
+    case QUEEN: return 900;
+    case ROOK: return 500;
+    case BISHOP: return 330;
+    case KNIGHT: return 320;
+    case PAWN: return 100;
   }
   return 0;
 }
-
-
-
-
-

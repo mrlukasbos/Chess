@@ -5,17 +5,15 @@
 #ifndef CHESS_HUMANPLAYER_H
 #define CHESS_HUMANPLAYER_H
 
-
 #include "../constants.h"
 #include "../Board.h"
 #include "../Player.h"
 #include "../PieceColor.h"
 
 class HumanPlayer : public Player {
-public:
-    HumanPlayer(PieceColor color);
-    Move * getNextMove(Board *board);
+ public:
+  HumanPlayer(PieceColor color);
+  Move *getNextMove(Board *board);
 };
-
 
 #endif //CHESS_HUMANPLAYER_H

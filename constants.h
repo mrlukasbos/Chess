@@ -14,9 +14,6 @@
 #define BLOCK_SIZE BOARD_SIZE/8
 #define SELECTION_LINE_THICKNESS 4
 
-// SCORES FOR THE POSITIONS ON THE BOARD
-// source: https://chessprogramming.wikispaces.com/Simplified+evaluation+function
-
 enum PieceType {
     KING = 0,
     QUEEN = 1,

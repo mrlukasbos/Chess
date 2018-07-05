@@ -11,11 +11,10 @@
 #include "../PieceColor.h"
 
 class RandomPlayer : public Player {
-public:
-    RandomPlayer(PieceColor color);
+ public:
+  RandomPlayer(PieceColor color);
 
-    Move *getNextMove(Board *board);
+  Move *getNextMove(Board *board);
 };
-
 
 #endif //CHESS_RANDOMPLAYER_H

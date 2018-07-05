@@ -8,11 +8,10 @@
 #include "../ChessPiece.h"
 
 class Bishop : public ChessPiece {
-public:
-    Bishop(Board *board, Square *location, PieceColor color);
+ public:
+  Bishop(Board *board, Square *location, PieceColor color);
 
-    std::vector<Square *> getAvailableSquares(bool considerCheck) override;
+  std::vector<Square *> getAvailableSquares(bool considerCheck) override;
 };
-
 
 #endif //CHESS_BISHOP_H
