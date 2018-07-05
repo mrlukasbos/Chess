@@ -37,9 +37,6 @@ protected:
     Square * location;
     PieceColor color;
     int amountOfSteps = 0;
-    bool checked = false;
-    bool captured = false;
-
 public:
 
     /// Initialize a chesspiece
@@ -60,8 +57,6 @@ public:
     void setLocation(Square* location);
     PieceColor getColor() const;
     int getAmountOfSteps() const;
-    void setChecked(bool checked);
-    void setCaptured(bool captured);
     void increaseAmountOfSteps(int amount);
     void decreaseAmountOfSteps(int amount);
 };

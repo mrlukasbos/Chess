@@ -109,12 +109,3 @@ void ChessPiece::increaseAmountOfSteps(int amount) {
 void ChessPiece::decreaseAmountOfSteps(int amount) {
     ChessPiece::amountOfSteps -= amount;
 }
-
-void ChessPiece::setChecked(bool checked) {
-    ChessPiece::checked = checked;
-}
-
-void ChessPiece::setCaptured(bool captured) {
-    ChessPiece::captured = captured;
-}
-

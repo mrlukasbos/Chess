@@ -72,13 +72,8 @@ void Board::initPieces() {
 
 
 void Board::doMove(Move *nextMove) {
-    // possibly capture a chesspiece
-    if (nextMove->getTakenPiece()) {
-        nextMove->getTakenPiece()->setCaptured(true);
-    }
 
     if (nextMove->getEnPassantTakenPiece()) {
-        nextMove->getEnPassantTakenPiece()->setCaptured(true);
         nextMove->getEnPassantTakenPiece()->getLocation()->removeChessPiece();
     }
 
@@ -146,7 +141,6 @@ void Board::undoMove() {
         allMoves.pop_back();
         // revive a piece when it was taken
         if (move->getTakenPiece()) {
-            move->getTakenPiece()->setCaptured(false) ;
             move->getTakenPiece()->setLocation(move->getEndOfMove());
         }
         move->getEndOfMove()->setChessPiece(move->getTakenPiece());
@@ -176,12 +170,6 @@ void Board::undoMove() {
 
 bool Board::isInCheck(PieceColor color) {
     PieceColor enemyColor = inverse(color);
-    for (short i = 0; i < 8; i++) {
-        for (short j = 0; j < 8; j++) {
-            ChessPiece *piece = squares[i][j]->getChessPiece();
-            if (piece) piece->setChecked(false);
-        }
-    }
 
     // check if the enemy has moves that set the king of the chosen color in check
     for (ChessPiece * piece : getPiecesByColor(enemyColor)) {
@@ -190,7 +178,6 @@ bool Board::isInCheck(PieceColor color) {
         for (Square * square : piece->getAvailableSquares(false)) {
             ChessPiece *pieceToHit = square->getChessPiece();
             if (pieceToHit && pieceToHit->getType() == KING && pieceToHit->getColor() == color) {
-                pieceToHit->setChecked(true);
                 return true;
             }
         }
