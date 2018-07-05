@@ -22,13 +22,15 @@ public:
 private:
     int depth = 6;
     int getBoardScore(Board *, PieceColor);
-    int evaluateScore(vector<ChessPiece *>);
+    int evaluateScore(Board *, vector<ChessPiece *>);
     
     enum GamePhase {
         OPENING, MIDDLEGAME, ENDGAME
     };
     
     GamePhase phase = OPENING;
+    int getLocationScore(Board * board, ChessPiece * piece, Vector2i location);
+    int getPieceScore(ChessPiece * piece);
 };
 
 

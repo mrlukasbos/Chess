@@ -54,39 +54,13 @@ public:
     /// Returns available moves
     virtual vector<Move *> getAvailableMoves(bool considerCheck);
 
-    /// Get location score (used for the minmaxplayer)
-    // TODO  move towards minmaxplayer class
-    virtual int getLocationScore(int x, int y);
-    int pieceScore;
-    std::array<std::array<int, 8>, 8> locationScores;
-
     // Getters and setters
-
-    // TODO  move towards minmaxplayer class
-    int getPieceScore() const;
-
-    // TODO  move towards minmaxplayer class
-    void setPieceScore(int pieceScore);
-
-    // TODO  move towards minmaxplayer class
-    const array<array<int, 8>, 8>& getLocationScores() const;
-
-    // TODO  move towards minmaxplayer class
-    void setLocationScores(const array<array<int, 8>, 8>& locationScores);
-
     PieceType getType() const;
-    void setType(PieceType type);
-    Board* getBoard() const;
-    void setBoard(Board* board);
     Square* getLocation() const;
     void setLocation(Square* location);
     PieceColor getColor() const;
-    void setColor(PieceColor color);
     int getAmountOfSteps() const;
-    void setAmountOfSteps(int amountOfSteps);
-    bool isChecked() const;
     void setChecked(bool checked);
-    bool isCaptured() const;
     void setCaptured(bool captured);
     void increaseAmountOfSteps(int amount);
     void decreaseAmountOfSteps(int amount);

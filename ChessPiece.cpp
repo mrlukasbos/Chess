@@ -9,15 +9,11 @@ using namespace sf;
 using namespace std;
 
 ChessPiece::ChessPiece() {
-    pieceScore = 0;
     type = PAWN;
 };
 
 ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
         : board(board), location(location), color(color) {
-
-    // type and piecescore is defined in the subclasses.
-    pieceScore = 0;
     type = PAWN;
 }
 
@@ -27,16 +23,6 @@ vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
         moves.push_back(new Move(board, location, square));
     }
     return moves;
-}
-
-int ChessPiece::getLocationScore(int x, int y) {
-    // if we are the topPlayer we must reverse the scores
-    if (board->bottomPlayer->getColor() == color) {
-        y = 7 - y;
-    }
-
-    // check first y then x.
-    return locationScores.at(y).at(x);
 }
 
 /*
@@ -96,37 +82,8 @@ ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
     return safeDestinations;
 }
 
-
-int ChessPiece::getPieceScore() const {
-    return pieceScore;
-}
-
-void ChessPiece::setPieceScore(int pieceScore) {
-    ChessPiece::pieceScore = pieceScore;
-}
-
-const array<array<int, 8>, 8>& ChessPiece::getLocationScores() const {
-    return locationScores;
-}
-
-void ChessPiece::setLocationScores(const array<array<int, 8>, 8>& locationScores) {
-    ChessPiece::locationScores = locationScores;
-}
-
 PieceType ChessPiece::getType() const {
     return type;
-}
-
-void ChessPiece::setType(PieceType type) {
-    ChessPiece::type = type;
-}
-
-Board* ChessPiece::getBoard() const {
-    return board;
-}
-
-void ChessPiece::setBoard(Board* board) {
-    ChessPiece::board = board;
 }
 
 Square* ChessPiece::getLocation() const {
@@ -141,16 +98,8 @@ PieceColor ChessPiece::getColor() const {
     return color;
 }
 
-void ChessPiece::setColor(PieceColor color) {
-    ChessPiece::color = color;
-}
-
 int ChessPiece::getAmountOfSteps() const {
     return amountOfSteps;
-}
-
-void ChessPiece::setAmountOfSteps(int amountOfSteps) {
-    ChessPiece::amountOfSteps = amountOfSteps;
 }
 
 void ChessPiece::increaseAmountOfSteps(int amount) {
@@ -161,16 +110,8 @@ void ChessPiece::decreaseAmountOfSteps(int amount) {
     ChessPiece::amountOfSteps -= amount;
 }
 
-bool ChessPiece::isChecked() const {
-    return checked;
-}
-
 void ChessPiece::setChecked(bool checked) {
     ChessPiece::checked = checked;
-}
-
-bool ChessPiece::isCaptured() const {
-    return captured;
 }
 
 void ChessPiece::setCaptured(bool captured) {

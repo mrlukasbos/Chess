@@ -36,7 +36,6 @@ void Interface::drawBoard() {
             int posY = BOARD_BORDER_THICKNESS + j * BLOCK_SIZE;
             Vector2f position = Vector2f(posX, posY);
 
-
             square.setPosition(position.x + SELECTION_LINE_THICKNESS, position.y + SELECTION_LINE_THICKNESS);
             square.setSize(Vector2f(BLOCK_SIZE - 2*SELECTION_LINE_THICKNESS, BLOCK_SIZE - 2*SELECTION_LINE_THICKNESS));
             square.setOutlineThickness(SELECTION_LINE_THICKNESS);

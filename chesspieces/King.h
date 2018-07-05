@@ -16,5 +16,4 @@ public:
     std::vector<Move *> getAvailableMoves(bool considerCheck) override;
 };
 
-
 #endif //CHESS_KING_H

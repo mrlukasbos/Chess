@@ -14,15 +14,6 @@
 #define BLOCK_SIZE BOARD_SIZE/8
 #define SELECTION_LINE_THICKNESS 4
 
-// SCORE SYSTEM USED BY AI
-#define KING_SCORE       10000
-#define QUEEN_SCORE      900
-#define ROOK_SCORE       500
-#define BISHOP_SCORE     330
-#define KNIGHT_SCORE     320
-#define PAWN_SCORE       100
-
-
 // SCORES FOR THE POSITIONS ON THE BOARD
 // source: https://chessprogramming.wikispaces.com/Simplified+evaluation+function
 

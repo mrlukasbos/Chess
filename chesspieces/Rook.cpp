@@ -5,17 +5,6 @@
 Rook::Rook(Board *board, Square *location, PieceColor color)
         : ChessPiece(board, location, color) {
     type = ROOK;
-    pieceScore = ROOK_SCORE;
-    locationScores = {{
-        {{0, 0, 0, 0, 0, 0, 0, 0}},
-        {{5, 10, 10, 10, 10, 10, 10, 5}},
-        {{-5, 0, 0, 0, 0, 0, 0, -5}},
-        {{-5, 0, 0, 0, 0, 0, 0, -5}},
-        {{-5, 0, 0, 0, 0, 0, 0, -5}},
-        {{-5, 0, 0, 0, 0, 0, 0, -5}},
-        {{-5, 0, 0, 0, 0, 0, 0, -5}},
-        {{0, 0, 0, 5, 5, 0, 0, 0}}
-    }};
 }
 
 std::vector<Square *> Rook::getAvailableSquares(bool considerCheck) {

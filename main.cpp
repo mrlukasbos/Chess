@@ -34,8 +34,6 @@ int main() {
     Player * currentPlayer = bottomPlayer->getColor() == PieceColor::WHITE ? bottomPlayer : topPlayer;
     board.startGame(bottomPlayer, topPlayer, currentPlayer);
 
-    bool isSetup = false;
-
     while(window.isOpen()) {
 
         Event event;
@@ -50,11 +48,6 @@ int main() {
                 }
             } else if (event.type == Event::KeyPressed) {
 
-            }
-
-            if (!isSetup) {
-                interface.draw();
-                isSetup = true;
             }
 
             Move *nextMove = currentPlayer->getNextMove(&board);
