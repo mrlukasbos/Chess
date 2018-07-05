@@ -11,19 +11,22 @@
  * 
 */
 
-#include <SFML/Graphics.hpp>
 #include "Board.h"
 #include "players/HumanPlayer.h"
 #include "players/MinMaxPlayer.h"
 #include "Interface.h"
 
 using namespace sf;
+using namespace tgui;
 
 int main() {
   ContextSettings settings;
   settings.antialiasingLevel = 8;
   RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Chess", Style::Default, settings);
   window.setFramerateLimit(40);
+
+  Gui gui{window};
+
 
   Board board = Board();
   Interface interface(&board, window);
@@ -39,6 +42,8 @@ int main() {
     Event event;
     while (window.pollEvent(event)) {
 
+      gui.handleEvent(event); // Pass the event to the widgets
+
       // Handle Events
       if (event.type==Event::Closed) {
         window.close();
@@ -47,7 +52,24 @@ int main() {
           currentPlayer->setNextMove(interface.getHumanMove());
         }
       } else if (event.type==Event::KeyPressed) {
-        if (event.)
+
+        if (Keyboard::isKeyPressed(Keyboard::W)) {
+          Player *bottomPlayer = new HumanPlayer(PieceColor::WHITE);
+          Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK);
+          currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
+          board.startGame(bottomPlayer, topPlayer, currentPlayer);
+        }
+
+        if (Keyboard::isKeyPressed(Keyboard::B)) {
+          Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK);
+          Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
+          currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
+          board.startGame(bottomPlayer, topPlayer, currentPlayer);
+        }
+
+        if (Keyboard::isKeyPressed(Keyboard::R)) {
+          board.undoMove();
+        }
       }
 
       Move *nextMove = currentPlayer->getNextMove(&board);
@@ -67,6 +89,8 @@ int main() {
         board.setCurrentPlayer(currentPlayer);
       }
     }
+    window.clear(sf::Color(100, 100, 100));
+    gui.draw(); // Draw all widgets
     interface.draw();
     window.display();
   }

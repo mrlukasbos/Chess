@@ -22,6 +22,8 @@ class Board {
  private:
   void initPieces();
 
+  void clear();
+
   /// The player at the bottom of the board
   Player *bottomPlayer;
 
