@@ -9,20 +9,20 @@ using namespace sf;
 using namespace std;
 
 ChessPiece::ChessPiece() {
-    type = PAWN;
+  type = PAWN;
 };
 
 ChessPiece::ChessPiece(Board *board, Square *location, PieceColor color)
-        : board(board), location(location), color(color) {
-    type = PAWN;
+    : board(board), location(location), color(color) {
+  type = PAWN;
 }
 
 vector<Move *> ChessPiece::getAvailableMoves(bool considerCheck) {
-    vector<Move *> moves;
-    for (Square * square : getAvailableSquares(considerCheck)) {
-        moves.push_back(new Move(board, location, square));
-    }
-    return moves;
+  vector<Move *> moves;
+  for (Square *square : getAvailableSquares(considerCheck)) {
+    moves.push_back(new Move(board, location, square));
+  }
+  return moves;
 }
 
 /*
@@ -37,75 +37,75 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
                                         PieceColor color, short amountOfDirections, short maxAmountOfSteps,
                                         bool considerCheck) {
 
-    vector<Square *> moves;
-    int y = location->getCoordinates().y;
-    int x = location->getCoordinates().x;
+  vector<Square *> moves;
+  int y = location->getCoordinates().y;
+  int x = location->getCoordinates().x;
 
-    for (int i = 0; i < amountOfDirections; i++) {
-        for (int j = 1; j <= maxAmountOfSteps; j++) {
-            int xLocation = x + (j * directions[i].x);
-            int yLocation = y + (j * directions[i].y);
-            bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
-            if (elementExists) {
-                Square *element = board->getSquare(xLocation, yLocation);
-                if (element->getChessPiece() && element->getChessPiece()->color == color) {
-                    break;
-                } else if (element->getChessPiece()) {
-                    moves.push_back(element);
-                    break;
-                }
-                moves.push_back(element);
-            }
+  for (int i = 0; i < amountOfDirections; i++) {
+    for (int j = 1; j <= maxAmountOfSteps; j++) {
+      int xLocation = x + (j*directions[i].x);
+      int yLocation = y + (j*directions[i].y);
+      bool elementExists = xLocation >= 0 && xLocation < 8 && yLocation >= 0 && yLocation < 8;
+      if (elementExists) {
+        Square *element = board->getSquare(xLocation, yLocation);
+        if (element->getChessPiece() && element->getChessPiece()->color==color) {
+          break;
+        } else if (element->getChessPiece()) {
+          moves.push_back(element);
+          break;
         }
+        moves.push_back(element);
+      }
     }
+  }
 
-    if (considerCheck) {
-        return removeMovesLeadingToSelfCheck(moves);
-    }
-    return moves;
+  if (considerCheck) {
+    return removeMovesLeadingToSelfCheck(moves);
+  }
+  return moves;
 }
 
 vector<Square *>
 ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
-    vector<Square *> safeDestinations;
-    for (Square *destination : destinations) {
-        Move *moveToTry = new Move(board, location, destination, true);
-        board->doMove(moveToTry);
+  vector<Square *> safeDestinations;
+  for (Square *destination : destinations) {
+    Move *moveToTry = new Move(board, location, destination, true);
+    board->doMove(moveToTry);
 
-        if (!board->isInCheck(color)){
-          safeDestinations.push_back(destination);
-        }
-
-        board->undoMove();
-        delete moveToTry;
+    if (!board->isInCheck(color)) {
+      safeDestinations.push_back(destination);
     }
-    return safeDestinations;
+
+    board->undoMove();
+    delete moveToTry;
+  }
+  return safeDestinations;
 }
 
 PieceType ChessPiece::getType() const {
-    return type;
+  return type;
 }
 
-Square* ChessPiece::getLocation() const {
-    return location;
+Square *ChessPiece::getLocation() const {
+  return location;
 }
 
-void ChessPiece::setLocation(Square* location) {
-    ChessPiece::location = location;
+void ChessPiece::setLocation(Square *location) {
+  ChessPiece::location = location;
 }
 
 PieceColor ChessPiece::getColor() const {
-    return color;
+  return color;
 }
 
 int ChessPiece::getAmountOfSteps() const {
-    return amountOfSteps;
+  return amountOfSteps;
 }
 
 void ChessPiece::increaseAmountOfSteps(int amount) {
-    ChessPiece::amountOfSteps += amount;
+  ChessPiece::amountOfSteps += amount;
 }
 
 void ChessPiece::decreaseAmountOfSteps(int amount) {
-    ChessPiece::amountOfSteps -= amount;
+  ChessPiece::amountOfSteps -= amount;
 }

@@ -12,27 +12,26 @@ using namespace sf;
 
 class Board;
 class Interface {
-private:
-    Font font;
-    Font boldFont;
-    Board * board;
-    void drawBoard();
-    void drawChessPiece(ChessPiece *, Vector2f);
-    bool SquareIsAvailableMoveOfSelectedSquare(Square *);
-    RenderWindow &window;
+ private:
+  Font font;
+  Font boldFont;
+  Board *board;
+  void drawBoard();
+  void drawChessPiece(ChessPiece *, Vector2f);
+  bool SquareIsAvailableMoveOfSelectedSquare(Square *);
+  RenderWindow &window;
 
-    const Color darkSquareColor = Color(100, 100, 150);
-    const Color lightSquareColor = Color(255, 255, 255);
-    const Color menuColor = Color(200, 200, 200);
-    const Color boardBackgroundColor = Color(0, 0, 0);
-    const Color coordinateLettersColor = Color(255, 255, 255);
+  const Color darkSquareColor = Color(100, 100, 150);
+  const Color lightSquareColor = Color(255, 255, 255);
+  const Color menuColor = Color(200, 200, 200);
+  const Color boardBackgroundColor = Color(0, 0, 0);
+  const Color coordinateLettersColor = Color(255, 255, 255);
 
  public:
-    Square * selectedSquare = nullptr;
-    Interface(Board *, RenderWindow &);
-    Move * getHumanMove();
-    void draw();
+  Square *selectedSquare = nullptr;
+  Interface(Board *, RenderWindow &);
+  Move *getHumanMove();
+  void draw();
 };
-
 
 #endif //CHESS_INTERFACE_H

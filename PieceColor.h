@@ -5,12 +5,11 @@
 #ifndef CHESS_PIECECOLOR_H
 #define CHESS_PIECECOLOR_H
 
-
 enum class PieceColor {
-    BLACK, WHITE
+  BLACK, WHITE
 };
 
 // returns opposite color
-PieceColor inverse(PieceColor const&);
+PieceColor inverse(PieceColor const &);
 
 #endif //CHESS_PIECECOLOR_H

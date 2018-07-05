@@ -4,9 +4,9 @@
 
 #include "PieceColor.h"
 
-PieceColor inverse(PieceColor const& color) {
-    if (color == PieceColor::BLACK) {
-        return PieceColor::WHITE;
-    }
-    return PieceColor::BLACK;
+PieceColor inverse(PieceColor const &color) {
+  if (color==PieceColor::BLACK) {
+    return PieceColor::WHITE;
+  }
+  return PieceColor::BLACK;
 }

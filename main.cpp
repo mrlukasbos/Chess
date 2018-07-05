@@ -47,7 +47,7 @@ int main() {
           currentPlayer->setNextMove(interface.getHumanMove());
         }
       } else if (event.type==Event::KeyPressed) {
-
+        if (event.)
       }
 
       Move *nextMove = currentPlayer->getNextMove(&board);

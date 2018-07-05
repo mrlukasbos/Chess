@@ -9,15 +9,15 @@ Player::Player() = default;
 Player::Player(PieceColor color) : color(color) {}
 
 String Player::getType() {
-    return type;
+  return type;
 }
 
-void Player::setNextMove(Move* move) {
-    this->nextMove = move;
+void Player::setNextMove(Move *move) {
+  this->nextMove = move;
 }
 const PieceColor Player::getColor() const {
-    return color;
+  return color;
 }
 void Player::setColor(PieceColor color) {
-    this->color = color;
+  this->color = color;
 }
