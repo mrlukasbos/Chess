@@ -12,6 +12,7 @@ Interface::Interface(Board *board, RenderWindow &window) : board(board), window(
 }
 
 void Interface::draw() {
+  window.clear(menuColor);
   drawBoard();
 }
 

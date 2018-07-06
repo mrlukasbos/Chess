@@ -8,11 +8,7 @@ add_executable(Chess ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)
-find_package(TGUI REQUIRED)
 if (SFML_FOUND)
-    if (TGUI_FOUND)
-        include_directories(${SFML_INCLUDE_DIR} ${TGUI_INCLUDE_DIR})
-        target_link_libraries(Chess ${TGUI_LIBRARY} ${SFML_LIBRARIES})
-    endif ()
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(Chess ${SFML_LIBRARIES})
 endif()
-

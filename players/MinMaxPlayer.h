@@ -20,7 +20,7 @@ class MinMaxPlayer : public Player {
 
   long getMoveScore(Board *, Move *, PieceColor, int, long, long);
  private:
-  int depth = 3;
+  int depth = 6;
   int getBoardScore(Board *, PieceColor);
   int evaluateScore(Board *, vector<ChessPiece *>);
 

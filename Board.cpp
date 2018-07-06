@@ -35,8 +35,6 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer, Player *currentPl
 }
 
 void Board::initPieces() {
-  clear();
-
   short kingXPosition = 3, queenXPosition = 4;
   if (topPlayer->getColor()==PieceColor::BLACK) {
     kingXPosition = 4;
@@ -265,9 +263,4 @@ Player *Board::getCurrentPlayer() const {
 
 void Board::setCurrentPlayer(Player *currentPlayer) {
   Board::currentPlayer = currentPlayer;
-}
-void Board::clear() {
-  for (Square *square : getSquares()) {
-    square->removeChessPiece();
-  }
 }
