@@ -6,3 +6,10 @@ Uses the SFML library for the graphic interface. The goal for this personal proj
 
 ![alt chessBoard](https://imgur.com/hqPbrHC.png)
 
+### Installation
+- make sure you have SFML installed
+- run `make` in the main folder
+
+Tested on both macOS and Linux
+
+
