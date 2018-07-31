@@ -210,9 +210,9 @@ void Board::checkGameStatus() {
   if (isInCheck(PieceColor::WHITE) || isInCheck(PieceColor::BLACK)) {
     if (checkMate()) {
       std::string winnerName = isInCheck(PieceColor::WHITE) ? "black" : "white";
-      std::cout << "The winner is " << winnerName << endl;
+      std::cout << "The winner is " << winnerName << std::endl;
 
-      std::cout << "Restart game? Press B to play with Black and press W to play with white" << endl;
+      std::cout << "Restart game? Press B to play with Black and press W to play with white" << std::endl;
 
 
       // just start the game again ;-) switch players
@@ -221,6 +221,7 @@ void Board::checkGameStatus() {
       startGame(bottomPlayer, topPlayer, currentPlayer);
     }
   }
+  std::cout << this->getFEN() << endl;
 }
 
 Square *Board::getSquare(short x, short y) {
@@ -263,4 +264,40 @@ Player *Board::getCurrentPlayer() const {
 
 void Board::setCurrentPlayer(Player *currentPlayer) {
   Board::currentPlayer = currentPlayer;
+}
+
+string Board::getFEN() {
+  string FEN = "";
+  short emptySquaresCount = 0;
+
+  for (short i = 0; i < 8; i++) {
+    for (short j = 0; j < 8; j++) {
+      Square *square = getSquare(j, i);
+
+      if (ChessPiece *piece = square->getChessPiece()) {
+        if (emptySquaresCount > 0) FEN += to_string(emptySquaresCount);
+        emptySquaresCount = 0;
+
+        // King, Queen, Rook, Bishop, kNight, Pawn
+        string pieceLetters = "kqrbnp";
+        char pieceLetter = pieceLetters[piece->getType()];
+
+        if (piece->getColor()==PieceColor::WHITE) {
+          FEN += (char) toupper(pieceLetter);
+        } else {
+          FEN += pieceLetter;
+        }
+      } else {
+        emptySquaresCount++;
+      }
+
+      if (j==7) {
+        if (emptySquaresCount > 0) FEN += to_string(emptySquaresCount);
+        emptySquaresCount = 0;
+        FEN += "/";
+      }
+
+    }
+  }
+  return FEN;
 }

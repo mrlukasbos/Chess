@@ -74,6 +74,9 @@ class Board {
   /// return a vector of all previous moves
   const vector<Move *> &getAllMoves() const;
 
+  ///return a FEN string of the board
+  string getFEN();
+
   // getters and setters
   void setCurrentPlayer(Player *currentPlayer);
   Player *getBottomPlayer() const;

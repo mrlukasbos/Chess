@@ -111,7 +111,7 @@ int MinMaxPlayer::evaluateScore(Board *board, vector<ChessPiece *> pieces) {
   if (materialScore < 9000) phase = ENDGAME;
 
   int materialFactor = 1;
-  int locationFactor = phase==OPENING ? 1 : .25;
+  double locationFactor = phase==OPENING ? 1 : .25;
   int movementFactor = phase==ENDGAME ? 2 : 1;
 
   long total = materialScore*materialFactor
