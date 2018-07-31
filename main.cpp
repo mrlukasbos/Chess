@@ -14,6 +14,8 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 #include "Interface.h"
+#include "players/HumanPlayer.h"
+#include "players/MinMaxPlayer.h"
 
 using namespace sf;
 

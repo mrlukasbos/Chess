@@ -30,6 +30,7 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
       }
     }
   }
+  bestMove->setSimulated(false);
   return bestMove;
 }
 
