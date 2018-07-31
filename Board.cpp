@@ -117,10 +117,11 @@ void Board::doMove(Move *nextMove) {
   }
 
   // if there is a castlingRook we must move it also
-  if (nextMove->getCastlingRook()) {
+  if (nextMove->getRookTargetSquare()) {
     nextMove->getRookTargetSquare()->setChessPiece(nextMove->getCastlingRook());
     nextMove->getCastlingRook()->setLocation(nextMove->getRookTargetSquare());
     nextMove->getInitalRookSquare()->removeChessPiece();
+    nextMove->getCastlingRook()->increaseAmountOfSteps(1);
   }
 
   if (!nextMove->isSimulated()) {
@@ -145,12 +146,11 @@ void Board::undoMove() {
     move->getStartOfMove()->setChessPiece(move->getInitialPiece());
     move->getInitialPiece()->decreaseAmountOfSteps(1);
 
-    // if there is a castlingRook we must move undo it also
-    if (move->getCastlingRook()) {
-      // move rook
-      move->getInitalRookSquare()->setChessPiece(move->getCastlingRook());
+    // if there is a castlingRook we must undo it also
+    if (move->getInitalRookSquare() && move->getCastlingRook()) {
       move->getCastlingRook()->setLocation(move->getInitalRookSquare());
-
+      move->getInitalRookSquare()->setChessPiece(move->getCastlingRook());
+      move->getCastlingRook()->decreaseAmountOfSteps(1);
       move->getRookTargetSquare()->removeChessPiece();
     }
 

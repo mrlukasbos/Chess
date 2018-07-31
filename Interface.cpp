@@ -7,8 +7,8 @@
 using namespace sf;
 
 Interface::Interface(Board *board, RenderWindow &window) : board(board), window(window) {
-  font.loadFromFile("OpenSans-Regular.ttf");
-  boldFont.loadFromFile("OpenSans-Bold.ttf");
+  font.loadFromFile("fonts/OpenSans-Regular.ttf");
+  boldFont.loadFromFile("fonts/OpenSans-Bold.ttf");
 }
 
 void Interface::draw() {
@@ -44,7 +44,7 @@ void Interface::drawBoard() {
       if (selectedSquare && selectedSquare->getChessPiece()) {
         ChessPiece *piece = selectedSquare->getChessPiece();
 
-        if (SquareIsAvailableMoveOfSelectedSquare(board->getSquare(i, j))) {
+        if (getMoveBelongingToSelectedSquare(board->getSquare(i, j))) {
           if (board->getSquare(i, j)->getChessPiece()) {
             square.setOutlineColor(Color(255, 0, 0));
           } else {
@@ -105,8 +105,9 @@ Move *Interface::getHumanMove() {
         && squareTopSide < mouseY
         && squareBottomSide > mouseY) {
 
-      if (selectedSquare!=nullptr && SquareIsAvailableMoveOfSelectedSquare(square)) { // and if target square
-        return new Move(board, selectedSquare, square);
+      if (selectedSquare!=nullptr && getMoveBelongingToSelectedSquare(square)) { // and if target square
+
+        return getMoveBelongingToSelectedSquare(square);
       } else {
         selectedSquare = square;
       }
@@ -115,13 +116,14 @@ Move *Interface::getHumanMove() {
   return nullptr;
 }
 
-bool Interface::SquareIsAvailableMoveOfSelectedSquare(Square *square) {
+// maybe change this to return a move. something like returnMoveforSquare
+Move *Interface::getMoveBelongingToSelectedSquare(Square *square) {
   if (selectedSquare->getChessPiece()) {
     for (Move *move : selectedSquare->getChessPiece()->getAvailableMoves(true)) {
       if (move->getEndOfMove()==square) {
-        return true;
+        return move;
       }
     }
   }
-  return false;
+  return nullptr;
 }

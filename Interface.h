@@ -18,7 +18,7 @@ class Interface {
   Board *board;
   void drawBoard();
   void drawChessPiece(ChessPiece *, Vector2f);
-  bool SquareIsAvailableMoveOfSelectedSquare(Square *);
+  Move *getMoveBelongingToSelectedSquare(Square *);
   RenderWindow &window;
 
   const Color darkSquareColor = Color(100, 100, 150);

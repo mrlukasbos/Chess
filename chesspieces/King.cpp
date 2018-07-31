@@ -113,8 +113,9 @@ std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool consi
                                  false,
                                  castlingSides[i],
                                  castlingRook,
-                                 castlingRook->getLocation(),
-                                 rookTargetSquare));
+                                 rookTargetSquare,
+                                 castlingRook->getLocation()
+        ));
       }
     }
   }

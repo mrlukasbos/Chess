@@ -13,8 +13,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Board.h"
-#include "players/HumanPlayer.h"
-#include "players/MinMaxPlayer.h"
 #include "Interface.h"
 
 using namespace sf;
@@ -47,6 +45,9 @@ int main() {
           currentPlayer->setNextMove(interface.getHumanMove());
         }
       } else if (event.type==Event::KeyPressed) {
+        if (Keyboard::isKeyPressed(Keyboard::R)) { // humanplayer plays as White
+          board.undoMove();
+        }
       }
 
       Move *nextMove = currentPlayer->getNextMove(&board);
