@@ -14,6 +14,8 @@ Interface::Interface(Board *board, RenderWindow &window) : board(board), window(
 void Interface::draw() {
   window.clear(menuColor);
   drawBoard();
+  drawRecentMoves();
+  drawCoordinates();
 }
 
 void Interface::drawBoard() {
@@ -42,8 +44,6 @@ void Interface::drawBoard() {
 
       // Focus elements
       if (selectedSquare && selectedSquare->getChessPiece()) {
-        ChessPiece *piece = selectedSquare->getChessPiece();
-
         if (getMoveBelongingToSelectedSquare(board->getSquare(i, j))) {
           if (board->getSquare(i, j)->getChessPiece()) {
             square.setOutlineColor(Color(255, 0, 0));
@@ -59,9 +59,7 @@ void Interface::drawBoard() {
 
       if (board->getSquare(i, j)==selectedSquare) {
         square.setOutlineColor(Color::Green);
-
       }
-
       window.draw(square);
 
       // draw chesspieces
@@ -90,6 +88,56 @@ void Interface::drawChessPiece(ChessPiece *piece, Vector2f position) {
   window.draw(sprite);
 }
 
+void Interface::drawRecentMoves() {
+  int height = 20;
+
+  for (int i = 0; i < board->getAllMoves().size(); i++) {
+
+    if (i%2==0) {
+      Text squareName(to_string(i/2 + 1) + ".", font, 18);
+      squareName.setFillColor(Color::Black);
+      squareName.setCharacterSize(18);
+      squareName.setPosition(GAME_SIZE + 10, height);
+      window.draw(squareName);
+
+    }
+
+    Move *move = board->getAllMoves()[i];
+    Text squareName(move->getName(), font, 18);
+    squareName.setFillColor(Color::Black);
+    squareName.setCharacterSize(18);
+
+    if (i%2==0) {
+      squareName.setPosition(GAME_SIZE + 50, height);
+    } else {
+      squareName.setPosition(GAME_SIZE + 110, height);
+      height += 20;
+    }
+
+    window.draw(squareName);
+  }
+}
+
+void Interface::drawCoordinates() {
+  string letters = "ABCDEFGH";
+
+  for (short i = 0; i < 8; i++) {
+    Text coordinateNumberPart(std::to_string(8 - i), boldFont, 18);
+    Text coordinateLetterPart(letters[i], boldFont, 18);
+
+    coordinateLetterPart.setFillColor(Color::White);
+    coordinateLetterPart.setCharacterSize(20);
+    coordinateLetterPart.setPosition(BOARD_BORDER_THICKNESS + 40 + (i*BLOCK_SIZE), GAME_SIZE - 40);
+
+    coordinateNumberPart.setFillColor(Color::White);
+    coordinateNumberPart.setCharacterSize(20);
+    coordinateNumberPart.setPosition(15, BOARD_BORDER_THICKNESS + 40 + (i*BLOCK_SIZE));
+
+    window.draw(coordinateLetterPart);
+    window.draw(coordinateNumberPart);
+  }
+}
+
 Move *Interface::getHumanMove() {
   int mouseX = Mouse::getPosition(window).x;
   int mouseY = Mouse::getPosition(window).y;
@@ -104,9 +152,7 @@ Move *Interface::getHumanMove() {
         && squareRightSide > mouseX
         && squareTopSide < mouseY
         && squareBottomSide > mouseY) {
-
       if (selectedSquare!=nullptr && getMoveBelongingToSelectedSquare(square)) { // and if target square
-
         return getMoveBelongingToSelectedSquare(square);
       } else {
         selectedSquare = square;
@@ -116,7 +162,6 @@ Move *Interface::getHumanMove() {
   return nullptr;
 }
 
-// maybe change this to return a move. something like returnMoveforSquare
 Move *Interface::getMoveBelongingToSelectedSquare(Square *square) {
   if (selectedSquare->getChessPiece()) {
     for (Move *move : selectedSquare->getChessPiece()->getAvailableMoves(true)) {

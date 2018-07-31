@@ -18,6 +18,8 @@ class Interface {
   Board *board;
   void drawBoard();
   void drawChessPiece(ChessPiece *, Vector2f);
+  void drawRecentMoves();
+  void drawCoordinates();
   Move *getMoveBelongingToSelectedSquare(Square *);
   RenderWindow &window;
 
