@@ -28,8 +28,8 @@ int main() {
 
   Board board = Board();
   Interface interface(&board, window);
-  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE, 6);
-  Player *bottomPlayer = new MinMaxPlayer(PieceColor::BLACK, 1);
+  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE, 5);
+  Player *bottomPlayer = new MinMaxPlayer(PieceColor::BLACK, 2);
 
   // white begins
   Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
