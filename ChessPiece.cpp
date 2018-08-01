@@ -38,7 +38,7 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
                                         bool considerCheck) {
 
   vector<Square *> moves;
-  moves.reserve(50);
+  moves.reserve(21); // a piece cannot have more than 21 moves
 
   int y = location->getCoordinates().y;
   int x = location->getCoordinates().x;
@@ -112,4 +112,13 @@ void ChessPiece::increaseAmountOfSteps(int amount) {
 
 void ChessPiece::decreaseAmountOfSteps(int amount) {
   ChessPiece::amountOfSteps -= amount;
+}
+const string &ChessPiece::getName() const {
+  return name;
+}
+char ChessPiece::getLetter() const {
+  return letter;
+}
+void ChessPiece::setLetter(char letter) {
+  ChessPiece::letter = letter;
 }

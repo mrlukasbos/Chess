@@ -33,6 +33,13 @@ class ChessPiece {
   );
 
   PieceType type;
+  string name;
+  char letter;
+ public:
+  const string &getName() const;
+  char getLetter() const;
+  void setLetter(char letter);
+ protected:
   Board *board;
   Square *location;
   PieceColor color;

@@ -5,6 +5,8 @@
 Rook::Rook(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = ROOK;
+  name = "Rook";
+  letter = 'R';
 }
 
 std::vector<Square *> Rook::getAvailableSquares(bool considerCheck) {

@@ -8,6 +8,8 @@
 King::King(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = KING;
+  name = "King";
+  letter = 'K';
 }
 
 std::vector<Square *> King::getAvailableSquares(bool considerCheck) {

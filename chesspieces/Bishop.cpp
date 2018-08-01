@@ -5,6 +5,8 @@
 Bishop::Bishop(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = BISHOP;
+  name = "Bishop";
+  letter = 'B';
 }
 
 std::vector<Square *> Bishop::getAvailableSquares(bool considerCheck) {

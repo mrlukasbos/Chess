@@ -7,6 +7,8 @@
 Knight::Knight(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = KNIGHT;
+  name = "Knight";
+  letter = 'N';
 }
 
 std::vector<Square *> Knight::getAvailableSquares(bool considerCheck) {

@@ -5,6 +5,8 @@
 Queen::Queen(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = QUEEN;
+  name = "Queen";
+  letter = 'Q';
 }
 
 std::vector<Square *> Queen::getAvailableSquares(bool considerCheck) {

@@ -8,6 +8,8 @@
 Pawn::Pawn(Board *board, Square *location, PieceColor color)
     : ChessPiece(board, location, color) {
   type = PAWN;
+  name = "Pawn";
+  letter = 'P';
 }
 
 vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
