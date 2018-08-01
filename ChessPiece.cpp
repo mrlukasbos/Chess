@@ -38,6 +38,8 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
                                         bool considerCheck) {
 
   vector<Square *> moves;
+  moves.reserve(50);
+
   int y = location->getCoordinates().y;
   int x = location->getCoordinates().x;
 
@@ -68,6 +70,8 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
 vector<Square *>
 ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
   vector<Square *> safeDestinations;
+  safeDestinations.reserve(50);
+
   for (Square *destination : destinations) {
     Move *moveToTry = new Move(board, location, destination, true);
     board->doMove(moveToTry);

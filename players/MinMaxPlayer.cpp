@@ -8,9 +8,9 @@
 using namespace sf;
 using namespace std;
 
-MinMaxPlayer::MinMaxPlayer(PieceColor color)
-    : Player(color) {
-  type = "MinMaxPlayer";
+MinMaxPlayer::MinMaxPlayer(PieceColor color, int depth)
+    : Player(color), depth(depth) {
+  type = "MinMaxPlayer - " + to_string(depth);
   isHuman = false;
 }
 

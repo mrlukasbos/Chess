@@ -12,8 +12,9 @@ Pawn::Pawn(Board *board, Square *location, PieceColor color)
 
 vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
   std::vector<Move *> moves;
-  for (Square *square : getAvailableSquares(considerCheck)) {
+  moves.reserve(50);
 
+  for (Square *square : getAvailableSquares(considerCheck)) {
     Move *move = new Move(board, location, square);
     // when a pawn reaches bottom or top it can promote
     if (square->getCoordinates().y==7 || square->getCoordinates().y==0) {
@@ -26,6 +27,7 @@ vector<Move *> Pawn::getAvailableMoves(bool considerCheck) {
 
 vector<Square *> Pawn::getAvailableSquares(bool considerCheck) {
   std::vector<Square *> availableMoves;
+  availableMoves.reserve(5); // a pawn has never more than 5 moves
 
   int y = location->getCoordinates().y;
   int x = location->getCoordinates().x;

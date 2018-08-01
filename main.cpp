@@ -16,6 +16,7 @@
 #include "Interface.h"
 #include "players/HumanPlayer.h"
 #include "players/MinMaxPlayer.h"
+#include "players/RandomPlayer.h"
 
 using namespace sf;
 
@@ -27,8 +28,8 @@ int main() {
 
   Board board = Board();
   Interface interface(&board, window);
-  Player *bottomPlayer = new HumanPlayer(PieceColor::BLACK);
-  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE);
+  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE, 8);
+  Player *bottomPlayer = new MinMaxPlayer(PieceColor::BLACK, 8);
 
   // white begins
   Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
@@ -38,7 +39,6 @@ int main() {
 
     Event event;
     while (window.pollEvent(event)) {
-
       // Handle Events
       if (event.type==Event::Closed) {
         window.close();
@@ -51,7 +51,7 @@ int main() {
           board.undoMove();
         }
       }
-
+    }
       Move *nextMove = currentPlayer->getNextMove(&board);
       if (nextMove) {
         board.doMove(nextMove);
@@ -67,9 +67,11 @@ int main() {
           currentPlayer = topPlayer;
         }
         board.setCurrentPlayer(currentPlayer);
+
+        interface.draw();
+        window.display();
+
       }
-    }
-    interface.draw();
-    window.display();
+
   }
 }

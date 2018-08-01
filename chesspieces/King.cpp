@@ -24,6 +24,7 @@ std::vector<Square *> King::getAvailableSquares(bool considerCheck) {
   };
 
   std::vector<Square *> squares;
+  squares.reserve(10); // The king has never more than 8 moves
 
   int y = location->getCoordinates().y;
   int x = location->getCoordinates().x;
@@ -49,11 +50,14 @@ std::vector<Square *> King::getAvailableSquares(bool considerCheck) {
   if (considerCheck) {
     return removeMovesLeadingToSelfCheck(squares);
   }
+
   return squares;
 }
 
 std::vector<Move *> King::getAvailableMoves(bool considerCheck) {
   std::vector<Move *> moves;
+  moves.reserve(10); // never more than 10 possible moves
+
   for (Square *square : getAvailableSquares(considerCheck)) {
     moves.push_back(new Move(board, location, square));
   }
@@ -76,7 +80,6 @@ std::vector<Move *> King::addCastlingMoves(std::vector<Move *> moves, bool consi
         if (neighbourXLocation < 0 || neighbourXLocation > 7) continue; // don't look for squares outside the board
 
         Square *neighbour = board->getSquare(neighbourXLocation, location->getCoordinates().y);
-
 
         // check the corner squares for a legal rook
         if (neighbourXLocation==0 || neighbourXLocation==7) {

@@ -14,13 +14,13 @@ using namespace std;
 
 class MinMaxPlayer : public Player {
  public:
-  explicit MinMaxPlayer(PieceColor color);
+  explicit MinMaxPlayer(PieceColor color, int depth);
 
   Move *getNextMove(Board *board) override;
 
   long getMoveScore(Board *, Move *, PieceColor, int, long, long);
  private:
-  int depth = 5;
+  int depth;
   int getBoardScore(Board *, PieceColor);
   int evaluateScore(Board *, vector<ChessPiece *>);
 

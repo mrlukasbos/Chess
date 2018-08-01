@@ -35,6 +35,14 @@ void Board::startGame(Player *bottomPlayer, Player *topPlayer, Player *currentPl
 }
 
 void Board::initPieces() {
+
+  for (Square *square : getSquares()) {
+    if (square->getChessPiece()) {
+      square->getChessPiece()->setLocation(nullptr);
+      square->removeChessPiece();
+    }
+  }
+
   short kingXPosition = 3, queenXPosition = 4;
   if (topPlayer->getColor()==PieceColor::BLACK) {
     kingXPosition = 4;
@@ -75,7 +83,7 @@ void Board::doMove(Move *nextMove) {
     nextMove->getEnPassantTakenPiece()->getLocation()->removeChessPiece();
   }
 
-  // move the chesspiece
+  // move the ChessPiece
   nextMove->getEndOfMove()->setChessPiece(nextMove->getStartOfMove()->getChessPiece());
   nextMove->getEndOfMove()->getChessPiece()->setLocation(nextMove->getEndOfMove());
   nextMove->getStartOfMove()->removeChessPiece();
@@ -125,7 +133,7 @@ void Board::doMove(Move *nextMove) {
   }
 
   if (!nextMove->isSimulated()) {
-    cout << nextMove->getName() << endl;
+    // cout << nextMove->getName() << endl;
   }
 
   allMoves.push_back(nextMove);
@@ -198,6 +206,8 @@ bool Board::checkMate() {
 
 std::vector<ChessPiece *> Board::getPiecesByColor(PieceColor color) {
   std::vector<ChessPiece *> pieces;
+  pieces.reserve(16);
+
   for (Square *square : getSquares()) {
     if (square->getChessPiece() && square->getChessPiece()->getColor()==color) {
       pieces.push_back(square->getChessPiece());
@@ -214,6 +224,7 @@ void Board::checkGameStatus() {
 
       std::cout << "Restart game? Press B to play with Black and press W to play with white" << std::endl;
 
+      allMoves.clear();
 
       // just start the game again ;-) switch players
       bottomPlayer->setColor(inverse(bottomPlayer->getColor()));
@@ -221,7 +232,7 @@ void Board::checkGameStatus() {
       startGame(bottomPlayer, topPlayer, currentPlayer);
     }
   }
-  std::cout << this->getFEN() << endl;
+  // std::cout << this->getFEN() << endl;
 }
 
 Square *Board::getSquare(short x, short y) {
@@ -230,6 +241,8 @@ Square *Board::getSquare(short x, short y) {
 
 vector<Square *> Board::getSquares() {
   vector<Square *> allSquares;
+  allSquares.reserve(64);
+
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
       allSquares.push_back(squares[i][j]);
