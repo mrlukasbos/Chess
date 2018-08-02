@@ -136,13 +136,34 @@ void Board::doMove(Move *nextMove) {
     // cout << nextMove->getName() << endl;
   }
 
+  FENHistory.push_back(getFEN());
+
   allMoves.push_back(nextMove);
+}
+
+bool Board::tooMuchRepetition() {
+  vector<string> boards = getFENHistory();
+  sort(boards.begin(), boards.end());
+  int amountOfDuplicates = 0;
+  for (int i = 1; i < boards.size(); i++) {
+    if (boards.at(i - 1)==boards.at(i)) {
+      amountOfDuplicates++;
+
+      if (amountOfDuplicates > 1) {
+        return true;
+      }
+    } else {
+      amountOfDuplicates = 0;
+    }
+  }
+  return false;
 }
 
 void Board::undoMove() {
   Move *move = allMoves.back();
 
   if (move) {
+    FENHistory.pop_back();
     allMoves.pop_back();
     // revive a piece when it was taken
     if (move->getTakenPiece()) {
@@ -277,6 +298,10 @@ Player *Board::getCurrentPlayer() const {
 
 void Board::setCurrentPlayer(Player *currentPlayer) {
   Board::currentPlayer = currentPlayer;
+}
+
+vector<string> Board::getFENHistory() {
+  return FENHistory;
 }
 
 string Board::getFEN() {

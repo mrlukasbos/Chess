@@ -37,6 +37,9 @@ class Board {
   /// The vector of all moves that were done.
   vector<Move *> allMoves;
 
+  /// Keep history of all boards using FEN
+  vector<string> FENHistory;
+
  public:
   /// Initializes a board
   Board();
@@ -55,6 +58,9 @@ class Board {
 
   /// Checks if a color is in check and if there is checkmate
   void checkGameStatus();
+
+  /// check for too much repetition
+  bool tooMuchRepetition();
 
   /// Return a vector of chesspieces by color
   vector<ChessPiece *> getPiecesByColor(PieceColor color);
@@ -77,6 +83,7 @@ class Board {
   ///return a FEN string of the board
   string getFEN();
 
+  vector<string> getFENHistory();
   // getters and setters
   void setCurrentPlayer(Player *currentPlayer);
   Player *getBottomPlayer() const;

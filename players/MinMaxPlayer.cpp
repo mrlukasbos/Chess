@@ -22,7 +22,7 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
   for (ChessPiece *piece : pieces) {
     vector<Move *> moves = piece->getAvailableMoves(true);
     for (Move *move : moves) {
-      long newScore = getMoveScore(board, move, 0);
+      long newScore = getMoveScore(board, move, 0, INT_MIN, INT_MAX);
       if (newScore > highestScore) {
         highestScore = newScore;
         bestMove = move;
@@ -35,7 +35,7 @@ Move *MinMaxPlayer::getNextMove(Board *board) {
   return bestMove;
 }
 
-int MinMaxPlayer::getMoveScore(Board *board, Move *move, int exit) {
+int MinMaxPlayer::getMoveScore(Board *board, Move *move, int exit, int alpha, int beta) {
   PieceColor colorToMove = move->getInitialPiece()->getColor();
 
   if (exit >= depth) {
@@ -57,15 +57,21 @@ int MinMaxPlayer::getMoveScore(Board *board, Move *move, int exit) {
   for (ChessPiece *piece : pieces) {
     vector<Move *> moves = piece->getAvailableMoves(true);
     for (Move *move : moves) {
-      newScore = -getMoveScore(board, move, ++exit);
+      if (!board->isInCheck(PieceColor::WHITE) || !board->isInCheck(PieceColor::BLACK)) {
+        exit++;
+      }
+      newScore = -getMoveScore(board, move, exit, alpha, beta);
 
       if (isMaximizing) {
         bestScore = max(newScore, bestScore);
+        beta = max(bestScore, beta);
       } else {
         bestScore = min(newScore, bestScore);
+        alpha = min(bestScore, alpha);
       }
+      if (beta < alpha) break;
     }
-
+    if (beta < alpha) break;
   }
   board->undoMove();
 

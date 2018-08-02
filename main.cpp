@@ -28,8 +28,8 @@ int main() {
 
   Board board = Board();
   Interface interface(&board, window);
-  Player *topPlayer = new MinMaxPlayer(PieceColor::WHITE, 5);
-  Player *bottomPlayer = new MinMaxPlayer(PieceColor::BLACK, 2);
+  Player *bottomPlayer = new MinMaxPlayer(PieceColor::WHITE, 4);
+  Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK, 4);
 
   // white begins
   Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
@@ -39,37 +39,43 @@ int main() {
 
     Event event;
     while (window.pollEvent(event)) {
+
       // Handle Events
       if (event.type==Event::Closed) {
         window.close();
-      } else if (event.type==Event::MouseButtonPressed) {
+      }
+      if (event.type==Event::MouseButtonPressed) {
         if (currentPlayer->isHuman) {
           currentPlayer->setNextMove(interface.getHumanMove());
         }
-      } else if (event.type==Event::KeyPressed) {
+      }
+      if (event.type==Event::KeyPressed) {
         if (Keyboard::isKeyPressed(Keyboard::R)) { // humanplayer plays as White
           board.undoMove();
         }
       }
+      interface.draw();
+      window.display();
     }
-      Move *nextMove = currentPlayer->getNextMove(&board);
-      if (nextMove) {
-        board.doMove(nextMove);
-        board.checkGameStatus();
 
-        // remove the move from the player so it won't be tried again next time.
-        currentPlayer->setNextMove(nullptr);
-        interface.selectedSquare = nullptr;
-        // switch player after move
-        if (currentPlayer==topPlayer) {
-          currentPlayer = bottomPlayer;
-        } else {
-          currentPlayer = topPlayer;
-        }
-        board.setCurrentPlayer(currentPlayer);
+    Move *nextMove = currentPlayer->getNextMove(&board);
+    if (nextMove) {
+      board.doMove(nextMove);
+      board.checkGameStatus();
 
-        interface.draw();
-        window.display();
+      // remove the move from the player so it won't be tried again next time.
+      currentPlayer->setNextMove(nullptr);
+      interface.selectedSquare = nullptr;
+      // switch player after move
+      if (currentPlayer==topPlayer) {
+        currentPlayer = bottomPlayer;
+      } else {
+        currentPlayer = topPlayer;
       }
+      board.setCurrentPlayer(currentPlayer);
+
+      interface.draw();
+      window.display();
+    }
   }
 }

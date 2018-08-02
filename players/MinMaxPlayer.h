@@ -18,7 +18,7 @@ class MinMaxPlayer : public Player {
 
   Move *getNextMove(Board *board) override;
 
-  int getMoveScore(Board *, Move *, int);
+  int getMoveScore(Board *, Move *, int, int, int);
  private:
   int depth;
   int getBoardScore(Board *, PieceColor);

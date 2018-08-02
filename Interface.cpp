@@ -138,17 +138,6 @@ void Interface::drawCoordinates() {
   }
 }
 
-
-
-//void Interface::drawMaterialScore() {
-//  int materialscore = 0;
-//  for (ChessPiece *piece : board->getPiecesByColor(board->getBottomPlayer()->getColor())) {
-//    materialScore += getPieceScore(piece);
-//    locationScore += getLocationScore(board, piece, piece->getLocation()->getCoordinates());
-//    movementScore += piece->getAvailableSquares(false).size();
-//  }
-//}
-
 Move *Interface::getHumanMove() {
   int mouseX = Mouse::getPosition(window).x;
   int mouseY = Mouse::getPosition(window).y;

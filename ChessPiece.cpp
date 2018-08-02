@@ -67,6 +67,7 @@ ChessPiece::calculateMovesForDirections(Square *location, Vector2i directions[],
   return moves;
 }
 
+// this kindof becomes "removeillegalmoves" now.
 vector<Square *>
 ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
   vector<Square *> safeDestinations;
@@ -76,7 +77,7 @@ ChessPiece::removeMovesLeadingToSelfCheck(vector<Square *> destinations) {
     Move *moveToTry = new Move(board, location, destination, true);
     board->doMove(moveToTry);
 
-    if (!board->isInCheck(color)) {
+    if (!board->isInCheck(color) && !board->tooMuchRepetition()) {
       safeDestinations.push_back(destination);
     }
 
