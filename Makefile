@@ -528,6 +528,33 @@ players/HumanPlayer.cpp.s:
 	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HumanPlayer.cpp.s
 .PHONY : players/HumanPlayer.cpp.s
 
+players/HybridPlayer.o: players/HybridPlayer.cpp.o
+
+.PHONY : players/HybridPlayer.o
+
+# target to build an object file
+players/HybridPlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HybridPlayer.cpp.o
+.PHONY : players/HybridPlayer.cpp.o
+
+players/HybridPlayer.i: players/HybridPlayer.cpp.i
+
+.PHONY : players/HybridPlayer.i
+
+# target to preprocess a source file
+players/HybridPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HybridPlayer.cpp.i
+.PHONY : players/HybridPlayer.cpp.i
+
+players/HybridPlayer.s: players/HybridPlayer.cpp.s
+
+.PHONY : players/HybridPlayer.s
+
+# target to generate assembly for a file
+players/HybridPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Chess.dir/build.make CMakeFiles/Chess.dir/players/HybridPlayer.cpp.s
+.PHONY : players/HybridPlayer.cpp.s
+
 players/MinMaxPlayer.o: players/MinMaxPlayer.cpp.o
 
 .PHONY : players/MinMaxPlayer.o
@@ -663,6 +690,9 @@ help:
 	@echo "... players/HumanPlayer.o"
 	@echo "... players/HumanPlayer.i"
 	@echo "... players/HumanPlayer.s"
+	@echo "... players/HybridPlayer.o"
+	@echo "... players/HybridPlayer.i"
+	@echo "... players/HybridPlayer.s"
 	@echo "... players/MinMaxPlayer.o"
 	@echo "... players/MinMaxPlayer.i"
 	@echo "... players/MinMaxPlayer.s"

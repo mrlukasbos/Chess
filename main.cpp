@@ -18,6 +18,7 @@
 #include "players/MinMaxPlayer.h"
 #include "players/RandomPlayer.h"
 #include "players/MonteCarloPlayer.h"
+#include "players/HybridPlayer.h"
 
 using namespace sf;
 
@@ -29,8 +30,8 @@ int main() {
 
   Board board = Board();
   Interface interface(&board, window);
-  Player *bottomPlayer = new MonteCarloPlayer(PieceColor::WHITE);
-  Player *topPlayer = new RandomPlayer(PieceColor::BLACK);
+  Player *bottomPlayer = new HybridPlayer(PieceColor::WHITE, 2);
+  Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK, 2);
 
   // white begins
   Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;

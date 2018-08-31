@@ -160,6 +160,12 @@
 		<Unit filename="/Users/mrlukasbos/development/Chess/players/HumanPlayer.h">
 			<Option target="Chess"/>
 		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/HybridPlayer.cpp">
+			<Option target="Chess"/>
+		</Unit>
+		<Unit filename="/Users/mrlukasbos/development/Chess/players/HybridPlayer.h">
+			<Option target="Chess"/>
+		</Unit>
 		<Unit filename="/Users/mrlukasbos/development/Chess/players/MinMaxPlayer.cpp">
 			<Option target="Chess"/>
 		</Unit>
