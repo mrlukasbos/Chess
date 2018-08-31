@@ -17,6 +17,7 @@
 #include "players/HumanPlayer.h"
 #include "players/MinMaxPlayer.h"
 #include "players/RandomPlayer.h"
+#include "players/MonteCarloPlayer.h"
 
 using namespace sf;
 
@@ -28,8 +29,8 @@ int main() {
 
   Board board = Board();
   Interface interface(&board, window);
-  Player *bottomPlayer = new MinMaxPlayer(PieceColor::WHITE, 4);
-  Player *topPlayer = new MinMaxPlayer(PieceColor::BLACK, 4);
+  Player *bottomPlayer = new MonteCarloPlayer(PieceColor::WHITE);
+  Player *topPlayer = new RandomPlayer(PieceColor::BLACK);
 
   // white begins
   Player *currentPlayer = bottomPlayer->getColor()==PieceColor::WHITE ? bottomPlayer : topPlayer;
