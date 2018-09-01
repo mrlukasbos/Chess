@@ -200,3 +200,7 @@ Game.dia
 *.o
 CMakeFiles
 IDEWorkspaceChecks.plist
+Makefile
+CMakeCache.txt
+Chess
+Chess.cbp
