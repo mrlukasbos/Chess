@@ -25,6 +25,9 @@ class HybridPlayer : public Player {
   };
 
   GamePhase phase = OPENING;
+  int numOfStepsInGamesToSimulate = 50;
+  int numOfGamesToSimulate = 100;
+  int numOfBestMovesToEvaluate = 5;
 };
 
 #endif //CHESS_HYBRIDPLAYER_H

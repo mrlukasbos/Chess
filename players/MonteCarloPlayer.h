@@ -8,7 +8,7 @@
 #include "../Player.h"
 class MonteCarloPlayer : public Player {
  public:
-  MonteCarloPlayer(PieceColor color);
+  explicit MonteCarloPlayer(PieceColor color);
   Move *getNextMove(Board *board);
 
  private:

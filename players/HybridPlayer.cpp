@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "HybridPlayer.h"
+#include <algorithm>
 
 using namespace sf;
 using namespace std;
@@ -16,7 +17,6 @@ HybridPlayer::HybridPlayer(PieceColor color, int depth)
 
 Move *HybridPlayer::getNextMove(Board *board) {
   vector<tuple<int, Move *>> scores;
-
   vector<ChessPiece *> pieces = board->getPiecesByColor(color);
   for (ChessPiece *piece : pieces) {
     vector<Move *> moves = piece->getAvailableMoves(true);
@@ -25,24 +25,23 @@ Move *HybridPlayer::getNextMove(Board *board) {
       scores.push_back({newScore, move});
 
       // Yes... this is legal: https://www.geeksforgeeks.org/sorting-vector-tuple-c-ascending-order/
+      // Sorting tuples on first element:
       sort(scores.begin(), scores.end()); // sort scores
     }
   }
   int bestMoveScore = INT_MIN;
+  int leastOfBestMovesIndex = max((int) scores.size() - 1 - numOfBestMovesToEvaluate, 0);
 
   // take the best three moves;
-  for (int i = scores.size() - 1; i > scores.size() - 4; i--) {
-    auto move = std::get<1>(scores.at(i));
-
+  for (int i = scores.size() - 1; i >= leastOfBestMovesIndex; i--) {
+    auto move = std::get<1>(scores[i]);
     long scoreSum = 0;
-    int numOfGamesPerMove = 100;
     move->setSimulated(true);
-
     board->doMove(move);
-    for (int i = 0; i < numOfGamesPerMove; i++) {
+    for (int i = 0; i < numOfGamesToSimulate; i++) {
       scoreSum += playout(board, color, 0);
     }
-    double score = scoreSum/numOfGamesPerMove;
+    double score = scoreSum/numOfGamesToSimulate;
     if (score > bestMoveScore) {
       bestMoveScore = score;
       nextMove = move;
@@ -59,17 +58,16 @@ int HybridPlayer::playout(Board *board, PieceColor colorToMove, int counter) {
 
   ChessPiece *randomPiece = pieces[rand()%pieces.size()];
   std::vector<Move *> moves = randomPiece->getAvailableMoves(true);
-  if (!moves.empty() && counter < 1000) { // if the chesspiece has available moves
+  if (!moves.empty() && counter < numOfStepsInGamesToSimulate) { // if the chesspiece has available moves
     Move *moveToTry = moves.at(rand()%moves.size());
     moveToTry->setSimulated(true);
     board->doMove(moveToTry);
     playout(board, inverse(colorToMove), counter + 1);
     board->undoMove();
-  } else {
-
-    // return a value of how favorable the score is for the initial player
-    return getBoardScore(board, color);
   }
+  // return a value of how favorable the score is for the initial player
+  return getBoardScore(board, color);
+
 }
 
 int HybridPlayer::getMoveScore(Board *board, Move *move, int exit, int alpha, int beta) {

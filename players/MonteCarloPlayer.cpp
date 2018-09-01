@@ -46,11 +46,9 @@ int MonteCarloPlayer::playout(Board *board, PieceColor colorToMove, int counter)
     board->doMove(moveToTry);
     playout(board, inverse(colorToMove), counter + 1);
     board->undoMove();
-  } else {
-
-    // return a value of how favorable the score is for the initial player
-    return getBoardScore(board, color);
   }
+  // return a value of how favorable the score is for the initial player
+  return getBoardScore(board, color);
 }
 
 int MonteCarloPlayer::getBoardScore(Board *board, PieceColor c) {
